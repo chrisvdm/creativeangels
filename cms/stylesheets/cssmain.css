@@ -1,0 +1,294 @@
+@charset "utf-8";
+
+html,body {
+		margin: 0px;
+		padding: 0px;
+		color: #5D5D5D;
+		background: #E6E6E6;
+	}
+
+body {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 100%;
+	color: #5D5D5D;
+	margin: 0px; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+
+				/* fallback (Opera) */
+		background: #E6E6E6;
+	}
+
+td {
+	font: 100% Arial, Verdana, Geneva, Helvetica, sans-serif;
+	color: #5D5D5D;
+	}
+
+.tbl_row_odd {
+	background-color: #DCDCDC;
+	}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 16px 0;
+	font-weight: 300;
+	color: #006699;
+	}
+
+h1 {
+	font-size: 1.6em;
+	font-weight: 400;
+	}
+
+h2 {
+	font-size: 1.4em;
+	font-weight: 400;
+	}
+
+h3 {
+	font-size: 1.2em;
+	font-weight: 400;
+	}
+
+h4 {
+	font-size: 1em;
+	font-weight: 400;
+	}
+
+h5 {
+	font-size: 0.9em;
+	font-weight: 400;
+	}
+
+h6 {
+	font-size: 0.8em;
+	font-weight: 400;
+	}
+
+
+img {
+	border: 0px;
+	}
+
+#cms-header {
+	height: 70px;
+	}
+
+#main_header {
+	float: left;
+	}
+
+#main_container {
+	margin-top: 15px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	height: auto;
+	width: 960px;
+	padding: 0;
+	background-color: #fff;
+	border-radius: 5px;
+	border: 1px solid #006699;
+	}
+
+#branding_bar {
+	margin: 0px auto;
+	height: auto;
+	width: 924px;
+	padding: 16px 0px 0px 0px;
+}
+
+	#branding_bar h1 {
+		margin: 0;
+		}
+
+#navbar_main {
+	width: 928px;
+	height: auto;
+	padding: 16px 16px 16px 16px;
+	border: none;
+	}
+
+#navbar_container {
+	width: auto;
+	height: auto;
+	padding: 8px 16px 14px 16px;
+	float:right;
+	}
+
+#body_column_left_container {
+	padding: 0px 0px 0px 16px;
+	width: 236px;
+	height: auto;
+	margin: 0px 0px 16px 0px;
+	border: none;
+	float: left;
+	}
+
+#body_column_left {
+	padding: 0px 0px 16px 0px;
+	width: 220px;
+	margin: 0px 16px 16px 0px;
+	border: none;
+	float: left;
+	background-color: #fff;
+}
+
+#body_column_right_container {
+	padding: 0px;
+	width: auto;
+	height: auto;
+	margin: 0px 0px 16px 0px;
+	border: none;
+	float: left;
+}
+
+#body_column_right {
+	padding: 8px;
+	width: 672px;
+	height: auto;
+	margin: 0px 16px 16px 0px;
+	background-color: #fff;
+}
+
+	.tbldatadisplay {
+		width: 100%;
+		border: none;
+		}
+
+		.tbldatadisplay td {
+			padding: 10px;
+			}
+
+
+#page_header_main {
+	padding: 10px 8px 3px 8px;
+	width: 674px;
+	margin: 0px 16px 16px 0px;
+	color: #006699;
+	font-size: 1.2em;
+	font-weight: 700;
+	}
+
+.clearfloat_right {
+	content: " ";
+	height: 0px;
+	clear: right;
+	font-size: 0px;
+	line-height: 0px;
+	}
+
+.clearfloat_both {
+	content: " ";
+	height: 0px;
+	clear: both;
+	font-size: 0px;
+	line-height: 0px;
+	}
+
+.navbarmain a:link {
+	font-size: 1em;
+	color: #006699;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+	font-weight: 300;
+}
+
+.navbarmain a:visited {
+	font-size: 1em;
+	color: #444;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+}
+
+.navbarmain a:hover {
+	font-size: 1em;
+	color: #444;
+	letter-spacing: 0.1em;
+	text-decoration: underline;
+}
+
+.navbarmain a:active {
+	font-size: 1em;
+	color: #444;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+}
+
+/* In-page links */
+.inpagelink a:link {
+	font-size: 12px;
+	color: #000;
+	text-decoration: none;
+}
+
+.inpagelink a:visited {
+	font-size: 12px;
+	color: #000;
+	text-decoration: none;
+}
+
+.inpagelink a:hover {
+	font-size: 12px;
+	color: #c00;
+	text-decoration: underline;
+}
+
+.inpagelink a:active {
+	font-size: 12px;
+	color: #c00;
+	text-decoration: none;
+}
+
+.tbl_border {
+	border: #BFC6CE 1px solid;
+	background-color: #fff;
+	}
+
+.subnav a:link {
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.warning_msg {
+	color: #C00;
+	font-weight: bold;
+	}
+
+	div.warning_msg{
+		font-weight:400;
+	}
+
+.frmaction {
+	display: inline-block;
+	float: right;
+	}
+
+.button {
+	width: 130px;
+	background-color: #006699;
+	color: #fff;
+	height: 45px;
+	font-size: 0.9em;
+	border-radius: 8px;
+	margin: 10px 0 10px 0;
+	}
+
+.tblborder {
+	border: 1px dashed #828282;
+	border-radius: 5px;
+	}
+
+#preview
+{
+color:#cc0000;
+font-size:12px
+}
+
+.imgList
+{
+max-height:150px;
+margin-left:5px;
+border:1px solid #dedede;
+padding:4px;
+float:left;
+}
