@@ -1,59 +1,94 @@
-<?php session_start(); ?>
+<?php require('inc-public-pre-doctype.php'); ?>
 <?php $_SESSION['svSecurity'] = sha1(date('YmdHis')); ?>
-<!DOCTYPE html>
-
+<!DOCTYPE HTML>
 <html>
+<head>
 
-  <head>
+	<!-- HEAD CONTENT -->
+	<?php require('inc-public-head-content.php'); ?>
 
-    <meta charset="utf-8">
-    <title> Creative Angels Login</title>
+	<title>Creative Angels | CMS Sign in</title>
+</head>
 
-    <link href="css/public.css" rel="stylesheet">
+<body>
 
-  </head>
+	<!-- WRAPPER -->
+	<section id="wrapper">
 
-  <body>
+		<!-- HEADER -->
+		<?php require('inc-public-header.php'); ?>
 
-    <article>
+		<!-- NAVBAR WIDESCREEN -->
+		<?php require('inc-public-navbar-widescreen.php'); ?>
 
-      <form action="cms-signin-process.php" method="post">
+		<!-- NAVBAR MOBILE-->
+		<?php require('inc-public-navbar-mobile.php'); ?>
 
-          <!-- If valfailed has been sent via GET method and is also equal to '1', display error message to user. -->
-          <?php if (isset($_GET['valfailed']) && $_GET['valfailed'] === '1') { ?>
+		<!-- CONTENT CONTAINER MAIN-->
+		<section id="content_container">
 
-            <div class="warning_msg" >Please enter a valid username and password. <br><br></div>
+			<!-- CONTENT CONTAINER LEFT -->
+			<section id="content_left">
 
-          <?php } ?>
+				<!-- CONTENT CONTAINER RIGHT ARTICLE 1 -->
+				<article id="content_left_article_1">
 
-          <?php if (isset($_GET['kmatch']) && $_GET['kmatch'] === '0') { ?>
+					<h1>CMS Sign in</h1>
+					<p>&nbsp</p>
 
-            <div class="warning_msg" >Signin failed. The username and password did not match. Please try again <br><br></div>
+					<!-- If valfailed has been sent via GET method and is also equal to '1', display error message to user. -->
+					<?php if (isset($_GET['valfailed']) && $_GET['valfailed'] === '1') { ?>
 
-          <?php } ?>
+						<div class="warning_msg" >Please enter a valid username and password. <br><br></div>
 
-        <label>
-          Username<br><br>
-          <input type="text" name="txtUsername">
-        </label>
+					<?php } ?>
 
-          <br><br>
+					<?php if (isset($_GET['kmatch']) && $_GET['kmatch'] === '0') { ?>
 
-        <label>
-          Password<br><br>
-          <input type="password" name="txtPassword">
-        </label>
+						<div class="warning_msg" >Signin failed. The username and password did not match. Please try again <br><br></div>
 
-          <br><br>
+					<?php } ?>
 
-          <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+					<form action="cms-signin-process.php" method="post">
 
-        <button>Sign in</button>
+						<label>
+							Username<br><br>
+							<input type="text" name="txtUsername">
+						</label>
 
-      </form>
+							<br><br>
 
-    </article>
+						<label>
+							Password<br><br>
+							<input type="password" name="txtPassword">
+						</label>
 
-  </body>
+							<br><br>
 
+							<input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+
+						<button>Sign in</button>
+
+					</form>
+
+
+				</article>
+				<article id="content_left_article_2">Content</article>
+
+			</section>
+
+			<!-- RIGHT SIDEBAR -->
+				<?php require('inc-public-right-sidebar.php'); ?>
+
+
+		</section>
+
+		<!-- FOOTER -->
+		<?php require('inc-public-footer.php'); ?>
+
+		<div class="clear_float"></div>
+
+	</section>
+
+</body>
 </html>

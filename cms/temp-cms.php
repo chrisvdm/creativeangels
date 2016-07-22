@@ -1,4 +1,4 @@
-<?php //require("inc-cms-pre-doctype.php"); ?>
+<?php require("inc-cms-pre-doctype.php"); ?>
 <!DOCTYPE HTML>
 <html>
 

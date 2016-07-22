@@ -1,0 +1,278 @@
+@charset "utf-8";
+
+@import url("html_css_reset.css");
+
+/*
+The first part is to condition our <body> tag in CSS so that there are no
+margins and the height will always remain 100% of the screen. This will
+ensure that the greatest amount of screen is available for use.
+*/
+html, body {height: 100%;}
+body {
+	margin: 0;
+	background-color: #fff;
+	}
+
+/*
+Ensure that a vertical scroll bar is always displayed in the
+browser. Because the proportions of the website are all relative, the sudden appearance of a scroll bar (which could be triggered by an interactive component on your website) will cause your site to jump. In CSS, we can use this simple trick to ensure that the bar is always there, thus preventing jumping.
+*/
+html {overflow-y: scroll;}
+
+/*
+In order for images to fit within any screen, they need to be scaled. There
+are several ways to do this (aside from using ImgSizer.js) but a good
+starting point is to make all images have a width of 100%.
+*/
+img {
+max-width: 100%;
+border-style: none;
+}
+/*
+Unfortunately, max-width is not supported in older versions of Internet
+Explorer, so a conditional comment is also included, denoted with an
+asterisk.
+*/
+*img {
+width: 100%;
+border-style: none;
+}
+
+/* Moblie Phone Layout: 0 to 480px */
+
+p {
+	margin: 0;
+	pading: 0;
+	}
+
+/* STRUCTURAL ELEMENTS*/
+
+#wrapper {
+	width: 98%;
+	height: auto;
+	margin: 0 auto;
+	min-width: 120px;
+	background-color: #ccc;
+	position: relative;
+	}
+
+	 #header_container {
+		width: 96%;
+		margin: 0 auto 2%;
+		height: 80px;
+		background-color: #85A5CC;
+		}
+
+	#normal_nav {
+		display: none;
+		}
+
+	#content_container {
+		width: 96%;
+		height: auto;
+		margin: 2%;
+		}
+
+		 #content_left {
+			width: 100%;
+			height: 320px;
+			background-color: #85A5CC;
+			}
+
+		#content_left_article_1 {
+			display: block;
+			width: 100%;
+			height: 270px;
+			background-color: #85A5CC;
+			float: left;
+			}
+
+		#content_left_article_2 {
+			display: none;
+			}
+
+		#content_right {
+			display: none;
+			}
+
+	#my_footer {
+		width: 96%;
+		margin: 0 auto;
+		background-color: #85A5CC;
+		}
+
+	 #moblie_nav {
+		width: 100%;
+		height: 50px;
+		clear: both;
+		}
+			#moblie_nav ul li {
+				display: inline;
+				}
+
+
+
+
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+@media only screen and (min-width: 481px) {
+
+
+#wrapper {
+	width: 96%;
+	height: auto;
+	margin: 0 auto;
+	background-color: #ccc;
+	}
+
+	 #header_container {
+		background-color: #65AB8A;
+		margin: 0 auto 1%;
+		}
+
+	#normal_nav {
+		display: block;
+		width: 96%;
+		height: 50px;
+		margin: 0 auto;
+		background-color: #65AB8A;
+		}
+
+		#normal_nav ul li {
+			display: inline;
+			}
+
+	#content_container {
+		width: 98%;
+		height: 320px;
+		margin: 1% 2%;
+		}
+
+		 #content_left {
+			width: 98%;
+			height: 320px;
+			background-color: #65AB8A;
+			float: left;
+			}
+
+		#content_left_article_1 {
+			display: block;
+			width: 100%;
+			height: 270px;
+			background-color: #65AB8A;
+			float: left;
+			}
+
+		#content_left_article_2 {
+			display: none;
+			}
+
+		#content_right {
+			display: none;
+			}
+
+	#my_footer {
+		background-color: #65AB8A;
+		height: 70px;
+		margin: 1% 2% 0 2%;
+		}
+
+	#mobile_nav {
+		display: none;
+		}
+
+}
+
+
+
+/* Desktop Layout: 801px to max of 1232px. Inherits styles from: Mobile Layout and Tablet Layout. */
+@media only screen and (min-width: 801px)  {
+
+#wrapper {
+	height: auto;
+	margin: 0 auto;
+	width: 94%;
+	background-color: #ccc;
+	}
+
+	#header_container {
+		background-color: #E2DB54;
+		margin: 0 auto 1%;
+		}
+
+	#normal_nav {
+		display: block;
+		width: 96%;
+		height: 50px;
+		background-color: #E2DB54;
+		}
+
+		#normal_nav ul li {
+			display: inline;
+			}
+
+	#content_container {
+		width: 96%;
+		height: 550px;
+		margin: 1% 2%;
+		}
+
+
+		#content_left {
+			width: 64%;
+			margin-right: 2%;
+			height: auto;
+			background-color: transparent;
+			}
+
+		#content_left_article_1 {
+			display: block;
+			width: 100%;
+			height: 270px;
+			background-color: #E2DB54;
+			float: left;
+			}
+
+		#content_left_article_2 {
+			display: block;
+			width: 100%;
+			height: 270px;
+			margin-top: 2%;
+			background-color: #E2DB54;
+			float: left;
+			}
+
+		#content_right {
+			display: block;
+			width: 34%;
+			height: 540px;
+			background-color: #E2DB54;
+			float: left;
+			}
+
+	#my_footer {
+		background-color: #E2DB54;
+		height: 70px;
+		margin: 2% 2% 0 2%;
+		}
+
+
+	#moblie_nav {
+		display: none;
+		}
+
+	}
+
+@media only screen and (min-width: 1300px){
+
+#wrapper {
+	width: 80%;
+	}
+
+	}
+
+
+.clear_float {
+	clear: both;
+	font-size: 0px;
+	line-height: 0px;
+	}

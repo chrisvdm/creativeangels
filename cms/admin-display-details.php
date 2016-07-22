@@ -1,6 +1,5 @@
-<?php //require("inc-cms-pre-doctype.php"); ?>
+<?php require("inc-cms-pre-doctype.php"); ?>
 <?php
-  session_start();
   // Security check
   if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity']) {
 

@@ -44,9 +44,9 @@
 
     } else {
 
-      require('cms/inc-conn.php');
+      require('inc-conn.php');
 
-      require('cms/inc-function-escapestring.php');
+      require('inc-function-escapestring.php');
 
       $sql_cms_signin = sprintf("SELECT * FROM tblcms WHERE cusername = %s AND cpassword = %s AND cstatus = 'a'",
       escapestring($vconn_creativeangels, $vusername, 'text'),
@@ -90,7 +90,7 @@
 
   } else {
 
-    header('Location: cms/signout.php');
+    header('Location: signout.php');
     exit();
 
   }
