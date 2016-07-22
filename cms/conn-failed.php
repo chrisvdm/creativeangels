@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php require("inc-cms-pre-doctype.php"); ?>
 <?php require 'config.php'; ?>
 <!doctype html>
 

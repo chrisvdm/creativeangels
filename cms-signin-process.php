@@ -7,13 +7,13 @@
     $vvalidation = 0;
 
     // If value of 'txtUsername' was sent .
-    if (isset($_POST['txtUsername'])) {
+    if (isset($_POST['txtEmail'])) {
 
       // Create a variable, and assign it a value equal to the sent username, trimmed.
-      $vusername = trim($_POST['txtUsername']);
+      $vemail = trim($_POST['txtEmail']);
 
       // If sent username is blank, increment the validation variable.
-      if ($vusername === '') {
+      if ($vemail === '') {
 
         $vvalidation++;
 
@@ -44,12 +44,12 @@
 
     } else {
 
-      require('cms/inc-conn.php');
+      require('inc-conn.php');
 
-      require('cms/inc-function-escapestring.php');
+      require('inc-function-escapestring.php');
 
-      $sql_cms_signin = sprintf("SELECT * FROM tblcms WHERE cusername = %s AND cpassword = %s AND cstatus = 'a'",
-      escapestring($vconn_creativeangels, $vusername, 'text'),
+      $sql_cms_signin = sprintf("SELECT * FROM tblcms WHERE cemail = %s AND cpassword = %s AND cstatus = 'a'",
+      escapestring($vconn_creativeangels, $vemail, 'text'),
       escapestring($vconn_creativeangels, sha1($vpassword), 'text')
       );
 
@@ -90,7 +90,7 @@
 
   } else {
 
-    header('Location: cms/signout.php');
+    header('Location: signout.php');
     exit();
 
   }

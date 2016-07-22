@@ -5,7 +5,7 @@
     <div id="navbar_container" class="navbarmain">
 <a href="cms-homepage.php" title="CMS Home Page">Home</a>
 &nbsp;&nbsp;<span style="font-size: 20px; color: #ccc;">|</span>&nbsp;&nbsp;
-<a href="signout.php" title="Sign out">Sign out</a>
+<a href="signout.php" title="Sign out">Sign out</a>&nbsp;&nbsp;<span style="font-size: 20px; color: #ccc;">|</span>&nbsp;&nbsp;<a href="cms-homepage.php" title="View Profile"><?php echo $_SESSION['svcname'] . ' ' . $_SESSION['svcsurname'];?></a>
 	</div>
 </div>
 <div class="clearfloat_both"></div>

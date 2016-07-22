@@ -10,7 +10,7 @@ $vconn_creativeangels = mysqli_connect($vServer, $vUsername, $vPassword, $vDatab
 if (!$vconn_creativeangels) {
 
 	//REDIRECT TO ERROR PAGE WHEN CONNECTION FAILS
-	header('Location: ../cms-conn-failed.php');
+	header('Location: signout.php');
 	exit();
 
     } else {

@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php require('inc-cms-pre-doctype.php'); ?>
 <?php
 // check if the form was submitted
 if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity']){

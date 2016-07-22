@@ -1,5 +1,4 @@
-<?php //require("inc-cms-pre-doctype.php"); ?>
-<?php session_start(); ?>
+<?php require("inc-cms-pre-doctype.php"); ?>
 <?php
 $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 ?>
