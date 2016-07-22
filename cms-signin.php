@@ -52,8 +52,8 @@
 					<form action="cms-signin-process.php" method="post">
 
 						<label>
-							Username<br><br>
-							<input type="text" name="txtUsername">
+							Email address<br><br>
+							<input type="email" name="txtEmail">
 						</label>
 
 							<br><br>
