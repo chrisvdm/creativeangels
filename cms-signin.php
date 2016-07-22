@@ -52,7 +52,7 @@
 					<form action="cms-signin-process.php" method="post">
 
 						<label>
-							Email address<br><br>
+							Email address <br><br>
 							<input type="email" name="txtEmail">
 						</label>
 
