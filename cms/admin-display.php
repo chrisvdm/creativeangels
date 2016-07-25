@@ -93,7 +93,9 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
               <td><?php echo $rs_cms_rows['csurname'] . ', ' . $rs_cms_rows['cname']; ?></td>
 
-              <td align="center"><?php echo $rs_cms_rows['caccesslevel']; ?></td>
+              <td align="center"><?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Admin';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
+                echo 'Member';
+              } ?></td>
 
               <!-- Change status -->
               <td align="center">
@@ -120,7 +122,18 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                 </td>
 
               <!-- Edit record -->
-              <td align="center">Edit</td>
+              <td align="center"><?php if ($_SESSION['svcaccesslevel']=== 'a'){?>
+              <form action="admin-update-display.php" method="GET">
+
+              <input type="hidden" name="txtId" value="<?php echo $rs_cms_rows['cid']; ?>">
+              <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+              <input type="submit" name="btnEdit" value="Edit">
+            </td>
+
+            <?php } else { ?>
+              &nbsp;
+
+              <?php } ?>
 
               <!-- Delete record -->
               <td align="center">

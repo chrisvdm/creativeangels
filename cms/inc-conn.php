@@ -1,11 +1,11 @@
 <?php
-	$vServer = 'localhost';
-	$vDbUsername = 'dev';
-	$vDbPassword = 'Ramfest2014';
-	$vDatabase = 'dbcreativeangels';
+	$vconnServer = 'localhost';
+	$vconnDbUsername = 'dev';
+	$vconnDbPassword = 'Ramfest2014';
+	$vconnDatabase = 'dbcreativeangels';
 
 	//Connect to MYSQL server
-	$vconn_creativeangels = mysqli_connect($vServer, $vDbUsername, $vDbPassword, $vDatabase);
+	$vconn_creativeangels = mysqli_connect($vconnServer, $vconnDbUsername, $vconnDbPassword, $vconnDatabase);
 
 	if (!$vconn_creativeangels) {
 
