@@ -156,7 +156,9 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                   <strong>Modified: </strong><?php echo $rs_cms_rows['cupdated']; ?>
                   <br><br>
 
-                  <strong>Access Level : </strong><?php echo $rs_cms_rows['caccesslevel']; ?>
+                  <strong>Access Level : </strong><?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Level A';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
+                    echo 'Level B';
+                  } ?>
                   <br><br>
 
                   <strong>Status : </strong><span id="stat<?php echo $rs_cms_rows['cid']; ?>"><?php if($rs_cms_rows['cstatus'] === 'i') {echo 'Inactive';} elseif ($rs_cms_rows['cstatus'] === 'a') {echo 'Active';} ?></span>

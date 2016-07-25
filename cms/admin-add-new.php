@@ -71,6 +71,12 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <?php echo errorMsg('kname', 'name'); ?>
 
         <!-- PHP checks whether certain keys have been returned with values in the GET Global Super Array, if it has then echo the value into the input field  -->
+
+        <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
+          <label>User Access Level:</label><br>
+          <input type="radio" value="a"> Level A <br>
+          <input type="radio" value="b"> Level B <br>
+          <?php }?>
         <label>First name:</label>
         <input type="text" name="txtName" autocomplete="off" autofocus value="<?php echo displayTxt('kname'); ?>">
         <br><br>
@@ -79,12 +85,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         <label>Surname:</label>
         <input type="text" name="txtSurname" autocomplete="off" value="<?php echo displayTxt('ksurname'); ?>">
-        <br><br>
-
-        <?php echo errorMsg('kusername', 'username'); ?>
-
-        <label>Username:</label>
-        <input type="text" name="txtUsername" autocomplete="off" value="<?php echo displayTxt('kusername'); ?>">
         <br><br>
 
         <!-- Reminds user to enter password on validation fail -->

@@ -18,12 +18,6 @@ if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity
       $validation++;
     }
 
-  $vUsername = strtolower(trim($_GET['txtUsername']));
-
-    if($vUsername === ''){
-      $validation++;
-    }
-
   $vPassword1 = trim($_GET['txtPassword1']);
   $vPassword2 = trim($_GET['txtPassword2']);
 
@@ -61,7 +55,6 @@ if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity
     $qs = '?kval=failed';
     $qs .= "&kname=$vName";
     $qs .= "&ksurname=$vSurname";
-    $qs .= "&kusername=$vUsername";
     $qs .= "&kpassword=$vpswmatch";
     $qs .= "&kemail=$vEmail";
     $qs .= "&kmobile=$vMobile";
@@ -79,12 +72,11 @@ if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity
 
     // The proper way to insert sql statement (SQL Injection)
     // The first specifier (%s) corresponds to the first escapestring function as so on and so forth
-    $sql_insert = sprintf("INSERT INTO tblcms (ccreated, caccesslevel, cname, csurname, cusername, cpassword, cemail, cmobile) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+    $sql_insert = sprintf("INSERT INTO tblcms (ccreated, caccesslevel, cname, csurname, cpassword, cemail, cmobile) VALUES (%s, %s, %s, %s, %s, %s, %s)",
       escapestring($vconn_creativeangels, $vcreated, 'date'),
       escapestring($vconn_creativeangels, 'b', 'text'),
       escapestring($vconn_creativeangels, $vName, 'text'),
       escapestring($vconn_creativeangels, $vSurname, 'text'),
-      escapestring($vconn_creativeangels, $vUsername, 'text'),
       escapestring($vconn_creativeangels, sha1($vPassword1), 'text'),
       escapestring($vconn_creativeangels, $vEmail, 'text'),
       escapestring($vconn_creativeangels, $vMobile, 'text')
