@@ -193,18 +193,17 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
                   $("#btn<?php echo $rs_cms_rows['cid']; ?>").click(function(){
 
+                    // If info is visibles
                     if($("#row<?php echo $rs_cms_rows['cid']; ?>").is(':visible')){
 
                       $("#row<?php echo $rs_cms_rows['cid']; ?>").addClass('hide').removeClass('show');
 
-                    }else {
+                    } else {
 
                       $('.collapse').addClass('hide').removeClass('show');
                       $("#row<?php echo $rs_cms_rows['cid']; ?>").addClass('show').removeClass('hide');
 
                     }
-
-                    $("#row<?php echo $rs_cms_rows['cid']; ?>").toggleClass('hide');
 
                   });
 
