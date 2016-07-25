@@ -22,7 +22,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'emaildup'){
 
       return '<div class="warning_msg">Email already in use</div>';
-      
+
     }//end if statement
 
   } // End of function errorMsg
@@ -106,7 +106,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <br><br>
 
         <?php echo errorMsg('kemail', 'email'); ?>
-        <?php echo errorMsg('kval', ''); ?>
+        <?php echo errorMsg('kemaildup', 'emaildup'); ?>
 
         <label>Email:</label>
         <input type="email" name="txtEmail" autocomplete="off" value="<?php echo displayTxt('kemail'); ?>">

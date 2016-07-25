@@ -75,7 +75,8 @@ if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity
     $rs_dup_email_rows = mysqli_num_rows($rs_dup_email);
 
     if($rs_dup_email_rows > 0) {
-      $qs = '?kval=emaildup';
+      $qs = "?kval=failed";
+      $qs .= "&kemaildup=emaildup";
       $qs .= "&kname=$vName";
       $qs .= "&ksurname=$vSurname";
       $qs .= "&kpassword=$vpswmatch";
