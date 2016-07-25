@@ -98,11 +98,16 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               } ?></td>
 
               <!-- Change status -->
-              <td align="center">
+              <td align="center"><?php if ($_SESSION['svcaccesslevel']=== 'a'){?>
 
                 <!-- This is where the ajax method needs to change things -->
                 <!-- My thoughts are that ajax will run the data on the process file, therefore we can remove the action or something like that. I could be very wrong -->
                 <input type="button" name="statusBtn" value="<?php if($rs_cms_rows['cstatus'] === 'i'){echo 'Activate';} elseif($rs_cms_rows['cstatus'] === 'a'){echo 'Deactivate';} ?>" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>"></td>
+
+                <?php } else { ?>
+                  &nbsp;
+
+                  <?php } ?>
 
               <!-- View details -->
               <td align="center">
@@ -136,7 +141,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               <?php } ?>
 
               <!-- Delete record -->
-              <td align="center">
+                <td align="center"><?php if ($_SESSION['svcaccesslevel']=== 'a'){?>
 
                   <!-- <input type="hidden" name="txtId" value="<?php //echo $rs_cms_rows['cid']; ?>">
 
@@ -145,6 +150,10 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                   <input type="button" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>">
 
               </td>
+              <?php } else { ?>
+                &nbsp;
+
+                <?php } ?>
 
             </tr>
 
