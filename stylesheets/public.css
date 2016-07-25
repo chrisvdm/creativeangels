@@ -112,7 +112,10 @@ p {
 
 
 
-
+.warning_msg {
+	color: #cd5831;
+	font-weight: 800;
+}
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 @media only screen and (min-width: 481px) {
 

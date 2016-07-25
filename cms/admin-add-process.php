@@ -53,11 +53,11 @@ if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity
   if($validation !== 0) {
 
     $qs = '?kval=failed';
-    $qs .= "&kname=$vName";
-    $qs .= "&ksurname=$vSurname";
-    $qs .= "&kpassword=$vpswmatch";
-    $qs .= "&kemail=$vEmail";
-    $qs .= "&kmobile=$vMobile";
+    $qs .= "&kname=".urlencode($vName);
+    $qs .= "&ksurname=".urlencode($vSurname);
+    $qs .= "&kpassword=".urlencode($vpswmatch);
+    $qs .= "&kemail=".urlencode($vEmail);
+    $qs .= "&kmobile=".urlencode($vMobile);
 
     header('Location: admin-add-new.php' . $qs);
     exit();
@@ -71,16 +71,16 @@ if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity
 
     $rs_dup_email = mysqli_query($vconn_creativeangels, $sql_dup_email);
 
-    //Count how many rows have the same email
+    // Count how many rows have the same email
     $rs_dup_email_rows = mysqli_num_rows($rs_dup_email);
 
+    // Single quotations makes everything inside a string doubles used with variables
     if($rs_dup_email_rows > 0) {
-      $qs = "?kval=failed";
-      $qs .= "&kemaildup=emaildup";
-      $qs .= "&kname=$vName";
-      $qs .= "&ksurname=$vSurname";
-      $qs .= "&kpassword=$vpswmatch";
-      $qs .= "&kmobile=$vMobile";
+      $qs = '?kemaildup=emaildup';
+      $qs .= "&kname=",urlencode($vName);
+      $qs .= "&ksurname=",urlencode($vSurname);
+      $qs .= "&kpassword=",urlencode($vpswmatch);
+      $qs .= "&kmobile=",urlencode($vMobile);
 
       // Redirect back to admin-add-new.php
       header('Location: admin-add-new.php' . $qs);

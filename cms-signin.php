@@ -56,12 +56,15 @@
 							<input type="email" name="txtEmail">
 						</label>
 
-							<br><br>
+						<br><br>
 
 						<label>
 							Password<br><br>
 							<input type="password" name="txtPassword">
 						</label>
+
+						<br>
+						<a href="cms-pw-lost.php">Forgot your password?</a>
 
 							<br><br>
 

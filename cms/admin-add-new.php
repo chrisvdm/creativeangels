@@ -76,13 +76,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         <!-- PHP checks whether certain keys have been returned with values in the GET Global Super Array, if it has then echo the value into the input field  -->
 
-        <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
-          <label>User Access Level:</label><br>
-          <input type="radio" name="txtAccesslevel" value="a"> Level A <br>
-          <input type="radio" name="txtAccesslevel" value="b"> Level B
-          <br><br>
-          <?php }?>
-
         <label>First name:</label>
         <input type="text" name="txtName" autocomplete="off" autofocus value="<?php echo displayTxt('kname'); ?>">
         <br><br>
