@@ -50,7 +50,7 @@ if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity
     $validation++;
   }
 
-  if($validation != 0) {
+  if($validation !== 0) {
 
     $qs = '?kval=failed';
     $qs .= "&kname=$vName";
@@ -62,7 +62,34 @@ if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity
     header('Location: admin-add-new.php' . $qs);
     exit();
     // validation check
+  } else if ($validation === 0) {
+
+    $sql_dup_email = "SELECT cemail FROM tblcms WHERE cemail = '$vEmail'";
+
+    // Connect to mysql server
+    require('inc-conn.php');
+
+    $rs_dup_email = mysqli_query($vconn_creativeangels, $sql_dup_email);
+
+    //Count how many rows have the same email
+    $rs_dup_email_rows = mysqli_num_rows($rs_dup_email);
+
+    if($rs_dup_email_rows > 0) {
+      $qs = '?kval=emaildup';
+      $qs .= "&kname=$vName";
+      $qs .= "&ksurname=$vSurname";
+      $qs .= "&kpassword=$vpswmatch";
+      $qs .= "&kmobile=$vMobile";
+
+      // Redirect back to admin-add-new.php
+      header('Location: admin-add-new.php' . $qs);
+      exit();
+
+
   } else {
+
+    // Connect to mysql server
+    require('inc-conn.php');
 
     // Calls the file where the user defined function escapestring receives its instructions
     require('inc-function-escapestring.php');
@@ -98,6 +125,8 @@ if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity
     }
 
   }
+
+}
 
 } else {
 

@@ -19,7 +19,11 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
       return '<div class="warning_msg">Please enter passwords!</div>';
 
-    } //end if statement
+    } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'emaildup'){
+
+      return '<div class="warning_msg">Email already in use</div>';
+      
+    }//end if statement
 
   } // End of function errorMsg
 
@@ -74,9 +78,11 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
           <label>User Access Level:</label><br>
-          <input type="radio" value="a"> Level A <br>
-          <input type="radio" value="b"> Level B <br>
+          <input type="radio" name="txtAccesslevel" value="a"> Level A <br>
+          <input type="radio" name="txtAccesslevel" value="b"> Level B
+          <br><br>
           <?php }?>
+
         <label>First name:</label>
         <input type="text" name="txtName" autocomplete="off" autofocus value="<?php echo displayTxt('kname'); ?>">
         <br><br>
@@ -100,6 +106,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <br><br>
 
         <?php echo errorMsg('kemail', 'email'); ?>
+        <?php echo errorMsg('kval', ''); ?>
 
         <label>Email:</label>
         <input type="email" name="txtEmail" autocomplete="off" value="<?php echo displayTxt('kemail'); ?>">
