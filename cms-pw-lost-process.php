@@ -6,23 +6,47 @@
     // Variable that is used to check for vvalidation.
     $vvalidation = 0;
 
-    // If value of 'txtUsername' was sent .
-    if (isset($_POST['txtEmail'])) {
+    // ------------------------- EMAIL VALIDATION ----------------------------
 
-      // Create a variable, and assign it a value equal to the sent username, trimmed.
-      $vemail = trim($_POST['txtEmail']);
+      if (isset($_POST['txtEmail'])) {
 
-      // If sent email address is blank, increment the validation variable.
-      if ($vemail === '') {
+        $vemail = trim($_POST['txtEmail']);
 
-        $vvalidation++;
+        // If sent username is not blank.
+        if ($vemail !== '') {
 
-      }
+          //sanitize email address(Remove harmful characters)
+          $vemail = filter_var($vemail, FILTER_SANITIZE_EMAIL);
 
-    }
+          if ($vemail !== ''){
 
-    // If any validation errors occured, the validation variable will be higher than 0, in which case the sessions is destroyed, and the user is redirected back to the signin page, with a GET value appended that will cause and error message to display for the user.
-    if ($vvalidation > 0) {
+            // Validate email address(Check that email has correct structure)
+            if(!filter_var($vemail, FILTER_VALIDATE_EMAIL)) {
+
+              // If email does not validate
+              $validation++;
+
+            }
+
+          } else {
+
+            // if $vEmail is empty after sanitisation
+            $validation++;
+
+          }
+
+        } else {
+
+          // if $vEmail is empty on arrival
+          $validation++;
+
+        }
+
+      } // END OF EMAIL VALIDATION
+
+
+    // validation fail
+    if ($validation > 0) {
 
       session_destroy();
 
@@ -31,6 +55,7 @@
 
     } else {
 
+      // Validation passed
       require('inc-conn.php');
 
       require('inc-function-escapestring.php');
@@ -45,13 +70,55 @@
 
       $rs_pw_lost_rows = mysqli_fetch_assoc($rs_pw_lost);
 
+      // if there is one entry with the entered email
       if ($rs_pw_lost_total === 1) {
 
-        echo $rs_pw_lost_rows['cname'].' '.$rs_pw_lost_rows['csurname'];
+        //------------------------- SEND AUTO EMAIL -------------------------
+
+        // User to whom the email confirmation should be sent
+        $vto = 'nymanchristine@gmail.com';
+
+        // Subject
+        $vsubject = 'Lost Password';
+
+        // HTML email message
+        $vmessage = 'LOL! You lost your password';
+
+        // To send HTML mail you can set the Content-type header
+        $vheaders = 'MIME-Version: 1.0\r\n';
+        $vheaders .= 'Content-type: text/html; charset=iso-8859-1\r\n';
+        $vheaders .= 'From: christinenyman.com<webmaster@christinenyman.com>\r\n';
+
+        // ADDITIONAL HEADERS
+        // $vheaders = 'To: Mary<mary@gmail.com>, John<john@gmail.com>\r\n';
+        // $vheaders .= 'Cc: peter@gmail.com\r\n';
+        // $vheaders .= 'Bcc: sue@gmail.com\r\n';
+
+        // SEND THE MAIL
+
+        $vemailsent = mail($vto, $vsubject, $vmessage, $vheaders);
+
+        // Check if mail has been sent
+        if($vemailsent){
+          $qs = '?kmail=sent';
+
+          header('Location: cms-pw-lost.php' . $qs);
+          exit();
+
+        } else {
+
+          $qs = '?kmail=notsent';
+
+          header('Location: cms-pw-lost.php' . $qs);
+          exit();
+
+        }
+
         exit();
 
       } else {
 
+        //If more than one entry of an email
         // Kills session and avoids adding unnnecesary strain on server
         session_destroy();
 
