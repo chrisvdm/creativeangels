@@ -1,0 +1,64 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.10
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost:8889
+-- Generation Time: Jul 26, 2016 at 01:15 PM
+-- Server version: 5.5.42
+-- PHP Version: 5.6.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `dbcreativeangels`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblcms`
+--
+
+CREATE TABLE `tblcms` (
+  `cid` int(10) unsigned zerofill NOT NULL,
+  `ccreated` date NOT NULL DEFAULT '0000-00-00',
+  `cupdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `cpassword` char(40) NOT NULL DEFAULT 'na',
+  `cstatus` enum('a','i') NOT NULL,
+  `caccesslevel` enum('a','b') NOT NULL DEFAULT 'a',
+  `cname` varchar(24) NOT NULL DEFAULT 'na',
+  `csurname` varchar(24) NOT NULL DEFAULT 'na',
+  `cemail` varchar(100) NOT NULL DEFAULT 'na',
+  `cmobile` char(13) NOT NULL DEFAULT 'na'
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblcms`
+--
+
+INSERT INTO `tblcms` (`cid`, `ccreated`, `cupdated`, `cpassword`, `cstatus`, `caccesslevel`, `cname`, `csurname`, `cemail`, `cmobile`) VALUES
+(0000000004, '2016-07-21', '2016-07-22 10:41:23', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'a', 'a', 'Christine', 'Nyman', 'admin@creativeangels.org.za', '1234567890'),
+(0000000005, '2016-07-22', '2016-07-25 07:38:44', '8be3c943b1609fffbfc51aad666d0a04adf83c9d', 'a', 'b', 'Sue', 'Frank', 'Sue@creativeangels.org.za', '122434'),
+(0000000008, '2016-07-25', '2016-07-25 10:55:37', 'b4914600112ba18af7798b6c1a1363728ae1d96f', 'a', 'b', 'Helga', 'Frank', 'helga@creativeangels.org.za', '436456');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tblcms`
+--
+ALTER TABLE `tblcms`
+  ADD PRIMARY KEY (`cid`),
+  ADD UNIQUE KEY `cemail` (`cemail`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tblcms`
+--
+ALTER TABLE `tblcms`
+  MODIFY `cid` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
