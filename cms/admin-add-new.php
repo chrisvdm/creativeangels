@@ -69,7 +69,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
       <h2> Add New </h2>
 
       <!-- Executes instructions in 'admin-add-process.php' on submit and sends form data using get -->
-      <form action="admin-add-process.php" method="get" onsubmit="return">
+      <form action="admin-add-process.php" method="post" onsubmit="return">
 
         <!-- Displays warning message above empty field -->
         <?php echo errorMsg('kname', 'name'); ?>
