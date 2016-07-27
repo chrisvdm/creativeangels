@@ -1,7 +1,6 @@
 <?php session_start(); ?>
 <?php
-
-  if (isset($_POST['txtEmail']) && $_POST['txtEmail'] !== '') {
+  if (isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']) {
 
     // Variable that is used to check for vvalidation.
     $vvalidation = 0;

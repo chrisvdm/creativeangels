@@ -15,13 +15,10 @@
     <td align="left" class="accmenu"><a href="admin-add-new.php">Add new</a></td>
   </tr>
   <?php } ?>
+  
     </table>
   </div>
 <!-- ADMIN STAFF ENDS -->
-
-
-
-
 
 
 
