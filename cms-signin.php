@@ -1,97 +1,103 @@
 <?php require('inc-public-pre-doctype.php'); ?>
-<?php $_SESSION['svSecurity'] = sha1(date('YmdHis')); ?>
+<?php
+$_SESSION['svSecurity'] = sha1(date('YmdHis'));
+?>
 <!DOCTYPE HTML>
+
 <html>
-<head>
 
-	<!-- HEAD CONTENT -->
-	<?php require('inc-public-head-content.php'); ?>
+	<head>
 
-	<title>Creative Angels | CMS Sign in</title>
-</head>
+		<!-- HEAD CONTENT -->
+		<?php require('inc-public-head-content.php'); ?>
 
-<body>
+		<title>CAFB CMS Signin</title>
 
-	<!-- WRAPPER -->
-	<section id="wrapper">
+	</head>
 
-		<!-- HEADER -->
-		<?php require('inc-public-header.php'); ?>
+	<body>
+		<!-- WRAPPER -->
+		<section id="wrapper">
 
-		<!-- NAVBAR WIDESCREEN -->
-		<?php require('inc-public-navbar-widescreen.php'); ?>
+			<!-- HEADER -->
+			<?php require('inc-public-header.php'); ?>
 
-		<!-- NAVBAR MOBILE-->
-		<?php require('inc-public-navbar-mobile.php'); ?>
+			<!-- Appear only on tablet layout and higher. Replaces mobile nav bar -->
+			<!-- NAVBAR TABLET AND  WIDESCREEN -->
+			<?php require('inc-public-navbar-widescreen.php'); ?>
 
-		<!-- CONTENT CONTAINER MAIN-->
-		<section id="content_container">
+			<!-- NAVBAR MOBILE -->
+			<?php require('inc-public-navbar-mobile.php'); ?>
 
-			<!-- CONTENT CONTAINER LEFT -->
-			<section id="content_left">
+			<!-- CONTENT CONATINER MAIN -->
+			<section id="content_container">
 
-				<!-- CONTENT CONTAINER RIGHT ARTICLE 1 -->
-				<article id="content_left_article_1">
+				<!-- CONTENT CONATAINER LEFT -->
+				<section id="content_left">
 
-					<h1>CMS Sign in</h1>
-					<p>&nbsp</p>
+					<!-- CONTENT CONTAINER LEFT ARTICLE 1 -->
+					<article id="content_left_article_1">
 
-					<!-- If valfailed has been sent via GET method and is also equal to '1', display error message to user. -->
-					<?php if (isset($_GET['valfailed']) && $_GET['valfailed'] === '1') { ?>
-
-						<div class="warning_msg" >Please enter a valid username and password. <br><br></div>
-
-					<?php } ?>
-
-					<?php if (isset($_GET['kmatch']) && $_GET['kmatch'] === '0') { ?>
-
-						<div class="warning_msg" >Signin failed. The username and password did not match. Please try again <br><br></div>
-
-					<?php } ?>
-
-					<form action="cms-signin-process.php" method="post">
-
-						<label>
-							Email address <br><br>
-							<input type="email" name="txtEmail">
-						</label>
-
-						<br><br>
-
-						<label>
-							Password<br><br>
-							<input type="password" name="txtPassword">
-						</label>
-
-						<br>
-						<a href="cms-pw-lost.php">Forgot your password?</a>
-
-							<br><br>
-
-							<input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
-
-						<button>Sign in</button>
-
-					</form>
+						<h1>CMS Login</h1>
 
 
-				</article>
-				<article id="content_left_article_2">Content</article>
+
+						<?php if (isset($_GET['valfailed']) && $_GET['valfailed'] === 'invdet') { ?>
+
+							<div class="warning_msg">Please enter a valid username and password. <br><br></div>
+
+						<?php } ?>
+
+						<?php if (isset($_GET['valfailed']) && $_GET['valfailed'] === 'incdet') { ?>
+
+							<div class="warning_msg">Your login details were incorrect. Please try again. <br><br></div>
+
+						<?php } ?>
+
+						<form action="cms-signin-process.php" method="post">
+
+							<label>
+								Username<br><br>
+								<input type="email" name="txtEmail" autofocus>
+							</label>
+
+								<br><br>
+
+							<label>
+								Password<br><br>
+								<input type="password" name="txtPassword">
+							</label>
+
+								<br><br>
+
+								<input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+
+							<button>Sign in</button>
+
+							<a style="font-size: 80%; margin: 5px;" href="cms-pw-lost.php">Forgot your password?</a>
+
+						</form>
+
+
+					</article>
+
+					<!-- CONTENT CONTAINER LEFT ARTICLE 2 -->
+					<article id="content_left_article_2">Content</article>
+
+				</section>
+
+				<!-- RIGHT SIDEBAR-->
+				<?php require('inc-public-right-sidebar.php'); ?>
 
 			</section>
 
-			<!-- RIGHT SIDEBAR -->
-				<?php require('inc-public-right-sidebar.php'); ?>
+			<!-- FOOTER -->
+			<?php require('inc-public-footer.php'); ?>
 
+			<div class="clear_float"></div>
 
 		</section>
 
-		<!-- FOOTER -->
-		<?php require('inc-public-footer.php'); ?>
+	</body>
 
-		<div class="clear_float"></div>
-
-	</section>
-
-</body>
 </html>

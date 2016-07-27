@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php
 
-  if (isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']) {
+  if (isset($_POST['txtEmail']) && $_POST['txtEmail'] !== '') {
 
     // Variable that is used to check for vvalidation.
     $vvalidation = 0;
@@ -87,7 +87,7 @@
         // To send HTML mail you can set the Content-type header
         $vheaders = 'MIME-Version: 1.0\r\n';
         $vheaders .= 'Content-type: text/html; charset=iso-8859-1\r\n';
-        $vheaders .= 'From: christinenyman.com<webmaster@christinenyman.com>\r\n';
+        $vheaders .= 'From: christinenyman.com<info@christinenyman.com>\r\n';
 
         // ADDITIONAL HEADERS
         // $vheaders = 'To: Mary<mary@gmail.com>, John<john@gmail.com>\r\n';
