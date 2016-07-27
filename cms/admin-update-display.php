@@ -19,11 +19,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
       return '<div class="warning_msg">Please enter passwords!</div>';
 
-    } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'emaildup'){
-
-      return '<div class="warning_msg">Email already in use</div>';
-
-    }//end if statement
+    } //end if statement
 
   } // End of function errorMsg
 
@@ -66,16 +62,15 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 <div id="body_column_right_container">
 
     <div id="body_column_right">
-      <h2> Add New </h2>
+      <h2>Edit User Information</h2>
 
       <!-- Executes instructions in 'admin-add-process.php' on submit and sends form data using get -->
-      <form action="admin-add-process.php" method="post" onsubmit="return">
+      <form action="admin-add-process.php" method="get" onsubmit="return">
 
         <!-- Displays warning message above empty field -->
         <?php echo errorMsg('kname', 'name'); ?>
 
         <!-- PHP checks whether certain keys have been returned with values in the GET Global Super Array, if it has then echo the value into the input field  -->
-
         <label>First name:</label>
         <input type="text" name="txtName" autocomplete="off" autofocus value="<?php echo displayTxt('kname'); ?>">
         <br><br>
@@ -84,6 +79,12 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         <label>Surname:</label>
         <input type="text" name="txtSurname" autocomplete="off" value="<?php echo displayTxt('ksurname'); ?>">
+        <br><br>
+
+        <?php echo errorMsg('kusername', 'username'); ?>
+
+        <label>Username:</label>
+        <input type="text" name="txtUsername" autocomplete="off" value="<?php echo displayTxt('kusername'); ?>">
         <br><br>
 
         <!-- Reminds user to enter password on validation fail -->
@@ -99,7 +100,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <br><br>
 
         <?php echo errorMsg('kemail', 'email'); ?>
-        <?php echo errorMsg('kemaildup', 'emaildup'); ?>
 
         <label>Email:</label>
         <input type="email" name="txtEmail" autocomplete="off" value="<?php echo displayTxt('kemail'); ?>">

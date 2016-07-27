@@ -27,7 +27,6 @@
   <h2> Hi there <?php echo $_SESSION['svcname']; ?></h2>
 
     <div id="body_column_right">
-        <h2>Manage your pages</h2>
         <p>&nbsp;</p>
         <table cellspacing="0" class="tbldatadisplay">
         <tr>

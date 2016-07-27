@@ -9,16 +9,16 @@
   <tr>
     <td align="left" class="accmenu"><a href="admin-display.php">Display</a></td>
   </tr>
+
+  <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
   <tr>
     <td align="left" class="accmenu"><a href="admin-add-new.php">Add new</a></td>
   </tr>
+  <?php } ?>
+  
     </table>
   </div>
 <!-- ADMIN STAFF ENDS -->
-
-
-
-
 
 
 

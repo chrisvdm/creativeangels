@@ -93,45 +93,57 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
               <td><?php echo $rs_cms_rows['csurname'] . ', ' . $rs_cms_rows['cname']; ?></td>
 
-              <td align="center"><?php echo $rs_cms_rows['caccesslevel']; ?></td>
+              <!-- Access Level -->
+              <td align="center"><?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Level A';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
+                echo 'Level B';
+              } ?></td>
 
               <!-- Change status -->
               <td align="center">
+                <?php if ($_SESSION['svcaccesslevel'] === 'a' && $_SESSION['svcid'] !== $rs_cms_rows['cid']){?>
 
                 <!-- This is where the ajax method needs to change things -->
                 <!-- My thoughts are that ajax will run the data on the process file, therefore we can remove the action or something like that. I could be very wrong -->
                 <input type="button" name="statusBtn" value="<?php if($rs_cms_rows['cstatus'] === 'i'){echo 'Activate';} elseif($rs_cms_rows['cstatus'] === 'a'){echo 'Deactivate';} ?>" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>"></td>
 
+                <?php } else { ?>
+                  &nbsp;
+
+                  <?php } ?>
+
               <!-- View details -->
               <td align="center">
 
-                <!-- <form method="get" action="admin-display-details.php">
-
-                  <input type="hidden" name="txtId" value="<?php //echo $rs_cms_rows['cid']; ?>">
-
-                  <input type="hidden" name="txtSecurity" value="<?php //echo $_SESSION['svSecurity']; ?>">
-
-                  <input type="submit" name="btnView" value="View">
-
-                </form> -->
 
                 <input id="btn<?php echo $rs_cms_rows['cid']; ?>" type="button" name="btnView" data-cid="<?php echo $rs_cms_rows['cid']; ?>" value="View Details">
 
                 </td>
 
               <!-- Edit record -->
-              <td align="center">Edit</td>
+              <td align="center"><?php if ($_SESSION['svcaccesslevel']=== 'a'){?>
+              <form action="admin-update-display.php" method="GET">
+
+              <input type="hidden" name="txtId" value="<?php echo $rs_cms_rows['cid']; ?>">
+              <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+              <input type="submit" name="btnEdit" value="Edit">
+            </td>
+
+            <?php } else { ?>
+              &nbsp;
+
+              <?php } ?>
 
               <!-- Delete record -->
-              <td align="center">
-
-                  <!-- <input type="hidden" name="txtId" value="<?php //echo $rs_cms_rows['cid']; ?>">
-
-                  <input type="hidden" name="txtSecurity" value="<?php //echo $_SESSION['svSecurity']; ?>"> -->
+                <td align="center">
+                  <?php if ($_SESSION['svcaccesslevel']=== 'a'  && $_SESSION['svcid'] !== $rs_cms_rows['cid']){?>
 
                   <input type="button" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>">
 
               </td>
+              <?php } else { ?>
+                &nbsp;
+
+                <?php } ?>
 
             </tr>
 
@@ -144,7 +156,9 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                   <strong>Modified: </strong><?php echo $rs_cms_rows['cupdated']; ?>
                   <br><br>
 
-                  <strong>Access Level : </strong><?php echo $rs_cms_rows['caccesslevel']; ?>
+                  <strong>Access Level : </strong><?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Level A';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
+                    echo 'Level B';
+                  } ?>
                   <br><br>
 
                   <strong>Status : </strong><span id="stat<?php echo $rs_cms_rows['cid']; ?>"><?php if($rs_cms_rows['cstatus'] === 'i') {echo 'Inactive';} elseif ($rs_cms_rows['cstatus'] === 'a') {echo 'Active';} ?></span>
@@ -153,7 +167,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                   <strong>Email: </strong><a href="mailto:<?php echo $rs_cms_rows['cemail']; ?>" title="Send email to Admin"><?php echo $rs_cms_rows['cemail']; ?></a>
                   <br><br>
 
-                  <strong>Username: </strong><?php echo $rs_cms_rows['cusername']; ?>
+                  <strong>Username: </strong><?php echo $rs_cms_rows['cemail']; ?>
                   <br><br>
 
                   <strong>Mobile: </strong><?php echo $rs_cms_rows['cmobile']; ?>
@@ -171,18 +185,17 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
                   $("#btn<?php echo $rs_cms_rows['cid']; ?>").click(function(){
 
+                    // If info is visibles
                     if($("#row<?php echo $rs_cms_rows['cid']; ?>").is(':visible')){
 
                       $("#row<?php echo $rs_cms_rows['cid']; ?>").addClass('hide').removeClass('show');
 
-                    }else {
+                    } else {
 
                       $('.collapse').addClass('hide').removeClass('show');
                       $("#row<?php echo $rs_cms_rows['cid']; ?>").addClass('show').removeClass('hide');
 
                     }
-
-                    $("#row<?php echo $rs_cms_rows['cid']; ?>").toggleClass('hide');
 
                   });
 
