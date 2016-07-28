@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+@import "normalize.min.css";
+
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+@import 'https://fonts.googleapis.com/css?family=Dosis:400,600';
+
+body, html {
+  width: 100%;
+  overflow-y: hidden;
+}
+
+body {
+  min-height: 100vh;
+  font-size: 100%;
+  background-color: #fafafa;
+}
+
+img {
+  min-width: 100%;
+}
+
+/*Font styling*/
+
+h1, h2, h3, h4 {
+  font-family: Dosis, sans-serif;
+}
+
+p, a {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/*container styling*/
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.base {
+  padding: 1.25em 0.625em;
+  webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
