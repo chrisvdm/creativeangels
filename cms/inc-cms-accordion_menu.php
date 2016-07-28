@@ -1,24 +1,26 @@
 <div class="applemenu">
 
-<!-- ADMIN STAFF STARTS -->
+  <!-- ADMIN STAFF STARTS -->
   <div class="silverheader">
-		<a href="#">Administrators</a>
-		</div>
-  <div class="submenu">
-	<table width="100%" border="0" cellspacing="0" cellpadding="2">
-  <tr>
-    <td align="left" class="accmenu"><a href="admin-display.php">Display</a></td>
-  </tr>
-
-  <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
-  <tr>
-    <td align="left" class="accmenu"><a href="admin-add-new.php">Add new</a></td>
-  </tr>
-  <?php } ?>
-  
-    </table>
+    <a href="#">Administrators</a>
   </div>
-<!-- ADMIN STAFF ENDS -->
+
+  <div class="submenu">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="2">
+      <tr>
+        <td align="left" class="accmenu"><a href="admin-display.php">Display</a></td>
+      </tr>
+
+      <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
+        <tr>
+          <td align="left" class="accmenu"><a href="admin-add-new.php">Add new</a></td>
+        </tr>
+        <?php } ?>
+
+      </table>
+    </div>
+    <!-- ADMIN STAFF ENDS -->
 
 
 
