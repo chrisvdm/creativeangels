@@ -111,8 +111,8 @@
                   <p>Alternatively you can copy the following link and paste into your browser\'s address bar.</p>
                   <p>Yours faithfully</p>
                   <p><strong>The All Powerful Webmaster</strong></p>
-                  <p>&nbsp</p>
-                  <p>&nbsp</p>
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
                   </td>
               </tr>
             </table>
@@ -121,9 +121,9 @@
         ';
 
         // To send HTML mail you can set the Content-type header
-        $vheaders = 'MIME-Version: 1.0\r\n';
-        $vheaders .= 'Content-type: text/html; charset=iso-8859-1\r\n';
-        $vheaders .= 'From: christinenyman.com<info@christinenyman.com>\r\n';
+        $vheaders = 'MIME-Version: 1.0' . "\r\n";
+        $vheaders .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $vheaders .= 'From: christinenyman.com<info@christinenyman.com>' . "\r\n";
 
         // ADDITIONAL HEADERS
         // $vheaders = 'To: Mary<mary@gmail.com>, John<john@gmail.com>\r\n';
