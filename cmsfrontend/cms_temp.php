@@ -94,30 +94,6 @@
     </div>
     <!-- page wrapper end -->
 
-    <script>
-      <!--
-
-      $(document).ready(function() {
-
-        // menu accordian
-        $('ul.menu>li').click(function(){
-
-          var trig = $(this);
-          $('ul.submenu').not(':hidden').slideUp(function(){
-
-            $('ul.menu>li').removeClass('selected');
-          });
-
-          trig.next('ul.submenu').not(':visible').slideDown(function(){
-            trig.addClass('selected');
-          });
-        })
-
-
-      });
-
-
-      -->
-    </script>
+    <script src="js/accordian.js"></script>
   </body>
 </html>
