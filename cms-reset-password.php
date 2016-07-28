@@ -66,10 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 						<input type="text" name="txtPw1" required autofocus placeholder="New password">
 						<p>&nbsp;</p>
 						<label>Re-type Password:</label><br>
-						<input type="text" name="txtPw2" placeholder="Re-type password">
+						<input type="text" name="txtPw2" placeholder="Retype password">
 						<p>&nbsp;</p>
 
-						<input type="submit" value="Reset password">
+						<input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+
+						<input type="hidden" name="txtId" value="<?php if(isset($vid) && $vid !== '') { echo $vid; } ?>">
+
+							<input type="hidden" name="txtEmail" value="<?php if(isset($vemail) && $vid !== '') { echo $vemail; } ?>">
+
+						<input type="submit" name="btnsubmit" value="Reset password">
 					</form>
 
 
