@@ -20,6 +20,13 @@ img {
   min-width: 100%;
 }
 
+.clearfix{
+  clear: both;
+  margin: 0;
+  visibility: hidden;
+  padding: 0;
+}
+
 /*Font styling*/
 
 h1, h2, h3, h4 {
@@ -30,6 +37,18 @@ p, a {
   font-family: 'Open Sans', sans-serif;
 }
 
+.main-header h1 {
+  font-size: 1.43em;
+}
+
+.page-header h2 {
+  font-size: 1.25em;
+}
+
+footer span {
+  font-family: 'Open Sans', sans-serif
+}
+
 /*container styling*/
 
 footer {
@@ -37,8 +56,53 @@ footer {
   bottom: 0;
 }
 
-.base {
-  padding: 1.25em 0.625em;
+.base, li {
+  padding: 0.625em 1.25em;
   webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+header {
+  position: relative;
+  color: #fafafa;
+  background-color: #e0c9f0;
+}
+
+.branding-container {
+  position: absolute;
+  bottom: 1.5em;
+  right: 1.25em;
+}
+
+ul.menu>li {
+  cursor: pointer;
+}
+
+ul.menu li:hover {
+  background-color: #c096dd;
+}
+
+ul.submenu>li {
+  background-color: #e0c9f0;
+}
+
+ul.menu {
+  padding: 0;
+  margin: 0;
+  width: 20%;
+  height: 100vh;
+  float:left;
+  color: #fafafa;
+  background-color: #555;
+}
+
+ul.submenu {
+  display: none;
+  list-style: none;
+  padding: 0;
+}
+
+.right-content-wrapper {
+  width: 80%;
+  float:left;
 }

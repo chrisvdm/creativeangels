@@ -11,51 +11,85 @@
     <!-- PAGE WRAPPER ----------------------------->
     <div id="page-wrapper">
 
-      <!-- HEADER ----------------------------------->
-      <header class="base">
-        <div class="main-header">
-          <h1>Creative Angels Template</h1>
-        </div>
-
-        <!-- Branding container -->
-        <div class="branding-container">
-          <a  class="branding-trigger" href="cms-dashboard.php" title="View Dashboard">Dashboard</a>
-          <a  class="branding-trigger" href="../logout.php" title="Log out">Log out</a>
-          <span id="view-acc" class="branding-trigger">Person's name</span>
-        </div>
-
-        <div class="clearfix"></div>
-        </div>
-      </header>
-
-      <!-- MAIN CONTENT ----------------------------->
-      <div class="content-wrapper">
-
         <!-- SIDEBAR MAIN MENU ------------------------>
-        <ul id="main-menu" class="menu base">
-          <li></li>
-          <li></li>
+        <ul id="main-menu" class="menu">
+          <div class="main-header base">
+            <h1>Creative Angels</h1>
+          </div>
+          <li>Dashboard</li>
+          <ul class="submenu">
+            <li>Views</li>
+            <li>Traffic</li>
+          </ul>
+          <li>Administrators</li>
+          <ul class="submenu">
+            <li>Display</li>
+            <li>Add Users</li>
+          </ul>
+          <li>News</li>
+          <li>Events</li>
+          <li>Contact</li>
         </ul>
         <!-- end of sidebar menu -->
 
         <!-- RIGHT COLUMN MAIN CONTENT CONTAINER ------>
-        <section class="right-content-wrapper base">
+        <section class="right-content-wrapper">
+          <!-- HEADER ----------------------------------->
+          <header class="base">
+            <div class="page-header">
+              <h2>John Doe</h2>
+            </div>
 
-          <h1>This page's heading</h1>
+            <!-- Branding container -->
+            <div class="branding-container">
+              <a  class="branding-trigger" href="cms-dashboard.php" title="View Dashboard">Dashboard</a>
+              <a  class="branding-trigger" href="../logout.php" title="Log out">Log out</a>
+            </div>
+
+          </header>
+
+          <section class="base">
+
+            <h1>This page's heading</h1>
+
+          </section>
+
 
         </section>
         <!-- end of right column content container -->
 
-      </div>
-      <!-- content wrapper end -->
 
+        <div class="clearfix"></div>
+
+
+      <!-- FOOTER ------------------------------------>
       <footer class="base">
-        <p><small>
-          Content Management System by <a href="http://www.christinenyman.com">Christine Nyman</a> | &copy; Cape Town 2016
-        </small></p>
+        <span><small>
+           &copy; 2016 <strong><a href="http://www.christinenyman.com">Christine Nyman</a></strong>
+        </small></span>
       </footer>
 
     </div>
     <!-- page wrapper end -->
+
+    <script>
+      <!--
+
+      $(document).ready(function() {
+
+        // menu accordian
+        $('ul.menu>li').click(function(){
+
+          $('ul.submenu').not(':hidden').slideUp();
+
+          $(this).next('ul.submenu').not(':visible').slideDown();
+        })
+
+
+      });
+
+
+      -->
+    </script>
   </body>
 </html>
