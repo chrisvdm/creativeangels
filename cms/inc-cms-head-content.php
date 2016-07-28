@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <!-- META DATA -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Expires" content="0">
@@ -15,20 +16,9 @@
 
 <!-- ########  FAVICON  ########### -->
 <link rel="icon" href="sources/favicon/favicon.gif" />
-
+<script src="js/jquery.min.js" charset="utf-8"></script>
+<script src="https://use.fontawesome.com/53998a24cf.js"></script>
+<link rel="stylesheet" href="css/main.css">
 <title>Creative Angels | Content Management System</title>
 
-<!-- ########  EXTERNAL STYLE SHEET  ########### -->
-<link href="stylesheets/cssmain.css" rel="stylesheet" type="text/css">
-
-<!-- JAVASCRIPT EXTERNAL FILES FOR ACCORDION MENU -->
-<script language="JavaScript" type="text/javascript" src="javascriptfiles/jquery-2.2.3.min.js"></script>
-<script type="text/javascript" src="javascriptfiles/ddaccordion.js">
-</script>
-<script type="text/javascript" src="javascriptfiles/ddaccordion_options.js">
-</script>
-
-<link href="stylesheets/css_accordion.css" rel="stylesheet" type="text/css">
-<!-- END OF JAVASCRIPT EXTERNAL FILES FOR ACCORDION MENU -->
-<!-- CK EDITOR -->
 <script src="ckeditor/ckeditor.js"></script>
