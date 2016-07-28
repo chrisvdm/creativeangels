@@ -16,7 +16,7 @@
 <!-- ########  FAVICON  ########### -->
 <link rel="icon" href="sources/favicon/favicon.gif" />
 
-<title>Creative Angels | Content Management System</title>
+<title>🌊Creative Angels | Content Management System</title>
 
 <!-- ########  EXTERNAL STYLE SHEET  ########### -->
 <link href="stylesheets/cssmain.css" rel="stylesheet" type="text/css">
