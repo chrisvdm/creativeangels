@@ -96,5 +96,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 
 	</section>
 
+	<script>
+	// Client-side validation
+	function matchpws(){
+
+		var password1 = document.getElementsByName('txtPw1')[0].value;
+		var password2 = document.getElementsByName('txtPw2')[0].value;
+
+		if(password1 !== password2){
+
+			document.getElementById('pwnomatch').innerHTML = "Passwords do not match";
+			document.getElementsByName('txtPw2')[0].value = "";
+
+			return false;
+
+		} else {
+
+			document.getElementById('pwnomatch').innerHTML = "";
+
+			return true;
+		}
+
+	}
+	</script>
+
 </body>
 </html>
