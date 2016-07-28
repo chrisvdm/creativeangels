@@ -109,6 +109,7 @@
                   <p><br><strong>Dear ' . $vname . '</strong></p>
                   <p>To reset your password please click on this link: <a href="http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?' . $vencqs . '">Reset your password</a></p>
                   <p>Alternatively you can copy the following link and paste into your browser\'s address bar.</p>
+                  <p><a href="http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?' . $vencqs . '">http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?' . $vencqs . '</a>
                   <p>Yours faithfully</p>
                   <p><strong>The All Powerful Webmaster</strong></p>
                   <p>&nbsp;</p>
