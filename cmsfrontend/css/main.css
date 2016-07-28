@@ -12,6 +12,7 @@ body, html {
 
 body {
   min-height: 100vh;
+  color: #333;
   font-size: 100%;
   background-color: #fafafa;
 }
@@ -35,6 +36,7 @@ h1, h2, h3, h4 {
 
 p, a {
   font-family: 'Open Sans', sans-serif;
+  color: inherit;
 }
 
 .main-header h1 {
@@ -65,7 +67,7 @@ footer {
 header {
   position: relative;
   color: #fafafa;
-  background-color: #e0c9f0;
+  background-color: #b198c3;
 }
 
 .branding-container {
@@ -74,16 +76,16 @@ header {
   right: 1.25em;
 }
 
-ul.menu>li {
+ul.menu li {
   cursor: pointer;
 }
 
 ul.menu li:hover {
-  background-color: #c096dd;
+  background-color: #999;
 }
 
 ul.submenu>li {
-  background-color: #e0c9f0;
+  background-color: #777;
 }
 
 ul.menu {
@@ -105,4 +107,22 @@ ul.submenu {
 .right-content-wrapper {
   width: 80%;
   float:left;
+}
+
+.selected {
+  color:#e0c9f0;
+}
+
+.separator{
+  margin: 0 0.625em;
+}
+
+a.branding-trigger {
+  padding: 0.625em;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+a.branding-trigger:hover {
+  background-color: #777;
 }
