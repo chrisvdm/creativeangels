@@ -101,13 +101,13 @@
             <table style="background-color: #ffffff; font-family: Arial, Verdana, Tahoma; font-size: 14px; letter-spacing: 0.03em; word-spacing: 0.2em; line-height: 1.6em;" cellspacing="0" width="600">
               <tr>
                 <td>
-                  <img src="http://www.christinenyman.com/projects/creativeangels/sources/logos/creative-angels-email-logo.gif">
+                  <img style="text-align: center" src="http://www.christinenyman.com/projects/creativeangels/sources/logos/creative-angels-email-logo.gif">
                 </td>
               </tr>
               <tr>
                 <td style="padding: 6px">
                   <p><br><strong>Dear ' . $vname . '</strong></p>
-                  <p>To reset your password please click on this link: <a href="http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?' . $vencqs .'">Reset your password</a></p>
+                  <p>To reset your password please click on this link: <a href="http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?' . $vencqs . '">Reset your password</a></p>
                   <p>Alternatively you can copy the following link and paste into your browser\'s address bar.</p>
                   <p>Yours faithfully</p>
                   <p><strong>The All Powerful Webmaster</strong></p>
@@ -121,9 +121,9 @@
         ';
 
         // To send HTML mail you can set the Content-type header
-        $vheaders = 'MIME-Version: 1.0' . "\r\n";
-        $vheaders .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $vheaders .= 'From: christinenyman.com<info@christinenyman.com>' . "\r\n";
+        $vheaders = "MIME-Version: 1.0\r\n";
+        $vheaders .= "Content-type: text/html; charset=iso-8859-1\r\n";
+        $vheaders .= "From: christinenyman.com<info@christinenyman.com>\r\n";
 
         // ADDITIONAL HEADERS
         // $vheaders = 'To: Mary<mary@gmail.com>, John<john@gmail.com>\r\n';
