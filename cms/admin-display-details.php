@@ -27,98 +27,109 @@
     exit();
   }
 ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+  <head>
+    <!-- Head contents -->
+    <?php require('inc-cms-head-content.php'); ?>
 
-<head>
-<?php require("inc-cms-head-content.php"); ?>
-</head>
+  </head>
+  <body>
+    <!-- PAGE WRAPPER -->
+    <div id="page-wrapper">
 
-<body>
+      <!-- SIDEBAR MAIN MENU -->
+      <?php require('inc-cms-sidebar.php'); ?>
 
-<div id="main_container">
+        <!-- RIGHT COLUMN MAIN CONTENT CONTAINER -->
+      <section class="right-content-wrapper">
 
-<div id="branding_bar">
-<?php require("inc-cms-branding-bar.php"); ?>
-</div>
+        <!-- HEADER -->
+        <header class="base">
 
-<div id="body_column_left_container">
+          <!-- Branding container -->
+          <?php require('inc-cms-branding-container.php'); ?>
 
-    <div id="body_column_left">
-        <?php require("inc-cms-accordion_menu.php"); ?>
+          <!-- Page title -->
+          <div class="page-header">
+            <h2>Template</h2>
+          </div>
+
+        </header>
+
+        <!-- MAIN CONTENT SECTION -->
+        <section id="main-content" class="base">
+
+          <h2>Details</h2>
+          <p>&nbsp;</p>
+
+          <!-- Tabe that displays the information from the database -->
+          <table cellspacing="0" class="tbldatadisplay">
+
+            <!-- Row 1: Displays admin name and surname -->
+            <tr>
+              <td colspan="2"><strong><?php echo $rs_cms_rows['csurname'] . ', ' . $rs_cms_rows['cname']; ?></strong></td>
+            </tr>
+
+            <!-- Row 2: Displays when admin was added -->
+            <tr>
+              <td align="right">Registered</td>
+              <td><?php echo $rs_cms_rows['ccreated']; ?></td>
+            </tr>
+
+            <!-- Row 3: Displays when the entry was last modified -->
+            <tr>
+              <td align="right">Modified</td>
+              <td><?php echo $rs_cms_rows['cupdated']; ?></td>
+            </tr>
+
+            <!-- Row 4: Displays admin accesslevel -->
+            <tr>
+              <td align="right">Access Level</td>
+              <td><?php echo $rs_cms_rows['caccesslevel']; ?></td>
+            </tr>
+
+            <!-- Row 5: Displays whether admin is active -->
+            <tr>
+              <td align="right">Status</td>
+              <td><?php if($rs_cms_rows['cstatus'] === 'i') {echo 'Inactive';} elseif ($rs_cms_rows['cstatus'] === 'a') {echo 'Active';} ?></td>
+            </tr>
+
+            <!-- Row 6: Displays admin username -->
+            <tr>
+              <td align="right">Username</td>
+              <td><?php echo $rs_cms_rows['cusername']; ?></td>
+            </tr>
+
+            <!-- Row 7: Displays admin email -->
+            <tr>
+              <td align="right">Email</td>
+              <td><a href="mailto:<?php echo $rs_cms_rows['cemail']; ?>" title="Send email to Admin"><?php echo $rs_cms_rows['cemail']; ?></a></td>
+            </tr>
+
+            <!-- Row 8: Displays mobile -->
+            <tr>
+              <td align="right">Mobile</td>
+              <td><?php echo $rs_cms_rows['cmobile']; ?></td>
+            </tr>
+
+            <!-- Row 9: YOLO -->
+            <tr>
+              <td colspan="2">&nbsp;</td>
+            </tr>
+
+          </table>
+
+        </section>
+
+        <!-- FOOTER -->
+        <?php require('inc-cms-footer.php'); ?>
+
+      </section>
+      <div class="clearfix"></div>
+
     </div>
 
-</div>
-
-<div id="body_column_right_container">
-
-    <div id="body_column_right">
-        <h2>Details</h2>
-        <p>&nbsp;</p>
-
-        <!-- Tabe that displays the information from the database -->
-        <table cellspacing="0" class="tbldatadisplay">
-
-          <!-- Row 1: Displays admin name and surname -->
-          <tr>
-            <td colspan="2"><strong><?php echo $rs_cms_rows['csurname'] . ', ' . $rs_cms_rows['cname']; ?></strong></td>
-          </tr>
-
-          <!-- Row 2: Displays when admin was added -->
-          <tr>
-            <td align="right">Registered</td>
-            <td><?php echo $rs_cms_rows['ccreated']; ?></td>
-          </tr>
-
-          <!-- Row 3: Displays when the entry was last modified -->
-          <tr>
-            <td align="right">Modified</td>
-            <td><?php echo $rs_cms_rows['cupdated']; ?></td>
-          </tr>
-
-          <!-- Row 4: Displays admin accesslevel -->
-          <tr>
-            <td align="right">Access Level</td>
-            <td><?php echo $rs_cms_rows['caccesslevel']; ?></td>
-          </tr>
-
-          <!-- Row 5: Displays whether admin is active -->
-          <tr>
-            <td align="right">Status</td>
-            <td><?php if($rs_cms_rows['cstatus'] === 'i') {echo 'Inactive';} elseif ($rs_cms_rows['cstatus'] === 'a') {echo 'Active';} ?></td>
-          </tr>
-
-          <!-- Row 6: Displays admin username -->
-          <tr>
-            <td align="right">Username</td>
-            <td><?php echo $rs_cms_rows['cusername']; ?></td>
-          </tr>
-
-          <!-- Row 7: Displays admin email -->
-          <tr>
-            <td align="right">Email</td>
-            <td><a href="mailto:<?php echo $rs_cms_rows['cemail']; ?>" title="Send email to Admin"><?php echo $rs_cms_rows['cemail']; ?></a></td>
-          </tr>
-
-          <!-- Row 8: Displays mobile -->
-          <tr>
-            <td align="right">Mobile</td>
-            <td><?php echo $rs_cms_rows['cmobile']; ?></td>
-          </tr>
-
-          <!-- Row 9: YOLO -->
-          <tr>
-            <td colspan="2">&nbsp;</td>
-          </tr>
-
-        </table>
-    </div>
-
-</div>
-
-<div class="clearfloat_both"></div>
-
-</div>
-
-</body>
+    <script src="js/accordian.js"></script>
+  </body>
 </html>

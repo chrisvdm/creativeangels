@@ -18,288 +18,296 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
   //Count the entries into the record set
   $rs_cms_rows_total = mysqli_num_rows($rs_cms);
 ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+  <head>
+    <!-- Head contents -->
+    <?php require('inc-cms-head-content.php'); ?>
+    <style>
 
-<head>
-<?php require("inc-cms-head-content.php"); ?>
+      .hide {
+        display: none;
+      }
 
-<style>
+      .show {
+        display: table-row;
+        background-color: #b4ced3;
+      }
 
-  .hide {
-    display: none;
-  }
+    </style>
+  </head>
+  <body>
+    <!-- PAGE WRAPPER -->
+    <div id="page-wrapper">
 
-  .show {
-    display: table-row;
-    background-color: #b4ced3;
-  }
+      <!-- SIDEBAR MAIN MENU -->
+      <?php require('inc-cms-sidebar.php'); ?>
 
-</style>
-</head>
+        <!-- RIGHT COLUMN MAIN CONTENT CONTAINER -->
+      <section class="right-content-wrapper">
 
-<body>
+        <!-- HEADER -->
+        <header class="base">
 
-<div id="main_container">
+          <!-- Branding container -->
+          <?php require('inc-cms-branding-container.php'); ?>
 
-<div id="branding_bar">
-<?php require("inc-cms-branding-bar.php"); ?>
-</div>
+          <!-- Page title -->
+          <div class="page-header">
+            <h2>Template</h2>
+          </div>
 
-<div id="body_column_left_container">
+        </header>
 
-    <div id="body_column_left">
-        <?php require("inc-cms-accordion_menu.php"); ?>
-    </div>
+        <!-- MAIN CONTENT SECTION -->
+        <section id="main-content" class="base">
 
-</div>
+          <h2>Administrators</h2>
+          <p>&nbsp;</p>
 
-<div id="body_column_right_container">
+          <!-- Display the table if the tblcms has data has entries -->
+          <?php if($rs_cms_rows_total > 0 ) { ?>
 
-    <div id="body_column_right">
-        <h2>Administrators</h2>
-        <p>&nbsp;</p>
+          <table cellspacing="0" class="tbldatadisplay">
+            <!-- Row 1 -->
+            <tr>
+              <td colspan="7">Number of Administrators: <?php echo $rs_cms_rows_total; ?></td>
+            </tr>
+            <!-- Heading Row -->
+            <tr>
+              <td><strong>Administrator</strong></td>
+              <td align="center"><strong>Access Level</strong></td>
+              <td align="center">&nbsp;</td>
+              <td align="center">&nbsp;</td>
+              <td align="center">&nbsp;</td>
+            </tr>
 
-        <!-- Display the table if the tblcms has data has entries -->
-        <?php if($rs_cms_rows_total > 0 ) { ?>
+            <!-- Subheading Row 3 -->
+            <tr>
+              <td>Surname, name</td>
+              <td align="center">Access</td>
+              <td align="center">&nbsp;</td>
+              <td align="center">&nbsp;</td>
+              <td align="center">&nbsp;</td>
+            </tr>
 
-        <table cellspacing="0" class="tbldatadisplay">
-          <!-- Row 1 -->
-          <tr>
-            <td colspan="7">Number of Administrators: <?php echo $rs_cms_rows_total; ?></td>
-          </tr>
-          <!-- Heading Row -->
-          <tr>
-            <td><strong>Administrator</strong></td>
-            <td align="center"><strong>Access Level</strong></td>
-            <td align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
-          </tr>
+            <!-- Display all records in the table -->
+            <?php do { ?>
 
-          <!-- Subheading Row 3 -->
-          <tr>
-            <td>Surname, name</td>
-            <td align="center">Access</td>
-            <td align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
-          </tr>
+              <tr id="record<?php echo $rs_cms_rows['cid']; ?>">
 
-          <!-- Display all records in the table -->
-          <?php do { ?>
+                <td><?php echo $rs_cms_rows['csurname'] . ', ' . $rs_cms_rows['cname']; ?></td>
 
-            <tr id="record<?php echo $rs_cms_rows['cid']; ?>">
+                <!-- Access Level -->
+                <td align="center"><?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Level A';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
+                  echo 'Level B';
+                } ?></td>
 
-              <td><?php echo $rs_cms_rows['csurname'] . ', ' . $rs_cms_rows['cname']; ?></td>
-
-              <!-- Access Level -->
-              <td align="center"><?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Level A';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
-                echo 'Level B';
-              } ?></td>
-
-              <!-- Change status -->
-              <td align="center">
-                <?php if ($_SESSION['svcaccesslevel'] === 'a' && $_SESSION['svcid'] !== $rs_cms_rows['cid']){?>
-
-                <!-- This is where the ajax method needs to change things -->
-                <!-- My thoughts are that ajax will run the data on the process file, therefore we can remove the action or something like that. I could be very wrong -->
-                <input type="button" name="statusBtn" value="<?php if($rs_cms_rows['cstatus'] === 'i'){echo 'Activate';} elseif($rs_cms_rows['cstatus'] === 'a'){echo 'Deactivate';} ?>" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>"></td>
-
-                <?php } else { ?>
-                  &nbsp;
-
-                  <?php } ?>
-
-              <!-- View details -->
-              <td align="center">
-
-
-                <input id="btn<?php echo $rs_cms_rows['cid']; ?>" type="button" name="btnView" data-cid="<?php echo $rs_cms_rows['cid']; ?>" value="View Details">
-
-                </td>
-
-              <!-- Edit record -->
-              <td align="center"><?php if ($_SESSION['svcaccesslevel']=== 'a'){?>
-              <form action="admin-update-display.php" method="GET">
-
-              <input type="hidden" name="txtId" value="<?php echo $rs_cms_rows['cid']; ?>">
-              <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
-              <input type="submit" name="btnEdit" value="Edit">
-            </td>
-
-            <?php } else { ?>
-              &nbsp;
-
-              <?php } ?>
-
-              <!-- Delete record -->
+                <!-- Change status -->
                 <td align="center">
-                  <?php if ($_SESSION['svcaccesslevel']=== 'a'  && $_SESSION['svcid'] !== $rs_cms_rows['cid']){?>
+                  <?php if ($_SESSION['svcaccesslevel'] === 'a' && $_SESSION['svcid'] !== $rs_cms_rows['cid']){?>
 
-                  <input type="button" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>">
+                  <!-- This is where the ajax method needs to change things -->
+                  <!-- My thoughts are that ajax will run the data on the process file, therefore we can remove the action or something like that. I could be very wrong -->
+                  <input type="button" name="statusBtn" value="<?php if($rs_cms_rows['cstatus'] === 'i'){echo 'Activate';} elseif($rs_cms_rows['cstatus'] === 'a'){echo 'Deactivate';} ?>" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>"></td>
 
+                  <?php } else { ?>
+                    &nbsp;
+
+                    <?php } ?>
+
+                <!-- View details -->
+                <td align="center">
+
+
+                  <input id="btn<?php echo $rs_cms_rows['cid']; ?>" type="button" name="btnView" data-cid="<?php echo $rs_cms_rows['cid']; ?>" value="View Details">
+
+                  </td>
+
+                <!-- Edit record -->
+                <td align="center"><?php if ($_SESSION['svcaccesslevel']=== 'a'){?>
+                <form action="admin-update-display.php" method="GET">
+
+                <input type="hidden" name="txtId" value="<?php echo $rs_cms_rows['cid']; ?>">
+                <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+                <input type="submit" name="btnEdit" value="Edit">
               </td>
+
               <?php } else { ?>
                 &nbsp;
 
                 <?php } ?>
 
+                <!-- Delete record -->
+                  <td align="center">
+                    <?php if ($_SESSION['svcaccesslevel']=== 'a'  && $_SESSION['svcid'] !== $rs_cms_rows['cid']){?>
+
+                    <input type="button" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>">
+
+                </td>
+                <?php } else { ?>
+                  &nbsp;
+
+                  <?php } ?>
+
+              </tr>
+
+              <tr id="row<?php echo $rs_cms_rows['cid']; ?>" class="hide">
+                <td colspan="6">
+
+                    <strong>Registered:</strong> <?php echo $rs_cms_rows['ccreated']; ?>
+                    <br><br>
+
+                    <strong>Modified: </strong><?php echo $rs_cms_rows['cupdated']; ?>
+                    <br><br>
+
+                    <strong>Access Level : </strong><?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Level A';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
+                      echo 'Level B';
+                    } ?>
+                    <br><br>
+
+                    <strong>Status : </strong><span id="stat<?php echo $rs_cms_rows['cid']; ?>"><?php if($rs_cms_rows['cstatus'] === 'i') {echo 'Inactive';} elseif ($rs_cms_rows['cstatus'] === 'a') {echo 'Active';} ?></span>
+                    <br><br>
+
+                    <strong>Email: </strong><a href="mailto:<?php echo $rs_cms_rows['cemail']; ?>" title="Send email to Admin"><?php echo $rs_cms_rows['cemail']; ?></a>
+                    <br><br>
+
+                    <strong>Username: </strong><?php echo $rs_cms_rows['cemail']; ?>
+                    <br><br>
+
+                    <strong>Mobile: </strong><?php echo $rs_cms_rows['cmobile']; ?>
+
+                </td>
+              </tr>
+
+              <script>
+
+                $(document).ready(function(){
+
+                  // accordian
+
+                  $("#row<?php echo $rs_cms_rows['cid']; ?>").addClass('collapse');
+
+                    $("#btn<?php echo $rs_cms_rows['cid']; ?>").click(function(){
+
+                      // If info is visibles
+                      if($("#row<?php echo $rs_cms_rows['cid']; ?>").is(':visible')){
+
+                        $("#row<?php echo $rs_cms_rows['cid']; ?>").addClass('hide').removeClass('show');
+
+                      } else {
+
+                        $('.collapse').addClass('hide').removeClass('show');
+                        $("#row<?php echo $rs_cms_rows['cid']; ?>").addClass('show').removeClass('hide');
+
+                      }
+
+                    });
+
+                  }); // end of accordian function ready doc
+
+                </script>
+
+              <!-- End of while loop for displaying all the records -->
+              <!-- I asked Matt exactly what this line of code was checking for and apparently it's
+              hard to explain. I think that theres a bit of interactivity with the sql server here
+              where it automatically moves onto the next entry after an entry is 'fetched'.
+              I think it resets the counter/index number (goes back to the first entry) everytime this action ($rs_cms = mysqli_query($vconn_newsreporter,
+              $sql_cms);) is performed. Thats my theory. For more information the
+              'mysqli_fetch_assoc()' method needs more exploration. -->
+              <!-- Else consider this line Black Magic. -->
+            <?php } while($rs_cms_rows = mysqli_fetch_assoc($rs_cms)) ?>
+
+            <!-- Last row: YOLO -->
+            <tr>
+              <td colspan="6">&nbsp;</td>
             </tr>
 
-            <tr id="row<?php echo $rs_cms_rows['cid']; ?>" class="hide">
-              <td colspan="6">
+          </table>
 
-                  <strong>Registered:</strong> <?php echo $rs_cms_rows['ccreated']; ?>
-                  <br><br>
+          <?php } else { ?>
 
-                  <strong>Modified: </strong><?php echo $rs_cms_rows['cupdated']; ?>
-                  <br><br>
+            <!-- To display if no records are found -->
+            <p>No records found</p>
 
-                  <strong>Access Level : </strong><?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Level A';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
-                    echo 'Level B';
-                  } ?>
-                  <br><br>
+          <?php } ?>
 
-                  <strong>Status : </strong><span id="stat<?php echo $rs_cms_rows['cid']; ?>"><?php if($rs_cms_rows['cstatus'] === 'i') {echo 'Inactive';} elseif ($rs_cms_rows['cstatus'] === 'a') {echo 'Active';} ?></span>
-                  <br><br>
 
-                  <strong>Email: </strong><a href="mailto:<?php echo $rs_cms_rows['cemail']; ?>" title="Send email to Admin"><?php echo $rs_cms_rows['cemail']; ?></a>
-                  <br><br>
+        </section>
 
-                  <strong>Username: </strong><?php echo $rs_cms_rows['cemail']; ?>
-                  <br><br>
+        <!-- FOOTER -->
+        <?php require('inc-cms-footer.php'); ?>
 
-                  <strong>Mobile: </strong><?php echo $rs_cms_rows['cmobile']; ?>
-
-              </td>
-            </tr>
-
-            <script>
-
-              $(document).ready(function(){
-
-                // accordian
-
-                $("#row<?php echo $rs_cms_rows['cid']; ?>").addClass('collapse');
-
-                  $("#btn<?php echo $rs_cms_rows['cid']; ?>").click(function(){
-
-                    // If info is visibles
-                    if($("#row<?php echo $rs_cms_rows['cid']; ?>").is(':visible')){
-
-                      $("#row<?php echo $rs_cms_rows['cid']; ?>").addClass('hide').removeClass('show');
-
-                    } else {
-
-                      $('.collapse').addClass('hide').removeClass('show');
-                      $("#row<?php echo $rs_cms_rows['cid']; ?>").addClass('show').removeClass('hide');
-
-                    }
-
-                  });
-
-                }); // end of accordian function ready doc
-
-              </script>
-
-            <!-- End of while loop for displaying all the records -->
-            <!-- I asked Matt exactly what this line of code was checking for and apparently it's
-            hard to explain. I think that theres a bit of interactivity with the sql server here
-            where it automatically moves onto the next entry after an entry is 'fetched'.
-            I think it resets the counter/index number (goes back to the first entry) everytime this action ($rs_cms = mysqli_query($vconn_newsreporter,
-            $sql_cms);) is performed. Thats my theory. For more information the
-            'mysqli_fetch_assoc()' method needs more exploration. -->
-            <!-- Else consider this line Black Magic. -->
-          <?php } while($rs_cms_rows = mysqli_fetch_assoc($rs_cms)) ?>
-
-          <!-- Last row: YOLO -->
-          <tr>
-            <td colspan="6">&nbsp;</td>
-          </tr>
-
-        </table>
-
-        <?php } else { ?>
-
-          <!-- To display if no records are found -->
-          <p>No records found</p>
-
-        <?php } ?>
+      </section>
+      <div class="clearfix"></div>
 
     </div>
 
-</div>
+    <script src="js/accordian.js"></script>
+    <script>
 
-<div class="clearfloat_both"></div>
+      $(document).ready(function() {
 
-</div>
+        // changes status and updates database table
+        $(':button[name = "statusBtn"]').on('click', function() {
 
-  <script>
+          var btn = $(this),
+            info = $(btn).data();
+            var unicorn = $(btn).val();
 
-    $(document).ready(function() {
+            $.ajax({
+              type: 'GET',
+              url: 'admin-display-change-status.php',
+              data: {
+                'txtStatus': unicorn,
+                'txtSecurity': info.sec,
+                'txtId': info.entryId
+              },
+              success: function(result) {
+                $(btn).val(result);
 
-      // changes status and updates database table
-      $(':button[name = "statusBtn"]').on('click', function() {
+                if(result === 'Activate'){ // 'i' vs 'a'
 
-        var btn = $(this),
-          info = $(btn).data();
-          var unicorn = $(btn).val();
+                  $('#stat'+ info.entryId).html('Inactive');
 
-          $.ajax({
-            type: 'GET',
-            url: 'admin-display-change-status.php',
-            data: {
-              'txtStatus': unicorn,
-              'txtSecurity': info.sec,
-              'txtId': info.entryId
-            },
-            success: function(result) {
-              $(btn).val(result);
+                } else if (result === 'Deactivate'){
 
-              if(result === 'Activate'){ // 'i' vs 'a'
+                  $('#stat' + info.entryId).html('Active');
 
-                $('#stat'+ info.entryId).html('Inactive');
+                }
 
-              } else if (result === 'Deactivate'){
+              }}); //end of ajax method
+          }); // end of ()
 
-                $('#stat' + info.entryId).html('Active');
+        // confirm dialogue for delete 'form'
+        $(':button[name = "btnDel"]').on('click', function(){
 
-              }
+            var delRec = confirm('Deleting a record is a permanent action.\nDo you wish to proceed?');
 
-            }}); //end of ajax method
-        }); // end of ()
+            if (delRec) {
 
-      // confirm dialogue for delete 'form'
-      $(':button[name = "btnDel"]').on('click', function(){
+            var btn = $(this);
+            var info = $(btn).data();
 
-          var delRec = confirm('Deleting a record is a permanent action.\nDo you wish to proceed?');
+            $.ajax({
+              type: 'GET',
+              url: 'admin-delete-ajax-process.php',
+              data: {
+                'txtSecurity': info.sec,
+                'txtId': info.entryId
+              },
+              success: function(result) {
 
-          if (delRec) {
+                $(btn).parent().addClass('warning_msg').html(result);
 
-          var btn = $(this);
-          var info = $(btn).data();
+              }});
 
-          $.ajax({
-            type: 'GET',
-            url: 'admin-delete-ajax-process.php',
-            data: {
-              'txtSecurity': info.sec,
-              'txtId': info.entryId
-            },
-            success: function(result) {
+            } // end of if statement
 
-              $(btn).parent().addClass('warning_msg').html(result);
+          }); // end of function
 
-            }});
+      }); //  end of jQuery
 
-          } // end of if statement
-
-        }); // end of function
-
-    }); //  end of jQuery
-
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

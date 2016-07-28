@@ -13,9 +13,9 @@
 
   <li>User Accounts</li>
   <ul class="submenu">
-    <li>Display</li>
+    <li><a href="admin-display.php">Display</a></li>
     <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
-      <li align="left" class="accmenu"><a href="admin-add-new.php">Add Users</a></li>
+      <li><a href="admin-add-new.php">Add Users</a></li>
     <?php } ?>
   </ul>
 

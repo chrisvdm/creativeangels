@@ -1,51 +1,64 @@
-<?php require("inc-cms-pre-doctype.php"); ?>
-<!DOCTYPE HTML>
+<?php require('inc-cms-pre-doctype.php'); ?>
+<!DOCTYPE html>
 <html>
+  <head>
+    <!-- Head contents -->
+    <?php require('inc-cms-head-content.php'); ?>
 
-<head>
-<?php require("inc-cms-head-content.php"); ?>
-</head>
+  </head>
+  <body>
+    <!-- PAGE WRAPPER -->
+    <div id="page-wrapper">
 
-<body>
+      <!-- SIDEBAR MAIN MENU -->
+      <?php require('inc-cms-sidebar.php'); ?>
 
-<div id="main_container">
+        <!-- RIGHT COLUMN MAIN CONTENT CONTAINER -->
+      <section class="right-content-wrapper">
 
-<div id="branding_bar">
-<?php require("inc-cms-branding-bar.php"); ?>
-</div>
+        <!-- HEADER -->
+        <header class="base">
 
-<div id="body_column_left_container">
+          <!-- Branding container -->
+          <?php require('inc-cms-branding-container.php'); ?>
 
-    <div id="body_column_left">
-        <?php require("inc-cms-accordion_menu.php"); ?>
+          <!-- Page title -->
+          <div class="page-header">
+            <h2>Template</h2>
+          </div>
+
+        </header>
+
+        <!-- MAIN CONTENT SECTION -->
+        <section id="main-content" class="base">
+
+          <h2> Hi there <?php echo $_SESSION['svcname']; ?></h2>
+
+            <div id="body_column_right">
+                <p>&nbsp;</p>
+                <table cellspacing="0" class="tbldatadisplay">
+                <tr>
+                <td>&nbsp;</td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                </tr>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <?php require('inc-cms-footer.php'); ?>
+
+      </section>
+      <div class="clearfix"></div>
+
     </div>
 
-</div>
-
-<div id="body_column_right_container">
-
-  <h2> Hi there <?php echo $_SESSION['svcname']; ?></h2>
-
-    <div id="body_column_right">
-        <p>&nbsp;</p>
-        <table cellspacing="0" class="tbldatadisplay">
-        <tr>
-        <td>&nbsp;</td>
-        </tr>
-        <tr>
-        <td>&nbsp;</td>
-        </tr>
-        <tr>
-        <td>&nbsp;</td>
-        </tr>
-        </table>
-    </div>
-
-</div>
-
-<div class="clearfloat_both"></div>
-
-</div>
-
-</body>
+    <script src="js/accordian.js"></script>
+  </body>
 </html>
