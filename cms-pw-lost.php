@@ -48,7 +48,7 @@
 
             <br><br>
 
-              <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+            <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
             <button>Send</button>
 
