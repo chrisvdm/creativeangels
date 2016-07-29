@@ -127,9 +127,10 @@
 
     // ID VALIDATION END
 
-    //----------------------- VALIDATION FAILED -------------------------------
+    //----------------------- VALIDATION ACTIONS -------------------------------
 
     if ($vvalidation !== 0) {
+      //VALIDATION FAILED
 
       $kid = base64_encode('kid');
       $vid = base64_encode($vid);
@@ -142,12 +143,13 @@
       exit();
 
     } else {
+      // VALIDATION
 
       echo $vid;
       echo $vemail;
-      echo $vpassword1;
+      echo $vpassword2;
 
-    }
+    } // END OF VALIDATION ACTIONS
 
   } else {
     // SESSION NOT VALID
