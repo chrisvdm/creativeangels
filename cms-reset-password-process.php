@@ -1,4 +1,3 @@
-<?php require('cms-pre-doctype.php'); ?>
 <?php  session_start();
 
   if (isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']) {

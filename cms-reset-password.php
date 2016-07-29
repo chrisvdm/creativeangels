@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 					<h1>Reset Your Password</h1>
 					<p>&nbsp;</p>
 
-					<form method="get" action="cms-reset-password-process.php" onsubmit="return matchpws()">
+					<form method="post" action="cms-reset-password-process.php" onsubmit="return matchpws()">
 
 						<p class="msgwarning" id="pwnomatch"></p>
 
