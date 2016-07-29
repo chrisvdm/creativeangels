@@ -64,7 +64,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Template</h2>
+            <h2>Add New User</h2>
           </div>
 
         </header>
@@ -72,7 +72,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
 
-          <h2> Add New </h2>
 
           <!-- Executes instructions in 'admin-add-process.php' on submit and sends form data using get -->
           <form action="admin-add-process.php" method="post" onsubmit="return">

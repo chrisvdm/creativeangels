@@ -24,7 +24,7 @@
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Template</h2>
+            <h2>Home Page</h2>
           </div>
 
         </header>
@@ -33,21 +33,6 @@
         <section id="main-content" class="base">
 
           <h2> Hi there <?php echo $_SESSION['svcname']; ?></h2>
-
-            <div id="body_column_right">
-                <p>&nbsp;</p>
-                <table cellspacing="0" class="tbldatadisplay">
-                <tr>
-                <td>&nbsp;</td>
-                </tr>
-                <tr>
-                <td>&nbsp;</td>
-                </tr>
-                <tr>
-                <td>&nbsp;</td>
-                </tr>
-                </table>
-            </div>
 
         </section>
 

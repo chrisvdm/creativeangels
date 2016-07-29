@@ -52,15 +52,13 @@
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Template</h2>
+            <h2>Display Details</h2>
           </div>
 
         </header>
 
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
-
-          <h2>Details</h2>
           <p>&nbsp;</p>
 
           <!-- Tabe that displays the information from the database -->

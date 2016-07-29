@@ -5,16 +5,19 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans';
 @import 'https://fonts.googleapis.com/css?family=Dosis:400,600';
 
-body, html {
+html {
   width: 100%;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 body {
-  min-height: 100vh;
+  width: 100%;
   color: #333;
   font-size: 100%;
   background-color: #fafafa;
+  font-family: 'Open Sans', sans-serif;
+  color: inherit;
+  text-decoration: none;
 }
 
 img {
@@ -34,8 +37,8 @@ h1, h2, h3, h4 {
   font-family: Dosis, sans-serif;
 }
 
-p, a {
-  font-family: 'Open Sans', sans-serif;
+a {
+  text-decoration: none;
   color: inherit;
 }
 
@@ -47,8 +50,14 @@ p, a {
   font-size: 1.25em;
 }
 
-footer span {
-  font-family: 'Open Sans', sans-serif
+.tbl-heading td{
+  font-family: Dosis;
+  font-size: 1.25em;
+}
+
+.tbl-subheading td{
+  font-family: Dosis;
+  font-size: 1.2em;
 }
 
 /*container styling*/
@@ -89,6 +98,7 @@ ul.submenu>li {
 }
 
 ul.menu {
+  position: fixed;
   padding: 0;
   margin: 0;
   width: 20%;
@@ -106,7 +116,7 @@ ul.submenu {
 
 .right-content-wrapper {
   width: 80%;
-  float:left;
+  float:right;
 }
 
 .selected {
@@ -125,4 +135,55 @@ a.branding-trigger {
 
 a.branding-trigger:hover {
   background-color: #777;
+}
+
+/*modifiers*/
+.warning_msg {
+  font-weight: 800;
+  color: #df6482;
+}
+
+/*Tables*/
+.tbldatadisplay td{
+  padding: 0.625em;
+}
+
+/*Buttons*/
+
+button, input[type="button"], input[type="submit"], input[type="reset"] {
+  padding: 0.625em;
+  font-weight: 600;
+  color: #fafafa;
+  border:none;
+}
+
+button, input[type="button"], input[type="submit"], input[type="reset"] {
+background-color: #b198c3;
+}
+
+button:hover, input[type="button"]:hover,  input[type="reset"]:hover, input[type="submit"]:hover {
+  background-color: #e0c9f0;
+}
+
+/*form button:hover {
+  background-color: #64d59f;
+}*/
+
+input {
+  padding: 0.3125em;
+  border: solid 1px #999;
+  outline-color: #e0c;
+}
+
+label {
+  margin-bottom: 0.625em;
+  display: block;
+}
+
+.danger-btn {
+  background-color: #de8348 !important;
+}
+
+.danger-btn:hover {
+  background-color: #de4848 !important;
 }

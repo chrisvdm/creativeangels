@@ -54,7 +54,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Template</h2>
+            <h2>User Account Overview</h2>
           </div>
 
         </header>
@@ -62,7 +62,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
 
-          <h2>Administrators</h2>
           <p>&nbsp;</p>
 
           <!-- Display the table if the tblcms has data has entries -->
@@ -71,21 +70,12 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           <table cellspacing="0" class="tbldatadisplay">
             <!-- Row 1 -->
             <tr>
-              <td colspan="7">Number of Administrators: <?php echo $rs_cms_rows_total; ?></td>
+              <td colspan="7">Number of Users: <?php echo $rs_cms_rows_total; ?></td>
             </tr>
             <!-- Heading Row -->
-            <tr>
-              <td><strong>Administrator</strong></td>
+            <tr class="tbl-heading">
+              <td><strong>User</strong></td>
               <td align="center"><strong>Access Level</strong></td>
-              <td align="center">&nbsp;</td>
-              <td align="center">&nbsp;</td>
-              <td align="center">&nbsp;</td>
-            </tr>
-
-            <!-- Subheading Row 3 -->
-            <tr>
-              <td>Surname, name</td>
-              <td align="center">Access</td>
               <td align="center">&nbsp;</td>
               <td align="center">&nbsp;</td>
               <td align="center">&nbsp;</td>
@@ -102,19 +92,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                 <td align="center"><?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Level A';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
                   echo 'Level B';
                 } ?></td>
-
-                <!-- Change status -->
-                <td align="center">
-                  <?php if ($_SESSION['svcaccesslevel'] === 'a' && $_SESSION['svcid'] !== $rs_cms_rows['cid']){?>
-
-                  <!-- This is where the ajax method needs to change things -->
-                  <!-- My thoughts are that ajax will run the data on the process file, therefore we can remove the action or something like that. I could be very wrong -->
-                  <input type="button" name="statusBtn" value="<?php if($rs_cms_rows['cstatus'] === 'i'){echo 'Activate';} elseif($rs_cms_rows['cstatus'] === 'a'){echo 'Deactivate';} ?>" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>"></td>
-
-                  <?php } else { ?>
-                    &nbsp;
-
-                    <?php } ?>
 
                 <!-- View details -->
                 <td align="center">
@@ -138,11 +115,25 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
                 <?php } ?>
 
+
+                <!-- Change status -->
+                <td align="center">
+                  <?php if ($_SESSION['svcaccesslevel'] === 'a' && $_SESSION['svcid'] !== $rs_cms_rows['cid']){?>
+
+                  <!-- This is where the ajax method needs to change things -->
+                  <!-- My thoughts are that ajax will run the data on the process file, therefore we can remove the action or something like that. I could be very wrong -->
+                  <input type="button"name="statusBtn" value="<?php if($rs_cms_rows['cstatus'] === 'i'){echo 'Activate';} elseif($rs_cms_rows['cstatus'] === 'a'){echo 'Deactivate';} ?>"" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>"></td>
+
+                  <?php } else { ?>
+                    &nbsp;
+
+                    <?php } ?>
+
                 <!-- Delete record -->
                   <td align="center">
                     <?php if ($_SESSION['svcaccesslevel']=== 'a'  && $_SESSION['svcid'] !== $rs_cms_rows['cid']){?>
 
-                    <input type="button" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>">
+                    <input type="button" class="danger-btn" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_cms_rows['cid']; ?>">
 
                 </td>
                 <?php } else { ?>
