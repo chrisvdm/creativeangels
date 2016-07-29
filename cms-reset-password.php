@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 					<h1>Reset Your Password</h1>
 					<p>&nbsp;</p>
 
-					<form method="get" action="cms-reset-password-process.php" onsubmit="return matchpws()">
+					<form method="post" action="cms-reset-password-process.php" onsubmit="return matchpws()">
 
 						<p class="msgwarning" id="pwnomatch"></p>
 
@@ -63,10 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 						<?php } ?>
 
 						<label>New Password:</label><br>
-						<input type="text" name="txtPw1" required autofocus placeholder="New password">
+						<input type="password" name="txtPw1" required autofocus placeholder="New password">
 						<p>&nbsp;</p>
 						<label>Re-type Password:</label><br>
-						<input type="text" name="txtPw2" placeholder="Retype password">
+						<input type="password" name="txtPw2" placeholder="Retype password">
 						<p>&nbsp;</p>
 
 						<input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
