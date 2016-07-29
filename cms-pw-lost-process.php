@@ -2,24 +2,24 @@
 <?php
   if (isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']) {
 
-    // Variable that is used to check for vvalidation.
+    // Variable that is used to check for validation.
     $vvalidation = 0;
 
     // ------------------------- EMAIL VALIDATION ----------------------------
 
-      if (isset($_POST['txtEmail'])) {
+      if (isset($_POST['txtEmail']) && $_POST['txtEmail'] !== '') {
 
         $vemail = trim($_POST['txtEmail']);
 
-        // If sent username is not blank.
+        // If sent email is not blank.
         if ($vemail !== '') {
 
-          //sanitize email address(Remove harmful characters)
+          // Sanitize email address(Remove harmful characters)
           $vemail = filter_var($vemail, FILTER_SANITIZE_EMAIL);
 
           if ($vemail !== ''){
 
-            // Validate email address(Check that email has correct structure)
+            // Validate email address (Check that email has correct structure)
             if(!filter_var($vemail, FILTER_VALIDATE_EMAIL)) {
 
               // If email does not validate
@@ -54,41 +54,48 @@
 
     } else {
 
-      // Validation passed
+      // ------------------------ VALIDATION PASSED --------------------------
+      // Get connection file
       require('inc-conn.php');
 
       require('inc-function-escapestring.php');
 
+      // Create query string (sprintf = Convert this into a basic string and assign it to a variable. )
       $sql_pw_lost = sprintf("SELECT * FROM tblcms WHERE cemail = %s AND cstatus = 'a'",
       escapestring($vconn_creativeangels, $vemail, 'text')
       );
 
+      // Execute SQL statement (database, sql statement)
       $rs_pw_lost = mysqli_query($vconn_creativeangels, $sql_pw_lost);
 
+      // Counts the relative entries
       $rs_pw_lost_total = mysqli_num_rows($rs_pw_lost);
 
+      // Extract first recordset from database that matches the criteria and stores it in an associative array
       $rs_pw_lost_rows = mysqli_fetch_assoc($rs_pw_lost);
 
-      // if there is one entry with the entered email
+      // if there is only one entry with the entered email
       if ($rs_pw_lost_total === 1) {
 
+        // Assign key/value pairs to variables
         $vid = $rs_pw_lost_rows['cid'];
         $vname = $rs_pw_lost_rows['cname'];
         $vsurname = $rs_pw_lost_rows['csurname'];
         $vemail = $rs_pw_lost_rows['cemail'];
 
         // ENCODE QUERY STRING
+        // Both the keys and values need to be encoded
         $vencqs = base64_encode('kid') . '=' . base64_encode($vid) . '&' . base64_encode('kemail') . '=' . base64_encode($vemail);
 
 
 
-        //------------------------- SEND AUTO EMAIL -------------------------
+        //------------------------- SEND AUTO EMAIL --------------------------
 
         // User to whom the email confirmation should be sent
         $vto = 'nymanchristine@gmail.com';
 
         // Subject
-        $vsubject = 'Lost Password';
+        $vsubject = 'Password Reset';
 
         // HTML email message
         $vmessage = '
@@ -122,6 +129,7 @@
         ';
 
         // To send HTML mail you can set the Content-type header
+        // Must be in double-quotes
         $vheaders = "MIME-Version: 1.0\r\n";
         $vheaders .= "Content-type: text/html; charset=iso-8859-1\r\n";
         $vheaders .= "From: christinenyman.com<info@christinenyman.com>\r\n";
@@ -132,7 +140,6 @@
         // $vheaders .= 'Bcc: sue@gmail.com\r\n';
 
         // SEND THE MAIL
-
         $vemailsent = mail($vto, $vsubject, $vmessage, $vheaders);
 
         // Check if mail has been sent
@@ -159,7 +166,7 @@
         // Kills session and avoids adding unnnecesary strain on server
         session_destroy();
 
-        $qs = '?kmatch=0';
+        $qs = '?kval=failed';
         header('Location: cms-pw-lost.php' . $qs);
         exit();
 
@@ -168,7 +175,8 @@
     }
 
   } else {
-
+    
+    // If security check fails
     header('Location: signout.php');
     exit();
 

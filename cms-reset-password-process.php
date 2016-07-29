@@ -5,8 +5,9 @@
 
     $vvalidation = 0;
 
-  // -------------------- PASSWORD VALIDATION ----------------------------------
+  // -------------------- PASSWORDS VALIDATION --------------------------------
 
+  // PASSWORD 1 VALIDATION
     if (isset($_POST['txtPw1']) && $_POST['txtPw1'] !== '') {
 
       $vPassword1 = trim($_POST['txtPw1']);
@@ -39,7 +40,7 @@
 
     } // END OF PASSWORD 1 VALIDATION
 
-
+    // PASSWORD 2 VALIDATION
     if(isset($_POST['txtPw2']) && $_POST['txtPw2'] !== ''){
 
       $vPassword2 = trim($_POST['txtPw2']);
@@ -82,7 +83,8 @@
     } // END OF PASSWORD MATCH VAL
 
 
-    // ------------------------ EMAIL VALIDATION ---------------------------
+    // ------------------------- EMAIL VALIDATION -----------------------------
+
     if (isset($_POST['txtEmail']) && $_POST['txtEmail'] !== '') {
 
       $vemail = trim($_POST['txtEmail']);
@@ -115,6 +117,7 @@
     // EMAIL VALIDATION END
 
     // ----------------------- ID VALIDATION START ---------------------------
+
     if (isset($_POST['txtId']) && $_POST['txtId'] !== '') {
 
       $vid = $_POST['txtId'];
@@ -152,7 +155,9 @@
     } // END OF VALIDATION ACTIONS
 
   } else {
-    // SESSION NOT VALID
+
+    // ------------------------ SECURITY CHECK FAILED -------------------------
+
     session_destroy();
 
     header('Location: signout.php');
