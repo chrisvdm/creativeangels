@@ -65,9 +65,9 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
 
   // -------------------- PASSWORD VALIDATION ----------------------------------
 
-  if (isset($_POST['txtPassword1'])) {
+  if (isset($_POST['txtPw1'])) {
 
-    $vPassword1 = trim($_POST['txtPassword1']);
+    $vPassword1 = trim($_POST['txtPw1']);
 
     if ($vPassword1 !== '') {
 
@@ -98,9 +98,9 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
   } // END OF PASSWORD VALIDATION
 
 
-  if(isset($_POST['txtPassword2'])){
+  if(isset($_POST['txtPw2'])){
 
-    $vPassword2 = trim($_POST['txtPassword2']);
+    $vPassword2 = trim($_POST['txtPw2']);
 
     if ($vPassword2 !== '') {
 

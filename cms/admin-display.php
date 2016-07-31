@@ -23,18 +23,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
   <head>
     <!-- Head contents -->
     <?php require('inc-cms-head-content.php'); ?>
-    <style>
 
-      .hide {
-        display: none;
-      }
-
-      .show {
-        display: table-row;
-        background-color: #b4ced3;
-      }
-
-    </style>
   </head>
   <body>
     <!-- PAGE WRAPPER -->
@@ -67,12 +56,16 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           <!-- Display the table if the tblcms has data has entries -->
           <?php if($rs_cms_rows_total > 0 ) { ?>
 
+          <!-- DISPLAY TABLE ------------------------------------------------->
+
           <table cellspacing="0" class="tbldatadisplay">
             <!-- Row 1 -->
             <tr>
               <td colspan="7">Number of Users: <?php echo $rs_cms_rows_total; ?></td>
             </tr>
-            <!-- Heading Row -->
+
+            <!-- HEADING ROW ------------------------------------------------->
+
             <tr class="tbl-heading">
               <td><strong>User</strong></td>
               <td align="center"><strong>Access Level</strong></td>
@@ -86,6 +79,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
               <tr id="record<?php echo $rs_cms_rows['cid']; ?>">
 
+                <!-- Display name -->
                 <td><?php echo $rs_cms_rows['csurname'] . ', ' . $rs_cms_rows['cname']; ?></td>
 
                 <!-- Access Level -->

@@ -139,8 +139,10 @@ a.branding-trigger:hover {
 
 /*modifiers*/
 .warning_msg {
-  font-weight: 800;
+  font-size: 90%;
+  font-style: italic;
   color: #df6482;
+  display: inline;
 }
 
 /*Tables*/
@@ -165,19 +167,20 @@ button:hover, input[type="button"]:hover,  input[type="reset"]:hover, input[type
   background-color: #e0c9f0;
 }
 
-/*form button:hover {
-  background-color: #64d59f;
-}*/
-
 input {
   padding: 0.3125em;
   border: solid 1px #999;
-  outline-color: #e0c;
+  outline-color: #777;
 }
 
-label {
-  margin-bottom: 0.625em;
+.form input {
+  margin-top: 0.625em;
+  margin-bottom: 1.25em;
   display: block;
+}
+
+.form input[name='btnAddNew']{
+  display:inline-block;
 }
 
 .danger-btn {
@@ -185,5 +188,28 @@ label {
 }
 
 .danger-btn:hover {
-  background-color: #de4848 !important;
+  background-color: #df6482 !important;
+}
+
+.proceed-btn:hover {
+  background-color: #48dea3 !important;
+}
+
+.wait-btn:hover{
+  background-color: #df6482 !important;
+}
+
+.error-bg {
+  background-color: #faf2f4;
+  border-color: #df6482;
+  outline-color: #df6482;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: table-row;
+  background-color: #b4ced3;
 }

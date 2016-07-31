@@ -7,6 +7,8 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
   // Function for printing out error messages
   function errorMsg($keyName, $label) {
 
+    // PHP checks whether certain keys have been returned with values in the GET Global Super Array, if it has then echo the value into the input field
+
     if(isset($_GET[$keyName]) && $_GET[$keyName] === '') {
 
       return "<div class='warning_msg'>Please enter " . $label . ".</div>";
@@ -69,56 +71,65 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         </header>
 
-        <!-- MAIN CONTENT SECTION -->
+        <!--################# MAIN CONTENT SECTION ########################-->
+
         <section id="main-content" class="base">
 
+          <!--##################### ADD NEW FORM ##########################-->
 
           <!-- Executes instructions in 'admin-add-process.php' on submit and sends form data using get -->
-          <form action="admin-add-process.php" method="post" onsubmit="return">
+          <form class="form" action="admin-add-process.php" method="post" onsubmit="return valForm()">
+
+            <!-- FIRST NAME -->
+            <label>First name:</label>
 
             <!-- Displays warning message above empty field -->
             <?php echo errorMsg('kname', 'name'); ?>
 
-            <!-- PHP checks whether certain keys have been returned with values in the GET Global Super Array, if it has then echo the value into the input field  -->
-
-            <label>First name:</label>
             <input type="text" name="txtName" autocomplete="off" autofocus value="<?php echo displayTxt('kname'); ?>">
-            <br><br>
+
+            <!-- SURNAME -->
+            <label>Surname:</label>
 
             <?php echo errorMsg('ksurname', 'surname'); ?>
 
-            <label>Surname:</label>
             <input type="text" name="txtSurname" autocomplete="off" value="<?php echo displayTxt('ksurname'); ?>">
-            <br><br>
+
+            <!-- PASSWORD -->
+            <label>Password:</label>
 
             <!-- Reminds user to enter password on validation fail -->
             <?php echo errorMsg('kpassword','password'); ?>
+            <div id="pwErr" class="warning_msg"></div>
 
-            <div id="pwrdErr" class="warning_msg"></div>
-            <label>Password:</label>
-            <input type="password" name="txtPassword1" autocomplete="off" value="">
-            <br><br>
+            <input type="password" name="txtPw1" autocomplete="off" value="">
 
-            <label>Re-enter password:</label>
-            <input type="password" name="txtPassword2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
-            <br><br>
+            <label>Retype password:</label>
+            <input type="password" name="txtPw2" autocomplete="off" value="" onblur="matchPw()" >
 
+            <!-- EMAIL -->
+            <label>Email:</label>
+
+            <!-- Email validation error msg -->
             <?php echo errorMsg('kemail', 'email'); ?>
             <?php echo errorMsg('kemaildup', 'emaildup'); ?>
 
-            <label>Email:</label>
             <input type="email" name="txtEmail" autocomplete="off" value="<?php echo displayTxt('kemail'); ?>">
-            <br><br>
 
-            <?php echo errorMsg('kmobile', 'mobile number'); ?>
 
+            <!-- MOBILE -->
             <label>Mobile:</label>
+
+            <!-- Mobile validation error msg -->
+            <?php echo errorMsg('kmobile', 'mobile number'); ?>
             <input type="text" name="txtMobile" autocomplete="off" value="<?php echo displayTxt('kmobile'); ?>">
-            <br><br>
 
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
-            <input type="submit" value="Add New" name="btnAddNew">
+            <!-- submit form -->
+            <input class="wait-btn" type="submit" value="Add New" name="btnAddNew">
+            <div id="subErr" class="warning_msg"></div>
+
           </form>
 
           <p>
@@ -136,7 +147,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         </section>
 
-        <!-- FOOTER -->
+        <!--########################### FOOTER ###########################-->
         <?php require('inc-cms-footer.php'); ?>
 
       </section>
@@ -147,23 +158,167 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     <script src="js/accordian.js"></script>
     <script>
 
-      // Client-side validation
-      function matchCheck(password2){
+    data =  {
+      name: {
+        obj: $('input[name="txtName"]'),
+        value: obj.val(),
+        state: function(){
+          if(value === ''){
+            return false;
+          } else {
+            return true;
+          }
+        }
+      },
+      
+    }
 
-        var password1 = document.getElementsByName('txtPassword1')[0].value;
+      // Adding event listener to submit button mouseover
+      $('input[name="btnAddNew"]').mouseover(valInput);
 
-        if(password1 !== password2){
+      function valInput() {
 
-          document.getElementById('pwrdErr').innerHTML = "Passwords do not match";
-          document.getElementsByName('txtPassword2')[0].value = "";
+        var name = $('input[name="txtName"]').val();
+        var surname = $('input[name="txtSurname"]').val();
+        var email = $('input[name="txtEmail"]').val();
+        var mobile = $('input[name="txtMobile"]').val();
+        var valid = 0;
+        var uinput =[name, surname, email, mobile];
+
+        // Check if all fields are filled in
+        for(var i = 0; i <= 3; i++){
+
+          if(uinput[i] === ''){
+            valid++;
+          }
+
+        }
+
+        if(valid === 0){
+
+          // If all fields are filled in then change the button colour
+          $('input[name="btnAddNew"]').addClass('proceed-btn').removeClass('wait-btn');
+
+          // Display error message
+          $('#subErr').html('');
+
+          return true;
 
         } else {
 
-          document.getElementById('pwrdErr').innerHTML = "";
+          // If all fields are filled in then change the button colour
+          $('input[name="btnAddNew"]').removeClass('proceed-btn').addClass('wait-btn');
+
+          return false;
+
+        }
+
+      } // end of valInput function
+
+      function valForm(){
+
+        matchPw();
+
+        var submitForm = valInput();
+
+        if(!submitForm){
+
+          $('#subErr').html('Fill all fields to submit form');
+
+          var name = $('input[name="txtName"]');
+          var surname = $('input[name="txtSurname"]');
+          var email = $('input[name="txtEmail"]');
+          var mobile = $('input[name="txtMobile"]');
+          var uinput =[name, surname, email, mobile];
+
+          var j = 0;
+
+
+          while(uinput[j].val() !== ''){
+            j++;
+          } // end while
+
+          uinput[j].focus();
+
+          for(var s = 0; s <= 3; s++){
+
+            if(uinput[s].val() === ''){
+
+              uinput[s].addClass('error-bg');
+              uinput[s].addClass('correctVal');
+            } else {
+
+              uinput[s].removeClass('error-bg');
+
+            }
+
+          } // end for loop
+
+          return false;
+
+        } else {
+
+          return true;
 
         }
 
       }
+
+      // Removes error class
+      $('.correctVal').blur(function(){
+        var obj = $(this);
+
+        if(obj.val() !== '') {
+            obj.removeClass('error-bg');
+        }
+
+      });
+
+        // Password client-side validation
+        function matchPw(){
+
+          var pw1 = $('input[name="txtPw1"]').val();
+          var pw2 = $('input[name="txtPw2"]').val();
+          var errMsg = '';
+          var pwVal = false;
+
+          if(pw1 === '' || pw2 == ''){
+
+               errMsg = 'Please fill in both passwords';
+
+          } else if(pw1 !== pw2){
+
+            $('input[name="txtPw1"]').focus();
+            errMsg = 'Passwords do not match';
+
+          } else {
+
+            pwVal = true;
+            errMsg = '';
+
+          }
+
+          // display error message
+          $("#pwErr").html(errMsg);
+
+          if(!pwVal){
+
+            $('input[name="txtPw1"], input[name="txtPw2"]').addClass('error-bg');
+
+            document.getElementsByName('txtPw2')[0].value = "";
+
+            return false;
+
+          } else {
+
+            $('input[name="txtPw1"], input[name="txtPw2"]').removeClass('error-bg');
+
+            return true;
+          }
+
+
+        }
+
 
     </script>
   </body>
