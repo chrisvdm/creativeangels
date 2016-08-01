@@ -86,14 +86,16 @@
         // ENCODE QUERY STRING
         // Both the keys and values need to be encoded
         $vencqs = urlencode(base64_encode('kid'));
-        $venqs .= '=';
-        $venqs .= urlencode(base64_encode($vid));
-        $venqs .= '&';
-        $venqs .= urlencode(base64_encode('kemail'));
-        $venqs .= '=';
-        $venqs .= urlencode(base64_encode($vemail));
-
-
+        $vencqs .= '=';
+        $vencqs .= urlencode(base64_encode($vid));
+        $vencqs .= '&';
+        $vencqs .= urlencode(base64_encode('kname'));
+        $vencqs .= '=';
+        $vencqs .= urlencode(base64_encode($vname));
+        $vencqs .= '&';
+        $vencqs .= urlencode(base64_encode('kemail'));
+        $vencqs .= '=';
+        $vencqs .= urlencode(base64_encode($vemail));
 
         //------------------------- SEND AUTO EMAIL --------------------------
 
@@ -120,13 +122,12 @@
               <tr>
                 <td style="padding: 6px">
                   <p><br><strong>Dear ' . $vname . '</strong></p>
-                  <p>To reset your password please click on this link: <a href="http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?' . $vencqs . '">Reset your password</a></p>
-                  <p>Alternatively you can copy the following link and paste into your browser\'s address bar.</p>
-                  <p><a href="http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?' . $vencqs . '">http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?' . $vencqs . '</a>
-                  <p>Yours faithfully</p>
-                  <p><strong>The All Powerful Webmaster</strong></p>
-                  <p>&nbsp;</p>
-                  <p>&nbsp;</p>
+                  <p>Please click the link below to reset your password</p>
+                  <a href="http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?'. $vencqs .'">Reset Password</a>
+                  <p>
+                  If you cannot follow the link then copy and paste the link below into your browser:
+                  </p>
+                    <a href="http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?'. $vencqs .'">http://www.christinenyman.com/projects/creativeangels/cms-reset-password.php?'. $vencqs .'</a>
                   </td>
               </tr>
             </table>

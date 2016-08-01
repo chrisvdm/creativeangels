@@ -115,6 +115,21 @@
     }
     // EMAIL VALIDATION END
 
+
+    // ------------------------- NAME VALIDATION -----------------------------
+
+    if (isset($_POST['txtName']) && $_POST['txtName'] !== '') {
+
+      $vname = trim($_POST['txtName']);
+
+
+      } else {
+
+        $vvalidation++;
+
+    }
+    // NAME VALIDATION END
+
     // ----------------------- ID VALIDATION START ---------------------------
 
     if (isset($_POST['txtId']) && $_POST['txtId'] !== '') {
@@ -137,6 +152,10 @@
       $vencqs = urlencode(base64_encode('kid'));
       $vencqs .= '=';
       $vencqs .= urlencode(base64_encode($vid));
+      $vencqs .= '&';
+      $vencqs .= urlencode(base64_encode('kname'));
+      $vencqs .= '=';
+      $vencqs .= urlencode(base64_encode($vname));
       $vencqs .= '&';
       $vencqs .= urlencode(base64_encode('kemail'));
       $vencqs .= '=';
@@ -173,12 +192,12 @@
         require ('inc-function-auto-email.php');
 
         $vto = 'nymanchristine@gmail.com';
-        $vname = 'Christine';
         $vfrom = 'Christine Nyman<info@christinenyman.com>';
         $vsubject = 'Password has been updated';
 
         $vmessage = '
-          <p>Your account password has been updated.</p>
+          <p>Your account password has been updated. Use your new password to signin.</p>
+          <a href="http://www.christinenyman.com/projects/creativeangels/cms-signin.php">Go to sign in page</a>
           <p>If you did not change your password please email the admin staff:</p>
           <p>admin@creativeangels.org.za</p>
           ';
@@ -187,13 +206,13 @@
 
         // redirect to signin page on successful sending of email
         if($mail_success){
-          echo 'Email sent';
-          //header('location: cms-signin.php?kemail=sent');
+
+          header('location: cms-signin.php?kpwupdate=success');
           exit();
 
         } else {
 
-          header('location: cms-signin.php?kemail=failed');
+          header('location: cms-signin.php?kpwupdate=failed');
           exit();
 
         }

@@ -43,6 +43,8 @@ function auto_mail($eto, $ename,$efrom, $esubject, $emsg){
   // $vheaders .= 'Bcc: sue@gmail.com\r\n';
 
   // SEND THE MAIL
-  echo mail($eto, $esubject, $vmessage, $eheaders);
+  $eresults = mail($eto, $esubject, $vmessage, $eheaders);
+
+  return $eresults;
 }
  ?>

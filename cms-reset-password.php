@@ -14,8 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 		$vid = urldecode(base64_decode($vqsvalues[0]));
 	}
 
-	if (isset($vqsvalues[1]) && $vqsvalues[1] !== '') {
-		$vemail = urldecode(base64_decode($vqsvalues[1]));
+	if (isset($vqsvalues[1]) && $vqsvalues[1] !== ''){
+		$vname = urldecode(base64_decode($vqsvalues[1]));
+	}
+
+	if (isset($vqsvalues[2]) && $vqsvalues[2] !== '') {
+		$vemail = urldecode(base64_decode($vqsvalues[2]));
 	}
 }
 ?>
@@ -73,7 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 
 						<input type="hidden" name="txtId" value="<?php if(isset($vid) && $vid !== '') { echo $vid; } ?>">
 
-							<input type="hidden" name="txtEmail" value="<?php if(isset($vemail) && $vid !== '') { echo $vemail; } ?>">
+							<input type="hidden" name="txtEmail" value="<?php if(isset($vemail) && $vemail !== '') { echo $vemail; } ?>">
+
+							<input type="hidden" name="txtName" value="<?php if(isset($vname) && $vname !== '') { echo $vname; } ?>">
 
 						<input type="submit" name="btnsubmit" value="Reset password">
 					</form>
