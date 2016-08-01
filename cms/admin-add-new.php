@@ -159,47 +159,47 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     <script src="js/accordian.js"></script>
     <script>
 
-
-    function loop(data, fn){
-      var result = true;
-
-      for(var i = 0; i <= data.length; i++){
-        if (data[i].val() === ''){
-          result = fn(i);
-        }
-      }
-
-      return result;
-
-    }
-
-    function isValid(s){
-      return data[s].val();
-    }
-
-    function track(j){
-      
-    }
-
-    function main(){
-
-      var data = createData();
-
-      loop(data, isValid);
-      loop(data, track)
-
-    }
-
-    function createData {
-
-      return [
-        $('input[name="txtName"]'),
-        $('input[name="txtSurname"]'),
-        $('input[name="txtEmail"]'),
-        $('input[name="txtMobile"]')
-      ];
-
-    }
+    //
+    // function loop(data, fn){
+    //   var result = true;
+    //
+    //   for(var i = 0; i <= data.length; i++){
+    //     if (data[i].val() === ''){
+    //       result = fn(i);
+    //     }
+    //   }
+    //
+    //   return result;
+    //
+    // }
+    //
+    // function isValid(s){
+    //   return data[s].val();
+    // }
+    //
+    // function track(j){
+    //
+    // }
+    //
+    // function main(){
+    //
+    //   var data = createData();
+    //
+    //   loop(data, isValid);
+    //   loop(data, track)
+    //
+    // }
+    //
+    // function createData {
+    //
+    //   return [
+    //     $('input[name="txtName"]'),
+    //     $('input[name="txtSurname"]'),
+    //     $('input[name="txtEmail"]'),
+    //     $('input[name="txtMobile"]')
+    //   ];
+    //
+    // }
       //Adding event listener to submit button mouseover
       $('input[name="btnAddNew"]').mouseover(valInput);
 
@@ -272,7 +272,17 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             if(uinput[s].val() === ''){
 
               uinput[s].addClass('error-bg');
-              uinput[s].addClass('correctVal');
+
+              // Removes error class
+              uinput[s].blur(function(){
+
+                var obj = $(this);
+
+                if(obj.val() !== '') {
+                    obj.removeClass('error-bg');
+                }
+
+              });
             } else {
 
               uinput[s].removeClass('error-bg');
