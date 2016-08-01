@@ -41,6 +41,11 @@
             <?php if(isset($_GET['kval']) && $_GET['kval'] === 'failed') {?>
             <div class="warning_msg" >Please enter a valid Email<br><br></div>
             <?php } ?>
+
+						<?php if(isset($_GET['kpwupdate']) && $_GET['kpwupdate'] === 'failed') {?>
+            <div class="warning_msg" >Password could not be updated. Please try again<br><br></div>
+            <?php } ?>
+
             <label>
               Please enter your email address<br><br>
               <input type="email" name="txtEmail">

@@ -197,7 +197,7 @@
 
         $vmessage = '
           <p>Your account password has been updated. Use your new password to signin.</p>
-          <a href="http://www.christinenyman.com/projects/creativeangels/cms-signin.php">Go to sign in page</a>
+          <a href="http://www.christinenyman.com/projects/creativeangels/cms-signin.php?kpwupdate=success">Go to sign in page</a>
           <p>If you did not change your password please email the admin staff:</p>
           <p>admin@creativeangels.org.za</p>
           ';
@@ -212,7 +212,8 @@
 
         } else {
 
-          header('location: cms-signin.php?kpwupdate=failed');
+          // IF PASSWORD UPDATE FAILED
+          header('location: cms-reset-password.php?kpwemail=failed');
           exit();
 
         }
@@ -220,7 +221,8 @@
 
       } else {
 
-        echo 'Password failed to update';
+        // IF PASSWORD UPDATE FAILED
+        header('location: cms-lost-password.php?kpwupdate=failed');
         exit();
 
       }
