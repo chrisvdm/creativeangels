@@ -40,8 +40,8 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
 						<h1>CMS Login</h1>
 
-						<?php if(isset($_GET['kpwupdate']) && $_GET['kpwupdate'] === 'success') {?>
-            <div class="warning_msg" >Your password has been updated! Sign in with your new password<br><br></div>
+						<?php if(isset($_GET['kpwupdate']) && $_GET['kpwupdate'] === 'success') { ?>
+            <div >Your password has been updated. Sign in with your new password<br><br></div>
             <?php } ?>
 
 						<?php if (isset($_GET['valfailed']) && $_GET['valfailed'] === 'invdet') { ?>

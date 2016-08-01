@@ -56,10 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 					<h1>Reset Your Password</h1>
 					<p>&nbsp;</p>
 
+					<!--=================== ENTER NEW PASSWORD ====================-->
 					<form method="post" action="cms-reset-password-process.php" onsubmit="return matchpws()">
 
 						<p class="msgwarning" id="pwnomatch"></p>
 
+						<!-- Warning messages -->
 						<?php if(isset($_GET['kvalidation']) && $_GET['kvalidation'] === 'failed') {?>
 
 							<div class="msgwarning">Please complete both fields</div>
@@ -69,10 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 						<label>New Password:</label><br>
 						<input type="password" name="txtPw1" required autofocus placeholder="New password">
 						<p>&nbsp;</p>
+
 						<label>Re-type Password:</label><br>
 						<input type="password" name="txtPw2" placeholder="Retype password">
 						<p>&nbsp;</p>
 
+						<!-- Hidden fields for reusable data -->
 						<input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
 						<input type="hidden" name="txtId" value="<?php if(isset($vid) && $vid !== '') { echo $vid; } ?>">
