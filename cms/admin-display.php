@@ -97,10 +97,12 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
                 <!-- Edit record -->
                 <td align="center"><?php if ($_SESSION['svcaccesslevel']=== 'a'){?>
-                <form action="admin-update-display.php" method="GET">
+                <form action="admin-update-display.php" method="get">
 
                 <input type="hidden" name="txtId" value="<?php echo $rs_cms_rows['cid']; ?>">
+
                 <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+
                 <input type="submit" name="btnEdit" value="Edit">
               </td>
 

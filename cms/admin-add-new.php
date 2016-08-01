@@ -160,42 +160,42 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     <script>
 
     // creates initial data obj
-    function initData(){
-      return {
-        name: '',
-        surname: '',
-        email: '',
-        mobile: '',
-        valid: true
-      }
-    }
-
-    function bindEvents(){
-
-      $('input[name="btnAddNew"]')
-      .mouseover( function(){
-        dispatch({'CHANGE_BUTTON', data})
-      })
-
-      $('input[name="txtName"]')
-      .keyup( function (){
-
-      });
-    } // end of bind events
-
-    // main function in which all things happen
-    function main(){
-
-      var data = initData();
-
-      bindEvents();
-
-      function dispatch(action){
-        reduce(action, data);
-        render(reduce);
-      }
-
-    }
+    // function initData(){
+    //   return {
+    //     name: '',
+    //     surname: '',
+    //     email: '',
+    //     mobile: '',
+    //     valid: true
+    //   }
+    // }
+    //
+    // function bindEvents(){
+    //
+    //   $('input[name="btnAddNew"]')
+    //   .mouseover( function(){
+    //     dispatch({'CHANGE_BUTTON', data})
+    //   })
+    //
+    //   $('input[name="txtName"]')
+    //   .keyup( function (){
+    //
+    //   });
+    // } // end of bind events
+    //
+    // // main function in which all things happen
+    // function main(){
+    //
+    //   var data = initData();
+    //
+    //   bindEvents();
+    //
+    //   function dispatch(action){
+    //     reduce(action, data);
+    //     render(reduce);
+    //   }
+    //
+    // }
 
 
 

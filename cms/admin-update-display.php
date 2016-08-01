@@ -1,8 +1,30 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
-$_SESSION['svSecurity'] = sha1(date('YmdHis'));
+if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity']){
+
+// COLLECT ID FROM EDIT BUTTON field
+$vid = $_GET['txtId'];
+
+//FORMULATE SQL STATEMENT
+$sql_admin_update = "SELECT * FROM tblcms WHERE cid = $vid";
+
+// CONNECT
+require('inc-conn.php');
+
+// EXECUTE
+$rs_admin_update = mysqli_query($vconn_creativeangels, $sql_admin_update);
+
+// CREATE ASSOCIATIVE ARRAY
+$rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
+
+} else {
+
+  header('Location: signout.php');
+  exit();
+
+}
+
 ?>
-<?php //require("inc-cms-pre-doctype.php"); ?>
 <?php
   // Function for printing out error messages
   function errorMsg($keyName, $label) {
@@ -64,7 +86,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Template</h2>
+            <h2>Edit User Details</h2>
           </div>
 
         </header>
@@ -72,10 +94,8 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
 
-          <h2> Add New </h2>
-
           <!-- Executes instructions in 'admin-add-process.php' on submit and sends form data using get -->
-          <form action="admin-add-process.php" method="post" onsubmit="return">
+          <form class="form" action="admin-add-process.php" method="post" onsubmit="return">
 
             <!-- Displays warning message above empty field -->
             <?php echo errorMsg('kname', 'name'); ?>
@@ -83,14 +103,12 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             <!-- PHP checks whether certain keys have been returned with values in the GET Global Super Array, if it has then echo the value into the input field  -->
 
             <label>First name:</label>
-            <input type="text" name="txtName" autocomplete="off" autofocus value="<?php echo displayTxt('kname'); ?>">
-            <br><br>
+            <input type="text" name="txtName" autocomplete="off" autofocus value="<?php if (isset($rs_admin_update_rows['cname']) && $rs_admin_update_rows['cname'] !== 'na'){ echo $rs_admin_update_rows['cname']; } else { echo displayTxt('kname'); } ?>">
 
             <?php echo errorMsg('ksurname', 'surname'); ?>
 
             <label>Surname:</label>
             <input type="text" name="txtSurname" autocomplete="off" value="<?php echo displayTxt('ksurname'); ?>">
-            <br><br>
 
             <!-- Reminds user to enter password on validation fail -->
             <?php echo errorMsg('kpassword','password'); ?>
@@ -98,28 +116,26 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             <div id="pwrdErr" class="warning_msg"></div>
             <label>Password:</label>
             <input type="password" name="txtPassword1" autocomplete="off" value="">
-            <br><br>
 
             <label>Re-enter password:</label>
             <input type="password" name="txtPassword2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
-            <br><br>
 
             <?php echo errorMsg('kemail', 'email'); ?>
             <?php echo errorMsg('kemaildup', 'emaildup'); ?>
 
             <label>Email:</label>
             <input type="email" name="txtEmail" autocomplete="off" value="<?php echo displayTxt('kemail'); ?>">
-            <br><br>
 
             <?php echo errorMsg('kmobile', 'mobile number'); ?>
 
             <label>Mobile:</label>
             <input type="text" name="txtMobile" autocomplete="off" value="<?php echo displayTxt('kmobile'); ?>">
-            <br><br>
 
+            <!-- Security hidden field -->
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
-            <input type="submit" value="Add New" name="btnAddNew">
+            <!-- Submit button -->
+            <input type="submit" value="Update" name="btnAddNew">
           </form>
 
           <p>
