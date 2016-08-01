@@ -1,7 +1,7 @@
 <ul id="main-menu" class="menu">
 
   <div class="main-header base">
-    <h1>Creative Angels</h1>
+    <h1><a href="cms-homepage.php">Creative Angels</a></h1>
   </div>
 
   <li>Dashboard</li>
