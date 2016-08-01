@@ -33,26 +33,15 @@
 				<!-- CONTENT CONTAINER RIGHT ARTICLE 1 -->
 				<article id="content_left_article_1">
 
-					<h1>Lost password</h1>
+					<h1>Success</h1>
 
-          <form action="cms-pw-lost-process.php" method="post">
-            <p>&nbsp;</p>
+                    <br>
+                    <br>
 
-            <?php if(isset($_GET['kval']) && $_GET['kval'] === 'failed') {?>
-            <div class="warning_msg" >Please enter a valid Email<br><br></div>
-            <?php } ?>
-            <label>
-              Please enter your email address<br><br>
-              <input type="email" name="txtEmail">
-            </label>
-
-            <br><br>
-
-            <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
-
-            <button>Send</button>
-
-          </form>
+                    <p>Password reset successful. Please log in again.</p>
+                    <br>
+                    <br>
+                    <p><a href="cms-signin.php">Log in Again.</a></p>
 
 				</article>
 				<article id="content_left_article_2">Content</article>

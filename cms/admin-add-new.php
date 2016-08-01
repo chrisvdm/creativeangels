@@ -78,7 +78,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           <!--##################### ADD NEW FORM ##########################-->
 
           <!-- Executes instructions in 'admin-add-process.php' on submit and sends form data using get -->
-          <form class="form" action="admin-add-process.php" method="post" onsubmit="return valForm()">
+          <form id="form" class="form" action="admin-add-process.php" method="post" onsubmit="return valForm()">
 
             <!-- FIRST NAME -->
             <label>First name:</label>
@@ -128,6 +128,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
             <!-- submit form -->
             <input class="wait-btn" type="submit" value="Add New" name="btnAddNew">
+
             <div id="subErr" class="warning_msg"></div>
 
           </form>
@@ -158,22 +159,25 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     <script src="js/accordian.js"></script>
     <script>
 
-    data =  {
-      name: {
-        obj: $('input[name="txtName"]'),
-        value: obj.val(),
-        state: function(){
-          if(value === ''){
-            return false;
-          } else {
-            return true;
-          }
-        }
-      },
-      
-    }
-
-      // Adding event listener to submit button mouseover
+    // function main(){
+    //
+    //   var data = createData();
+    //
+    //
+    //
+    // }
+    //
+    // function createData {
+    //
+    //   return [
+    //     $('input[name="txtName"]'),
+    //     $('input[name="txtSurname"]'),
+    //     $('input[name="txtEmail"]'),
+    //     $('input[name="txtMobile"]')
+    //   ];
+    //
+    // }
+      //Adding event listener to submit button mouseover
       $('input[name="btnAddNew"]').mouseover(valInput);
 
       function valInput() {

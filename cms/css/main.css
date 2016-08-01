@@ -76,7 +76,7 @@ footer {
 header {
   position: relative;
   color: #fafafa;
-  background-color: #b198c3;
+  background-color: #85a5cc;
 }
 
 .branding-container {
@@ -160,7 +160,7 @@ button, input[type="button"], input[type="submit"], input[type="reset"] {
 }
 
 button, input[type="button"], input[type="submit"], input[type="reset"] {
-background-color: #b198c3;
+background-color: #85a5cc;
 }
 
 button:hover, input[type="button"]:hover,  input[type="reset"]:hover, input[type="submit"]:hover {

@@ -2,9 +2,12 @@
 
   if (isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']) {
 
-    // -------------------- PASSWORD VALIDATION ----------------------------------
+    $vvalidation = 0;
 
-    if (isset($_POST['txtPw1'])) {
+  // -------------------- PASSWORDS VALIDATION --------------------------------
+
+  // PASSWORD 1 VALIDATION
+    if (isset($_POST['txtPw1']) && $_POST['txtPw1'] !== '') {
 
       $vPassword1 = trim($_POST['txtPw1']);
 
@@ -26,7 +29,7 @@
         $vvalidation++;
         //$vpswmatch = 'failed';
 
-      } // END OD PASSWORD1 VALIDATION
+      }
 
     } else {
 
@@ -34,10 +37,10 @@
       $vvalidation++;
       //$vpswmatch = 'failed';
 
-    } // END OF PASSWORD VALIDATION
+    } // END OF PASSWORD 1 VALIDATION
 
-
-    if(isset($_POST['txtPw2'])){
+    // PASSWORD 2 VALIDATION
+    if(isset($_POST['txtPw2']) && $_POST['txtPw2'] !== ''){
 
       $vPassword2 = trim($_POST['txtPw2']);
 
@@ -50,14 +53,12 @@
 
           // If Password 2 is empty after sanitisation
           $vvalidation++;
-        //  $vpswmatch = 'failed';
         }
 
       } else {
 
         // If password 2 is empty on arrival
         $vvalidation++;
-        //$vpswmatch = 'failed';
 
       }
 
@@ -65,27 +66,25 @@
 
       // If one of the passwords weren't set
       $vvalidation++;
-      //$vpswmatch = 'failed';
 
-    } // END OF PASSWORD VALIDATION
+    } // END OF PASSWORD 2 VALIDATION
 
 
     // Check if passwords entered match
     if ($vPassword1 !== $vPassword2) {
 
       $vvalidation++;
-      //$vpswmatch = '0';
 
     } elseif ( $vPassword1 === '' && $vPassword2 === '' ) {
 
       $vvalidation++;
 
-    }
+    } // END OF PASSWORD MATCH VAL
 
 
+    // ------------------------- EMAIL VALIDATION -----------------------------
 
-    // EMAIL VALIDATION START -----------------------------------------------
-    if (isset($_POST['txtEmail'])) {
+    if (isset($_POST['txtEmail']) && $_POST['txtEmail'] !== '') {
 
       $vemail = trim($_POST['txtEmail']);
 
@@ -113,55 +112,51 @@
 
       }
 
-    } else {
-      $vvalidation++;
     }
-    // USERNAME VALIDATION END
+    // EMAIL VALIDATION END
 
-    // ID VALIDATION START
-    if (isset($_POST['txtId'])) {
+    // ----------------------- ID VALIDATION START ---------------------------
 
-      $vid = trim($_POST['txtId']);
+    if (isset($_POST['txtId']) && $_POST['txtId'] !== '') {
 
-      if ($vid !== '') {
-
-        $vid = filter_var($vid, FILTER_SANITIZE_STRING);
-
-        if ($vid === '') {
-
-            $vvalidation++;
-
-          }
-
-        } else {
-
-          $vvalidation++;
-
-        }
+      $vid = $_POST['txtId'];
 
       } else {
 
         $vvalidation++;
 
+      }
 
-    }
-    // USERNAME VALIDATION END
+    // ID VALIDATION END
 
-    if ($vvalidation > 0) {
+    //----------------------- VALIDATION ACTIONS -------------------------------
 
-      session_destroy();
+    if ($vvalidation !== 0) {
+      //VALIDATION FAILED
 
-      header('Location: cms-reset-password.php');
+      $kid = base64_encode('kid');
+      $vid = base64_encode($vid);
+
+      $kemail = base64_encode('kemail');
+      $vemail = base64_encode($vemail);
+
+      header('Location: cms-reset-password.php?' . $kid . '=' . $vid . '&' . $kemail . '=' . $vemail . '&kvalidation=failed');
+
       exit();
 
     } else {
+      // VALIDATION
 
-      echo 'Id ' . $vid . '<br>' . 'Email: ' . $vemail;
+      echo $vid;
+      echo $vemail;
+      echo $vPassword2;
 
-    }
+    } // END OF VALIDATION ACTIONS
 
   } else {
-    // SESSION NOT VALID
+
+    // ------------------------ SECURITY CHECK FAILED -------------------------
+
     session_destroy();
 
     header('Location: signout.php');
