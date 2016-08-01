@@ -159,49 +159,48 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     <script src="js/accordian.js"></script>
     <script>
 
-    //
-    // function loop(data, fn){
-    //   var result = true;
-    //
-    //   for(var i = 0; i <= data.length; i++){
-    //     if (data[i].val() === ''){
-    //       result = fn(i);
-    //     }
-    //   }
-    //
-    //   return result;
-    //
-    // }
-    //
-    // function isValid(s){
-    //   return data[s].val();
-    // }
-    //
-    // function track(j){
-    //
-    // }
-    //
-    // function main(){
-    //
-    //   var data = createData();
-    //
-    //   loop(data, isValid);
-    //   loop(data, track)
-    //
-    // }
-    //
-    // function createData {
-    //
-    //   return [
-    //     $('input[name="txtName"]'),
-    //     $('input[name="txtSurname"]'),
-    //     $('input[name="txtEmail"]'),
-    //     $('input[name="txtMobile"]')
-    //   ];
-    //
-    // }
-      //Adding event listener to submit button mouseover
-      $('input[name="btnAddNew"]').mouseover(valInput);
+    // creates initial data obj
+    function initData(){
+      return {
+        name: '',
+        surname: '',
+        email: '',
+        mobile: '',
+        valid: true
+      }
+    }
+
+    function bindEvents(){
+
+      $('input[name="btnAddNew"]')
+      .mouseover( function(){
+        dispatch({'CHANGE_BUTTON', data})
+      })
+
+      $('input[name="txtName"]')
+      .keyup( function (){
+
+      });
+    } // end of bind events
+
+    // main function in which all things happen
+    function main(){
+
+      var data = initData();
+
+      bindEvents();
+
+      function dispatch(action){
+        reduce(action, data);
+        render(reduce);
+      }
+
+    }
+
+
+
+
+    $('input[name="btnAddNew"]').mouseover(valInput);
 
       function valInput() {
 
