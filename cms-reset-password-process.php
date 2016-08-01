@@ -164,13 +164,40 @@
       );
 
       // Execute update statement
-      $vupdate_results = mysqli_query($vconn_creativeangels, $sql_update);
+      $vupdate_result = mysqli_query($vconn_creativeangels, $sql_update);
 
       // validate results
-      if($vupdate_results){
+      if($vupdate_result){
 
-        echo 'Password has been updated';
-        exit();
+        // Send email
+        require ('inc-function-auto-email.php');
+
+        $vto = 'nymanchristine@gmail.com';
+        $vname = 'Christine';
+        $vfrom = 'Christine Nyman<info@christinenyman.com>';
+        $vsubject = 'Password has been updated';
+
+        $vmessage = '
+          <p>Your account password has been updated.</p>
+          <p>If you did not change your password please email the admin staff:</p>
+          <p>admin@creativeangels.org.za</p>
+          ';
+
+        $mail_success = auto_mail($vto, $vname, $vfrom, $vsubject, $vmessage);
+
+        // redirect to signin page on successful sending of email
+        if($mail_success){
+          echo 'Email sent';
+          //header('location: cms-signin.php?kemail=sent');
+          exit();
+
+        } else {
+
+          header('location: cms-signin.php?kemail=failed');
+          exit();
+
+        }
+
 
       } else {
 
