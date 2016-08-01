@@ -11,11 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 
 	// EXTRACT THE VALUES FROM THE BASIC ARRAY BY REFERING TO THE INDEX POSITIONS AND ASSIGN THE VALUES TO GLOBAL VARIABLES
 	if (isset($vqsvalues[0]) && $vqsvalues[0] !== ''){
-		$vid = base64_decode($vqsvalues[0]);
+		$vid = urldecode(base64_decode($vqsvalues[0]));
 	}
 
 	if (isset($vqsvalues[1]) && $vqsvalues[1] !== '') {
-		$vemail = base64_decode($vqsvalues[1]);
+		$vemail = urldecode(base64_decode($vqsvalues[1]));
 	}
 }
 ?>

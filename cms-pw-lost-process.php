@@ -85,7 +85,13 @@
 
         // ENCODE QUERY STRING
         // Both the keys and values need to be encoded
-        $vencqs = base64_encode('kid') . '=' . base64_encode($vid) . '&' . base64_encode('kemail') . '=' . base64_encode($vemail);
+        $vencqs = urlencode(base64_encode('kid'));
+        $venqs .= '=';
+        $venqs .= urlencode(base64_encode($vid));
+        $venqs .= '&';
+        $venqs .= urlencode(base64_encode('kemail'));
+        $venqs .= '=';
+        $venqs .= urlencode(base64_encode($vemail));
 
 
 
@@ -175,7 +181,7 @@
     }
 
   } else {
-    
+
     // If security check fails
     header('Location: signout.php');
     exit();

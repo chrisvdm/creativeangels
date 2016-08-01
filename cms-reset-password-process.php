@@ -134,22 +134,50 @@
     if ($vvalidation !== 0) {
       //VALIDATION FAILED
 
-      $kid = base64_encode('kid');
-      $vid = base64_encode($vid);
+      $vencqs = urlencode(base64_encode('kid'));
+      $vencqs .= '=';
+      $vencqs .= urlencode(base64_encode($vid));
+      $vencqs .= '&';
+      $vencqs .= urlencode(base64_encode('kemail'));
+      $vencqs .= '=';
+      $vencqs .= urlencode(base64_encode($vemail));
+      $vencqs .= '&kvalidation=failed';
 
-      $kemail = base64_encode('kemail');
-      $vemail = base64_encode($vemail);
-
-      header('Location: cms-reset-password.php?' . $kid . '=' . $vid . '&' . $kemail . '=' . $vemail . '&kvalidation=failed');
+      header('Location: cms-reset-password.php?' . $vencqs);
 
       exit();
 
     } else {
-      // VALIDATION
+      // VALIDATION PASSED
 
-      echo $vid;
-      echo $vemail;
-      echo $vPassword2;
+      // ------------------------- UPDATE PASSWORD ----------------------------
+
+      // Get connection file
+      require('inc-conn.php');
+
+      // Get escape function
+      require('inc-function-escapestring.php');
+
+      // Creating query string
+      $sql_update = sprintf("UPDATE tblcms SET cpassword = %s WHERE cid = $vid",
+      escapestring($vconn_creativeangels, sha1($vPassword2), 'text')
+      );
+
+      // Execute update statement
+      $vupdate_results = mysqli_query($vconn_creativeangels, $sql_update);
+
+      // validate results
+      if($vupdate_results){
+
+        echo 'Password has been updated';
+        exit();
+
+      } else {
+
+        echo 'Password failed to update';
+        exit();
+
+      }
 
     } // END OF VALIDATION ACTIONS
 
