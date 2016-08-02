@@ -139,7 +139,7 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
             <!-- Submit button -->
-            <button class="wait-btn" type="submit" name="btnUpdate">Update</button>
+            <button class="proceed-btn" type="submit" name="btnUpdate">Update</button>
 
             <a class="button danger-btn" href="admin-display.php" name="btnCancel">Cancel</a>
 

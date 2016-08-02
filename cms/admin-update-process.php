@@ -241,7 +241,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       exit();
 
     } else {
-      
+
       // Calls the file where the user defined function escapestring receives its instructions
       require('inc-function-escapestring.php');
 
@@ -262,6 +262,8 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
       }
 
+      // ---------------------- UPDATE DATABASE ------------------------------
+
       // The proper way to insert sql statement (SQL Injection)
       // The first specifier (%s) corresponds to the first escapestring function as so on and so forth
       $sql_admin_update = sprintf("UPDATE tblcms SET cname = %s, csurname = %s, ",
@@ -269,6 +271,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
         escapestring($vconn_creativeangels, $vSurname, 'text')
       );
 
+      // Check if password was changed
       if ($vPassword1 !== ''){
 
          $sql_admin_update .= sprintf("cpassword = %s, ",
@@ -297,11 +300,11 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
       }
 
-    }
+    } // END OF EMAIL & PW  DB METHODS
 
   } // END OF VALIDATION METHOD
 
-} else {
+} else { // END OF PROCESS
 
   header('Location:signout.php');
   exit();
