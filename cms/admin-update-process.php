@@ -249,6 +249,23 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       // Connect to mysql server
       require('inc-conn.php');
 
+      // Create query string
+      $sql_email_pw = "SELECT cemail, cpassword FROM tblcms WHERE cid = $vid";
+
+      $sql_email_pw_results = mysqli_query($vconn_creativeangels, $sql_email_pw);
+
+      $rs_email_pw_rows = mysqli_fetch_assoc($sql_email_pw_results );
+
+      if($rs_email_pw_rows['cemail'] !== $vEmail || $rs_email_pw_rows['cpassword'] !== sha1($vPassword1)){
+
+        $vlocation = 'signout.php';
+
+      } else {
+
+        $vlocation = 'admin-display.php';
+
+      }
+
       // The proper way to insert sql statement (SQL Injection)
       // The first specifier (%s) corresponds to the first escapestring function as so on and so forth
       $sql_admin_update = sprintf("UPDATE tblcms SET cname = %s, csurname = %s, ",
@@ -274,7 +291,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
       if($vadmin_update_results) {
 
-        header('Location: admin-display.php');
+        header('Location: ' . $vlocation );
         exit();
 
       } else {
