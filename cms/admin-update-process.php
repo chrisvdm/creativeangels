@@ -216,7 +216,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     // validation check
   } else if ($validation === 0) {
 
-    $sql_dup_email = "SELECT cemail FROM tblcms WHERE cemail = '$vEmail'";
+    $sql_dup_email = "SELECT cemail FROM tblcms WHERE cemail = '$vEmail' AND cid != $vid";
 
     // Connect to mysql server
     require('inc-conn.php');
@@ -227,7 +227,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     $rs_dup_email_rows = mysqli_num_rows($rs_dup_email);
 
     // Single quotations makes everything inside a string doubles used with variables
-    if($rs_dup_email_rows > 1) {
+    if($rs_dup_email_rows > 0) {
       $qs = '?kemaildup=emaildup';
       $qs .= "&kname=".urlencode($vName);
       $qs .= "&ksurname=".urlencode($vSurname);
@@ -251,14 +251,14 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
       // The proper way to insert sql statement (SQL Injection)
       // The first specifier (%s) corresponds to the first escapestring function as so on and so forth
-      $sql_insert = sprintf("UPDATE tblcms SET cname = %s, csurname = %s,",
+      $sql_insert = sprintf("UPDATE tblcms SET cname = %s, csurname = %s, ",
         escapestring($vconn_creativeangels, $vName, 'text'),
         escapestring($vconn_creativeangels, $vSurname, 'text')
       );
 
       if ($vPassword1 !== ''){
 
-         $sql_insert .= sprintf("cpassword = %s,",
+         $sql_insert .= sprintf("cpassword = %s, ",
            escapestring($vconn_creativeangels, sha1($vPassword1), 'text')
          );
 
