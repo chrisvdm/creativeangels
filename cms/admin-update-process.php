@@ -251,31 +251,28 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
       // The proper way to insert sql statement (SQL Injection)
       // The first specifier (%s) corresponds to the first escapestring function as so on and so forth
-      $sql_insert = sprintf("UPDATE tblcms SET cname = %s, csurname = %s, ",
+      $sql_admin_update = sprintf("UPDATE tblcms SET cname = %s, csurname = %s, ",
         escapestring($vconn_creativeangels, $vName, 'text'),
         escapestring($vconn_creativeangels, $vSurname, 'text')
       );
 
       if ($vPassword1 !== ''){
 
-         $sql_insert .= sprintf("cpassword = %s, ",
+         $sql_admin_update .= sprintf("cpassword = %s, ",
            escapestring($vconn_creativeangels, sha1($vPassword1), 'text')
          );
 
        }
 
-      $sql_insert .= sprintf("cemail = %s, cmobile = %s WHERE cid = $vid",
+      $sql_admin_update .= sprintf("cemail = %s, cmobile = %s WHERE cid = $vid",
         escapestring($vconn_creativeangels, $vEmail, 'text'),
         escapestring($vconn_creativeangels, $vMobile, 'text')
       );
 
-      echo $sql_insert;
-      exit();
-
       // Execute insert statement
-      $vinsert_results = mysqli_query($vconn_creativeangels, $sql_insert);
+      $vadmin_update_results = mysqli_query($vconn_creativeangels, $sql_admin_update);
 
-      if($vinsert_results) {
+      if($vadmin_update_results) {
 
         header('Location: admin-display.php');
         exit();
