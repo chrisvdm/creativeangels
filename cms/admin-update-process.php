@@ -216,6 +216,8 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     // validation check
   } else if ($validation === 0) {
 
+    // ------------------------- EMAIL DUPLICATE CHECK -----------------------
+
     $sql_dup_email = "SELECT cemail FROM tblcms WHERE cemail = '$vEmail' AND cid != $vid";
 
     // Connect to mysql server
@@ -239,24 +241,18 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       exit();
 
     } else {
-
-      // Connect to mysql server
-      require('inc-conn.php');
-
+      
       // Calls the file where the user defined function escapestring receives its instructions
       require('inc-function-escapestring.php');
 
-      // Connect to mysql server
-      require('inc-conn.php');
-
-      // Create query string
+      // Create query string to check if the password and email has changed
       $sql_email_pw = "SELECT cemail, cpassword FROM tblcms WHERE cid = $vid";
 
       $sql_email_pw_results = mysqli_query($vconn_creativeangels, $sql_email_pw);
 
       $rs_email_pw_rows = mysqli_fetch_assoc($sql_email_pw_results );
 
-      if($rs_email_pw_rows['cemail'] !== $vEmail || $rs_email_pw_rows['cpassword'] !== sha1($vPassword1)){
+      if($rs_email_pw_rows['cemail'] !== $vEmail || $rs_email_pw_rows['cpassword'] !== sha1($vPassword1) && $vPassword1 !== ''){
 
         $vlocation = 'signout.php';
 
