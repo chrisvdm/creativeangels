@@ -115,10 +115,10 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
 
             <div id="pwrdErr" class="warning_msg"></div>
             <label>Password:</label>
-            <input type="text" name="txtPassword1" autocomplete="off" value="">
+            <input type="text" name="txtPw1" autocomplete="off" value="">
 
             <label>Re-enter password:</label>
-            <input type="text" name="txtPassword2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
+            <input type="text" name="txtPw2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
 
             <?php } ?>
 
@@ -171,12 +171,12 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
       // Client-side validation
       function matchCheck(password2){
 
-        var password1 = document.getElementsByName('txtPassword1')[0].value;
+        var password1 = document.getElementsByName('txtPw1')[0].value;
 
         if(password1 !== password2){
 
           document.getElementById('pwrdErr').innerHTML = "Passwords do not match";
-          document.getElementsByName('txtPassword2')[0].value = "";
+          document.getElementsByName('txtPw2')[0].value = "";
 
         } else {
 

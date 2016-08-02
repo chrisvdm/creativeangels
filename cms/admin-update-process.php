@@ -1,9 +1,13 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
 // check if the form was submitted
-if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']) {
+if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']){
 
-  $vcreated = date('Y-m-d');
+  if( isset($_POST['txtId']) && $_POST['txtId'] !== ''){
+
+    $vid = $_POST['txtId'];
+  }
+
   $validation = 0;
 
   // ------------------------ FIRST NAME VALIDATION --------------------------
@@ -62,7 +66,6 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
   } // END OF SURNAME VALIDATION
 
 
-
   // -------------------- PASSWORD VALIDATION ----------------------------------
 
   if (isset($_POST['txtPw1'])) {
@@ -81,13 +84,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
         //$vpswmatch = 'failed';
       }
 
-    } else {
-
-      // If password 1 is empty on arrival
-      $validation++;
-      //$vpswmatch = 'failed';
-
-    } // END OD PASSWORD1 VALIDATION
+    }
 
   } else {
 
@@ -114,12 +111,6 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
       //  $vpswmatch = 'failed';
       }
 
-    } else {
-
-      // If password 2 is empty on arrival
-      $validation++;
-      //$vpswmatch = 'failed';
-
     }
 
   } else {
@@ -137,13 +128,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     $validation++;
     //$vpswmatch = '0';
 
-  } elseif ( $vPassword1 === '' && $vPassword2 === '' ) {
-
-    $validation++;
-
   }
-
-
 
 // ------------------------- EMAIL VALIDATION ----------------------------
 
@@ -225,7 +210,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     $qs .= "&kemail=".urlencode($vEmail);
     $qs .= "&kmobile=".urlencode($vMobile);
 
-    header('Location: admin-add-new.php' . $qs);
+    header('Location: admin-update-display.php' . $qs);
     exit();
 
     // validation check
@@ -242,7 +227,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     $rs_dup_email_rows = mysqli_num_rows($rs_dup_email);
 
     // Single quotations makes everything inside a string doubles used with variables
-    if($rs_dup_email_rows > 0) {
+    if($rs_dup_email_rows > 1) {
       $qs = '?kemaildup=emaildup';
       $qs .= "&kname=".urlencode($vName);
       $qs .= "&ksurname=".urlencode($vSurname);
@@ -266,15 +251,26 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
 
       // The proper way to insert sql statement (SQL Injection)
       // The first specifier (%s) corresponds to the first escapestring function as so on and so forth
-      $sql_insert = sprintf("INSERT INTO tblcms (ccreated, caccesslevel, cname, csurname, cpassword, cemail, cmobile) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-        escapestring($vconn_creativeangels, $vcreated, 'date'),
-        escapestring($vconn_creativeangels, 'b', 'text'),
+      $sql_insert = sprintf("UPDATE tblcms SET cname = %s, csurname = %s,",
         escapestring($vconn_creativeangels, $vName, 'text'),
-        escapestring($vconn_creativeangels, $vSurname, 'text'),
-        escapestring($vconn_creativeangels, sha1($vPassword1), 'text'),
+        escapestring($vconn_creativeangels, $vSurname, 'text')
+      );
+
+      if ($vPassword1 !== ''){
+
+         $sql_insert .= sprintf("cpassword = %s,",
+           escapestring($vconn_creativeangels, sha1($vPassword1), 'text')
+         );
+
+       }
+
+      $sql_insert .= sprintf("cemail = %s, cmobile = %s WHERE cid = $vid",
         escapestring($vconn_creativeangels, $vEmail, 'text'),
         escapestring($vconn_creativeangels, $vMobile, 'text')
       );
+
+      echo $sql_insert;
+      exit();
 
       // Execute insert statement
       $vinsert_results = mysqli_query($vconn_creativeangels, $sql_insert);
