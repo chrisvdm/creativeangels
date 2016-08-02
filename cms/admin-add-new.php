@@ -127,7 +127,9 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
             <!-- submit form -->
-            <input class="wait-btn" type="submit" value="Add New" name="btnAddNew">
+            <button class="wait-btn" type="submit" name="btnAddNew">Add New</button>
+
+            <a class="button danger-btn" href="cms-homepage.php" name="btnCancel">Cancel</a>
 
             <div id="subErr" class="warning_msg"></div>
 
@@ -148,8 +150,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         </section>
 
-        <!--########################### FOOTER ###########################-->
-        <?php require('inc-cms-footer.php'); ?>
 
       </section>
       <div class="clearfix"></div>
@@ -160,45 +160,83 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     <script>
 
     // creates initial data obj
-    // function initData(){
-    //   return {
-    //     name: '',
-    //     surname: '',
-    //     email: '',
-    //     mobile: '',
-    //     valid: true
-    //   }
-    // }
-    //
-    // function bindEvents(){
-    //
-    //   $('input[name="btnAddNew"]')
-    //   .mouseover( function(){
-    //     dispatch({'CHANGE_BUTTON', data})
-    //   })
-    //
-    //   $('input[name="txtName"]')
-    //   .keyup( function (){
-    //
-    //   });
-    // } // end of bind events
-    //
-    // // main function in which all things happen
-    // function main(){
-    //
-    //   var data = initData();
-    //
-    //   bindEvents();
-    //
-    //   function dispatch(action){
-    //     reduce(action, data);
-    //     render(reduce);
-    //   }
-    //
-    // }
+    function initData(){
+      return {
+        name: '',
+        surname: '',
+        email: '',
+        mobile: '',
+        valid: true
+      }
+    }
+
+    function render(data, dispatch){
+
+      $('input[name="btnAddNew"]')
+      .mouseover( function(){
+
+      })
+
+      $('input[name="txtName"]')
+      .keyup( function (){
+        changeName(dispatch, $(this).val());
+      });
+
+      $('input[name="txtSurname"]')
+      .keyup( function (){
+        changeSurname(dispatch, $(this).val());
+      });
+
+    } // end of bind events
+
+    // Creates new data object based on action to
+    /*function reduce(data, action){
+      switch(action.type){
+
+        case 'CHANGE_NAME':
+        $.extend({}, data, {
+          name: action.value
+        });
+        break;
+
+        case 'CHANGE_SURNAME':
+        $.extend({}, data, {
+          surname: action.value
+        });
+        break;
+      }
+    }
+
+    // main function in which all things happen
+    function main(){
+
+      var data = initData();
+
+      function dispatch(action){
+        var newData = reduce(data, action);
+        render(newData, dispatch);
+      }
+
+      render(data, dispatch);
+    }
+
+    // Actions
+    function changeName(dispatch, value){
+      dispatch({
+        type: 'CHANGE_NAME',
+        value: value
+      });
+    }
+
+    function changeSurname(dispatch, value){
+      dispatch({
+        type: 'CHANGE_SURNAME',
+        value: value
+      });
+    } */
 
 
-
+    // OLD CODE-------------------------------------------------------------
 
     $('input[name="btnAddNew"]').mouseover(valInput);
 

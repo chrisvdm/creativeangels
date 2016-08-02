@@ -28,7 +28,6 @@ function reduce(data, action) {
 // draws DOM from data
 function render(data, dispatch) {
   $('input[name="txtName"]')
-    .off()
     .val(data.name)
     .toggleClass('error-bg', data.name === '' && !data.valid);
 

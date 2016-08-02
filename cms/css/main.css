@@ -120,7 +120,7 @@ ul.submenu {
 }
 
 .selected {
-  color:#85a5cc;
+  color:#c3d5eb;
 }
 
 .separator{
@@ -146,20 +146,34 @@ a.branding-trigger:hover {
 }
 
 /*Tables*/
+table {
+  width: 100%;
+  webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 .tbldatadisplay td{
   padding: 0.625em;
 }
 
+table.tbldetailsdisplay {
+  background-color: #e8e8e8;
+
+}
+
+tr.tbl-heading {
+  background-color: #c3d5eb;
+}
+
 /*Buttons*/
 
-button, input[type="button"], input[type="submit"], input[type="reset"] {
+.button, button, input[type="button"], input[type="submit"], input[type="reset"] {
   padding: 0.625em;
   font-weight: 600;
   color: #fafafa;
   border:none;
 }
 
-button, input[type="button"], input[type="submit"], input[type="reset"] {
+.button, button, input[type="button"], input[type="submit"], input[type="reset"] {
 background-color: #85a5cc;
 }
 
@@ -176,6 +190,7 @@ input {
 .form input {
   margin-top: 0.625em;
   margin-bottom: 1.25em;
+  width: 25%;
   display: block;
 }
 
@@ -183,6 +198,13 @@ input {
   display:inline-block;
 }
 
+form.form {
+  margin: 0 auto;
+  margin-top: 1.25em;
+  padding: 0.625em 1.25em;
+}
+
+/* Modifiers */
 .danger-btn {
   background-color: #de8348 !important;
 }
@@ -211,5 +233,4 @@ input {
 
 .show {
   display: table-row;
-  background-color: #b4ced3;
 }

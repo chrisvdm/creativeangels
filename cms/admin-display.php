@@ -4,7 +4,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 ?>
 <?php
   // Create SQL statement
-  $sql_cms = "SELECT * FROM tblcms ORDER BY ccreated DESC";
+  $sql_cms = "SELECT * FROM tblcms ORDER BY ccreated ASC";
 
   //Connect to MYSQL Server
   require('inc-conn.php');
@@ -72,9 +72,10 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               <td align="center">&nbsp;</td>
               <td align="center">&nbsp;</td>
               <td align="center">&nbsp;</td>
+              <td align="center">&nbsp;</td>
             </tr>
 
-            <!-- Display all records in the table -->
+            <!-- DATA TO DISPLAY --------------------------------------------->
             <?php do { ?>
 
               <tr id="record<?php echo $rs_cms_rows['cid']; ?>">
@@ -99,11 +100,15 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                 <td align="center"><?php if ($_SESSION['svcaccesslevel']=== 'a'){?>
                 <form action="admin-update-display.php" method="get">
 
-                <input type="hidden" name="txtId" value="<?php echo $rs_cms_rows['cid']; ?>">
+                  <!-- send id to process file -->
+                  <input type="hidden" name="txtId" value="<?php echo $rs_cms_rows['cid']; ?>">
 
-                <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+                  <!-- send security variable to process file -->
+                  <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
-                <input type="submit" name="btnEdit" value="Edit">
+                  <input type="submit" name="btnEdit" value="Edit">
+                </form>
+
               </td>
 
               <?php } else { ?>
@@ -138,32 +143,61 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                   <?php } ?>
 
               </tr>
-
+              <!-- VIEW DETAILS TABLE ------------------------------------>
               <tr id="row<?php echo $rs_cms_rows['cid']; ?>" class="hide">
                 <td colspan="6">
-
-                    <strong>Registered:</strong> <?php echo $rs_cms_rows['ccreated']; ?>
-                    <br><br>
-
-                    <strong>Modified: </strong><?php echo $rs_cms_rows['cupdated']; ?>
-                    <br><br>
-
-                    <strong>Access Level : </strong><?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Level A';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
-                      echo 'Level B';
-                    } ?>
-                    <br><br>
-
-                    <strong>Status : </strong><span id="stat<?php echo $rs_cms_rows['cid']; ?>"><?php if($rs_cms_rows['cstatus'] === 'i') {echo 'Inactive';} elseif ($rs_cms_rows['cstatus'] === 'a') {echo 'Active';} ?></span>
-                    <br><br>
-
-                    <strong>Email: </strong><a href="mailto:<?php echo $rs_cms_rows['cemail']; ?>" title="Send email to Admin"><?php echo $rs_cms_rows['cemail']; ?></a>
-                    <br><br>
-
-                    <strong>Username: </strong><?php echo $rs_cms_rows['cemail']; ?>
-                    <br><br>
-
-                    <strong>Mobile: </strong><?php echo $rs_cms_rows['cmobile']; ?>
-
+                  <table cellspacing="0" class="tbldetailsdisplay">
+                    <tr>
+                      <td>
+                        <strong>Registered:</strong>
+                      </td>
+                      <td>
+                        <?php echo $rs_cms_rows['ccreated']; ?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Modified: </strong>
+                      </td>
+                      <td>
+                        <?php echo $rs_cms_rows['cupdated']; ?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Access Level : </strong>
+                      </td>
+                      <td>
+                        <?php if ($rs_cms_rows['caccesslevel']==='a'){ echo 'Level A';} elseif ($rs_cms_rows['caccesslevel'] === 'b') {
+                          echo 'Level B';
+                        } ?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Status: </strong>
+                      </td>
+                      <td>
+                        <span id="stat<?php echo $rs_cms_rows['cid']; ?>"><?php if($rs_cms_rows['cstatus'] === 'i') {echo 'Inactive';} elseif ($rs_cms_rows['cstatus'] === 'a') {echo 'Active';} ?></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Email: </strong>
+                      </td>
+                      <td>
+                        <a href="mailto:<?php echo $rs_cms_rows['cemail']; ?>" title="Send email to Admin"><?php echo $rs_cms_rows['cemail']; ?></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Mobile:</strong>
+                      </td>
+                      <td>
+                        <?php echo $rs_cms_rows['cmobile']; ?>
+                      </td>
+                    </tr>
+                  </table>
                 </td>
               </tr>
 
@@ -222,8 +256,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         </section>
 
-        <!-- FOOTER -->
-        <?php require('inc-cms-footer.php'); ?>
+
 
       </section>
       <div class="clearfix"></div>

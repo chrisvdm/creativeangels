@@ -100,42 +100,47 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
             <!-- Displays warning message above empty field -->
             <?php echo errorMsg('kname', 'name'); ?>
 
-            <!-- PHP checks whether certain keys have been returned with values in the GET Global Super Array, if it has then echo the value into the input field  -->
-
             <label>First name:</label>
             <input type="text" name="txtName" autocomplete="off" autofocus value="<?php if (isset($rs_admin_update_rows['cname']) && $rs_admin_update_rows['cname'] !== 'na'){ echo $rs_admin_update_rows['cname']; } else { echo displayTxt('kname'); } ?>">
 
             <?php echo errorMsg('ksurname', 'surname'); ?>
 
             <label>Surname:</label>
-            <input type="text" name="txtSurname" autocomplete="off" value="<?php echo displayTxt('ksurname'); ?>">
+            <input type="text" name="txtSurname" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['csurname']) && $rs_admin_update_rows['csurname'] !== 'na'){ echo $rs_admin_update_rows['csurname']; } else { echo displayTxt('ksurname'); } ?>">
+
+            <?php if ($_SESSION['svcaccesslevel']=== 'a'  && $_SESSION['svcid'] === $rs_admin_update_rows['cid']) {?>
 
             <!-- Reminds user to enter password on validation fail -->
             <?php echo errorMsg('kpassword','password'); ?>
 
             <div id="pwrdErr" class="warning_msg"></div>
             <label>Password:</label>
-            <input type="password" name="txtPassword1" autocomplete="off" value="">
+            <input type="text" name="txtPassword1" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cpassword']) && $rs_admin_update_rows['cpassword'] !== 'na'){ echo $rs_admin_update_rows['cpassword']; }?>">
 
             <label>Re-enter password:</label>
-            <input type="password" name="txtPassword2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
+            <input type="text" name="txtPassword2" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cpassword']) && $rs_admin_update_rows['cpassword'] !== 'na'){ echo $rs_admin_update_rows['cpassword']; }?>" onblur="matchCheck(this.value)" >
+
+            <?php } ?>
 
             <?php echo errorMsg('kemail', 'email'); ?>
             <?php echo errorMsg('kemaildup', 'emaildup'); ?>
 
             <label>Email:</label>
-            <input type="email" name="txtEmail" autocomplete="off" value="<?php echo displayTxt('kemail'); ?>">
+            <input type="email" name="txtEmail" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cemail']) && $rs_admin_update_rows['cemail'] !== 'na'){ echo $rs_admin_update_rows['cemail']; } else { echo displayTxt('kemail'); } ?>">
 
             <?php echo errorMsg('kmobile', 'mobile number'); ?>
 
             <label>Mobile:</label>
-            <input type="text" name="txtMobile" autocomplete="off" value="<?php echo displayTxt('kmobile'); ?>">
+            <input type="text" name="txtMobile" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cmobile']) && $rs_admin_update_rows['cmobile'] !== 'na'){ echo $rs_admin_update_rows['cmobile']; } else { echo displayTxt('kmobile'); } ?>">
 
             <!-- Security hidden field -->
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
             <!-- Submit button -->
-            <input type="submit" value="Update" name="btnAddNew">
+            <button class="wait-btn" type="submit" name="btnUpdate">Update</button>
+
+            <a class="button danger-btn" href="admin-display.php" name="btnCancel">Cancel</a>
+
           </form>
 
           <p>
@@ -152,9 +157,6 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
           </p>
 
         </section>
-
-        <!-- FOOTER -->
-        <?php require('inc-cms-footer.php'); ?>
 
       </section>
       <div class="clearfix"></div>

@@ -23,5 +23,6 @@
   <li>Manage events</li>
   <li>Contact</li>
   <li>Log out</li>
-
+  <!-- FOOTER -->
+  <?php require('inc-cms-footer.php'); ?>
 </ul>
