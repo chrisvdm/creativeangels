@@ -112,7 +112,15 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               </td>
 
               <?php } else { ?>
-                &nbsp;
+                <td>
+                  &nbsp;
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td>
+                  &nbsp;
+                </td>
 
                 <?php } ?>
 
@@ -143,6 +151,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                   <?php } ?>
 
               </tr>
+
               <!-- VIEW DETAILS TABLE ------------------------------------>
               <tr id="row<?php echo $rs_cms_rows['cid']; ?>" class="hide">
                 <td colspan="6">

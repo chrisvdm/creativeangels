@@ -95,7 +95,7 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
         <section id="main-content" class="base">
 
           <!-- Executes instructions in 'admin-add-process.php' on submit and sends form data using get -->
-          <form class="form" action="admin-add-process.php" method="post" onsubmit="return">
+          <form class="form" action="admin-update-process.php" method="post" onsubmit="return">
 
             <!-- Displays warning message above empty field -->
             <?php echo errorMsg('kname', 'name'); ?>
@@ -115,10 +115,10 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
 
             <div id="pwrdErr" class="warning_msg"></div>
             <label>Password:</label>
-            <input type="text" name="txtPassword1" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cpassword']) && $rs_admin_update_rows['cpassword'] !== 'na'){ echo $rs_admin_update_rows['cpassword']; }?>">
+            <input type="text" name="txtPassword1" autocomplete="off" value="">
 
             <label>Re-enter password:</label>
-            <input type="text" name="txtPassword2" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cpassword']) && $rs_admin_update_rows['cpassword'] !== 'na'){ echo $rs_admin_update_rows['cpassword']; }?>" onblur="matchCheck(this.value)" >
+            <input type="text" name="txtPassword2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
 
             <?php } ?>
 
@@ -132,6 +132,8 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
 
             <label>Mobile:</label>
             <input type="text" name="txtMobile" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cmobile']) && $rs_admin_update_rows['cmobile'] !== 'na'){ echo $rs_admin_update_rows['cmobile']; } else { echo displayTxt('kmobile'); } ?>">
+
+            <input type="hidden" name="txtId" value="<?php echo $rs_admin_update_rows['cid']; ?>">
 
             <!-- Security hidden field -->
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
