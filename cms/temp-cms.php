@@ -32,7 +32,7 @@
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
 
-          <h1>This page's heading</h1>
+          <h1>Actually you have to delete this and put a heading in the heading</h1>
 
           <p>
             Content stuff goes here!!!
