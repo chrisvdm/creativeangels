@@ -92,41 +92,52 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
 
             <!-- Enter first name -->
             <label>* First name:</label>
+
             <!-- Displays warning message above empty field -->
             <?php echo errorMsg('kname', 'name'); ?>
 
             <input type="text" name="txtName" autocomplete="off" autofocus value="<?php if (isset($rs_admin_update_rows['cname']) && $rs_admin_update_rows['cname'] !== 'na'){ echo $rs_admin_update_rows['cname']; } else { echo displayTxt('kname'); } ?>">
 
+            <!-- Enter Surname -->
+            <label>* Surname:</label>
+
+            <!-- Warning message -->
             <?php echo errorMsg('ksurname', 'surname'); ?>
 
-            <label>* Surname:</label>
             <input type="text" name="txtSurname" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['csurname']) && $rs_admin_update_rows['csurname'] !== 'na'){ echo $rs_admin_update_rows['csurname']; } else { echo displayTxt('ksurname'); } ?>">
 
             <?php if ($_SESSION['svcaccesslevel']=== 'a'  && $_SESSION['svcid'] === $rs_admin_update_rows['cid']) {?>
 
-            <div id="pwrdErr" class="warning_msg"></div>
-            <label>Password: </label>
-            <br>
-            <i><small>Leave blank to retain existing password</small></i>
-            <input type="text" name="txtPw1" autocomplete="off" value="">
+              <div id="pwrdErr" class="warning_msg"></div>
+              <label>Password: </label>
+              <br>
+              <i><small>Leave blank to retain existing password</small></i>
+              <input type="text" name="txtPw1" autocomplete="off" value="">
 
 
-            <label>Re-enter password:</label>
-            <input type="text" name="txtPw2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
+              <label>Re-enter password:</label>
+              <input type="text" name="txtPw2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
 
             <?php } ?>
 
+            <!-- Enter Email -->
+            <label>* Email:</label>
+
+            <!-- Warning message -->
             <?php echo errorMsg('kemail', 'email'); ?>
             <?php echo errorMsg('kemaildup', 'emaildup'); ?>
-
-            <label>* Email:</label>
             <input type="email" name="txtEmail" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cemail']) && $rs_admin_update_rows['cemail'] !== 'na'){ echo $rs_admin_update_rows['cemail']; } else { echo displayTxt('kemail'); } ?>">
 
+
+            <!-- Enter Mobile -->
+            <label>* Mobile:</label>
+
+            <!-- Warning message -->
             <?php echo errorMsg('kmobile', 'mobile number'); ?>
 
-            <label>* Mobile:</label>
             <input type="text" name="txtMobile" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cmobile']) && $rs_admin_update_rows['cmobile'] !== 'na'){ echo $rs_admin_update_rows['cmobile']; } else { echo displayTxt('kmobile'); } ?>">
 
+            <!-- Hidden field for id -->
             <input type="hidden" name="txtId" value="<?php echo $rs_admin_update_rows['cid']; ?>">
 
             <!-- Security hidden field -->
