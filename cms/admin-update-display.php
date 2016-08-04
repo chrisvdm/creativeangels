@@ -32,11 +32,15 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
 
     if(isset($_GET[$keyName]) && $_GET[$keyName] === '') {
 
-      return "<br><div class='warning_msg'>This field cannot be left blank</div>";
+      return "<br><div class='warning_msg'>Please enter a " . $label ."</div>";
 
     } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'emaildup'){
 
       return '<br><div class="warning_msg">Email already in use</div>';
+
+    } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'failed'){
+
+      return '<br><div class="warning_msg">Passwords do not match</div>';
 
     }//end if statement
 
@@ -49,7 +53,7 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
 
       return $_GET[$keyValue];
 
-    } //End if statement
+    }
 
   } // End of function displayTxt
 
@@ -96,7 +100,7 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
             <!-- Displays warning message above empty field -->
             <?php echo errorMsg('kname', 'name'); ?>
 
-            <input type="text" name="txtName" autocomplete="off" autofocus value="<?php if (isset($rs_admin_update_rows['cname']) && $rs_admin_update_rows['cname'] !== 'na'){ echo $rs_admin_update_rows['cname']; } else { echo displayTxt('kname'); } ?>">
+            <input type="text" name="txtName" autocomplete="off" autofocus value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_admin_update_rows['cname']) && $rs_admin_update_rows['cname'] !== 'na'){ echo $rs_admin_update_rows['cname']; } ?>">
 
             <!-- Enter Surname -->
             <label>* Surname:</label>
@@ -104,7 +108,7 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
             <!-- Warning message -->
             <?php echo errorMsg('ksurname', 'surname'); ?>
 
-            <input type="text" name="txtSurname" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['csurname']) && $rs_admin_update_rows['csurname'] !== 'na'){ echo $rs_admin_update_rows['csurname']; } else { echo displayTxt('ksurname'); } ?>">
+            <input type="text" name="txtSurname" autocomplete="off" value="<?php if(isset($_GET['ksurname'])){ echo displayTxt('ksurname'); } elseif (isset($rs_admin_update_rows['csurname']) && $rs_admin_update_rows['csurname'] !== 'na'){ echo $rs_admin_update_rows['csurname']; }?>">
 
             <?php if ($_SESSION['svcaccesslevel']=== 'a'  && $_SESSION['svcid'] === $rs_admin_update_rows['cid']) {?>
 
@@ -112,8 +116,10 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
               <label>Password: </label>
               <br>
               <i><small>Leave blank to retain existing password</small></i>
-              <input type="text" name="txtPw1" autocomplete="off" value="">
+              
+              <?php echo errorMsg('kpassword', 'password'); ?>
 
+              <input type="text" name="txtPw1" autocomplete="off" value="">
 
               <label>Re-enter password:</label>
               <input type="text" name="txtPw2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
@@ -126,7 +132,7 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
             <!-- Warning message -->
             <?php echo errorMsg('kemail', 'email'); ?>
             <?php echo errorMsg('kemaildup', 'emaildup'); ?>
-            <input type="email" name="txtEmail" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cemail']) && $rs_admin_update_rows['cemail'] !== 'na'){ echo $rs_admin_update_rows['cemail']; } else { echo displayTxt('kemail'); } ?>">
+            <input type="email" name="txtEmail" autocomplete="off" value="<?php if(isset($_GET['kemail'])){ echo displayTxt('kemail'); } elseif (isset($rs_admin_update_rows['cemail']) && $rs_admin_update_rows['cemail'] !== 'na'){ echo $rs_admin_update_rows['cemail']; } ?>">
 
 
             <!-- Enter Mobile -->
@@ -135,7 +141,7 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
             <!-- Warning message -->
             <?php echo errorMsg('kmobile', 'mobile number'); ?>
 
-            <input type="text" name="txtMobile" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cmobile']) && $rs_admin_update_rows['cmobile'] !== 'na'){ echo $rs_admin_update_rows['cmobile']; } else { echo displayTxt('kmobile'); } ?>">
+            <input type="text" name="txtMobile" autocomplete="off" value="<?php if(isset($_GET['kmobile'])){ echo displayTxt('kmobile'); } elseif (isset($rs_admin_update_rows['cmobile']) && $rs_admin_update_rows['cmobile'] !== 'na'){ echo $rs_admin_update_rows['cmobile']; } ?>">
 
             <!-- Hidden field for id -->
             <input type="hidden" name="txtId" value="<?php echo $rs_admin_update_rows['cid']; ?>">

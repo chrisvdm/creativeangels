@@ -132,7 +132,7 @@ if($_SESSION['svcid'] === $vid){
     if ($vPassword1 !== $vPassword2) {
 
       $validation++;
-      //$vpswmatch = '0';
+      $vpswmatch = 'failed';
 
     }
   } // End PW validation
@@ -213,6 +213,7 @@ if($_SESSION['svcid'] === $vid){
     $qs = '?kval=failed';
     $qs .= '&txtSecurity=' . $_SESSION['svSecurity'];
     $qs .= '&txtId=' . $vid;
+    $qs .= '&txtpw=' . $vpswmatch;
     $qs .= "&kname=".urlencode($vName);
     $qs .= "&ksurname=".urlencode($vSurname);
     $qs .= "&kemail=".urlencode($vEmail);
@@ -298,12 +299,13 @@ if($_SESSION['svcid'] === $vid){
 
       if($vadmin_update_results) {
 
-        header('Location: admin-display.php' );
+        $qs = 'kupdate=success';
+        header('Location: admin-display.php?' . $qs );
         exit();
 
       } else {
 
-        //header('Location: signout.php');
+        header('Location: signout.php');
         exit();
 
       }
