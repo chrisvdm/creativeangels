@@ -1,6 +1,6 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
-if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity']){
+if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity'] && isset($_GET['txtId']) && $_GET['txtId'] !== ''){
 
   // COLLECT ID FROM EDIT BUTTON field
   $vid = $_GET['txtId'];

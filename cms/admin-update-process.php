@@ -1,12 +1,9 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
 // check if the form was submitted
-if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']){
+if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && isset($_POST['txtId']) && $_POST['txtId'] !== ''){
 
-  if( isset($_POST['txtId']) && $_POST['txtId'] !== ''){
-
-    $vid = $_POST['txtId'];
-  }
+  $vid = $_POST['txtId'];
 
   $validation = 0;
 
@@ -22,7 +19,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       $vName = filter_var($vName, FILTER_SANITIZE_STRING);
 
       if ($vName === '') {
-        
+
         $validation++;
 
       } else {
@@ -75,68 +72,70 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
 
   // -------------------- PASSWORD VALIDATION ----------------------------------
+if($_SESSION['svcid'] === $vid){
 
-  if (isset($_POST['txtPw1'])) {
+    if (isset($_POST['txtPw1'])) {
 
-    $vPassword1 = trim($_POST['txtPw1']);
+      $vPassword1 = trim($_POST['txtPw1']);
 
-    if ($vPassword1 !== '') {
+      if ($vPassword1 !== '') {
 
-      // Remove harmful characters from password
-      $vPassword1 = filter_var($vPassword1, FILTER_SANITIZE_STRING);
+        // Remove harmful characters from password
+        $vPassword1 = filter_var($vPassword1, FILTER_SANITIZE_STRING);
 
-      if($vPassword1 === ''){
+        if($vPassword1 === ''){
 
-        // If Password 1 is empty after sanitisation
-        $validation++;
-        //$vpswmatch = 'failed';
+          // If Password 1 is empty after sanitisation
+          $validation++;
+          //$vpswmatch = 'failed';
+        }
+
       }
 
-    }
+    } else {
 
-  } else {
+      // If one of the passwords weren't set
+      $validation++;
+      //$vpswmatch = 'failed';
 
-    // If one of the passwords weren't set
-    $validation++;
-    //$vpswmatch = 'failed';
-
-  } // END OF PASSWORD VALIDATION
+    } // END OF PASSWORD VALIDATION
 
 
-  if(isset($_POST['txtPw2'])){
+    if(isset($_POST['txtPw2'])){
 
-    $vPassword2 = trim($_POST['txtPw2']);
+      $vPassword2 = trim($_POST['txtPw2']);
 
-    if ($vPassword2 !== '') {
+      if ($vPassword2 !== '') {
 
-      // Remove harmful characters from password
-      $vPassword2 = filter_var($vPassword2, FILTER_SANITIZE_STRING);
+        // Remove harmful characters from password
+        $vPassword2 = filter_var($vPassword2, FILTER_SANITIZE_STRING);
 
-      if ($vPassword2 === '') {
+        if ($vPassword2 === '') {
 
-        // If Password 2 is empty after sanitisation
-        $validation++;
-      //  $vpswmatch = 'failed';
+          // If Password 2 is empty after sanitisation
+          $validation++;
+        //  $vpswmatch = 'failed';
+        }
+
       }
 
+    } else {
+
+      // If one of the passwords weren't set
+      $validation++;
+      //$vpswmatch = 'failed';
+
+    } // END OF PASSWORD VALIDATION
+
+
+    // Check if passwords entered match
+    if ($vPassword1 !== $vPassword2) {
+
+      $validation++;
+      //$vpswmatch = '0';
+
     }
-
-  } else {
-
-    // If one of the passwords weren't set
-    $validation++;
-    //$vpswmatch = 'failed';
-
-  } // END OF PASSWORD VALIDATION
-
-
-  // Check if passwords entered match
-  if ($vPassword1 !== $vPassword2) {
-
-    $validation++;
-    //$vpswmatch = '0';
-
-  }
+  } // End PW validation
 
 // ------------------------- EMAIL VALIDATION ----------------------------
 
@@ -314,9 +313,8 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
   } // END OF VALIDATION METHOD
 
 } else { // END OF PROCESS
-  echo $validation;
-  exit();
-//  header('Location:signout.php');
+
+  header('Location:signout.php');
   exit();
 }
 ?>
