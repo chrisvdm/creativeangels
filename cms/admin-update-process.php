@@ -22,7 +22,15 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       $vName = filter_var($vName, FILTER_SANITIZE_STRING);
 
       if ($vName === '') {
+        
         $validation++;
+
+      } else {
+
+        if( $vid === $_SESSION['svcid']) {
+          $_SESSION['svcname'] = $vName;
+        }
+
       }
 
     } else {
@@ -33,10 +41,10 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
   } else {
 
-    // If name is not set
     $validation++;
+  }
 
-  } // END OF FIRST NAME VALIDATION
+// END OF FIRST NAME VALIDATION
 
   //------------------------- SURNAME VALIDATION ----------------------------
   if (isset($_POST['txtSurname'])) {
@@ -204,13 +212,14 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
   if($validation !== 0) {
 
     $qs = '?kval=failed';
+    $qs .= '&txtSecurity=' . $_SESSION['svSecurity'];
+    $qs .= '&txtId=' . $vid;
     $qs .= "&kname=".urlencode($vName);
     $qs .= "&ksurname=".urlencode($vSurname);
-    $qs .= "&kpassword=".urlencode($vpswmatch);
     $qs .= "&kemail=".urlencode($vEmail);
     $qs .= "&kmobile=".urlencode($vMobile);
 
-    header('Location: admin-update-display.php' . $qs);
+   header('Location: admin-update-display.php' . $qs);
     exit();
 
     // validation check
@@ -237,7 +246,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       $qs .= "&kmobile=".urlencode($vMobile);
 
       // Redirect back to admin-add-new.php
-      header('Location: admin-add-new.php' . $qs);
+      header('Location: admin-update-display.php' . $qs);
       exit();
 
     } else {
@@ -246,23 +255,23 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       require('inc-function-escapestring.php');
 
       // Create query string to check if the password and email has changed
-      $sql_email_pw = "SELECT cemail, cpassword FROM tblcms WHERE cid = $vid";
+      // $sql_email_pw = "SELECT cemail, cpassword FROM tblcms WHERE cid = $vid";
+      //
+      // $sql_email_pw_results = mysqli_query($vconn_creativeangels, $sql_email_pw);
+      //
+      // $rs_email_pw_rows = mysqli_fetch_assoc($sql_email_pw_results );
+      //
+      // if($rs_email_pw_rows['cemail'] !== $vEmail || $rs_email_pw_rows['cpassword'] !== sha1($vPassword1) && $vPassword1 !== ''){
+      //
+      //   $vlocation = 'signout.php';
+      //
+      // } else {
+      //
+      //   $vlocation = 'admin-display.php';
+      //
+      // }
 
-      $sql_email_pw_results = mysqli_query($vconn_creativeangels, $sql_email_pw);
-
-      $rs_email_pw_rows = mysqli_fetch_assoc($sql_email_pw_results );
-
-      if($rs_email_pw_rows['cemail'] !== $vEmail || $rs_email_pw_rows['cpassword'] !== sha1($vPassword1) && $vPassword1 !== ''){
-
-        $vlocation = 'signout.php';
-
-      } else {
-
-        $vlocation = 'admin-display.php';
-
-      }
-
-      // ---------------------- UPDATE DATABASE ------------------------------
+      // ---------------------- UPDATE DATABASE -
 
       // The proper way to insert sql statement (SQL Injection)
       // The first specifier (%s) corresponds to the first escapestring function as so on and so forth
@@ -290,12 +299,12 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
       if($vadmin_update_results) {
 
-        header('Location: ' . $vlocation );
+        header('Location: admin-display.php' );
         exit();
 
       } else {
 
-        header('Location: signout.php');
+        //header('Location: signout.php');
         exit();
 
       }
@@ -305,8 +314,9 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
   } // END OF VALIDATION METHOD
 
 } else { // END OF PROCESS
-
-  header('Location:signout.php');
+  echo $validation;
+  exit();
+//  header('Location:signout.php');
   exit();
 }
 ?>

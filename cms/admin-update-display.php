@@ -2,20 +2,21 @@
 <?php
 if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity']){
 
-// COLLECT ID FROM EDIT BUTTON field
-$vid = $_GET['txtId'];
+  // COLLECT ID FROM EDIT BUTTON field
+  $vid = $_GET['txtId'];
 
-//FORMULATE SQL STATEMENT
-$sql_admin_update = "SELECT * FROM tblcms WHERE cid = $vid";
+  //FORMULATE SQL STATEMENT
+  $sql_admin_update = "SELECT * FROM tblcms WHERE cid = $vid";
 
-// CONNECT
-require('inc-conn.php');
+  // CONNECT
+  require('inc-conn.php');
 
-// EXECUTE
-$rs_admin_update = mysqli_query($vconn_creativeangels, $sql_admin_update);
+  // EXECUTE
+  $rs_admin_update = mysqli_query($vconn_creativeangels, $sql_admin_update);
 
-// CREATE ASSOCIATIVE ARRAY
-$rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
+  // CREATE ASSOCIATIVE ARRAY
+  $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
+
 
 } else {
 
@@ -31,19 +32,11 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
 
     if(isset($_GET[$keyName]) && $_GET[$keyName] === '') {
 
-      return "<div class='warning_msg'>Please enter " . $label . ".</div>";
-
-    } elseif (isset($_GET[$keyName]) && $_GET[$keyName] === '0'){
-
-      return "<div class='warning_msg'>Passwords do not match</div>";
-
-    } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'failed'){
-
-      return '<div class="warning_msg">Please enter passwords!</div>';
+      return "<br><div class='warning_msg'>This field cannot be left blank</div>";
 
     } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'emaildup'){
 
-      return '<div class="warning_msg">Email already in use</div>';
+      return '<br><div class="warning_msg">Email already in use</div>';
 
     }//end if statement
 
@@ -97,25 +90,26 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
           <!-- Executes instructions in 'admin-add-process.php' on submit and sends form data using get -->
           <form class="form" action="admin-update-process.php" method="post" onsubmit="return">
 
+            <!-- Enter first name -->
+            <label>* First name:</label>
             <!-- Displays warning message above empty field -->
             <?php echo errorMsg('kname', 'name'); ?>
 
-            <label>First name:</label>
             <input type="text" name="txtName" autocomplete="off" autofocus value="<?php if (isset($rs_admin_update_rows['cname']) && $rs_admin_update_rows['cname'] !== 'na'){ echo $rs_admin_update_rows['cname']; } else { echo displayTxt('kname'); } ?>">
 
             <?php echo errorMsg('ksurname', 'surname'); ?>
 
-            <label>Surname:</label>
+            <label>* Surname:</label>
             <input type="text" name="txtSurname" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['csurname']) && $rs_admin_update_rows['csurname'] !== 'na'){ echo $rs_admin_update_rows['csurname']; } else { echo displayTxt('ksurname'); } ?>">
 
             <?php if ($_SESSION['svcaccesslevel']=== 'a'  && $_SESSION['svcid'] === $rs_admin_update_rows['cid']) {?>
 
-            <!-- Reminds user to enter password on validation fail -->
-            <?php echo errorMsg('kpassword','password'); ?>
-
             <div id="pwrdErr" class="warning_msg"></div>
-            <label>Password:</label>
+            <label>Password: </label>
+            <br>
+            <i><small>Leave blank to retain existing password</small></i>
             <input type="text" name="txtPw1" autocomplete="off" value="">
+
 
             <label>Re-enter password:</label>
             <input type="text" name="txtPw2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
@@ -125,18 +119,21 @@ $rs_admin_update_rows = mysqli_fetch_assoc($rs_admin_update);
             <?php echo errorMsg('kemail', 'email'); ?>
             <?php echo errorMsg('kemaildup', 'emaildup'); ?>
 
-            <label>Email:</label>
+            <label>* Email:</label>
             <input type="email" name="txtEmail" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cemail']) && $rs_admin_update_rows['cemail'] !== 'na'){ echo $rs_admin_update_rows['cemail']; } else { echo displayTxt('kemail'); } ?>">
 
             <?php echo errorMsg('kmobile', 'mobile number'); ?>
 
-            <label>Mobile:</label>
+            <label>* Mobile:</label>
             <input type="text" name="txtMobile" autocomplete="off" value="<?php if (isset($rs_admin_update_rows['cmobile']) && $rs_admin_update_rows['cmobile'] !== 'na'){ echo $rs_admin_update_rows['cmobile']; } else { echo displayTxt('kmobile'); } ?>">
 
             <input type="hidden" name="txtId" value="<?php echo $rs_admin_update_rows['cid']; ?>">
 
             <!-- Security hidden field -->
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+
+            <small><i>* These are required fields</i></small>
+            <br />
 
             <!-- Submit button -->
             <button class="proceed-btn" type="submit" name="btnUpdate">Update</button>
