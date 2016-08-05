@@ -289,7 +289,8 @@ if($_SESSION['svcid'] === $vid){
 
         if($_SESSION['svcemail'] !== $vEmail || $vPassword1 !== ''){
 
-          header('Location: signout.php');
+          session_destroy();
+          header('Location: ../cms-signin.php?kpwupdate=success');
           exit();
 
         } else {
