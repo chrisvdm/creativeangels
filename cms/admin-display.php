@@ -70,6 +70,14 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             </p>
           </div>
 
+          <div class="prompt-modal ">
+            <p>
+              <span class="promptQ"> Question goes here</span>
+            </p>
+            <button>Okay</button>
+            <button class="danger-btn">Cancel</button>
+          </div>
+
 
           <!-- Display the table if the tblcms has data has entries -->
           <?php if($rs_cms_rows_total > 0 ) { ?>

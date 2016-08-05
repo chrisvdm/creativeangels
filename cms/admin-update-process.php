@@ -254,6 +254,9 @@ if($_SESSION['svcid'] === $vid){
       // Calls the file where the user defined function escapestring receives its instructions
       require('inc-function-escapestring.php');
 
+
+      // ------------------- PW OR EMAIL CHECK ----------------------------
+
       // Create query string to check if the password and email has changed
       $sql_email_pw = "SELECT cemail, cpassword FROM tblcms WHERE cid = $vid";
 
@@ -271,7 +274,7 @@ if($_SESSION['svcid'] === $vid){
 
       }
 
-      // ---------------------- UPDATE DATABASE -
+      // ---------------------- UPDATE DATABASE --------------------------
 
       // The proper way to insert sql statement (SQL Injection)
       // The first specifier (%s) corresponds to the first escapestring function as so on and so forth

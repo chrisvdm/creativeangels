@@ -71,7 +71,7 @@ footer {
   bottom: 0;
 }
 
-.base, li {
+.base, .opt-menu {
   padding: 0.625em 1.25em;
   webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -116,6 +116,11 @@ ul.submenu {
   display: none;
   list-style: none;
   padding: 0;
+}
+
+.opt-menu {
+  display: block;
+  width: 100%;
 }
 
 .right-content-wrapper {
@@ -173,6 +178,7 @@ tr.tbl-heading {
 .button, button, input[type="button"], input[type="submit"], input[type="reset"] {
   padding: 0.625em;
   font-weight: 600;
+  margin-right: 0.625em;
   color: #fafafa;
   border:none;
 }
@@ -260,5 +266,20 @@ form.form {
 
 .delete {
   background-color: #df6482;
+  display: none;
+}
+
+/* Come back to modal for prompt */
+.prompt-modal {
+  position: absolute;
+  left: 25%;
+  top: 2.5em;
+  width: 50%;
+  min-height:5em;
+  padding: 0.625em 1.25em;
+  box-shadow: 5px 5px rgba(153, 153, 153, 0.67);
+  color: #333;
+  background-color: #fafafa;
+  border: 2px solid #85a5cc;
   display: none;
 }
