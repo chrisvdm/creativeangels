@@ -269,8 +269,13 @@ form.form {
   display: none;
 }
 
+.confirm {
+  background-color: #fafafa;
+  border: 2px solid #85a5cc;
+}
+
 /* Come back to modal for prompt */
-.prompt-modal {
+.modal-large {
   position: absolute;
   left: 25%;
   top: 2.5em;
@@ -279,7 +284,10 @@ form.form {
   padding: 0.625em 1.25em;
   box-shadow: 5px 5px rgba(153, 153, 153, 0.67);
   color: #333;
-  background-color: #fafafa;
-  border: 2px solid #85a5cc;
   display: none;
+  text-align: center;
+}
+
+.button-set {
+  text-align: center;
 }

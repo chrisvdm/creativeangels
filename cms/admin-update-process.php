@@ -24,6 +24,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
       } else {
 
+        // Changes the session var name so that the correct name displays in branding container
         if( $vid === $_SESSION['svcid']) {
           $_SESSION['svcname'] = $vName;
         }
@@ -38,6 +39,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
   } else {
 
+    // If txtName is not set
     $validation++;
   }
 
@@ -94,9 +96,8 @@ if($_SESSION['svcid'] === $vid){
 
     } else {
 
-      // If one of the passwords weren't set
+      // If pw1 wasn't set
       $validation++;
-      //$vpswmatch = 'failed';
 
     } // END OF PASSWORD VALIDATION
 
@@ -114,16 +115,14 @@ if($_SESSION['svcid'] === $vid){
 
           // If Password 2 is empty after sanitisation
           $validation++;
-        //  $vpswmatch = 'failed';
         }
 
       }
 
     } else {
 
-      // If one of the passwords weren't set
+      // If pw2 wasn't set
       $validation++;
-      //$vpswmatch = 'failed';
 
     } // END OF PASSWORD VALIDATION
 

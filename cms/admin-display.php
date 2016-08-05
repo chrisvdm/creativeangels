@@ -70,13 +70,17 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             </p>
           </div>
 
-          <div class="prompt-modal deleteConfirm">
+          <div id="deleteConfirm" class="modal-large confirm">
 
-            <p class="confirmQ"></p>
+            <!-- <p class="confirmQ"></p>
+            <div class="button-set">
 
-            <!-- Button set returns either true or false -->
-            <button name="promptVal" value="true">Yes</button>
-            <button name="promptVal" value="false" class="danger-btn">No</button>
+              Button set returns either true or false
+              <button name="promptVal" value="true">Yes</button>
+              <button name="promptVal" value="false" class="danger-btn">No</button>
+
+            </div> -->
+
           </div>
 
 
@@ -300,11 +304,33 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     </div>
 
     <script src="js/accordian.js"></script>
+    <script src="js/modal.js"></script>
     <script>
 
 
 
       $(document).ready(function() {
+
+        function confirmModal(el, question){
+
+          el.show();
+
+          el.children('.confirmQ').html(question);
+
+          el.children('.button-set')
+            .children('button[name="promptVal"]')
+            .on('click', function() {
+
+              var results = $(this).val();
+              console.log('results =' + results);
+              el.hide();
+              return results;
+
+
+            }); // end of onclick functionZ
+
+        } // confirmModal function
+
 
         // Corner notification
         $('div.corner-modal.success').delay(3000).fadeOut(500, function(){
@@ -345,13 +371,15 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         // confirm dialogue for delete 'form'
         $(':button[name = "btnDel"]').on('click', function(){
 
-          var modal = $('div.deleteConfirm');
+          var modal = $('#deleteConfirm');
 
             var delRec = confirmModal( modal, 'Deleting a record is a permanent action.\nDo you wish to proceed?');
 
+            console.log(delRec);
             //var delRec = confirm('Deleting a record is a permanent action.\nDo you wish to proceed?');
 
-            console.log(delRec);
+            //console.log(delRec);
+            var delRec = false;
 
             if (delRec) {
 
@@ -382,25 +410,12 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
           }); // end of function
 
-          function confirmModal(obj, question){
-
-            obj.show();
-
-            obj.children('.confirmQ').html(question);
-
-            obj.children('button[name="promptVal"]')
-              .on('click', function() {
-
-                var results = $(this).val();
-                obj.hide();
-                console.log(results);
-                return results;
-
-              });
-          } // confirmModal function
-
       }); //  end of jQuery
 
+      // see modal.js for code
+      modalWindow.approve('#main-content', 'Hey ho', function(result) {
+        console.log('results are ' + result);
+      });
     </script>
   </body>
 </html>
