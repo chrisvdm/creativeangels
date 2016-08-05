@@ -176,7 +176,7 @@ tr.tbl-heading {
 /*Buttons*/
 
 .button, button, input[type="button"], input[type="submit"], input[type="reset"] {
-  padding: 0.625em;
+  padding: 0.625em 1.25em;
   font-weight: 600;
   margin-right: 0.625em;
   color: #fafafa;

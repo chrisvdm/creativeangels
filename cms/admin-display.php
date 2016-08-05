@@ -70,12 +70,13 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             </p>
           </div>
 
-          <div class="prompt-modal ">
-            <p>
-              <span class="promptQ"> Question goes here</span>
-            </p>
-            <button>Okay</button>
-            <button class="danger-btn">Cancel</button>
+          <div class="prompt-modal deleteConfirm">
+
+            <p class="confirmQ"></p>
+
+            <!-- Button set returns either true or false -->
+            <button name="promptVal" value="true">Yes</button>
+            <button name="promptVal" value="false" class="danger-btn">No</button>
           </div>
 
 
@@ -305,6 +306,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
       $(document).ready(function() {
 
+        // Corner notification
         $('div.corner-modal.success').delay(3000).fadeOut(500, function(){
           $(this).remove();
         });
@@ -343,7 +345,13 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         // confirm dialogue for delete 'form'
         $(':button[name = "btnDel"]').on('click', function(){
 
+          var modal = $('div.deleteConfirm');
+
+            //var delRec = confirmModal( modal, 'Deleting a record is a permanent action.\nDo you wish to proceed?');
+
             var delRec = confirm('Deleting a record is a permanent action.\nDo you wish to proceed?');
+
+            console.log(delRec);
 
             if (delRec) {
 
@@ -373,6 +381,22 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             } // end of if statement
 
           }); // end of function
+
+          function confirmModal(obj, question){
+
+            obj.show();
+
+            obj.children('.confirmQ').html(question);
+
+            obj.children('button[name="promptVal"]')
+              .on('click',function() {
+
+                var results = $(this).val();
+                obj.hide();
+                return results;
+
+              });
+          } // confirmModal function
 
       }); //  end of jQuery
 

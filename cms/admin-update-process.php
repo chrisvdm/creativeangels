@@ -294,7 +294,9 @@ if($_SESSION['svcid'] === $vid){
 
         } else {
 
+          // query to trigger notification
           $qs = 'kupdate=success';
+
           header('Location: admin-display.php?' . $qs );
           exit();
 
