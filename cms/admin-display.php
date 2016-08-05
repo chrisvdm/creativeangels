@@ -347,9 +347,9 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
           var modal = $('div.deleteConfirm');
 
-            //var delRec = confirmModal( modal, 'Deleting a record is a permanent action.\nDo you wish to proceed?');
+            var delRec = confirmModal( modal, 'Deleting a record is a permanent action.\nDo you wish to proceed?');
 
-            var delRec = confirm('Deleting a record is a permanent action.\nDo you wish to proceed?');
+            //var delRec = confirm('Deleting a record is a permanent action.\nDo you wish to proceed?');
 
             console.log(delRec);
 
@@ -389,10 +389,11 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             obj.children('.confirmQ').html(question);
 
             obj.children('button[name="promptVal"]')
-              .on('click',function() {
+              .on('click', function() {
 
                 var results = $(this).val();
                 obj.hide();
+                console.log(results);
                 return results;
 
               });
