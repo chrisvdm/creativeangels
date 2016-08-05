@@ -70,19 +70,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             </p>
           </div>
 
-          <div id="deleteConfirm" class="modal-large confirm">
-
-            <!-- <p class="confirmQ"></p>
-            <div class="button-set">
-
-              Button set returns either true or false
-              <button name="promptVal" value="true">Yes</button>
-              <button name="promptVal" value="false" class="danger-btn">No</button>
-
-            </div> -->
-
-          </div>
-
 
           <!-- Display the table if the tblcms has data has entries -->
           <?php if($rs_cms_rows_total > 0 ) { ?>
@@ -370,21 +357,18 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         // confirm dialogue for delete 'form'
         $(':button[name = "btnDel"]').on('click', function(){
+          var btn = $(this);
+          var info = $(btn).data();
 
-          var modal = $('#deleteConfirm');
+          modalWindow.approve('#main-content', 'Deleting a record is a permanent action.\nDo you wish to proceed?', function(result) {
 
-            var delRec = confirmModal( modal, 'Deleting a record is a permanent action.\nDo you wish to proceed?');
+            if (result) {
+              deleteRecord(btn, info)
+            }
 
-            console.log(delRec);
-            //var delRec = confirm('Deleting a record is a permanent action.\nDo you wish to proceed?');
+          });
 
-            //console.log(delRec);
-            var delRec = false;
-
-            if (delRec) {
-
-            var btn = $(this);
-            var info = $(btn).data();
+          function deleteRecord(btn, info) {
 
             $.ajax({
               type: 'GET',
@@ -400,22 +384,19 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                 $('div.corner-modal.delete')
                   .fadeIn(500)
                   .delay(3000)
-                  .fadeOut(500, function(){
+                  .fadeOut(500, function() {
                     $(this).remove();
                   });
 
               }});
+          } // end of ajax deleteRecord
 
-            } // end of if statement
-
-          }); // end of function
+        });
 
       }); //  end of jQuery
 
       // see modal.js for code
-      modalWindow.approve('#main-content', 'Hey ho', function(result) {
-        console.log('results are ' + result);
-      });
+
     </script>
   </body>
 </html>
