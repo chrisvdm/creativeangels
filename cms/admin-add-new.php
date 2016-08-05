@@ -100,6 +100,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
             <!-- Reminds user to enter password on validation fail -->
             <?php echo errorMsg('kpassword','password'); ?>
+            
             <div id="pwErr" class="warning_msg"></div>
 
             <input type="password" name="txtPw1" autocomplete="off" value="">

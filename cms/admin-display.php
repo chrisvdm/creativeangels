@@ -51,6 +51,20 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
 
+
+                <!-- DISPLAY NOTIFICATION WHEN TASKS ARE COMPLETED -------------------->
+                <?php
+
+                if(isset($_GET['kupdate']) && $_GET['kupdate'] === 'success') {
+                  echo '<div class="corner-modal success">
+                    <p>
+                      Record has been succesfully updated
+                    </p>
+                  </div>';
+                }
+
+                ?>
+
           <p>&nbsp;</p>
 
           <!-- Display the table if the tblcms has data has entries -->
@@ -275,7 +289,13 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     <script src="js/accordian.js"></script>
     <script>
 
+
+
       $(document).ready(function() {
+
+        $('div.corner-modal.success').delay(4000).fadeOut(500, function(){
+          $(this).remove();
+        });
 
         // changes status and updates database table
         $(':button[name = "statusBtn"]').on('click', function() {

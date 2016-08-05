@@ -30,17 +30,19 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
   // Function for printing out error messages
   function errorMsg($keyName, $label) {
 
+    // PHP checks whether certain keys have been returned with values in the GET Global Super Array, if it has then echo the value into the input field
+
     if(isset($_GET[$keyName]) && $_GET[$keyName] === '') {
 
-      return "<br><div class='warning_msg'>Please enter a " . $label ."</div>";
+      return "<div class='warning_msg'>Please enter " . $label . ".</div>";
+
+    } elseif (isset($_GET[$keyName]) && $_GET[$keyName] === 'failed'){
+
+      return "<div class='warning_msg'>Passwords do not match</div>";
 
     } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'emaildup'){
 
-      return '<br><div class="warning_msg">Email already in use</div>';
-
-    } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'failed'){
-
-      return '<br><div class="warning_msg">Passwords do not match</div>';
+      return '<div class="warning_msg">Email already in use</div>';
 
     }//end if statement
 
@@ -116,8 +118,8 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
               <label>Password: </label>
               <br>
               <i><small>Leave blank to retain existing password</small></i>
-              
-              <?php echo errorMsg('kpassword', 'password'); ?>
+
+              <?php echo errorMsg('kpassword','password'); ?>
 
               <input type="text" name="txtPw1" autocomplete="off" value="">
 
