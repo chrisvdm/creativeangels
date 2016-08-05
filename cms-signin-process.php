@@ -94,6 +94,7 @@
         $_SESSION['svcmodified'] = $rs_cms_details_rows['cupdated'];
         $_SESSION['svcname'] = $rs_cms_details_rows['cname'];
         $_SESSION['svcsurname'] = $rs_cms_details_rows['csurname'];
+        $_SESSION['svcemail'] = $rs_cms_details_rows['cemail'];
         $_SESSION['svcmobile'] = $rs_cms_details_rows['cmobile'];
         $_SESSION['svcaccesslevel'] = $rs_cms_details_rows['caccesslevel'];
         $_SESSION['svcstatus'] = $rs_cms_details_rows['cstatus'];

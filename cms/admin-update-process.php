@@ -254,26 +254,6 @@ if($_SESSION['svcid'] === $vid){
       // Calls the file where the user defined function escapestring receives its instructions
       require('inc-function-escapestring.php');
 
-
-      // ------------------- PW OR EMAIL CHECK ----------------------------
-
-      // Create query string to check if the password and email has changed
-      $sql_email_pw = "SELECT cemail, cpassword FROM tblcms WHERE cid = $vid";
-
-      $sql_email_pw_results = mysqli_query($vconn_creativeangels, $sql_email_pw);
-
-      $rs_email_pw_rows = mysqli_fetch_assoc($sql_email_pw_results );
-
-      if($rs_email_pw_rows['cemail'] !== $vEmail || $rs_email_pw_rows['cpassword'] !== sha1($vPassword1) && $vPassword1 !== ''){
-
-        $vlocation = 'signout.php';
-
-      } else {
-
-        $vlocation = 'admin-display.php';
-
-      }
-
       // ---------------------- UPDATE DATABASE --------------------------
 
       // The proper way to insert sql statement (SQL Injection)
@@ -302,9 +282,23 @@ if($_SESSION['svcid'] === $vid){
 
       if($vadmin_update_results) {
 
-        $qs = 'kupdate=success';
-        header('Location: '. $vlocation .'?' . $qs );
-        exit();
+
+        // ------------------- PW OR EMAIL CHECK ----------------------------
+
+        // Create query string to check if the password and email has changed
+
+        if($_SESSION['svcemail'] !== $vEmail || $vPassword1 !== ''){
+
+          header('Location: signout.php');
+          exit();
+
+        } else {
+
+          $qs = 'kupdate=success';
+          header('Location: admin-display.php?' . $qs );
+          exit();
+
+        }
 
       } else {
 
