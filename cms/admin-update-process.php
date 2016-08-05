@@ -255,21 +255,21 @@ if($_SESSION['svcid'] === $vid){
       require('inc-function-escapestring.php');
 
       // Create query string to check if the password and email has changed
-      // $sql_email_pw = "SELECT cemail, cpassword FROM tblcms WHERE cid = $vid";
-      //
-      // $sql_email_pw_results = mysqli_query($vconn_creativeangels, $sql_email_pw);
-      //
-      // $rs_email_pw_rows = mysqli_fetch_assoc($sql_email_pw_results );
-      //
-      // if($rs_email_pw_rows['cemail'] !== $vEmail || $rs_email_pw_rows['cpassword'] !== sha1($vPassword1) && $vPassword1 !== ''){
-      //
-      //   $vlocation = 'signout.php';
-      //
-      // } else {
-      //
-      //   $vlocation = 'admin-display.php';
-      //
-      // }
+      $sql_email_pw = "SELECT cemail, cpassword FROM tblcms WHERE cid = $vid";
+
+      $sql_email_pw_results = mysqli_query($vconn_creativeangels, $sql_email_pw);
+
+      $rs_email_pw_rows = mysqli_fetch_assoc($sql_email_pw_results );
+
+      if($rs_email_pw_rows['cemail'] !== $vEmail || $rs_email_pw_rows['cpassword'] !== sha1($vPassword1) && $vPassword1 !== ''){
+
+        $vlocation = 'signout.php';
+
+      } else {
+
+        $vlocation = 'admin-display.php';
+
+      }
 
       // ---------------------- UPDATE DATABASE -
 
@@ -300,7 +300,7 @@ if($_SESSION['svcid'] === $vid){
       if($vadmin_update_results) {
 
         $qs = 'kupdate=success';
-        header('Location: admin-display.php?' . $qs );
+        header('Location: '. $vlocation .'?' . $qs );
         exit();
 
       } else {

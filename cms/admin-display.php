@@ -52,20 +52,24 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <section id="main-content" class="base">
 
 
-                <!-- DISPLAY NOTIFICATION WHEN TASKS ARE COMPLETED -------------------->
-                <?php
+          <!-- DISPLAY NOTIFICATION WHEN TASKS ARE COMPLETED ----------------->
+          <?php
 
-                if(isset($_GET['kupdate']) && $_GET['kupdate'] === 'success') {
-                  echo '<div class="corner-modal success">
-                    <p>
-                      Record has been succesfully updated
-                    </p>
-                  </div>';
-                }
+          if(isset($_GET['kupdate']) && $_GET['kupdate'] === 'success') {
+            echo '<div class="corner-modal success">
+              <p>
+                Record has been succesfully updated
+              </p>
+            </div>';
+          }
 
-                ?>
+          ?>
+          <div class="corner-modal delete">
+            <p>
+              Record has been succesfully deleted
+            </p>
+          </div>
 
-          <p>&nbsp;</p>
 
           <!-- Display the table if the tblcms has data has entries -->
           <?php if($rs_cms_rows_total > 0 ) { ?>
@@ -293,7 +297,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
       $(document).ready(function() {
 
-        $('div.corner-modal.success').delay(4000).fadeOut(500, function(){
+        $('div.corner-modal.success').delay(3000).fadeOut(500, function(){
           $(this).remove();
         });
 
@@ -347,7 +351,14 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               },
               success: function(result) {
 
-                $(btn).parent().addClass('warning_msg').html(result);
+                $(btn).parent().parent().remove();
+
+                $('div.corner-modal.delete')
+                  .fadeIn(500)
+                  .delay(3000)
+                  .fadeOut(500, function(){
+                    $(this).remove();
+                  });
 
               }});
 
