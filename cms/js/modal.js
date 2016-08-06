@@ -3,29 +3,36 @@
 // ------------------------------ MODAL WINDOW OBJECT -------------------------
 var modalWindow = {
   approve: function(parent, text, done){
-    this.fn.init(parent, text, 'approve', done);
+    this.fn.init(parent, text, 'approve', 'l', done);
   },
   alert: function(parent, text){
-    this.fn.init(parent, text, 'alert');
+    this.fn.init(parent, text, 'alert', 'l');
   },
-  warning: function(parent, text){
-    this.fn.init(parent, text, 'warning');
+  warning: function(parent, text,l){
+    this.fn.init(parent, text, 'warning', 'l');
   },
   question: function(parent, text){
-    this.fn.init(parent, text, 'warning');
+    this.fn.init(parent, text, 'warning', 'l');
+  },
+  notificationWarning: function(parent, text){
+    this.fn.init(parent, text, 'warning', 's');
+  },
+  notificationSuccess: function(parent, text){
+    this.fn.init(parent, text, 'warning', 's');
   },
 
   // ----------------------- FUNCTIONS FOR MODAL WINDOWS ---------------------
   fn: {
 
     // Initiates modal window
-    init: function(parent, text, type, done) {
+    init: function(parent, text, type, size, done) {
 
       var modal = modalWindow.fn.createObj();
 
       modal.type = type;
       modal.text = text;
       modal.parent = document.querySelector(parent);
+      modal.size = size;
 
       var trigger = modalWindow.fn.render(modal, done);
 
@@ -37,7 +44,8 @@ var modalWindow = {
         type: null,
         text: null,
         parent: null,
-        frame: null
+        frame: null,
+        size: null
       };
     },
     //---------------------------- RENDER FUNCTIONS ----------------------------
@@ -77,7 +85,14 @@ var modalWindow = {
       var msg = newElement('p', shell);
       addText(modal.text, msg);
 
-      shell.classList.add('modal-large');
+      // determines size of the shell
+      if(modal.size === 'l'){
+        // large modal in center of parent
+        shell.classList.add('modal-large');
+      } else if (modal.size === 's') {
+        // small notofication in corner of parent
+        shell.classList.add('modal-small');
+      }
     }, // end renderShell
 
     // -----------------FUNCTIONS FOR DIFFERENT TYPES OF MODALS ----------------
