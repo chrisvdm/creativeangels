@@ -24,5 +24,5 @@
   <li class="opt-menu">Contact</li>
   <li class="opt-menu">Log out</li>
   <!-- FOOTER -->
-  <?php require('inc-cms-footer.php'); ?>
+  <!-- <?php// require('inc-cms-footer.php'); ?> -->
 </ul>

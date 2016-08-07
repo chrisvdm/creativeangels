@@ -56,7 +56,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           <?php
 
           if(isset($_GET['kupdate']) && $_GET['kupdate'] === 'success') {
-            echo '<div class="corner-modal success">
+            echo '<div class="modal-small success">
               <p>
                 Record has been succesfully updated
               </p>
@@ -64,7 +64,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           }
 
           ?>
-          <div class="corner-modal delete">
+          <div class="modal-small delete">
             <p>
               Record has been succesfully deleted
             </p>
@@ -320,7 +320,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
 
         // Corner notification
-        $('div.corner-modal.success').delay(3000).fadeOut(500, function(){
+        $('div.modal-small.success').delay(3000).fadeOut(500, function(){
           $(this).remove();
         });
 
@@ -360,7 +360,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           var btn = $(this);
           var info = $(btn).data();
 
-          modalWindow.approve('#main-content', 'Deleting a record is a permanent action.\nDo you wish to proceed?', function(result) {
+          modalWindow.warning('#main-content', 'Deleting a record is a permanent action.\nDo you wish to proceed?', function(result) {
 
             if (result) {
               deleteRecord(btn, info)
@@ -381,7 +381,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
                 $(btn).parent().parent().remove();
 
-                $('div.corner-modal.delete')
+                $('div.modal-small.delete')
                   .fadeIn(500)
                   .delay(3000)
                   .fadeOut(500, function() {

@@ -58,12 +58,14 @@ var modalWindow = {
           // Confirmation Modal Window
           case 'approve':
 
-          return modalWindow.fn.renderApprovalModal(modal, done);
+          return modalWindow.fn.renderApproveModal(modal, done);
 
           break;
 
           // Warning modal window
           case 'warning':
+
+          return modalWindow.fn.renderWarningModal(modal, done);
 
           break;
 
@@ -80,6 +82,7 @@ var modalWindow = {
 
       //create shell
       var shell = newElement('div', parent);
+      shell.classList.add('mw-modal');
 
       modal.frame = shell;
       var msg = newElement('p', shell);
@@ -88,24 +91,28 @@ var modalWindow = {
       // determines size of the shell
       if(modal.size === 'l'){
         // large modal in center of parent
-        shell.classList.add('modal-large');
+        shell.classList.add('mw-large');
       } else if (modal.size === 's') {
         // small notofication in corner of parent
-        shell.classList.add('modal-small');
+        shell.classList.add('mw-small');
       }
     }, // end renderShell
 
     // -----------------FUNCTIONS FOR DIFFERENT TYPES OF MODALS ----------------
 
     // Approve type modal
-    renderApprovalModal: function(modal, done) {
+    renderApproveModal: function(modal, done) {
 
       // assigning the confirm class to the modal window
-      modal.frame.classList.add('confirm');
+      modal.frame.classList.add('mw-confirm');
+
+      // Render layout for closed questions (yes/no questions)
+      modal.overlay = modalWindow.fn.renderOverlay(modal);
+      modal.overlay.appendChild(modal.frame);
 
       // Creating button set to modal
       var btnSet = newElement('div', modal.frame);
-      btnSet.classList.add('button-set');
+      btnSet.classList.add('mw-button-set');
 
       // Proceed button
       var btn1 = newElement('button', btnSet);
@@ -120,7 +127,7 @@ var modalWindow = {
       // Adding events to modal window buttons
       btn1.addEventListener('click', function() {
 
-        modalWindow.fn.killModal(modal);
+        modalWindow.fn.killModal(modal.overlay, modal.parent);
 
         //callback function that returns a result of true
         done(true);
@@ -128,7 +135,7 @@ var modalWindow = {
       });
 
       btn2.addEventListener('click', function() {
-        modalWindow.fn.killModal(modal);
+        modalWindow.fn.killModal(modal.overlay, modal.parent);
 
         // Callback function that returns a result of false
         done(false);
@@ -136,17 +143,81 @@ var modalWindow = {
       });
 
       return { btn1, btn2 };
-
     },
-    killModal: function(modal) {
-      var parent  = modal.parent;
-      var child = modal.frame;
+    renderWarningModal: function(modal, done){
+      // assigning the confirm class to the modal window
+      modal.frame.classList.add('mw-warning');
+
+      // Render layout for closed questions (yes/no questions)
+      modal.overlay = modalWindow.fn.renderOverlay(modal);
+      modal.overlay.appendChild(modal.frame);
+
+      // Creating button set to modal
+      var btnSet = newElement('div', modal.frame);
+      btnSet.classList.add('mw-button-set');
+
+      // Proceed button
+      var btn1 = newElement('button', btnSet);
+      btn1.classList.add('danger-btn');
+      addText('Yes', btn1);
+
+      // Cancel button
+      var btn2 = newElement('button', btnSet);
+      addText('No', btn2);
+
+
+      // Adding events to modal window buttons
+      btn1.addEventListener('click', function() {
+
+        modalWindow.fn.killModal(modal.overlay, modal.parent);
+
+        //callback function that returns a result of true
+        done(true);
+
+      });
+
+      btn2.addEventListener('click', function() {
+        modalWindow.fn.killModal(modal.overlay, modal.parent);
+
+        // Callback function that returns a result of false
+        done(false);
+
+      });
+
+      return { btn1, btn2 };
+    },
+    renderOverlay: function(modal){
+
+      // create overlay element
+      var el = newElement('div', modal.parent);
+      el.classList.add('mw-overlay');
+
+      setFullHeight(el);
+
+      return el;
+    },
+    killModal: function(child, parent) {
       parent.removeChild(child);
     }
-  }
-}
+  } // end of fn object
+} // end of modalWindow object
 
 // --------------------------- GENERIC FUNCTIONS ----------------------------
+
+// sets the height of an element dynamically
+function setFullHeight(el) {
+  // set height
+  var topPos = el.offsetTop;
+  var viewportHeight = window.innerHeight;
+  var overlayHeight = viewportHeight - topPos;
+
+  el.style.height = overlayHeight + 'px';
+
+  window.addEventListener('resize', function(){
+    setFullHeight(el);
+  });
+
+}
 
 // creates a new element and appends it to a parent
 function newElement(el, parent) {
