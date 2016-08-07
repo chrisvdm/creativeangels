@@ -56,7 +56,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           <?php
 
           if(isset($_GET['kupdate']) && $_GET['kupdate'] === 'success') {
-            echo '<div class="modal-small success">
+            echo '<div class="mw-modal mw-small success">
               <p>
                 Record has been succesfully updated
               </p>
@@ -64,7 +64,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           }
 
           ?>
-          <div class="modal-small delete">
+          <div class="mw-modal mw-small delete">
             <p>
               Record has been succesfully deleted
             </p>
@@ -369,7 +369,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           });
 
           function deleteRecord(btn, info) {
-            console.log('yo');
+
             $.ajax({
               type: 'GET',
               url: 'admin-delete-ajax-process.php',
