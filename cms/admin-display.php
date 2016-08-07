@@ -363,13 +363,13 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           modalWindow.warning('#main-content', 'Deleting a record is a permanent action.\nDo you wish to proceed?', function(result) {
 
             if (result) {
-              deleteRecord(btn, info)
+              deleteRecord(btn, info);
             }
 
           });
 
           function deleteRecord(btn, info) {
-
+            console.log('yo');
             $.ajax({
               type: 'GET',
               url: 'admin-delete-ajax-process.php',

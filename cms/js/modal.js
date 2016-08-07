@@ -8,8 +8,8 @@ var modalWindow = {
   alert: function(parent, text){
     this.fn.init(parent, text, 'alert', 'l');
   },
-  warning: function(parent, text,l){
-    this.fn.init(parent, text, 'warning', 'l');
+  warning: function(parent, text, done){
+    this.fn.init(parent, text, 'warning', 'l', done);
   },
   question: function(parent, text){
     this.fn.init(parent, text, 'warning', 'l');
@@ -164,7 +164,6 @@ var modalWindow = {
       // Cancel button
       var btn2 = newElement('button', btnSet);
       addText('No', btn2);
-
 
       // Adding events to modal window buttons
       btn1.addEventListener('click', function() {

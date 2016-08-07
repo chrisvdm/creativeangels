@@ -129,7 +129,7 @@ ul.submenu {
 }
 
 .selected {
-  background-color: #A7BBD6;
+  background-color: #a7bbd6;
 }
 
 .separator{
@@ -138,12 +138,11 @@ ul.submenu {
 
 a.branding-trigger {
   padding: 0.625em;
-  border-radius: 5px;
   text-decoration: none;
 }
 
 a.branding-trigger:hover {
-  background-color: #aaa;
+  color: #a7bbd6;
 }
 
 /*modifiers*/
@@ -171,7 +170,7 @@ table.tbldetailsdisplay {
 
 tr.tbl-heading {
   color: #fafafa;
-  background-color: #A7BBD6;
+  background-color: #a7bbd6;
 }
 
 /*Buttons*/
@@ -189,7 +188,7 @@ background-color: #aaa;
 }
 
 button:hover, input[type="button"]:hover,  input[type="reset"]:hover, input[type="submit"]:hover {
-  background-color: #6B717E;
+  background-color: #6b717e;
 }
 
 input {
@@ -260,7 +259,7 @@ form.form {
 }
 
 .mw-confirm {
-  border: 2px solid #85a5cc;
+  border: 2px solid #a7bbd6;
   background-color: #fafafa;
 }
 

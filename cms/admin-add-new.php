@@ -100,7 +100,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
             <!-- Reminds user to enter password on validation fail -->
             <?php echo errorMsg('kpassword','password'); ?>
-            
+
             <div id="pwErr" class="warning_msg"></div>
 
             <input type="password" name="txtPw1" autocomplete="off" value="">
@@ -128,7 +128,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
             <!-- submit form -->
-            <button class="wait-btn" type="submit" name="btnAddNew">Add New</button>
+            <button type="submit" name="btnAddNew">Add New</button>
 
             <a class="button danger-btn" href="cms-homepage.php" name="btnCancel">Cancel</a>
 
