@@ -67,6 +67,11 @@ p {
 		display: none;
 		}
 
+	#normal_nav ul li{
+		display: block
+		width: 14%;
+	}
+
 	#content_container {
 		width: 96%;
 		height: auto;
@@ -205,13 +210,32 @@ p {
 	#normal_nav {
 		display: block;
 		width: 96%;
-		height: 50px;
-		background-color: #E2DB54;
+		height: auto;
+		background-color: #9b75b5;
 		}
 
 		#normal_nav ul li {
-			display: inline;
+			webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			width: 13.8%;
+			text-align: center;
+			display: inline-block;
 			}
+
+	nav a {
+		display: block;
+		padding: 1.25em 0.625em;
+		color: #fafafa;
+		letter-spacing: 1px;
+		font-weight: 600;
+		text-transform: uppercase;
+		text-decoration: none;
+	}
+
+	nav a:hover{
+		background-color: #fafafa;
+		color: #9b75b5;
+	}
 
 	#content_container {
 		width: 96%;

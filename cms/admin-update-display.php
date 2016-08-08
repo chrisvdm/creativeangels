@@ -112,7 +112,7 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
 
             <input type="text" name="txtSurname" autocomplete="off" value="<?php if(isset($_GET['ksurname'])){ echo displayTxt('ksurname'); } elseif (isset($rs_admin_update_rows['csurname']) && $rs_admin_update_rows['csurname'] !== 'na'){ echo $rs_admin_update_rows['csurname']; }?>">
 
-            <?php if ($_SESSION['svcaccesslevel']=== 'a'  && $_SESSION['svcid'] === $rs_admin_update_rows['cid']) {?>
+            <?php //if ($_SESSION['svcaccesslevel']=== 'a'  && $_SESSION['svcid'] === $rs_admin_update_rows['cid']) {?>
 
               <div id="pwrdErr" class="warning_msg"></div>
               <label>Password: </label>
@@ -126,7 +126,7 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
               <label>Re-enter password:</label>
               <input type="text" name="txtPw2" autocomplete="off" value="" onblur="matchCheck(this.value)" >
 
-            <?php } ?>
+            <?php // } ?>
 
             <!-- Enter Email -->
             <label>* Email:</label>

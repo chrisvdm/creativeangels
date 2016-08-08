@@ -21,7 +21,12 @@
 
   <li class="opt-menu">News</li>
   <li class="opt-menu">Manage events</li>
-  <li class="opt-menu">Contact</li>
+  <li class="opt-menu">Contact Details</li>
+  <ul class="submenu">
+    <li><a class="opt-menu" href="contact-display.php">Display</a></li>
+    <li><a class="opt-menu" href="contact-edit.php">Edit</a></li>
+  </ul>
+
   <li class="opt-menu">Log out</li>
   <!-- FOOTER -->
   <!-- <?php// require('inc-cms-footer.php'); ?> -->

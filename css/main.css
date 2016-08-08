@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+@import url("html_css_reset.css");
+
+html, body {height: 100%;}
+body {
+	margin: 0;
+	background-color: #fafafa;
+	}
+
+html {overflow-y: scroll;}
+
+img {
+max-width: 100%;
+border-style: none;
+}
+
+*img {
+width: 100%;
+border-style: none;
+}
+
+/* Moblie Phone Layout: 0 to 480px */
+
+p {
+	margin: 0;
+	pading: 0;
+	}
