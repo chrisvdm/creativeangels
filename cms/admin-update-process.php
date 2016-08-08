@@ -286,7 +286,7 @@ if($_SESSION['svcid'] === $vid){
 
         // Create query string to check if the password and email has changed
 
-        if($_SESSION['svcemail'] !== $vEmail || $vPassword1 !== ''){
+        if($_SESSION['svcemail'] !== $vEmail || $vPassword1 !== '' && $vid === $_SESSION['svcid']) {
 
           session_destroy();
           header('Location: ../cms-signin.php?kpwupdate=success');

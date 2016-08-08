@@ -80,7 +80,7 @@ footer {
 header {
   position: relative;
   color: #fafafa;
-  background-color: #6B717E;
+  background-color: #403F4C;
 }
 
 .branding-container {
@@ -185,6 +185,7 @@ tr.tbl-heading {
 
 .button, button, input[type="button"], input[type="submit"], input[type="reset"] {
 background-color: #aaa;
+transition: 0.5s ease;
 }
 
 button:hover, input[type="button"]:hover,  input[type="reset"]:hover, input[type="submit"]:hover {
@@ -265,7 +266,8 @@ form.form {
 
 .mw-warning {
   border: 2px solid #de8348;
-  background-color: #f6e5db;
+  /*background-color: #f6e5db;*/
+  background-color: #fafafa;
 }
 
 .mw-modal {

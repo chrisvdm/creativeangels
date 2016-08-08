@@ -320,7 +320,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
 
         // Corner notification
-        $('div.modal-small.success').delay(3000).fadeOut(500, function(){
+        $('div.mw-small.success').delay(3000).fadeOut(500, function(){
           $(this).remove();
         });
 
@@ -381,7 +381,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
                 $(btn).parent().parent().remove();
 
-                $('div.modal-small.delete')
+                $('div.mw-small.delete')
                   .fadeIn(500)
                   .delay(3000)
                   .fadeOut(500, function() {
