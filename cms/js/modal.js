@@ -119,16 +119,16 @@ var mw = {
 
     // Customising button set
     buttons[0].innerHTML = 'Cancel';
-    buttons[0].addEventListener('click', function(done) {
+    buttons[0].addEventListener('click', function() {
       done(false);
-      mw.kill(modal.overlay);
+      mw.kill(modal.overlay, modal);
     });
 
     buttons[1].innerHTML = 'Okay';
     buttons[1].classList.add('mw-proceed');
-    buttons[1].addEventListener('click', function(done) {
+    buttons[1].addEventListener('click', function() {
       done(true);
-      mw.kill(modal.overlay);
+      mw.kill(modal.overlay, modal);
     });
 
     return modal;
@@ -145,16 +145,16 @@ var mw = {
 
     // Customising button set
     buttons[0].innerHTML = 'Cancel';
-    buttons[0].addEventListener('click', function(done) {
-      done(false);  
-      mw.kill(modal.overlay);
+    buttons[0].addEventListener('click', function() {
+      done(false);
+      mw.kill(modal.overlay, modal);
     });
 
     buttons[1].innerHTML = 'Delete';
     buttons[1].classList.add('danger-btn');
-    buttons[1].addEventListener('click', function(done) {
+    buttons[1].addEventListener('click', function() {
       done(true);
-      mw.kill(modal.overlay);
+      mw.kill(modal.overlay, modal);
     });
 
     return modal;
@@ -172,7 +172,7 @@ var mw = {
   },
 
   // TODO: Destroys dialog and toast
-  kill: function(child) {
+  kill: function(child, modal) {
     parent = modal.parent;
     parent.removeChild(child);
   }

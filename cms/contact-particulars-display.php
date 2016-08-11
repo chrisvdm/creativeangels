@@ -45,7 +45,7 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Contact Particulars</h2>
+            <h2>Contact Details</h2>
           </div>
 
         </header>
