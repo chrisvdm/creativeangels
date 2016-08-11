@@ -2,17 +2,11 @@
 
 // ------------------------------ MODAL WINDOW OBJECT -------------------------
 var modalWindow = {
-  approve: function(parent, text, done){
-    this.fn.init(parent, text, 'approve', 'l', done);
+  confirm: function(parent, text, done){
+    this.fn.init(parent, text, 'confirm', 'l', done);
   },
-  alert: function(parent, text){
-    this.fn.init(parent, text, 'alert', 'l');
-  },
-  warning: function(parent, text, done){
-    this.fn.init(parent, text, 'warning', 'l', done);
-  },
-  question: function(parent, text){
-    this.fn.init(parent, text, 'warning', 'l');
+  delete: function(parent, text, done){
+    this.fn.init(parent, text, 'delete', 'l', done);
   },
   notificationWarning: function(parent, text){
     this.fn.init(parent, text, 'warning', 's');
@@ -49,24 +43,22 @@ var modalWindow = {
       };
     },
     //---------------------------- RENDER FUNCTIONS ----------------------------
+
     // Renders modal Window
     render: function(modal, done){
 
         modalWindow.fn.renderShell(modal);
 
         switch(modal.type){
+
           // Confirmation Modal Window
-          case 'approve':
-
-          return modalWindow.fn.renderApproveModal(modal, done);
-
+          case 'confirm':
+          return modalWindow.fn.renderConfirmModal(modal, done);
           break;
 
           // Warning modal window
-          case 'warning':
-
-          return modalWindow.fn.renderWarningModal(modal, done);
-
+          case 'delete':
+          return modalWindow.fn.renderDeleteModal(modal, done);
           break;
 
           // Alert modal window
@@ -83,28 +75,30 @@ var modalWindow = {
       //create shell
       var shell = newElement('div', parent);
       shell.classList.add('mw-modal');
-
       modal.frame = shell;
-      var msg = newElement('p', shell);
+
+      var header = newElement('header', shell);
+      var h3 = newElement('h3', header);
+      addText(modal.type,h3);
+      modal.header = header;
+
+      var body = newElement('div', shell);
+
+      var msg = newElement('p', body);
       addText(modal.text, msg);
 
-      // determines size of the shell
-      if(modal.size === 'l'){
-        // large modal in center of parent
-        shell.classList.add('mw-large');
-      } else if (modal.size === 's') {
-        // small notofication in corner of parent
-        shell.classList.add('mw-small');
-      }
+      shell.classList.add('mw-large');
+
     }, // end renderShell
 
     // -----------------FUNCTIONS FOR DIFFERENT TYPES OF MODALS ----------------
 
-    // Approve type modal
-    renderApproveModal: function(modal, done) {
+    // ------------------ CONFIRM MODAL ---------------------------------------
+    renderConfirmModal: function(modal, done) {
 
       // assigning the confirm class to the modal window
-      modal.frame.classList.add('mw-confirm');
+      modal.frame.classList.add('mw-normal');
+      modal.header.classList.add('mw-confirm');
 
       // Render layout for closed questions (yes/no questions)
       modal.overlay = modalWindow.fn.renderOverlay(modal);
@@ -116,12 +110,59 @@ var modalWindow = {
 
       // Proceed button
       var btn1 = newElement('button', btnSet);
-      addText('Yes', btn1);
+      addText('Cancel', btn1);
+
+      // Cancel button
+      var btn2 = newElement('button', btnSet);
+      btn2.classList.add('mw-btn-proceed');
+      addText('Okay', btn2);
+
+
+      // Adding events to modal window buttons
+      btn1.addEventListener('click', function() {
+
+        modalWindow.fn.killModal(modal.overlay, modal.parent);
+
+        //callback function that returns a result of true
+        done(false);
+
+      });
+
+      btn2.addEventListener('click', function() {
+        modalWindow.fn.killModal(modal.overlay, modal.parent);
+
+        // Callback function that returns a result of false
+        done(true);
+
+      });
+
+      return { btn1, btn2 };
+    },
+    // ------------------------- DELETE MODAL -------------------------------
+    renderDeleteModal: function(modal, done){
+
+      // assigning the confirm class to the modal window
+      modal.frame.classList.add('mw-normal');
+
+      // assigning the confirm class to the modal window
+      modal.header.classList.add('mw-delete');
+
+      // Render layout for closed questions (yes/no questions)
+      modal.overlay = modalWindow.fn.renderOverlay(modal);
+      modal.overlay.appendChild(modal.frame);
+
+      // Creating button set to modal
+      var btnSet = newElement('div', modal.frame);
+      btnSet.classList.add('mw-button-set');
+
+      // Proceed button
+      var btn1 = newElement('button', btnSet);
+      addText('Cancel', btn1);
 
       // Cancel button
       var btn2 = newElement('button', btnSet);
       btn2.classList.add('danger-btn');
-      addText('No', btn2);
+      addText('Delete', btn2);
 
 
       // Adding events to modal window buttons
@@ -130,7 +171,7 @@ var modalWindow = {
         modalWindow.fn.killModal(modal.overlay, modal.parent);
 
         //callback function that returns a result of true
-        done(true);
+        done(false);
 
       });
 
@@ -138,53 +179,14 @@ var modalWindow = {
         modalWindow.fn.killModal(modal.overlay, modal.parent);
 
         // Callback function that returns a result of false
-        done(false);
-
-      });
-
-      return { btn1, btn2 };
-    },
-    renderWarningModal: function(modal, done){
-      // assigning the confirm class to the modal window
-      modal.frame.classList.add('mw-warning');
-
-      // Render layout for closed questions (yes/no questions)
-      modal.overlay = modalWindow.fn.renderOverlay(modal);
-      modal.overlay.appendChild(modal.frame);
-
-      // Creating button set to modal
-      var btnSet = newElement('div', modal.frame);
-      btnSet.classList.add('mw-button-set');
-
-      // Proceed button
-      var btn1 = newElement('button', btnSet);
-      btn1.classList.add('danger-btn');
-      addText('Yes', btn1);
-
-      // Cancel button
-      var btn2 = newElement('button', btnSet);
-      addText('No', btn2);
-
-      // Adding events to modal window buttons
-      btn1.addEventListener('click', function() {
-
-        modalWindow.fn.killModal(modal.overlay, modal.parent);
-
-        //callback function that returns a result of true
         done(true);
 
       });
 
-      btn2.addEventListener('click', function() {
-        modalWindow.fn.killModal(modal.overlay, modal.parent);
-
-        // Callback function that returns a result of false
-        done(false);
-
-      });
-
       return { btn1, btn2 };
     },
+
+    // ---------------------- RENDERS OVERLAY -------------------------------
     renderOverlay: function(modal){
 
       // create overlay element

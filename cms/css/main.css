@@ -194,7 +194,7 @@ button:hover, input[type="button"]:hover,  input[type="reset"]:hover, input[type
 
 input {
   padding: 0.3125em;
-  border: solid 1px #aaa;
+  border: solid 2px #aaa;
   outline-color: #777;
 }
 
@@ -217,11 +217,11 @@ form.form {
 
 /* Modifiers */
 .danger-btn {
-  background-color: #de8348 !important;
+  background-color: #c73e1d !important;
 }
 
 .danger-btn:hover {
-  background-color: #c73e1d !important;
+  background-color: #de8348 !important;
 }
 
 .proceed-btn:hover {
@@ -246,6 +246,8 @@ form.form {
   display: table-row;
 }
 
+
+
 /*MODAL STYLING*/
 
 
@@ -259,29 +261,55 @@ form.form {
   display: none;
 }
 
-.mw-confirm {
-  border: 2px solid #a7bbd6;
+.mw-normal {
   background-color: #fafafa;
 }
 
-.mw-warning {
-  border: 2px solid #de8348;
-  /*background-color: #f6e5db;*/
-  background-color: #fafafa;
+.mw-delete {
+  color: #fafafa;
+  background-color: #c73e1d;
+}
+
+.mw-btn-proceed {
+  background-color: #95bf8f;
+}
+
+.mw-btn-proceed:hover {
+  background-color: #c7e4c3;
+}
+
+.mw-confirm {
+  color: #fafafa;
+  background-color: #a7bbd6;
 }
 
 .mw-modal {
   position: absolute;
-  padding: 0.625em 1.25em;
   box-shadow: 5px 5px rgba(153, 153, 153, 0.67);
   color: #333;
-  text-align: center;
+}
+
+.mw-modal div, .mw-modal header {
+  padding: 0.625em 1.25em;
+}
+
+.mw-modal h3 {
+  font-size: 2em;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  margin: 0.5em auto;
+}
+
+.mw-modal input[type='text'] {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.625em;
 }
 
 /* Come back to modal for prompt */
 .mw-large {
   left: 25%;
-  top: 25%;
+  top: 15%;
   width: 50%;
   min-height:5em;
 }
@@ -296,6 +324,10 @@ form.form {
   margin: 0;
 }
 
+.mw-modal p {
+  margin-bottom: 0;
+}
+
 .mw-overlay {
   width: 100%;
   top: 0;
@@ -305,5 +337,9 @@ form.form {
 }
 
 .mw-button-set {
-  text-align: center;
+  text-align: right;
+}
+
+.mw-button-set button:last-of-type {
+  margin-right: 0;
 }

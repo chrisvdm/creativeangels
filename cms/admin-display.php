@@ -360,7 +360,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           var btn = $(this);
           var info = $(btn).data();
 
-          modalWindow.warning('#main-content', 'Deleting a record is a permanent action.\nDo you wish to proceed?', function(result) {
+          modalWindow.delete('#main-content', 'Deleting a record is a permanent action.\nDo you wish to proceed?', function(result) {
 
             if (result) {
               deleteRecord(btn, info);
@@ -395,6 +395,9 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
       }); //  end of jQuery
 
+      modalWindow.confirm('#main-content','Deleting a record is a permanent action. Do you wish to proceed?', function(result) {
+        console.log(result);
+      });
       // see modal.js for code
 
     </script>
