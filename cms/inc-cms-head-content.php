@@ -16,7 +16,8 @@
 
 <!-- ########  FAVICON  ########### -->
 <link rel="icon" href="sources/favicon/favicon.gif" />
-<script src="js/jquery.min.js" charset="utf-8"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/lib.js"></script>
 <link rel="stylesheet" href="css/main.css">
 <title>Creative Angels | Content Management System</title>
 
