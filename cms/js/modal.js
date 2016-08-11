@@ -87,11 +87,12 @@ var modalWindow = {
 
     killModal: function(child, parent) {
       parent.removeChild(child);
-    }
+    },
 
     // --------------- creates generic shell for modal windows ----------------
 
     renderShell: function(modal) {
+
       var parent = modal.parent;
 
       //create shell
@@ -209,7 +210,7 @@ var modalWindow = {
 
         modalWindow.fn.killModal(modal.overlay, modal.parent);
 
-        //callback function that returns a result of true
+        //callback function that returns a result of false
         done(false);
 
       });
@@ -217,7 +218,7 @@ var modalWindow = {
       btn2.addEventListener('click', function() {
         modalWindow.fn.killModal(modal.overlay, modal.parent);
 
-        // Callback function that returns a result of false
+        // Callback function that returns a result of true
         done(true);
 
       });
@@ -257,7 +258,7 @@ var modalWindow = {
 
     },
   } // end of fn object
-} // end of modalWindow object
+}
 
 
 

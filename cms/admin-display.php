@@ -22,6 +22,8 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 <html>
   <head>
     <!-- Head contents -->
+
+    <script src="js/modal.js"></script>
     <?php require('inc-cms-head-content.php'); ?>
 
   </head>
@@ -50,26 +52,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
-
-
-          <!-- DISPLAY NOTIFICATION WHEN TASKS ARE COMPLETED ----------------->
-          <?php
-
-          if(isset($_GET['kupdate']) && $_GET['kupdate'] === 'success') {
-            echo '<div class="mw-modal mw-small success">
-              <p>
-                Record has been succesfully updated
-              </p>
-            </div>';
-          }
-
-          ?>
-          <div class="mw-modal mw-small delete">
-            <p>
-              Record has been succesfully deleted
-            </p>
-          </div>
-
 
           <!-- Display the table if the tblcms has data has entries -->
           <?php if($rs_cms_rows_total > 0 ) { ?>
@@ -291,38 +273,15 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     </div>
 
     <script src="js/accordian.js"></script>
-    <script src="js/modal.js"></script>
     <script>
-
-
 
       $(document).ready(function() {
 
-        function confirmModal(el, question){
-
-          el.show();
-
-          el.children('.confirmQ').html(question);
-
-          el.children('.button-set')
-            .children('button[name="promptVal"]')
-            .on('click', function() {
-
-              var results = $(this).val();
-              console.log('results =' + results);
-              el.hide();
-              return results;
-
-
-            }); // end of onclick functionZ
-
-        } // confirmModal function
-
-
-        // Corner notification
-        $('div.mw-small.success').delay(3000).fadeOut(500, function(){
-          $(this).remove();
-        });
+        // Display toast when update successful
+        <?php if( isset($_GET['kupdate']) && $_GET['kupdate'] === 'success') {
+          echo 'modalWindow.toastSuccess("#main-content", "Record has been updated");';
+        }
+        ?>
 
         // changes status and updates database table
         $(':button[name = "statusBtn"]').on('click', function() {
@@ -380,13 +339,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               success: function(result) {
 
                 $(btn).parent().parent().remove();
-
-                $('div.mw-small.delete')
-                  .fadeIn(500)
-                  .delay(3000)
-                  .fadeOut(500, function() {
-                    $(this).remove();
-                  });
+                modalWindow.toastWarning('#main-content', 'Record has been deleted');
 
               }});
           } // end of ajax deleteRecord
@@ -394,9 +347,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         });
 
       }); //  end of jQuery
-
-      modalWindow.toastSuccess('#main-content','Record has been updated');
-      // see modal.js for code
 
     </script>
   </body>
