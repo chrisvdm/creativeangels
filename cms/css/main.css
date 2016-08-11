@@ -249,21 +249,16 @@ form.form {
 
 
 /*MODAL STYLING*/
-
-.mw-normal {
-  background-color: #fafafa;
-}
-
 .mw-delete {
   color: #fafafa;
   background-color: #c73e1d;
 }
 
-.mw-btn-proceed, .success, .mw-success {
+.mw-proceed, .success, .mw-success {
   background-color: #95bf8f;
 }
 
-.mw-btn-proceed:hover {
+.mw-proceed:hover {
   background-color: #c7e4c3;
 }
 
@@ -275,6 +270,7 @@ form.form {
 .mw-modal {
   position: absolute;
   box-shadow: 5px 5px rgba(153, 153, 153, 0.67);
+  background-color: #fafafa;
   color: #333;
 }
 
@@ -287,12 +283,6 @@ form.form {
   text-transform: capitalize;
   letter-spacing: 2px;
   margin: 0.5em auto;
-}
-
-.mw-modal input[type='text'] {
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 0.625em;
 }
 
 /* Come back to modal for prompt */

@@ -279,7 +279,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         // Display toast when update successful
         <?php if( isset($_GET['kupdate']) && $_GET['kupdate'] === 'success') {
-          echo 'modalWindow.toastSuccess("#main-content", "Record has been updated");';
+          echo 'mw.toastSuccess("Record has been updated","#main-content");';
         }
         ?>
 
@@ -319,7 +319,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           var btn = $(this);
           var info = $(btn).data();
 
-          modalWindow.delete('#main-content', 'Deleting a record is a permanent action.\nDo you wish to proceed?', function(result) {
+          mw.delete('Deleting a record is a permanent action.\nDo you wish to proceed?', '#main-content', function(result) {
 
             if (result) {
               deleteRecord(btn, info);
@@ -339,7 +339,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               success: function(result) {
 
                 $(btn).parent().parent().remove();
-                modalWindow.toastWarning('#main-content', 'Record has been deleted');
+                mw.deleteToast('Record has been deleted', '#main-content');
 
               }});
           } // end of ajax deleteRecord
@@ -347,6 +347,10 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         });
 
       }); //  end of jQuery
+
+      mw.delete('You sure you want to do that?', '#main-content', function(result) {
+        console.log(result);
+      });
 
     </script>
   </body>

@@ -1,3 +1,4 @@
+// Custom js library for often used functions without having to load jquery
 
 // ---------------------- DOM MANIPULATION -------------------------------
 function newEl(type, parent) {
@@ -21,10 +22,14 @@ function fillVH(el) {
   var vH = window.innerHeight;
   var topH = el.offsetTop;
 
-  var elH = vh - topH;
+  var elH = vH - topH;
 
   // set height on el
   el.style.height = elH + 'px';
+
+  window.addEventListener('resize', function(){
+    fillVH(el)
+  });
 }
 
 
