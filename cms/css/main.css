@@ -250,17 +250,6 @@ form.form {
 
 /*MODAL STYLING*/
 
-
-
-.success {
-  background-color: #95bf8f;
-}
-
-.delete {
-  background-color: #c73e1d;
-  display: none;
-}
-
 .mw-normal {
   background-color: #fafafa;
 }
@@ -270,7 +259,7 @@ form.form {
   background-color: #c73e1d;
 }
 
-.mw-btn-proceed {
+.mw-btn-proceed, .success, .mw-success {
   background-color: #95bf8f;
 }
 
@@ -317,6 +306,8 @@ form.form {
 .mw-small {
   right: 1.8em;
   top: 1.25em;
+  padding: 0.625em 1.25em;
+  display: none;
   color: #fafafa;
 }
 

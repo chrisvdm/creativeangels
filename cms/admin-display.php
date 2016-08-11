@@ -395,9 +395,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
       }); //  end of jQuery
 
-      modalWindow.confirm('#main-content','Deleting a record is a permanent action. Do you wish to proceed?', function(result) {
-        console.log(result);
-      });
+      modalWindow.toastSuccess('#main-content','Record has been updated');
       // see modal.js for code
 
     </script>
