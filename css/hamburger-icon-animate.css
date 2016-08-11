@@ -1,0 +1,150 @@
+@charset "UTF-8";
+/*Styling for hamburger element*/
+.hia-hamburger, .hia-bar {
+  box-sizing: border-box;
+}
+
+/* Hamburger container/background */
+.hia-hamburger {
+  width: 3.5em;
+  height: 3.5em;
+  padding: 0.5em;
+  display: block;
+  /*background-color: #4A4A4A; /* hamburger background colour*/
+  position: relative;
+}
+
+.hia-bar {
+  background-color: #fafafa;
+  width: 2.5em;
+  height: 0.5em;
+  display: block;
+  position: absolute;
+}
+
+.hia-bar[data-bar="1"] {
+  top: 0.5em;
+}
+
+.hia-bar[data-bar="2"] {
+  top: 1.5em;
+  transition: opacity 0.25s;
+  z-index: 68;
+}
+
+.hia-bar[data-bar="3"] {
+  bottom: 0.5em;
+}
+
+/*
+CSS Animation Classes
+Control classes
+*/
+.hia-animate, .hia-turn-down, .hia-turn-up, .hia-back-down, .hia-back-up {
+  transition: 0.25s ease;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; }
+
+.hia-turn-down {
+  animation-name: hia-twist-down;
+  z-index: 69; }
+
+.hia-turn-up {
+  animation-name: hia-twist-up;
+  z-index: 70; }
+
+.hia-back-down {
+  animation-name: hia-back-down; }
+
+.hia-back-up {
+  animation-name: hia-back-up; }
+
+/*
+Animation keyframes
+hamburger to cross
+*/
+@keyframes hia-twist-down {
+  0% {
+    bottom: 0.5em;
+    position: absolute;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  25% {
+    bottom: 1.5em;
+    position: absolute;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    bottom: 1.5em;
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes hia-twist-up {
+  0% {
+    top: 0.5em;
+    position: absolute;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  25% {
+    top: 1.5em;
+    position: absolute;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 1.5em;
+    position: absolute;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+}
+
+/*
+cross to hamburger
+*/
+@keyframes hia-back-down {
+  0% {
+    bottom: 1.5em;
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  25% {
+    bottom: 1.5em;
+    position: absolute;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    bottom: 0.5em;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes hia-back-up {
+  0% {
+    top: 1.5em;
+    position: absolute;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  25% {
+    top: 1.5em;
+    position: absolute;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 0.5em;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}

@@ -11,8 +11,8 @@ var modalWindow = {
   warning: function(parent, text, done){
     this.fn.init(parent, text, 'warning', 'l', done);
   },
-  question: function(parent, text){
-    this.fn.init(parent, text, 'warning', 'l');
+  question: function(parent, text, done){
+    this.fn.init(parent, text, 'warning', 'l', done);
   },
   notificationWarning: function(parent, text){
     this.fn.init(parent, text, 'warning', 's');
@@ -49,24 +49,27 @@ var modalWindow = {
       };
     },
     //---------------------------- RENDER FUNCTIONS ----------------------------
+
     // Renders modal Window
     render: function(modal, done){
 
         modalWindow.fn.renderShell(modal);
 
         switch(modal.type){
+
           // Confirmation Modal Window
           case 'approve':
-
           return modalWindow.fn.renderApproveModal(modal, done);
-
           break;
 
           // Warning modal window
           case 'warning':
-
           return modalWindow.fn.renderWarningModal(modal, done);
+          break;
 
+          // Question modal Window similiar to 'prompt'
+          case 'question':
+          return modalWindow.fn.renderQuestionModal(modal, done);
           break;
 
           // Alert modal window
@@ -184,6 +187,10 @@ var modalWindow = {
       });
 
       return { btn1, btn2 };
+    },
+    renderQuestionModal: function() {
+
+      
     },
     renderOverlay: function(modal){
 

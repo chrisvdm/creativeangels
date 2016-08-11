@@ -59,8 +59,19 @@ p {
 	 #header_container {
 		width: 96%;
 		margin: 0 auto 2%;
-		height: 80px;
 		background-color: #85A5CC;
+		}
+
+		#header_container h1 {
+			width: 82%;
+			font-size: 1.9em;
+			font-weight: 600;
+			float: left;
+			color: #fafafa;
+			padding-top: 1%;
+			padding-left: 2%;
+			letter-spacing: 1px;
+			text-transform: uppercase;
 		}
 
 	#normal_nav {
@@ -80,21 +91,18 @@ p {
 
 		 #content_left {
 			width: 100%;
-			height: 320px;
-			background-color: #85A5CC;
+			height: auto;
 			}
 
-		#content_left_article_1 {
+		#content_left_article_1, #content_left_article_2, #content_left_article_3 {
 			display: block;
 			width: 100%;
 			height: 270px;
 			background-color: #85A5CC;
 			float: left;
+			margin: 0 0 2% 0;
 			}
 
-		#content_left_article_2 {
-			display: none;
-			}
 
 		#content_right {
 			display: none;
@@ -106,16 +114,28 @@ p {
 		background-color: #85A5CC;
 		}
 
-	 #moblie_nav {
-		width: 100%;
-		height: 50px;
+	 #mobile_nav {
+		width: 96%;
+		position: absolute;
+		top: 3.8em;
+		left: 2%;
+		background-color: #fafafa;
 		clear: both;
+		display: none;
 		}
-			#moblie_nav ul li {
-				display: inline;
+			#mobile_nav ul li a{
+				color: #85a5cc;
+				font-size: 2em;
+				text-decoration: none;
+				text-align: center;
+				display: block;
+				padding: 0.625em 1.25em;
 				}
 
-
+		.hamburger {
+			width: 20%;
+			float: right;
+		}
 
 .warning_msg {
 	color: #cd5831;
@@ -157,21 +177,10 @@ p {
 
 		 #content_left {
 			width: 98%;
-			height: 320px;
-			background-color: #65AB8A;
-			float: left;
 			}
 
-		#content_left_article_1 {
-			display: block;
-			width: 100%;
-			height: 270px;
+		#content_left_article_1, #content_left_article_2, #content_left_article_3 {
 			background-color: #65AB8A;
-			float: left;
-			}
-
-		#content_left_article_2 {
-			display: none;
 			}
 
 		#content_right {
@@ -239,33 +248,19 @@ p {
 
 	#content_container {
 		width: 96%;
-		height: 550px;
+		height: auto;
 		margin: 1% 2%;
 		}
-
 
 		#content_left {
 			width: 64%;
 			margin-right: 2%;
 			height: auto;
-			background-color: transparent;
-			}
-
-		#content_left_article_1 {
-			display: block;
-			width: 100%;
-			height: 270px;
-			background-color: #E2DB54;
 			float: left;
 			}
 
-		#content_left_article_2 {
-			display: block;
-			width: 100%;
-			height: 270px;
-			margin-top: 2%;
+		#content_left_article_1, #content_left_article_2, #content_left_article_3 {
 			background-color: #E2DB54;
-			float: left;
 			}
 
 		#content_right {
@@ -286,6 +281,13 @@ p {
 	#moblie_nav {
 		display: none;
 		}
+
+		.clear_float {
+			clear: both;
+			font-size: 0px;
+			line-height: 0px;
+			display: table;
+			}
 
 	}
 
