@@ -72,6 +72,7 @@ var mw = {
 
     // create overlay
     var overlay = mw.renderOverlay(modal.parent);
+    modal.overlay = overlay;
 
     var shell = newEl('div', overlay);
     shell.classList.add('mw-modal', 'mw-large');
@@ -120,12 +121,14 @@ var mw = {
     buttons[0].innerHTML = 'Cancel';
     buttons[0].addEventListener('click', function(done) {
       done(false);
+      mw.kill(modal.overlay);
     });
 
     buttons[1].innerHTML = 'Okay';
     buttons[1].classList.add('mw-proceed');
     buttons[1].addEventListener('click', function(done) {
       done(true);
+      mw.kill(modal.overlay);
     });
 
     return modal;
@@ -143,13 +146,15 @@ var mw = {
     // Customising button set
     buttons[0].innerHTML = 'Cancel';
     buttons[0].addEventListener('click', function(done) {
-      done(false);
+      done(false);  
+      mw.kill(modal.overlay);
     });
 
     buttons[1].innerHTML = 'Delete';
     buttons[1].classList.add('danger-btn');
     buttons[1].addEventListener('click', function(done) {
       done(true);
+      mw.kill(modal.overlay);
     });
 
     return modal;
@@ -167,7 +172,8 @@ var mw = {
   },
 
   // TODO: Destroys dialog and toast
-  kill: function(modal) {
-
+  kill: function(child) {
+    parent = modal.parent;
+    parent.removeChild(child);
   }
 }

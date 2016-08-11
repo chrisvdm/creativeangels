@@ -349,8 +349,9 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
       }); //  end of jQuery
 
       mw.delete('You sure you want to do that?', '#main-content', function(result) {
-        console.log(result);
-      });
+          console.log(result);
+        }
+      );
 
     </script>
   </body>
