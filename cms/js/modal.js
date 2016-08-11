@@ -48,7 +48,7 @@ var mw = {
       break;
 
       case 'delToast':
-      return mw.renderDelToast(modal);
+      return mw.renderDeleteToast(modal);
       break;
 
       case 'sucToast':
@@ -104,8 +104,16 @@ var mw = {
     return [btn1, btn2];
   },
 
-  // TODO: Renders toast shell
-  renderToastShell: function() {
+  // Renders toast shell
+  renderToastShell: function(modal) {
+
+    var toast = newEl('div', modal.parent);
+    toast.classList.add('mw-modal', 'mw-small');
+
+    // Add message to toast
+    var txt = newEl('p', toast);
+    addText(modal.text, txt);
+
     return toast;
   },
 
@@ -161,13 +169,33 @@ var mw = {
 
   },
 
-  // TODO: Renders confirm dialog
+  // Renders delete toast
   renderDeleteToast: function(modal) {
+
+    modal.shell = mw.renderToastShell(modal);
+
+    modal.shell.classList.add('mw-delete');
+
+    unfade(modal.shell);
+
+    setTimeout(function(){
+      fade(modal.shell);
+    }, 4000);
 
   },
 
-  // TODO: Renders confirm dialog
+  // Renders success toast
   renderSucToast: function(modal) {
+
+    modal.shell = mw.renderToastShell(modal);
+
+    modal.shell.classList.add('mw-success');
+
+    unfade(modal.shell);
+
+    setTimeout(function(){
+      fade(modal.shell);
+    }, 4000);
 
   },
 

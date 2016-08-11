@@ -270,7 +270,6 @@ form.form {
 .mw-modal {
   position: absolute;
   box-shadow: 5px 5px rgba(153, 153, 153, 0.67);
-  background-color: #fafafa;
   color: #333;
 }
 
@@ -290,6 +289,7 @@ form.form {
   left: 25%;
   top: 15%;
   width: 50%;
+  background-color: #fafafa;
   min-height:5em;
 }
 
@@ -297,7 +297,7 @@ form.form {
   right: 1.8em;
   top: 1.25em;
   padding: 0.625em 1.25em;
-  display: none;
+  opacity: 0;
   color: #fafafa;
 }
 

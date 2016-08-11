@@ -279,7 +279,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
         // Display toast when update successful
         <?php if( isset($_GET['kupdate']) && $_GET['kupdate'] === 'success') {
-          echo 'mw.toastSuccess("Record has been updated","#main-content");';
+          echo 'mw.successToast("Record has been updated","#main-content");';
         }
         ?>
 
@@ -347,11 +347,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         });
 
       }); //  end of jQuery
-
-      mw.delete('You sure you want to do that?', '#main-content', function(result) {
-          console.log(result);
-        }
-      );
 
     </script>
   </body>
