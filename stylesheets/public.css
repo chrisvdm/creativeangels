@@ -97,7 +97,6 @@ p {
 		#content_left_article_1, #content_left_article_2, #content_left_article_3 {
 			display: block;
 			width: 100%;
-			height: 270px;
 			background-color: #85A5CC;
 			float: left;
 			margin: 0 0 2% 0;
@@ -255,7 +254,6 @@ p {
 		#content_left {
 			width: 64%;
 			margin-right: 2%;
-			height: auto;
 			float: left;
 			}
 

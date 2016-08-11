@@ -24,10 +24,12 @@
   <li class="opt-menu">Contact Details</li>
   <ul class="submenu">
     <li><a class="opt-menu" href="contact-display.php">Display</a></li>
+    <li><a class="opt-menu" href="contact-particulars-display.php?kid=<?php echo base64_encode(1); ?>">Durban</a></li>
+    <li><a class="opt-menu" href="contact-particulars-display.php?kid=<?php echo base64_encode(2); ?>">Cape Town</a></li>
     <li><a class="opt-menu" href="contact-edit.php">Edit</a></li>
   </ul>
 
   <li class="opt-menu">Log out</li>
   <!-- FOOTER -->
-  <!-- <?php// require('inc-cms-footer.php'); ?> -->
+  <?php require('inc-cms-footer.php'); ?>
 </ul>
