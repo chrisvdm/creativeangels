@@ -22,7 +22,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
         $validation++;
 
-      } 
+      }
 
     } else {
 
@@ -64,70 +64,6 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     $validation++;
 
   } // END OF SURNAME VALIDATION
-
-
-  // -------------------- PASSWORD VALIDATION ----------------------------------
-if($_SESSION['svcid'] === $vid){
-
-    if (isset($_POST['txtPw1'])) {
-
-      $vPassword1 = trim($_POST['txtPw1']);
-
-      if ($vPassword1 !== '') {
-
-        // Remove harmful characters from password
-        $vPassword1 = filter_var($vPassword1, FILTER_SANITIZE_STRING);
-
-        if($vPassword1 === ''){
-
-          // If Password 1 is empty after sanitisation
-          $validation++;
-          //$vpswmatch = 'failed';
-        }
-
-      }
-
-    } else {
-
-      // If pw1 wasn't set
-      $validation++;
-
-    } // END OF PASSWORD VALIDATION
-
-
-    if(isset($_POST['txtPw2'])){
-
-      $vPassword2 = trim($_POST['txtPw2']);
-
-      if ($vPassword2 !== '') {
-
-        // Remove harmful characters from password
-        $vPassword2 = filter_var($vPassword2, FILTER_SANITIZE_STRING);
-
-        if ($vPassword2 === '') {
-
-          // If Password 2 is empty after sanitisation
-          $validation++;
-        }
-
-      }
-
-    } else {
-
-      // If pw2 wasn't set
-      $validation++;
-
-    } // END OF PASSWORD VALIDATION
-
-
-    // Check if passwords entered match
-    if ($vPassword1 !== $vPassword2) {
-
-      $validation++;
-      $vpswmatch = 'failed';
-
-    }
-  } // End PW validation
 
 // ------------------------- EMAIL VALIDATION ----------------------------
 
@@ -197,6 +133,171 @@ if($_SESSION['svcid'] === $vid){
     $validation++;
 
   } // END OF MOBILE VALIDATION
+
+  //------------------------- LANDLINE VALIDATION ----------------------------
+  if (isset($_POST['txtLandline'])){
+
+    $vLandline = trim($_POST['txtLandline']);
+
+    if ($vLandline !== '') {
+
+      // Remove harmful characters from password
+      $vLandline = filter_var($vLandline, FILTER_SANITIZE_NUMBER_INT);
+
+      if($vLandline === ''){
+
+        // If mobile is empty after sanitisation
+        $validation++;
+      }
+
+    } else {
+
+      // If mobile is empty on arrival
+      $validation++;
+    }
+
+  } else {
+
+    // If mobile is not set
+    $validation++;
+
+  } // END OF LANDLINE VALIDATION
+
+  // ----------------------- ADDRESS LINE 1 VALIDATION ---------------------
+
+  if (isset($_POST['txtAdd1'])) {
+    $vAdd1 = ucfirst(strtolower(trim($_POST['txtAdd1'])));
+
+    if ($vAdd1 !== '') {
+
+      // Remove harmful characters from password
+      $vAdd1 = filter_var($vAdd1, FILTER_SANITIZE_STRING);
+
+      if ($vAdd1 === ''){
+        $validation++;
+      }
+
+    } else {
+
+      // If surname is empty on arrival
+      $validation++;
+    }
+
+  } else {
+
+    // If surname is not set
+    $validation++;
+
+  } // END OF ADDRESS LINE 1 VALIDATION
+
+  // ----------------------- ADDRESS LINE 2 VALIDATION ---------------------
+
+  if (isset($_POST['txtAdd2'])) {
+    $vAdd2 = ucfirst(strtolower(trim($_POST['txtAdd2'])));
+
+    if ($vAdd2 !== '') {
+
+      // Remove harmful characters from password
+      $vAdd2 = filter_var($vAdd2, FILTER_SANITIZE_STRING);
+
+      if ($vAdd2 === ''){
+        $validation++;
+      }
+
+    } else {
+
+      // If surname is empty on arrival
+      $validation++;
+    }
+
+  } else {
+
+    // If surname is not set
+    $validation++;
+
+  } // END OF ADDRESS LINE 2 VALIDATION
+
+
+  // ----------------------- ADDRESS LINE 3 VALIDATION ---------------------
+
+  if (isset($_POST['txtAdd3'])) {
+    $vAdd3 = ucfirst(strtolower(trim($_POST['txtAdd3'])));
+
+    if ($vAdd3 !== '') {
+
+      // Remove harmful characters from password
+      $vAdd3 = filter_var($vAdd3, FILTER_SANITIZE_STRING);
+
+      if ($vAdd3 === ''){
+        $validation++;
+      }
+
+    } else {
+
+      // If surname is empty on arrival
+      $validation++;
+    }
+
+  } else {
+
+    // If surname is not set
+    $validation++;
+
+  } // END OF ADDRESS LINE 3 VALIDATION
+
+  // ----------------------- SUBURB VALIDATION ---------------------
+
+  if (isset($_POST['txtSuburb'])) {
+    $vSuburb = ucfirst(strtolower(trim($_POST['txtSuburb'])));
+
+    if ($vSuburb !== '') {
+
+      // Remove harmful characters from password
+      $tSuburb = filter_var($vSuburb, FILTER_SANITIZE_STRING);
+
+      if ($vSuburb === ''){
+        $validation++;
+      }
+
+    } else {
+
+      // If surname is empty on arrival
+      $validation++;
+    }
+
+  } else {
+
+    // If surname is not set
+    $validation++;
+
+  } // END OF SUBURB VALIDATION
+
+  // ----------------------- CITY VALIDATION ---------------------
+
+  if (isset($_POST['txtCity'])) {
+    $vCity = ucfirst(strtolower(trim($_POST['txtCity'])));
+
+    if ($vCity !== '') {
+
+      // Remove harmful characters from password
+      $vCity = filter_var($vCity, FILTER_SANITIZE_STRING);
+
+      if ($vCity === ''){
+        $validation++;
+      }
+
+    } else {
+
+      // If surname is empty on arrival
+      $validation++;
+    }
+
+  } else {
+
+    // If surname is not set
+    $validation++;
+
+  } // END OF CITY VALIDATION
 
 
   // ----------------------- VALIDATION FUNCTIONS --------------------------

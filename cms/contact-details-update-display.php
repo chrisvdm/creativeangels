@@ -95,7 +95,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
           <!-- FORM --------------------------------------------------------->
           <!-- Used to update the contact details of a particular city -->
-          <form class="form" method="get" action="contact-details-update-process.php">
+          <form class="form" method="post" action="contact-details-update-process.php">
 
             <div class="half-float">
 
@@ -131,12 +131,16 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
               <h3>Address Details</h3>
 
-              <label>Address:</label>
+              <label>Address Line 1:</label>
 
               <input type="text" name="txtAdd1" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['caddress1']) && $rs_contact_details_update_rows['caddress1'] !== 'na'){ echo $rs_contact_details_update_rows['caddress1']; } ?>">
 
+              <label>Address Line 2:</label>
+
               <input type="text" name="txtAdd2" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['caddress2']) && $rs_contact_details_update_rows['caddress2'] !== 'na'){ echo $rs_contact_details_update_rows['caddress2']; } ?>">
 
+              <label>Address Line 3:</label>
+              
               <input type="text" name="txtAdd3" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['caddress3']) && $rs_contact_details_update_rows['caddress3'] !== 'na'){ echo $rs_contact_details_update_rows['caddress3']; } ?>">
 
               <label>Suburb:</label>
