@@ -71,6 +71,13 @@ footer {
   bottom: 0;
 }
 
+.half-float {
+  float: left;
+  width: 50%;
+  webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 .base, .opt-menu {
   padding: 0.625em 1.25em;
   webkit-box-sizing: border-box;
@@ -159,6 +166,7 @@ table {
   webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .tbldatadisplay td{
   padding: 0.625em;
 }
@@ -215,6 +223,10 @@ form.form {
   padding: 0.625em 1.25em;
 }
 
+.form .half-float input[type="text"] {
+  width: 50%;
+}
+
 /* Modifiers */
 .danger-btn {
   background-color: #c73e1d !important;
@@ -222,6 +234,10 @@ form.form {
 
 .danger-btn:hover {
   background-color: #de8348 !important;
+}
+
+.proceed-btn {
+  background-color: #95bf8f;
 }
 
 .proceed-btn:hover {
@@ -236,6 +252,12 @@ form.form {
   background-color: #faf2f4;
   border-color: #c73e1d;
   outline-color: #c73e1d;
+}
+
+.button-set {
+  padding: 0;
+  display: block;
+  text-align: right;
 }
 
 .hide {

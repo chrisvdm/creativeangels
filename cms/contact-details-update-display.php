@@ -95,16 +95,89 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
           <!-- FORM --------------------------------------------------------->
           <!-- Used to update the contact details of a particular city -->
-          <form class="form" method="get">
+          <form class="form" method="get" action="contact-details-update-process.php">
 
-            <label>Contact Person Name:</label>
+            <div class="half-float">
 
-            <input type="text" name="txtCPName" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['ccontactpersonname']) && $rs_contact_details_update_rows['ccontactpersonname'] !== 'na'){ echo $rs_contact_details_update_rows['ccontactpersonname']; } ?>">
+              <h3 class="tbl-heading">Contact Person Details</h3>
 
-            <label>Contact Person Surname:</label>
+              <label>First Name:</label>
 
-            <input type="text" name="txtCPSurname" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['ccontactpersonsurname']) && $rs_contact_details_update_rows['ccontactpersonsurname'] !== 'na'){ echo $rs_contact_details_update_rows['ccontactpersonsurname']; } ?>">
+              <input type="text" name="txtName" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['ccontactpersonname']) && $rs_contact_details_update_rows['ccontactpersonname'] !== 'na'){ echo $rs_contact_details_update_rows['ccontactpersonname']; } ?>">
 
+              <label>Surname:</label>
+
+              <input type="text" name="txtSurname" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['ccontactpersonsurname']) && $rs_contact_details_update_rows['ccontactpersonsurname'] !== 'na'){ echo $rs_contact_details_update_rows['ccontactpersonsurname']; } ?>">
+
+              <label>Job Title:</label>
+
+              <input type="text" name="txtTitle" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['ccontactpersontitle']) && $rs_contact_details_update_rows['ccontactpersontitle'] !== 'na'){ echo $rs_contact_details_update_rows['ccontactpersontitle']; } ?>">
+
+              <label>Landline:</label>
+
+              <input type="text" name="txtLandline" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['clandline']) && $rs_contact_details_update_rows['clandline'] !== 'na'){ echo $rs_contact_details_update_rows['clandline']; } ?>">
+
+              <label>Mobile:</label>
+
+              <input type="text" name="txtMobile" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['ccell']) && $rs_contact_details_update_rows['ccell'] !== 'na'){ echo $rs_contact_details_update_rows['ccell']; } ?>">
+
+              <label>Email:</label>
+
+              <input type="text" name="txtEmail" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['cemail']) && $rs_contact_details_update_rows['cemail'] !== 'na'){ echo $rs_contact_details_update_rows['cemail']; } ?>">
+
+            </div>
+
+            <div class="half-float">
+
+              <h3>Address Details</h3>
+
+              <label>Address:</label>
+
+              <input type="text" name="txtAdd1" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['caddress1']) && $rs_contact_details_update_rows['caddress1'] !== 'na'){ echo $rs_contact_details_update_rows['caddress1']; } ?>">
+
+              <input type="text" name="txtAdd2" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['caddress2']) && $rs_contact_details_update_rows['caddress2'] !== 'na'){ echo $rs_contact_details_update_rows['caddress2']; } ?>">
+
+              <input type="text" name="txtAdd3" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['caddress3']) && $rs_contact_details_update_rows['caddress3'] !== 'na'){ echo $rs_contact_details_update_rows['caddress3']; } ?>">
+
+              <label>Suburb:</label>
+
+              <input type="text" name="txtSuburb" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['csuburb']) && $rs_contact_details_update_rows['csuburb'] !== 'na'){ echo $rs_contact_details_update_rows['csuburb']; } ?>">
+
+              <label>City:</label>
+
+              <input type="text" name="txtCity" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['ccity']) && $rs_contact_details_update_rows['ccity'] !== 'na'){ echo $rs_contact_details_update_rows['ccity']; } ?>">
+
+              <label>Postal Code:</label>
+
+              <input type="text" name="txtPostalCode" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['cpostalcode']) && $rs_contact_details_update_rows['cpostalcode'] !== 'na'){ echo $rs_contact_details_update_rows['cpostalcode']; } ?>">
+
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- Hidden field for id -->
+            <input type="hidden" name="txtId" value="<?php echo $rs_admin_update_rows['cid']; ?>">
+
+            <!-- Security hidden field -->
+            <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+
+            <?php
+              if($rs_contact_details_update_rows['ccity'] === 'Durban'){
+                $intId = base64_encode(1);
+              } elseif ($rs_contact_details_update_rows['ccity'] === 'Cape Town') {
+                $intId = base64_encode(2);
+              }
+
+            ?>
+
+            <!-- Button set for form submission -->
+            <div class="button-set">
+
+              <a class="button" href="contact-particulars-display.php<?php echo '?kid=' . $intId ; ?>" name="btnCancel">Cancel</a>
+
+              <button class="proceed-btn" type="submit" name="btnUpdate">Update</button>
+
+            </div>
 
           </form>
 
