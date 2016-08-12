@@ -34,9 +34,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
     // If txtName is not set
     $validation++;
-  }
-
-// END OF FIRST NAME VALIDATION
+  } // END OF FIRST NAME VALIDATION
 
   //------------------------- SURNAME VALIDATION ----------------------------
   if (isset($_POST['txtSurname'])) {
@@ -65,6 +63,33 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
   } // END OF SURNAME VALIDATION
 
+  //------------------------- TITLE VALIDATION ----------------------------
+  if (isset($_POST['txtTitle'])) {
+
+    $vTitle = ucfirst(strtolower(trim($_POST['txtTitle'])));
+
+    if ($vTitle !== '') {
+
+      // Remove harmful characters from password
+      $vTitle = filter_var($vTitle, FILTER_SANITIZE_STRING);
+
+      if ($vTitle === ''){
+        $validation++;
+      }
+
+    } else {
+
+      // If surname is empty on arrival
+      $validation++;
+    }
+
+  } else {
+
+    // If surname is not set
+    $validation++;
+
+  } // END OF SURNAME VALIDATION
+
 // ------------------------- EMAIL VALIDATION ----------------------------
 
   if (isset($_POST['txtEmail'])) {
@@ -76,28 +101,6 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
       //sanitize email address(Remove harmful characters)
       $vEmail = filter_var($vEmail, FILTER_SANITIZE_EMAIL);
-
-      if ($vEmail !== ''){
-
-        // Validate email address(Check that email has correct structure)
-        if(!filter_var($vEmail, FILTER_VALIDATE_EMAIL)) {
-
-          // If email does not validate
-          $validation++;
-
-        }
-
-      } else {
-
-        // if $vEmail is empty after sanitisation
-        $validation++;
-
-      }
-
-    } else {
-
-      // if $vEmail is empty on arrival
-      $validation++;
 
     }
 
@@ -115,22 +118,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       // Remove harmful characters from password
       $vMobile = filter_var($vMobile, FILTER_SANITIZE_NUMBER_INT);
 
-      if($vMobile === ''){
-
-        // If mobile is empty after sanitisation
-        $validation++;
-      }
-
-    } else {
-
-      // If mobile is empty on arrival
-      $validation++;
     }
-
-  } else {
-
-    // If mobile is not set
-    $validation++;
 
   } // END OF MOBILE VALIDATION
 
@@ -144,22 +132,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       // Remove harmful characters from password
       $vLandline = filter_var($vLandline, FILTER_SANITIZE_NUMBER_INT);
 
-      if($vLandline === ''){
-
-        // If mobile is empty after sanitisation
-        $validation++;
-      }
-
-    } else {
-
-      // If mobile is empty on arrival
-      $validation++;
     }
-
-  } else {
-
-    // If mobile is not set
-    $validation++;
 
   } // END OF LANDLINE VALIDATION
 
@@ -173,20 +146,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       // Remove harmful characters from password
       $vAdd1 = filter_var($vAdd1, FILTER_SANITIZE_STRING);
 
-      if ($vAdd1 === ''){
-        $validation++;
-      }
-
-    } else {
-
-      // If surname is empty on arrival
-      $validation++;
     }
-
-  } else {
-
-    // If surname is not set
-    $validation++;
 
   } // END OF ADDRESS LINE 1 VALIDATION
 
@@ -199,21 +159,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
       // Remove harmful characters from password
       $vAdd2 = filter_var($vAdd2, FILTER_SANITIZE_STRING);
-
-      if ($vAdd2 === ''){
-        $validation++;
-      }
-
-    } else {
-
-      // If surname is empty on arrival
-      $validation++;
     }
-
-  } else {
-
-    // If surname is not set
-    $validation++;
 
   } // END OF ADDRESS LINE 2 VALIDATION
 
@@ -228,20 +174,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       // Remove harmful characters from password
       $vAdd3 = filter_var($vAdd3, FILTER_SANITIZE_STRING);
 
-      if ($vAdd3 === ''){
-        $validation++;
-      }
-
-    } else {
-
-      // If surname is empty on arrival
-      $validation++;
     }
-
-  } else {
-
-    // If surname is not set
-    $validation++;
 
   } // END OF ADDRESS LINE 3 VALIDATION
 
@@ -253,22 +186,8 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     if ($vSuburb !== '') {
 
       // Remove harmful characters from password
-      $tSuburb = filter_var($vSuburb, FILTER_SANITIZE_STRING);
-
-      if ($vSuburb === ''){
-        $validation++;
-      }
-
-    } else {
-
-      // If surname is empty on arrival
-      $validation++;
+      $vSuburb = filter_var($vSuburb, FILTER_SANITIZE_STRING);
     }
-
-  } else {
-
-    // If surname is not set
-    $validation++;
 
   } // END OF SUBURB VALIDATION
 
@@ -299,6 +218,20 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
   } // END OF CITY VALIDATION
 
+  // ----------------------- POSTAL CODE VALIDATION ---------------------
+
+  if (isset($_POST['txtPostalCode'])) {
+    $vPostal = ucfirst(strtolower(trim($_POST['txtPostalCode'])));
+
+    if ($vPostal !== '') {
+
+      // Remove harmful characters from password
+      $vPostal = filter_var($vPostal, FILTER_SANITIZE_STRING);
+
+    }
+
+  } // END OF POSTAL CODE VALIDATION
+
 
   // ----------------------- VALIDATION FUNCTIONS --------------------------
   if($validation !== 0) {
@@ -306,11 +239,18 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     $qs = '?kval=failed';
     $qs .= '&txtSecurity=' . $_SESSION['svSecurity'];
     $qs .= '&txtId=' . $vid;
-    $qs .= '&txtpw=' . $vpswmatch;
     $qs .= "&kname=".urlencode($vName);
     $qs .= "&ksurname=".urlencode($vSurname);
+    $qs .= "&kTitle=".urlencode($vTitle);
     $qs .= "&kemail=".urlencode($vEmail);
     $qs .= "&kmobile=".urlencode($vMobile);
+    $qs .= "&klandline=".urlencode($vLandline);
+    $qs .= "&kadd1=".urlencode($vAdd1);
+    $qs .= "&kadd2=".urlencode($vAdd2);
+    $qs .= "&kadd3=".urlencode($vAdd3);
+    $qs .= "&ksuburb=".urlencode($vSuburb);
+    $qs .= "&kcity=".urlencode($vCity);
+    $qs .= "&kpostalcode=".urlencode($vPostalCode);
 
    header('Location: admin-update-display.php' . $qs);
     exit();
@@ -318,96 +258,131 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     // validation check
   } else if ($validation === 0) {
 
-    // ------------------------- EMAIL DUPLICATE CHECK -----------------------
-
-    $sql_dup_email = "SELECT cemail FROM tblcms WHERE cemail = '$vEmail' AND cid != $vid";
+    // ------------------------- UPDATE DATABASE -----------------------
 
     // Connect to mysql server
     require('inc-conn.php');
 
-    $rs_dup_email = mysqli_query($vconn_creativeangels, $sql_dup_email);
-
-    // Count how many rows have the same email
-    $rs_dup_email_rows = mysqli_num_rows($rs_dup_email);
-
-    // Single quotations makes everything inside a string doubles used with variables
-    if($rs_dup_email_rows > 0) {
-      $qs = '?kemaildup=emaildup';
-      $qs .= "&kname=".urlencode($vName);
-      $qs .= "&ksurname=".urlencode($vSurname);
-      $qs .= "&kpassword=".urlencode($vpswmatch);
-      $qs .= "&kmobile=".urlencode($vMobile);
-
-      // Redirect back to admin-add-new.php
-      header('Location: admin-update-display.php' . $qs);
-      exit();
-
-    } else {
-
       // Calls the file where the user defined function escapestring receives its instructions
       require('inc-function-escapestring.php');
 
-      // ---------------------- UPDATE DATABASE --------------------------
-
-      // The proper way to insert sql statement (SQL Injection)
-      // The first specifier (%s) corresponds to the first escapestring function as so on and so forth
-      $sql_admin_update = sprintf("UPDATE tblcms SET cname = %s, csurname = %s, ",
+      // ----------------- CREATE SQL QUERY STRING -------------------------
+      $sql_contact_details_update = sprintf("UPDATE tblcontactdetails SET ccontactpersonname = %s, ccontactpersonsurname = %s, ccontactpersontitle = %s",
         escapestring($vconn_creativeangels, $vName, 'text'),
-        escapestring($vconn_creativeangels, $vSurname, 'text')
+        escapestring($vconn_creativeangels, $vSurname, 'text'),
+        escapestring($vconn_creativeangels, $vTitle, 'text')
       );
 
-      // Check if password was changed
-      if ($vPassword1 !== ''){
+      // Check if email was changed
+      if ($vEmail !== ''){
 
-         $sql_admin_update .= sprintf("cpassword = %s, ",
-           escapestring($vconn_creativeangels, sha1($vPassword1), 'text')
-         );
+        $sql_contact_details_update .= sprintf("cemail = %s, ",
+          escapestring($vconn_creativeangels, $vEmail, 'text')
+        );
 
-       }
+      }
 
-      $sql_admin_update .= sprintf("cemail = %s, cmobile = %s WHERE cid = $vid",
-        escapestring($vconn_creativeangels, $vEmail, 'text'),
-        escapestring($vconn_creativeangels, $vMobile, 'text')
+      // Check if Mobile number was changed
+      if ($vMobile !== ''){
+
+        $sql_contact_details_update .= sprintf("ccell = %s, ",
+          escapestring($vconn_creativeangels, $vMobile, 'text')
+        );
+
+      }
+
+      // Check if Landline number was changed
+      if ($vLandline !== ''){
+
+        $sql_contact_details_update .= sprintf("clandline = %s, ",
+          escapestring($vconn_creativeangels, $vLandline, 'text')
+        );
+
+      }
+
+      // Check if address line 1 was changed
+      if ($vAdd1 !== ''){
+
+        $sql_contact_details_update .= sprintf("caddress1 = %s, ",
+          escapestring($vconn_creativeangels, $vAdd1, 'text')
+        );
+
+      }
+
+      // Check if address line 2 was changed
+      if ($vAdd2 !== ''){
+
+        $sql_contact_details_update .= sprintf("caddress2 = %s, ",
+          escapestring($vconn_creativeangels, $vAdd2, 'text')
+        );
+
+      }
+
+      // Check if address line 3 was changed
+      if ($vAdd3 !== ''){
+
+        $sql_contact_details_update .= sprintf("caddress3 = %s, ",
+          escapestring($vconn_creativeangels, $vAdd3, 'text')
+        );
+
+      }
+
+      // Check if suburb was changed
+      if ($vSuburb !== ''){
+
+        $sql_contact_details_update .= sprintf("csuburb = %s, ",
+          escapestring($vconn_creativeangels, $vSuburb, 'text')
+        );
+
+      }
+
+      // Update City
+      $sql_contact_details_update .= sprintf("ccity = %s, ",
+        escapestring($vconn_creativeangels, $vCity, 'text')
       );
+
+      // Check if postal code was changed
+      if ($vPostalCode !== '') {
+
+        $sql_contact_details_update .= sprintf("cpostalcode = %s, ",
+          escapestring($vconn_creativeangels, $vPostalCode, 'text')
+        );
+
+      }
+
+      // END OF SQL QUERY STRING CREATION
 
       // Execute insert statement
-      $vadmin_update_results = mysqli_query($vconn_creativeangels, $sql_admin_update);
+      $vcontact_details_update_results = mysqli_query($vconn_creativeangels, $sql_contact_details_update);
 
-      if($vadmin_update_results) {
+      // ----------------- SUCCESSFUL DATABASE UPDATE-------------------------
+      if($vcontact_details_update_results) {
 
-
-        // ------------------- PW OR EMAIL CHECK ----------------------------
-
-        // Create query string to check if the password and email has changed
-
-        if($_SESSION['svcemail'] !== $vEmail || $vPassword1 !== '' && $vid === $_SESSION['svcid']) {
-
-          session_destroy();
-          header('Location: ../cms-signin.php?kpwupdate=success');
-          exit();
-
-        } else {
-
-          // query to trigger notification
-          $qs = 'kupdate=success';
-
-          header('Location: admin-display.php?' . $qs );
-          exit();
-
+        // Go to show updated contact
+        if($vid === '00000001'){
+          $intId = base64_encode(1);
+        } elseif ($vid === '00000002') {
+          $intId = base64_encode(2);
         }
 
-      } else {
+        $qs = 'kid=' . $intId
+
+        // query to trigger notification
+        $qs .= '&kupdate=success';
+
+        header('Location: contact-particulars-display.php?' . $qs );
+        exit();
+
+      } else { // END OF SUCCESSFUL UPDATE
 
         header('Location: signout.php');
         exit();
 
       }
 
-    } // END OF EMAIL & PW  DB METHODS
+    } // END OF SUCCESFUL VALIDATION
 
-  } // END OF VALIDATION METHOD
-
-} else { // END OF PROCESS
+} else { // END OF PROCESS FILE
 
   header('Location:signout.php');
   exit();

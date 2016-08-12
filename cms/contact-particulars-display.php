@@ -26,6 +26,7 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
   <head>
     <!-- Head contents -->
     <?php require('inc-cms-head-content.php'); ?>
+    <script src="js/modal.js"></script>
 
   </head>
   <body>
@@ -138,5 +139,14 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
     </div>
 
     <script src="js/accordian.js"></script>
+    <script>
+
+    // Display toast when update successful
+    <?php if( isset($_GET['kupdate']) && $_GET['kupdate'] === 'success') {
+      echo 'mw.successToast("Record has been updated","#main-content");';
+    }
+    ?>
+
+    </script>
   </body>
 </html>
