@@ -63,7 +63,7 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
               </td>
               <td class="button-set" align="right">
 
-                <form method="post" action="contact-details-update-display.php">
+                <form method="get" action="contact-details-update-display.php">
                   <button >Update</button>
                   <input type="hidden" name="txtId" value="<?php echo $rs_contact_details_rows['cid'];?>">
                   <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">

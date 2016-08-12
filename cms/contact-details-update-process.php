@@ -222,12 +222,12 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
   if (isset($_POST['txtPostalCode'])) {
 
-    $vPostal = ucfirst(strtolower(trim($_POST['txtPostalCode'])));
+    $vPostalCode = ucfirst(strtolower(trim($_POST['txtPostalCode'])));
 
-    if ($vPostal !== '') {
+    if ($vPostalCode !== '') {
 
       // Remove harmful characters from password
-      $vPostal = filter_var($vPostal, FILTER_SANITIZE_STRING);
+      $vPostalCode = filter_var($vPostalCode, FILTER_SANITIZE_STRING);
 
     }
 
@@ -244,7 +244,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     $qs .= '&txtId=' . $vid;
     $qs .= "&kname=".urlencode($vName);
     $qs .= "&ksurname=".urlencode($vSurname);
-    $qs .= "&kTitle=".urlencode($vTitle);
+    $qs .= "&ktitle=".urlencode($vTitle);
     $qs .= "&kemail=".urlencode($vEmail);
     $qs .= "&kmobile=".urlencode($vMobile);
     $qs .= "&klandline=".urlencode($vLandline);
@@ -256,15 +256,16 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     $qs .= "&kpostalcode=".urlencode($vPostalCode);
 
     // Go to show updated contact
-    if($vid === '00000001'){
+    if($vid === '00000000001'){
       $intId = base64_encode(1);
-    } elseif ($vid === '00000002') {
+    } elseif ($vid === '00000000002') {
       $intId = base64_encode(2);
     }
 
+
     $qs .= '&kid=' . $intId;
 
-   header('Location: contact-particulars-display.php' . $qs);
+   header('Location: contact-details-update-display.php' . $qs);
     exit();
 
     // validation check
@@ -279,7 +280,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     require('inc-function-escapestring.php');
 
     // ----------------- CREATE SQL QUERY STRING -------------------------
-    $sql_contact_details_update = sprintf("UPDATE tblcontactdetails SET ccontactpersonname = %s, ccontactpersonsurname = %s, ccontactpersontitle = %s",
+    $sql_contact_details_update = sprintf("UPDATE tblcontactdetails SET ccontactpersonname = %s, ccontactpersonsurname = %s, ccontactpersontitle = %s ",
       escapestring($vconn_creativeangels, $vName, 'text'),
       escapestring($vconn_creativeangels, $vSurname, 'text'),
       escapestring($vconn_creativeangels, $vTitle, 'text')
@@ -288,7 +289,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     // Check if email was changed
     if ($vEmail !== '') {
 
-      $sql_contact_details_update .= sprintf("cemail = %s, ",
+      $sql_contact_details_update .= sprintf(", cemail = %s ",
         escapestring($vconn_creativeangels, $vEmail, 'text')
       );
 
@@ -297,7 +298,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     // Check if Mobile number was changed
     if ($vMobile !== '') {
 
-      $sql_contact_details_update .= sprintf("ccell = %s, ",
+      $sql_contact_details_update .= sprintf(", ccell = %s ",
         escapestring($vconn_creativeangels, $vMobile, 'text')
       );
 
@@ -306,7 +307,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     // Check if Landline number was changed
     if ($vLandline !== '') {
 
-      $sql_contact_details_update .= sprintf("clandline = %s, ",
+      $sql_contact_details_update .= sprintf(", clandline = %s ",
         escapestring($vconn_creativeangels, $vLandline, 'text')
       );
 
@@ -315,7 +316,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     // Check if address line 1 was changed
     if ($vAdd1 !== '') {
 
-      $sql_contact_details_update .= sprintf("caddress1 = %s, ",
+      $sql_contact_details_update .= sprintf(", caddress1 = %s ",
         escapestring($vconn_creativeangels, $vAdd1, 'text')
       );
 
@@ -324,7 +325,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     // Check if address line 2 was changed
     if ($vAdd2 !== '') {
 
-      $sql_contact_details_update .= sprintf("caddress2 = %s, ",
+      $sql_contact_details_update .= sprintf(", caddress2 = %s ",
         escapestring($vconn_creativeangels, $vAdd2, 'text')
       );
 
@@ -333,7 +334,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     // Check if address line 3 was changed
     if ($vAdd3 !== '') {
 
-      $sql_contact_details_update .= sprintf("caddress3 = %s, ",
+      $sql_contact_details_update .= sprintf(", caddress3 = %s ",
         escapestring($vconn_creativeangels, $vAdd3, 'text')
       );
 
@@ -342,38 +343,38 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     // Check if suburb was changed
     if ($vSuburb !== '') {
 
-      $sql_contact_details_update .= sprintf("csuburb = %s, ",
+      $sql_contact_details_update .= sprintf(", csuburb = %s ",
         escapestring($vconn_creativeangels, $vSuburb, 'text')
       );
 
     }
 
     // Update City
-    $sql_contact_details_update .= sprintf("ccity = %s, ",
+    $sql_contact_details_update .= sprintf(", ccity = %s ",
       escapestring($vconn_creativeangels, $vCity, 'text')
     );
 
     // Check if postal code was changed
     if ($vPostalCode !== '') {
 
-      $sql_contact_details_update .= sprintf("cpostalcode = %s, ",
+      $sql_contact_details_update .= sprintf(", cpostalcode = %s ",
         escapestring($vconn_creativeangels, $vPostalCode, 'text')
       );
 
     }
 
     // END OF SQL QUERY STRING CREATION
-
     // Execute insert statement
     $vcontact_details_update_results = mysqli_query($vconn_creativeangels, $sql_contact_details_update);
+
 
     // ----------------- SUCCESSFUL DATABASE UPDATE-------------------------
     if($vcontact_details_update_results) {
 
       // Go to show updated contact
-      if($vid === '00000001'){
+      if($vid === '00000000001'){
         $intId = base64_encode(1);
-      } elseif ($vid === '00000002') {
+      } elseif ($vid === '00000000002') {
         $intId = base64_encode(2);
       }
 
@@ -387,7 +388,8 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
     } else { // END OF SUCCESSFUL UPDATE
 
-      header('Location: signout.php');
+      echo 'Database not updated';
+      //header('Location: signout.php');
       exit();
 
     }
@@ -396,7 +398,8 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
 } else { // END OF PROCESS FILE
 
-  header('Location:signout.php');
+  echo 'Security Token';
+  //  header('Location:signout.php');
   exit();
 }
 ?>
