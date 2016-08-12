@@ -56,6 +56,23 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
 
           <?php if ($vid === '1') { echo '<h2>Durban</h2>'; } elseif ($vid === '2' ) { echo '<h2>Cape Town</h2>'; } ?>
 
+          <tr>
+            <td>
+              &nbsp;
+            </td>
+            <td>
+
+              <form method="post" action="contact-details-update-display.php">
+                <button >Update</button>
+                <input type="hidden" name="txtId" value="<?php echo $rs_contact_details_rows['cid'];?>">
+                <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+              </form>
+
+            </td>
+          </tr>
+
+
+
           <table cellspacing="0" class="tbldatadisplay">
 
               <!--On all of these tds I placed an if statement that echos a "not Available" clause to avoid the page displaying "na" when the content is not available. This was optional, however this must not be displayed on the contact page of the contact us page on the front end of the website.-->
