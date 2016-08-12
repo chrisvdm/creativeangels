@@ -25,7 +25,7 @@ if (!$vconn_creativeangels) {
     } else {
 
 		//INDICATE WHICH DATABASE YOU WANT TO WORK WITH
-		mysqli_select_db($vconn_creativeangels, $vDatabase);
+		mysqli_select_db($vconn_creativeangels, $vconnDatabase);
 
 	}
 ?>

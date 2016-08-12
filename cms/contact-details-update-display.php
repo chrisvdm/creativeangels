@@ -2,6 +2,7 @@
 <?php
 if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && isset($_POST['txtId']) && $_POST['txtId'] !== ''){
 
+
   // COLLECT ID FROM EDIT BUTTON field
   $vid = $_POST['txtId'];
 
@@ -95,7 +96,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
           <!-- FORM --------------------------------------------------------->
           <!-- Used to update the contact details of a particular city -->
-          <form class="form" method="post" action="contact-details-update-process.php">
+          <form class="form" method="get" action="contact-details-update-process.php">
 
             <div class="half-float">
 
@@ -140,7 +141,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
               <input type="text" name="txtAdd2" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['caddress2']) && $rs_contact_details_update_rows['caddress2'] !== 'na'){ echo $rs_contact_details_update_rows['caddress2']; } ?>">
 
               <label>Address Line 3:</label>
-              
+
               <input type="text" name="txtAdd3" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['caddress3']) && $rs_contact_details_update_rows['caddress3'] !== 'na'){ echo $rs_contact_details_update_rows['caddress3']; } ?>">
 
               <label>Suburb:</label>
@@ -160,7 +161,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
             <div class="clearfix"></div>
 
             <!-- Hidden field for id -->
-            <input type="hidden" name="txtId" value="<?php echo $rs_admin_update_rows['cid']; ?>">
+            <input type="hidden" name="txtId" value="<?php echo $rs_contact_details_update_rows['cid']; ?>">
 
             <!-- Security hidden field -->
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
