@@ -1,4 +1,5 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
+<?php require('inc-email-encryption-function.php'); ?>
 <?php
 if (isset($_GET['kid']) && $_GET['kid'] !== '') {
 
@@ -53,39 +54,49 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
 
-          <p>&nbsp;</p>
-
-          <?php if ($vid === '1') { echo '<h3>Durban</h3>'; } elseif ($vid === '2' ) { echo '<h3>Cape Town</h3>'; } ?>
+          <?php if ($vid === '1') { echo '<h2>Durban</h2>'; } elseif ($vid === '2' ) { echo '<h2>Cape Town</h2>'; } ?>
 
           <table cellspacing="0" class="tbldatadisplay">
 
               <!--On all of these tds I placed an if statement that echos a "not Available" clause to avoid the page displaying "na" when the content is not available. This was optional, however this must not be displayed on the contact page of the contact us page on the front end of the website.-->
               <tr id="record<?php echo $rs_contact_details_rows['cid']; ?>">
-              <td width=100><strong>Name:</strong></td>
+              <td  class="accent"width=100><strong>Name:</strong></td>
               <td><?php echo $rs_contact_details_rows['ccontactpersonname'] . ' ' . $rs_contact_details_rows['ccontactpersonsurname']; ?></td>
               </tr>
 
               <tr>
-              <td width=100><strong>Position:</strong></td>
+              <td  class="accent"width=100><strong>Position:</strong></td>
               <td><?php if ($rs_contact_details_rows['ccontactpersontitle'] !== "na") { echo $rs_contact_details_rows['ccontactpersontitle']; } else { echo "Not Available"; } ?></td>
               </tr>
 
               <tr>
-              <td width=100><strong>Office No:</strong></td>
+              <td  class="accent"width=100><strong>Office No:</strong></td>
               <td><?php if ($rs_contact_details_rows['clandline'] !== "na") { echo $rs_contact_details_rows['clandline']; } else { echo "Not Available"; } ?></td>
               </tr>
 
               <tr>
-              <td width=100><strong>Cell No:</strong></td>
+              <td  class="accent"width=100><strong>Cell No:</strong></td>
               <td><?php if ($rs_contact_details_rows['ccell'] !== "na") { echo $rs_contact_details_rows['ccell']; } else { echo "Not Available"; } ?></td>
               </tr>
               <tr>
-             <td width=100><strong>Email:</strong></td>
-             <td><?php if ($rs_contact_details_rows['cemail'] !== "na") { echo $rs_contact_details_rows['cemail']; } else { echo "Not Available"; } ?></td>
+             <td  class="accent"width=100><strong>Email:</strong></td>
+
+             <!-- //Creating the e-mail link to display -->
+             <td>
+               <?php
+              if ($rs_contact_details_rows['cemail'] !== 'na'){
+
+                $email = $rs_contact_details_rows['cemail'];
+                echo '<a href="mailto:' . escapeHex_email($email) . '">' . escapeHexEntity_email($email) . '</a>';
+
+              } else {
+                echo 'Not Available';
+              }
+              ?></td>
              </tr>
 
              <tr>
-             <td><strong>Address:</strong></td>
+             <td class="accent"><strong>Address:</strong></td>
              <td>
                  <!--I wrote this if statement so that when there is no address available, only the relevant cit y is displayed. normally the code looked like this:
 

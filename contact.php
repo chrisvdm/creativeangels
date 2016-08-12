@@ -1,4 +1,5 @@
 <?php require('inc-public-pre-doctype.php'); ?>
+<?php require('inc-email-encryption-function.php'); ?>
 <?php
 
      // Create SQL statement to fetch all records from tblcontactdetails
@@ -55,9 +56,16 @@
 					<br>
 					<br>
 
-					<p><?php if ($rs_contact_details_rows['cemail'] !== "na") {
-						echo $rs_contact_details_rows['cemail'];
-					} ?></p>
+					<p>
+						<?php
+						if ($rs_contact_details_rows['cemail'] !== 'na'){
+
+							$email = $rs_contact_details_rows['cemail'];
+							echo '<a href="mailto:' . escapeHex_email($email) . '">' . escapeHexEntity_email($email) . '</a>';
+
+						}
+						?>
+					</p>
 
 					<?php do { ?>
 						<div class="location">
@@ -90,7 +98,16 @@
 					<?php } while ($rs_contact_details_rows = mysqli_fetch_assoc($rs_contact_details)) ?>
 
 					<!-- Email -->
-					<p><?php if ($rs_contact_details_rows['cemail'] !== "na") { echo $rs_contact_details_rows['cemail']; } ?></p>
+					<p> <?php
+					if ($rs_contact_details_rows['cemail'] !== 'na'){
+
+						$email = $rs_contact_details_rows['cemail'];
+						echo '<a href="mailto:' . escapeHex_email($email) . '">' . escapeHexEntity_email($email) . '</a>';
+
+					} else {
+						echo 'Not Available';
+					}
+					?></p>
 
 
 				</article>
@@ -102,7 +119,15 @@
 					<br>
 					<br>
 
-					<p><?php if ($rs_contact_details_rows['cemail'] !== "na") { echo $rs_contact_details_rows['cemail']; } ?></p>
+					<p> <?php
+					if ($rs_contact_details_rows['cemail'] !== 'na'){
+
+						$email = $rs_contact_details_rows['cemail'];
+						echo '<a href="mailto:' . escapeHex_email($email) . '">' . escapeHexEntity_email($email) . '</a>';
+
+					} 
+					?></p>
+
 				</article>
 
 				<article id="content_left_article_3">

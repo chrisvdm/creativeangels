@@ -246,6 +246,11 @@ form.form {
   display: table-row;
 }
 
+.accent {
+  color: #a7bbd6;
+  font-weight: 600;
+}
+
 
 
 /*MODAL STYLING*/
