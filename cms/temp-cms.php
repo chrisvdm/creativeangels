@@ -41,9 +41,6 @@
 
         </section>
 
-        <!-- FOOTER -->
-        <?php require('inc-cms-footer.php'); ?>
-
       </section>
       <div class="clearfix"></div>
 
