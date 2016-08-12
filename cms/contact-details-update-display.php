@@ -97,16 +97,18 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
           <!-- Used to update the contact details of a particular city -->
           <form class="form" method="get">
 
-            <label>Contact Person Name</label>
-            <input type="text" name="txtCPName" />
+            <label>Contact Person Name:</label>
+
+            <input type="text" name="txtCPName" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['ccontactpersonname']) && $rs_contact_details_update_rows['ccontactpersonname'] !== 'na'){ echo $rs_contact_details_update_rows['ccontactpersonname']; } ?>">
+
+            <label>Contact Person Surname:</label>
+
+            <input type="text" name="txtCPSurname" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['ccontactpersonsurname']) && $rs_contact_details_update_rows['ccontactpersonsurname'] !== 'na'){ echo $rs_contact_details_update_rows['ccontactpersonsurname']; } ?>">
 
 
           </form>
 
         </section>
-
-        <!-- FOOTER -->
-        <?php require('inc-cms-footer.php'); ?>
 
       </section>
       <div class="clearfix"></div>
