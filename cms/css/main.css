@@ -136,7 +136,7 @@ ul.submenu {
 }
 
 .selected {
-  background-color: #a7bbd6;
+  color: #a7bbd6;
 }
 
 .separator{
@@ -156,7 +156,7 @@ a.branding-trigger:hover {
 .warning_msg {
   font-size: 90%;
   font-style: italic;
-  color: #c73e1dz;
+  color: #c73e1d;
   display: inline;
 }
 
@@ -212,7 +212,8 @@ input {
   padding: 0.3125em;
   outline: none;
   border-style: none;
-  border-bottom: dashed 2px #aaa;
+  border: solid 2px #aaa;
+  color: #777;
   outline-color: #777;
 }
 
@@ -225,6 +226,10 @@ input {
 
 .form input[name='btnAddNew']{
   display:inline-block;
+}
+
+.form label {
+  color: #2C2B3C;
 }
 
 form.form {
@@ -285,7 +290,9 @@ form.form {
 
 
 
-/*MODAL STYLING*/
+/* ============================================================================ MODAL STYLING
+============================================================================ */
+
 .mw-delete {
   color: #fafafa;
   background-color: #c73e1d;

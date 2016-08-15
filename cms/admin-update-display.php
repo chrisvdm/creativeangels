@@ -97,7 +97,7 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
           <form class="form" action="admin-update-process.php" method="post" onsubmit="return">
 
             <!-- Enter first name -->
-            <label>* First name:</label>
+            <label>* First name</label>
 
             <!-- Displays warning message above empty field -->
             <?php echo errorMsg('kname', 'name'); ?>
@@ -105,7 +105,7 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
             <input type="text" name="txtName" autocomplete="off" autofocus value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_admin_update_rows['cname']) && $rs_admin_update_rows['cname'] !== 'na'){ echo $rs_admin_update_rows['cname']; } ?>">
 
             <!-- Enter Surname -->
-            <label>* Surname:</label>
+            <label>* Surname</label>
 
             <!-- Warning message -->
             <?php echo errorMsg('ksurname', 'surname'); ?>

@@ -11,9 +11,14 @@
     <li class="opt-menu">User Log</li>
   </ul>
 
-  <li class="opt-menu">User Accounts</li>
+  <li class="opt-menu">User Accounts
+    <span class="oc-obj">
+      <div data-bar="1"></div>
+      <div data-bar="2"></div>
+    </span>
+  </li>
   <ul class="submenu">
-    <li><a  class="opt-menu"href="admin-display.php">Display</a></li>
+    <li><a  class="opt-menu"href="admin-display.php">User Account Overview</a></li>
     <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
       <li><a  class="opt-menu"href="admin-add-new.php">Add Users</a></li>
     <?php } ?>
@@ -31,3 +36,5 @@
   <!-- FOOTER -->
   <?php require('inc-cms-footer.php'); ?>
 </ul>
+
+<script src="js/oc.js"></script>

@@ -101,35 +101,38 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
 
             <div class="half-float">
 
-              <h3 class="tbl-heading">Contact Person Details</h3>
+              <h3 class="tbl-heading accent">Contact Person Details</h3>
 
               <!-- First Name -->
-              <label>First Name:</label>
+              <label>First Name</label>
 
+              <?php echo errorMsg('kname', 'name'); ?>
               <input type="text" name="txtName" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kname'); } elseif (isset($rs_contact_details_update_rows['ccontactpersonname']) && $rs_contact_details_update_rows['ccontactpersonname'] !== 'na'){ echo $rs_contact_details_update_rows['ccontactpersonname']; } ?>">
 
               <!-- Surname -->
-              <label>Surname:</label>
+              <label>Surname</label>
 
+              <?php echo errorMsg('ksurname', 'surname'); ?>
               <input type="text" name="txtSurname" value="<?php if(isset($_GET['ksurname'])){ echo displayTxt('ksurname'); } elseif (isset($rs_contact_details_update_rows['ccontactpersonsurname']) && $rs_contact_details_update_rows['ccontactpersonsurname'] !== 'na'){ echo $rs_contact_details_update_rows['ccontactpersonsurname']; } ?>">
 
               <!-- Job title -->
-              <label>Job Title:</label>
+              <label>Job Title</label>
 
+              <?php echo errorMsg('ktitle', 'txtTitle'); ?>
               <input type="text" name="txtTitle" value="<?php if(isset($_GET['ktitle'])){ echo displayTxt('ktitle'); } elseif (isset($rs_contact_details_update_rows['ccontactpersontitle']) && $rs_contact_details_update_rows['ccontactpersontitle'] !== 'na'){ echo $rs_contact_details_update_rows['ccontactpersontitle']; } ?>">
 
               <!-- landline -->
-              <label>Landline:</label>
+              <label>Landline</label>
 
               <input type="text" name="txtLandline" value="<?php if(isset($_GET['klandline'])){ echo displayTxt('klandline'); } elseif (isset($rs_contact_details_update_rows['clandline']) && $rs_contact_details_update_rows['clandline'] !== 'na'){ echo $rs_contact_details_update_rows['clandline']; } ?>">
 
               <!-- Mobile -->
-              <label>Mobile:</label>
+              <label>Mobile</label>
 
               <input type="text" name="txtMobile" value="<?php if(isset($_GET['kmobile'])){ echo displayTxt('kmobile'); } elseif (isset($rs_contact_details_update_rows['ccell']) && $rs_contact_details_update_rows['ccell'] !== 'na'){ echo $rs_contact_details_update_rows['ccell']; } ?>">
 
               <!-- Email -->
-              <label>Email:</label>
+              <label>Email</label>
 
               <input type="text" name="txtEmail" value="<?php if(isset($_GET['kemail'])){ echo displayTxt('kemail'); } elseif (isset($rs_contact_details_update_rows['cemail']) && $rs_contact_details_update_rows['cemail'] !== 'na'){ echo $rs_contact_details_update_rows['cemail']; } ?>">
 
@@ -137,29 +140,29 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
 
             <div class="half-float">
 
-              <h3>Address Details</h3>
+              <h3 class="accent">Address Details</h3>
 
-              <label>Address Line 1:</label>
+              <label>Address Line 1</label>
 
               <input type="text" name="txtAdd1" value="<?php if(isset($_GET['kadd1'])){ echo displayTxt('kadd1'); } elseif (isset($rs_contact_details_update_rows['caddress1']) && $rs_contact_details_update_rows['caddress1'] !== 'na'){ echo $rs_contact_details_update_rows['caddress1']; } ?>">
 
-              <label>Address Line 2:</label>
+              <label>Address Line 2</label>
 
               <input type="text" name="txtAdd2" value="<?php if(isset($_GET['kadd2'])){ echo displayTxt('kadd2'); } elseif (isset($rs_contact_details_update_rows['caddress2']) && $rs_contact_details_update_rows['caddress2'] !== 'na'){ echo $rs_contact_details_update_rows['caddress2']; } ?>">
 
-              <label>Address Line 3:</label>
+              <label>Address Line 3</label>
 
               <input type="text" name="txtAdd3" value="<?php if(isset($_GET['kadd3'])){ echo displayTxt('kadd3'); } elseif (isset($rs_contact_details_update_rows['caddress3']) && $rs_contact_details_update_rows['caddress3'] !== 'na'){ echo $rs_contact_details_update_rows['caddress3']; } ?>">
 
-              <label>Suburb:</label>
+              <label>Suburb</label>
 
               <input type="text" name="txtSuburb" value="<?php if(isset($_GET['ksuburb'])){ echo displayTxt('ksuburb'); } elseif (isset($rs_contact_details_update_rows['csuburb']) && $rs_contact_details_update_rows['csuburb'] !== 'na'){ echo $rs_contact_details_update_rows['csuburb']; } ?>">
 
-              <label>City:</label>
+              <label>City</label>
 
               <input type="text" name="txtCity" value="<?php if(isset($_GET['kcity'])){ echo displayTxt('kcity'); } elseif (isset($rs_contact_details_update_rows['ccity']) && $rs_contact_details_update_rows['ccity'] !== 'na'){ echo $rs_contact_details_update_rows['ccity']; } ?>">
 
-              <label>Postal Code:</label>
+              <label>Postal Code</label>
 
               <input type="text" name="txtPostalCode" value="<?php if(isset($_GET['kpostalcode'])){ echo displayTxt('kpostalcode'); } elseif (isset($rs_contact_details_update_rows['cpostalcode']) && $rs_contact_details_update_rows['cpostalcode'] !== 'na'){ echo $rs_contact_details_update_rows['cpostalcode']; } ?>">
 
