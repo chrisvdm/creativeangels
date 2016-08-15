@@ -47,7 +47,7 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Contact Details</h2>
+            <h2>Contact Details > <strong><?php if ($vid === '1') { echo 'Durban'; } elseif ($vid === '2' ) { echo 'Cape Town'; } ?></strong></h2>
           </div>
 
         </header>
@@ -57,18 +57,6 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
 
 
           <table cellspacing="0" class="tbldatadisplay">
-
-            <tr class="tbl-heading">
-              <td><strong><?php if ($vid === '1') { echo 'Durban'; } elseif ($vid === '2' ) { echo 'Cape Town'; } ?></strong>
-              </td>
-            <td align="right" class="button-set">
-                  <form method="get" action="contact-details-update-display.php">
-                    <button>Update</button>
-                    <input type="hidden" name="txtId" value="<?php echo $rs_contact_details_rows['cid'];?>">
-                    <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
-                  </form>
-                </td>
-            </tr>
 
               <!--On all of these tds I placed an if statement that echos a "not Available" clause to avoid the page displaying "na" when the content is not available. This was optional, however this must not be displayed on the contact page of the contact us page on the front end of the website.-->
               <tr id="record<?php echo $rs_contact_details_rows['cid']; ?>">
@@ -127,9 +115,16 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
              </td>
            </tr>
            <tr>
-             <td colspan="2">
-                   <small><i>Last Modified:  <?php echo $rs_contact_details_rows['cmodified']; ?></i></small>
-             </td>
+           <td>
+                 <form method="get" action="contact-details-update-display.php">
+                   <button>Update</button>
+                   <input type="hidden" name="txtId" value="<?php echo $rs_contact_details_rows['cid'];?>">
+                   <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+                 </form>
+               </td>
+               <td>
+                     <small><i>Last Modified:  <?php echo $rs_contact_details_rows['cmodified']; ?></i></small>
+               </td>
            </tr>
          </table>
 

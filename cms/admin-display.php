@@ -45,7 +45,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>User Account Overview</h2>
+            <h2>User Accounts > Overview</h2>
           </div>
 
         </header>
@@ -60,9 +60,9 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
           <table cellspacing="0" class="tbldatadisplay">
             <!-- Row 1 -->
-            <tr>
-              <td colspan="7">Number of Users: <?php echo $rs_cms_rows_total; ?></td>
-            </tr>
+            <!-- <tr>
+
+            </tr> -->
 
             <!-- HEADING ROW ------------------------------------------------->
 
@@ -72,7 +72,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               <td align="center">&nbsp;</td>
               <td align="center">&nbsp;</td>
               <td align="center">&nbsp;</td>
-              <td align="center">&nbsp;</td>
+              <td>Number of Users: <?php echo $rs_cms_rows_total; ?></td>
             </tr>
 
             <!-- DATA TO DISPLAY --------------------------------------------->
@@ -106,7 +106,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                   <!-- send security variable to process file -->
                   <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
-                  <input type="submit" name="btnEdit" value="Edit">
+                  <input type="submit" name="btnEdit" value="Update">
                 </form>
 
               </td>

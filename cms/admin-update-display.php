@@ -85,7 +85,7 @@ if( isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurit
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Edit User Details</h2>
+            <h2>Update > <?php echo $rs_admin_update_rows['cname'] . ' ' . $rs_admin_update_rows['csurname']; ?></h2>
           </div>
 
         </header>

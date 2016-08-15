@@ -64,6 +64,7 @@ a {
 
 #main-content {
   position: relative;
+  padding: 1.25em 2.5em;
 }
 
 footer {
@@ -79,7 +80,9 @@ footer {
 }
 
 .base, .opt-menu {
-  padding: 0.625em 1.25em;
+  /*padding: 0.625em 1.25em;*/
+
+  padding: 1.25em 2.5em;
   webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -87,7 +90,7 @@ footer {
 header {
   position: relative;
   color: #fafafa;
-  background-color: #403F4C;
+  background-color: #a7bbd6;
 }
 
 .branding-container {
@@ -128,6 +131,7 @@ ul.submenu {
 .opt-menu {
   display: block;
   width: 100%;
+  position: relative;
 }
 
 .right-content-wrapper {
@@ -181,8 +185,8 @@ table.tbldetailsdisplay {
 }
 
 tr.tbl-heading {
-  color: #fafafa;
-  background-color: #a7bbd6;
+  color: #a7bbd6;
+  background-color: #eee;
 }
 
 /*Buttons*/
@@ -232,10 +236,14 @@ input {
   color: #2C2B3C;
 }
 
+.form h3 {
+  margin-top: 0;
+}
+
 form.form {
   margin: 0 auto;
-  margin-top: 1.25em;
-  padding: 0.625em 1.25em;
+  /*margin-top: 1.25em;*/
+  /*padding: 0.625em 1.25em;*/
 }
 
 .form .half-float input[type="text"] {
@@ -287,6 +295,10 @@ form.form {
   color: #a7bbd6;
   font-weight: 600;
 }
+
+/* IMAGES */
+
+
 
 
 
