@@ -114,19 +114,24 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
                  } ?>
              </td>
            </tr>
-           <tr>
-           <td>
-                 <form method="get" action="contact-details-update-display.php">
-                   <button>Update</button>
-                   <input type="hidden" name="txtId" value="<?php echo $rs_contact_details_rows['cid'];?>">
-                   <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
-                 </form>
-               </td>
-               <td>
-                     <small><i>Last Modified:  <?php echo $rs_contact_details_rows['cmodified']; ?></i></small>
-               </td>
-           </tr>
          </table>
+
+         <div class="button-set">
+
+           <form method="get" action="contact-details-update-display.php">
+             <button>Update</button>
+             <input type="hidden" name="txtId" value="<?php echo $rs_contact_details_rows['cid'];?>">
+             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+           </form>
+
+         </div>
+
+         <p>
+              <small><i>Last Modified:  <?php echo $rs_contact_details_rows['cmodified']; ?></i></small>
+         </p>
+
+
+
 
 
         </section>

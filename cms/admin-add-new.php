@@ -81,7 +81,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           <form id="form" class="form" action="admin-add-process.php" method="post" onsubmit="return valForm()">
 
             <!-- FIRST NAME -->
-            <label>First name:</label>
+            <label>First name</label>
 
             <!-- Displays warning message above empty field -->
             <?php echo errorMsg('kname', 'name'); ?>
@@ -89,14 +89,14 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             <input type="text" name="txtName" autocomplete="off" autofocus value="<?php echo displayTxt('kname'); ?>">
 
             <!-- SURNAME -->
-            <label>Surname:</label>
+            <label>Surname</label>
 
             <?php echo errorMsg('ksurname', 'surname'); ?>
 
             <input type="text" name="txtSurname" autocomplete="off" value="<?php echo displayTxt('ksurname'); ?>">
 
             <!-- PASSWORD -->
-            <label>Password:</label>
+            <label>Password</label>
 
             <!-- Reminds user to enter password on validation fail -->
             <?php echo errorMsg('kpassword','password'); ?>
@@ -105,11 +105,11 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
             <input type="password" name="txtPw1" autocomplete="off" value="">
 
-            <label>Retype password:</label>
+            <label>Retype password</label>
             <input type="password" name="txtPw2" autocomplete="off" value="" onblur="matchPw()" >
 
             <!-- EMAIL -->
-            <label>Email:</label>
+            <label>Email</label>
 
             <!-- Email validation error msg -->
             <?php echo errorMsg('kemail', 'email'); ?>
@@ -119,7 +119,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
 
             <!-- MOBILE -->
-            <label>Mobile:</label>
+            <label>Mobile</label>
 
             <!-- Mobile validation error msg -->
             <?php echo errorMsg('kmobile', 'mobile number'); ?>
@@ -127,10 +127,17 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
-            <!-- submit form -->
-            <button type="submit" name="btnAddNew">Add New</button>
 
-            <a class="button danger-btn" href="cms-homepage.php" name="btnCancel">Cancel</a>
+            <!-- Button set -->
+            <div class="button-set">
+
+              <!-- submit form -->
+              <button type="submit" name="btnAddNew">Add New</button>
+
+              <a class="button danger-btn" href="cms-homepage.php" name="btnCancel">Cancel</a>
+
+            </div>
+
 
             <div id="subErr" class="warning_msg"></div>
 

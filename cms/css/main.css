@@ -95,8 +95,9 @@ header {
 
 .branding-container {
   position: absolute;
-  bottom: 1.5em;
-  right: 1.25em;
+  right: 2.5em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 ul.menu li {
@@ -143,10 +144,6 @@ ul.submenu {
   color: #a7bbd6;
 }
 
-.separator{
-  margin: 0 0.625em;
-}
-
 a.branding-trigger {
   padding: 0.625em;
   text-decoration: none;
@@ -169,6 +166,7 @@ table {
   width: 100%;
   webkit-box-sizing: border-box;
   box-sizing: border-box;
+  margin-bottom: 1.25em;
 }
 
 .tbldatadisplay td {
@@ -247,7 +245,7 @@ form.form {
 }
 
 .form .half-float input[type="text"] {
-  width: 50%;
+  width: 60%;
 }
 
 /* Modifiers */
@@ -278,9 +276,9 @@ form.form {
 }
 
 .button-set {
-  padding: 0;
+  border-top: solid 1px #eee;
+  padding-top: 0.6125em;
   display: block;
-  text-align: right;
 }
 
 .hide {

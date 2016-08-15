@@ -72,9 +72,11 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
   } // END OF SURNAME VALIDATION
 
+  $vPassword1 = '';
 
   // -------------------- PASSWORD VALIDATION ----------------------------------
 if($_SESSION['svcid'] === $vid){
+
 
     if (isset($_POST['txtPw1'])) {
 
