@@ -280,88 +280,17 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     require('inc-function-escapestring.php');
 
     // ----------------- CREATE SQL QUERY STRING -------------------------
-    $sql_contact_details_update = sprintf("UPDATE tblcontactdetails SET ccontactpersonname = %s, ccontactpersonsurname = %s, ccontactpersontitle = %s ",
+    $sql_contact_details_update = sprintf("UPDATE tblcontactdetails SET ccontactpersonname = %s, ccontactpersonsurname = %s, ccontactpersontitle = %s, cemail = %s, ccell = %s, clandline = %s, caddress1 = %s, caddress2 = %s, caddress3 = %s, csuburb = %s, ccity = %s, cpostalcode = %s WHERE cid = $vid",
       escapestring($vconn_creativeangels, $vName, 'text'),
       escapestring($vconn_creativeangels, $vSurname, 'text'),
-      escapestring($vconn_creativeangels, $vTitle, 'text')
-    );
-
-    // Check if email was changed
-    if ($vEmail !== '') {
-
-      $sql_contact_details_update .= sprintf(", cemail = %s ",
-        escapestring($vconn_creativeangels, $vEmail, 'text')
+      escapestring($vconn_creativeangels, $vTitle, 'text'),
+      escapestring($vconn_creativeangels, $vEmail, 'text'),
+      escapestring($vconn_creativeangels, $vMobile, 'text'),
+      escapestring($vconn_creativeangels, $vLandline, 'text'),
+      escapestring($vconn_creativeangels, $vAdd1, 'text'),
+      escapestring($vconn_creativeangels, $vAdd2, 'text'),
+      escapestring($vconn_creativeangels, $vAdd3, 'text'), escapestring($vconn_creativeangels, $vSuburb, 'text'), escapestring($vconn_creativeangels, $vCity, 'text'), escapestring($vconn_creativeangels, $vPostalCode, 'text')
       );
-
-    }
-
-    // Check if Mobile number was changed
-    if ($vMobile !== '') {
-
-      $sql_contact_details_update .= sprintf(", ccell = %s ",
-        escapestring($vconn_creativeangels, $vMobile, 'text')
-      );
-
-    }
-
-    // Check if Landline number was changed
-    if ($vLandline !== '') {
-
-      $sql_contact_details_update .= sprintf(", clandline = %s ",
-        escapestring($vconn_creativeangels, $vLandline, 'text')
-      );
-
-    }
-
-    // Check if address line 1 was changed
-    if ($vAdd1 !== '') {
-
-      $sql_contact_details_update .= sprintf(", caddress1 = %s ",
-        escapestring($vconn_creativeangels, $vAdd1, 'text')
-      );
-
-    }
-
-    // Check if address line 2 was changed
-    if ($vAdd2 !== '') {
-
-      $sql_contact_details_update .= sprintf(", caddress2 = %s ",
-        escapestring($vconn_creativeangels, $vAdd2, 'text')
-      );
-
-    }
-
-    // Check if address line 3 was changed
-    if ($vAdd3 !== '') {
-
-      $sql_contact_details_update .= sprintf(", caddress3 = %s ",
-        escapestring($vconn_creativeangels, $vAdd3, 'text')
-      );
-
-    }
-
-    // Check if suburb was changed
-    if ($vSuburb !== '') {
-
-      $sql_contact_details_update .= sprintf(", csuburb = %s ",
-        escapestring($vconn_creativeangels, $vSuburb, 'text')
-      );
-
-    }
-
-    // Update City
-    $sql_contact_details_update .= sprintf(", ccity = %s ",
-      escapestring($vconn_creativeangels, $vCity, 'text')
-    );
-
-    // Check if postal code was changed
-    if ($vPostalCode !== '') {
-
-      $sql_contact_details_update .= sprintf(", cpostalcode = %s ",
-        escapestring($vconn_creativeangels, $vPostalCode, 'text')
-      );
-
-    }
 
     // END OF SQL QUERY STRING CREATION
     // Execute insert statement

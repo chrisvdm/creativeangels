@@ -167,8 +167,12 @@ table {
   box-sizing: border-box;
 }
 
-.tbldatadisplay td{
+.tbldatadisplay td {
   padding: 0.625em;
+}
+
+td.button-set {
+  padding: 0;
 }
 
 table.tbldetailsdisplay {
@@ -182,6 +186,10 @@ tr.tbl-heading {
 }
 
 /*Buttons*/
+
+.button-set button:last-of-type {
+  margin-right: 0;
+}
 
 .button, button, input[type="button"], input[type="submit"], input[type="reset"] {
   padding: 0.625em 1.25em;
@@ -202,7 +210,9 @@ button:hover, input[type="button"]:hover,  input[type="reset"]:hover, input[type
 
 input {
   padding: 0.3125em;
-  border: solid 2px #aaa;
+  outline: none;
+  border-style: none;
+  border-bottom: dashed 2px #aaa;
   outline-color: #777;
 }
 

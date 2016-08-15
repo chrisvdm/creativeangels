@@ -61,20 +61,18 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
             <tr class="tbl-heading">
               <td><strong><?php if ($vid === '1') { echo 'Durban'; } elseif ($vid === '2' ) { echo 'Cape Town'; } ?></strong>
               </td>
-              <td class="button-set" align="right">
-
-                <form method="get" action="contact-details-update-display.php">
-                  <button >Update</button>
-                  <input type="hidden" name="txtId" value="<?php echo $rs_contact_details_rows['cid'];?>">
-                  <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
-                </form>
-
-              </td>
+            <td align="right" class="button-set">
+                  <form method="get" action="contact-details-update-display.php">
+                    <button>Update</button>
+                    <input type="hidden" name="txtId" value="<?php echo $rs_contact_details_rows['cid'];?>">
+                    <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+                  </form>
+                </td>
             </tr>
 
               <!--On all of these tds I placed an if statement that echos a "not Available" clause to avoid the page displaying "na" when the content is not available. This was optional, however this must not be displayed on the contact page of the contact us page on the front end of the website.-->
               <tr id="record<?php echo $rs_contact_details_rows['cid']; ?>">
-              <td  class="accent"width=100><strong>Name:</strong></td>
+              <td  class="accent" width=100><strong>Name:</strong></td>
               <td><?php echo $rs_contact_details_rows['ccontactpersonname'] . ' ' . $rs_contact_details_rows['ccontactpersonsurname']; ?></td>
               </tr>
 
@@ -127,9 +125,14 @@ if (isset($_GET['kid']) && $_GET['kid'] !== '') {
 
                  } ?>
              </td>
-             </tr>
-
+           </tr>
+           <tr>
+             <td colspan="2">
+                   <small><i>Last Modified:  <?php echo $rs_contact_details_rows['cmodified']; ?></i></small>
+             </td>
+           </tr>
          </table>
+
 
         </section>
 

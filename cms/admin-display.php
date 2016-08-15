@@ -157,7 +157,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                 <td colspan="6">
                   <table cellspacing="0" class="tbldetailsdisplay">
                     <tr>
-                      <td>
+                      <td class="accent" width=200>
                         <strong>Registered:</strong>
                       </td>
                       <td>
@@ -165,7 +165,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                       </td>
                     </tr>
                     <tr>
-                      <td>
+                      <td class="accent" width=200>
                         <strong>Modified: </strong>
                       </td>
                       <td>
@@ -173,7 +173,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                       </td>
                     </tr>
                     <tr>
-                      <td>
+                      <td class="accent" width=200>
                         <strong>Access Level : </strong>
                       </td>
                       <td>
@@ -183,7 +183,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                       </td>
                     </tr>
                     <tr>
-                      <td>
+                      <td class="accent" width=200>
                         <strong>Status: </strong>
                       </td>
                       <td>
@@ -191,7 +191,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                       </td>
                     </tr>
                     <tr>
-                      <td>
+                      <td class="accent" width=200>
                         <strong>Email: </strong>
                       </td>
                       <td>
@@ -200,7 +200,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
                     </tr>
                     <tr>
                       <td>
-                        <strong>Mobile:</strong>
+                        <strong class="accent" width=200>Mobile:</strong>
                       </td>
                       <td>
                         <?php echo $rs_cms_rows['cmobile']; ?>
