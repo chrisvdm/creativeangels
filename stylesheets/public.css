@@ -140,6 +140,14 @@ p {
 	color: #cd5831;
 	font-weight: 800;
 }
+
+#google-map {
+	height: 300px;
+	background-color: grey;
+	width: 80%;
+	margin: 0 auto;
+}
+
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 @media only screen and (min-width: 481px) {
 
@@ -302,4 +310,11 @@ p {
 	clear: both;
 	font-size: 0px;
 	line-height: 0px;
+	}
+
+	/*MAP STYLING*/
+
+	#google-map {
+
+		width: 100%;
 	}

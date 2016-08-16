@@ -1,6 +1,8 @@
 <?php require('inc-public-pre-doctype.php'); ?>
 <?php require('inc-email-encryption-function.php'); ?>
 <?php
+  // Creates session security code
+    $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
      // Create SQL statement to fetch all records from tblcontactdetails
      $sql_contact_details = "SELECT * FROM tblcontactdetails";
@@ -113,11 +115,9 @@
 				</article>
 
 				<!-- CONTENT CONTAINER RIGHT ARTICLE 1 -->
+        <!-- WRITE TO US FORM -->
 				<article id="content_left_article_2">
 					<h1>WRITE TO US</h1>
-
-					<br>
-					<br>
 
 					<p> <?php
 					if ($rs_contact_details_rows['cemail'] !== 'na'){
@@ -125,8 +125,28 @@
 						$email = $rs_contact_details_rows['cemail'];
 						echo '<a href="mailto:' . escapeHex_email($email) . '">' . escapeHexEntity_email($email) . '</a>';
 
-					} 
+					}
 					?></p>
+
+          <form method="post" action="write-to-us-process.php">
+            <label for="txtName">Name</label>
+            <input type="text" name="txtName">
+
+            <br><br>
+
+            <label for="txtEmail">*Email</label>
+            <input type="email" name="txtEmail">
+
+            <label for="txtMessage">Message</label>
+            <textarea name="txtMessage" placeholder="Message goes here"></textarea>
+
+            <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+
+            <input type="submit" value="Send Message" >
+
+          </form>
+
+
 
 				</article>
 
@@ -135,6 +155,8 @@
 
 					<br>
 					<br>
+
+          <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4651.1734042333555!2d31.060058322215795!3d-29.722072062586683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa5f8fb4184204bcb!2siL+PALAZZO!5e0!3m2!1sen!2sza!4v1471332410192" frameborder="0" style="border:0" allowfullscreen></iframe>
 				</article>
 
 			</section>
