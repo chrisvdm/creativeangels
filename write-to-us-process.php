@@ -1,18 +1,18 @@
 <?php
 // ----------------------- RECAPCHA VERIFICATION -----------------------------
-
+session_start();
 //require_once('recaptchalib.php');
 $url = "https://www.google.com/recaptcha/api/siteverify";
 
-$secret = "6LfaticTAAAAAD_fCrhzljFuMC8WJ3IAzRrj4IDL";
+$captcha = $_POST['g-recaptcha-response'];
+
+$secret = '6LfaticTAAAAAD_fCrhzljFuMC8WJ3IAzRrj4IDL';
 
 //$response = $_POST['g-recaptcha-response'];
 
-$qs = $url . '?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response'];
+$resp = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $captcha);
 
-$resp = file_get_contents($qs);
-
-echo json_decode($resp);
+echo $resp;
 exit();
 
 if (!$resp->is_valid) {
