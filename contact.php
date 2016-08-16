@@ -18,7 +18,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 	<!-- HEAD CONTENT -->
 	<?php require('inc-public-head-content.php'); ?>
 
@@ -117,14 +117,6 @@
 				<article id="content_left_article_2">
 					<h1>WRITE TO US</h1>
 
-					<p> <?php
-					if ($rs_contact_details_rows['cemail'] !== 'na'){
-
-						$email = $rs_contact_details_rows['cemail'];
-						echo '<a href="mailto:' . escapeHex_email($email) . '">' . escapeHexEntity_email($email) . '</a>';
-
-					}
-					?></p>
 
           <form method="post" action="write-to-us-process.php">
             <label for="txtName">Name</label>
@@ -132,18 +124,35 @@
 
             <br><br>
 
+            <?php
+              if (isset($_GET['kemail']) && $_GET['kemail'] === '') {
+                echo '<p>
+                Please provide an email address. This is so that we can reply to your message.
+                </p>';
+              }
+            ?>
+
             <label for="txtEmail">*Email</label>
             <input type="email" name="txtEmail">
+            <br>
+
+            <?php
+              if (isset($_GET['kmsg']) && $_GET['kmsg'] === '') {
+                echo '<p>
+                Please enter your message.
+                </p>';
+              }
+            ?>
 
             <label for="txtMessage">Message</label>
             <textarea name="txtMessage" placeholder="Message goes here"></textarea>
+            <br>
 
-            <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
-
+            <div class="g-recaptcha" data-sitekey="6LfaticTAAAAAPvR8kVhcToBvbZn8Rxw6-EsHW_p"></div>
             <?php
-              require_once('recaptchalib.php');
-              $publickey = "6LfaticTAAAAAPvR8kVhcToBvbZn8Rxw6-EsHW_p"; // you got this from the signup page
-              echo recaptcha_get_html($publickey);
+              // require_once('recaptchalib.php');
+              // $publickey = "6LfaticTAAAAAPvR8kVhcToBvbZn8Rxw6-EsHW_p"; // you got this from the signup page
+              // echo recaptcha_get_html($publickey);
             ?>
 
             <input type="submit" value="Send Message" >

@@ -1,11 +1,19 @@
 <?php
 // ----------------------- RECAPCHA VERIFICATION -----------------------------
-require_once('recaptchalib.php');
-$privatekey = "6LfaticTAAAAAD_fCrhzljFuMC8WJ3IAzRrj4IDL";
-$resp = recaptcha_check_answer ($privatekey,
-                              $_SERVER["REMOTE_ADDR"],
-                              $_POST["recaptcha_challenge_field"],
-                              $_POST["recaptcha_response_field"]);
+
+//require_once('recaptchalib.php');
+$url = "https://www.google.com/recaptcha/api/siteverify";
+
+$secret = "6LfaticTAAAAAD_fCrhzljFuMC8WJ3IAzRrj4IDL";
+
+//$response = $_POST['g-recaptcha-response'];
+
+$qs = $url . '?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response'];
+
+$resp = file_get_contents($qs);
+
+echo json_decode($resp);
+exit();
 
 if (!$resp->is_valid) {
 
@@ -16,6 +24,7 @@ if (!$resp->is_valid) {
 
 } else {
   // RECAPCHA VERIFICATION PASSED
+  session_start();
 
   $validation = 0;
 
@@ -136,20 +145,21 @@ if (!$resp->is_valid) {
 
     if($eresults) {
 
-      echo 'Email Sent'; exit();
+      $qs = '?email=sent';
 
-      //header('location: contact.php' . $qs);
+      header('location: contact.php' . $qs);
       exit();
     }
 
   } else {
 
-    $qs = 'kval=failed';
+    $qs = '?kval=failed';
+    $qs .= '&kemail=' . $vEmail;
+    $qs .= '&kmsg' . $vMsg;
 
-    echo 'val failed';
 
-    //session_destroy();
-    //header('location: contact.php' . $qs);
+    header('location: contact.php' . $qs);
+    session_destroy();
 
     exit();
 
