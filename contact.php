@@ -1,8 +1,6 @@
 <?php require('inc-public-pre-doctype.php'); ?>
 <?php require('inc-email-encryption-function.php'); ?>
 <?php
-  // Creates session security code
-    $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
      // Create SQL statement to fetch all records from tblcontactdetails
      $sql_contact_details = "SELECT * FROM tblcontactdetails";

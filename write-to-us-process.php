@@ -1,7 +1,7 @@
 <?php
-
+// ----------------------- RECAPCHA VERIFICATION -----------------------------
 require_once('recaptchalib.php');
-$privatekey = "your_private_key";
+$privatekey = "6LfaticTAAAAAD_fCrhzljFuMC8WJ3IAzRrj4IDL";
 $resp = recaptcha_check_answer ($privatekey,
                               $_SERVER["REMOTE_ADDR"],
                               $_POST["recaptcha_challenge_field"],
@@ -13,18 +13,9 @@ if (!$resp->is_valid) {
   die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." .
 
        "(reCAPTCHA said: " . $resp->error . ")");
-       
+
 } else {
-  // Your code here to handle a successful verification
-
-  echo ' it works';exit();
-
-  session_start();
-
-  if (isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']) {
-
-  // Fetches email function
-  require('inc-function-auto-email.php');
+  // RECAPCHA VERIFICATION PASSED
 
   $validation = 0;
 
@@ -94,7 +85,7 @@ if (!$resp->is_valid) {
 
   } // END OF EMAIL VALIDATION
 
-
+  // ---------------------- MESSAGE VALIDATION -------------------------------
   if(isset($_POST['txtMessage']) && $_POST['txtMessage'] !== '') {
 
     $vMsg = trim($_POST['txtMessage']);
@@ -122,9 +113,6 @@ if (!$resp->is_valid) {
   }
 
   if ($validation === 0) {
-
-    // Remove line for live deployment
-    echo 'Email Sent'; exit();
 
     //------------------------- SEND AUTO EMAIL --------------------------
 
@@ -158,12 +146,13 @@ if (!$resp->is_valid) {
 
     $qs = 'kval=failed';
 
-    session_destroy();
-    header('location: contact.php' . $qs);
+    echo 'val failed';
+
+    //session_destroy();
+    //header('location: contact.php' . $qs);
 
     exit();
 
   }
 }
-
 ?>
