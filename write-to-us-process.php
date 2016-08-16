@@ -1,30 +1,30 @@
 <?php
 // ----------------------- RECAPCHA VERIFICATION -----------------------------
 session_start();
-//require_once('recaptchalib.php');
+
+// url where the verification file lives
 $url = "https://www.google.com/recaptcha/api/siteverify";
 
+// reCaptcha response
 $captcha = $_POST['g-recaptcha-response'];
 
+// private key
 $secret = '6LfaticTAAAAAD_fCrhzljFuMC8WJ3IAzRrj4IDL';
 
-//$response = $_POST['g-recaptcha-response'];
-
+// send data to reCAPTCHA verification file
 $resp = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $captcha);
 
-echo $resp;
-exit();
+$resp = json_decode($resp);
 
-if (!$resp->is_valid) {
+if (!$resp->{'success'}) {
 
   // What happens when the CAPTCHA was entered incorrectly
   die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." .
 
-       "(reCAPTCHA said: " . $resp->error . ")");
+       "(reCAPTCHA said: " . $resp->{'success'} . ")");
 
 } else {
   // RECAPCHA VERIFICATION PASSED
-  session_start();
 
   $validation = 0;
 
