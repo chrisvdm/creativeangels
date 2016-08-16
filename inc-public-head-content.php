@@ -25,6 +25,7 @@ JavaScript on your RWD website
 
 <!--[if ! lte IE 6]><!-->
 <script type="text/javascript" src="imgsizer.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script type="text/javascript">
 addLoadEvent(function() {
 if (document.getElementById && document.getElementsByTagName) {

@@ -1,21 +1,50 @@
 <?php
 
-// Fetches email function
-require('inc-function-auto-email.php');
+require_once('recaptchalib.php');
+$privatekey = "your_private_key";
+$resp = recaptcha_check_answer ($privatekey,
+                              $_SERVER["REMOTE_ADDR"],
+                              $_POST["recaptcha_challenge_field"],
+                              $_POST["recaptcha_response_field"]);
 
-$validation = 0;
+if (!$resp->is_valid) {
 
-// ------------------------- NAME VALIDATION ---------------------------------
+  // What happens when the CAPTCHA was entered incorrectly
+  die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." .
 
-if(isset($_POST['txtName']) && $_POST['txtName'] !== '') {
+       "(reCAPTCHA said: " . $resp->error . ")");
+       
+} else {
+  // Your code here to handle a successful verification
 
-  $vName = ucfirst(strtolower(trim($_POST['txtName'])));
+  echo ' it works';exit();
 
-  if ($vName !== '') {
+  session_start();
 
-    $vName = filter_var($vName, FILTER_SANITIZE_STRING);
+  if (isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']) {
 
-    if ( $vName === '') {
+  // Fetches email function
+  require('inc-function-auto-email.php');
+
+  $validation = 0;
+
+  // ------------------------- NAME VALIDATION ---------------------------------
+
+  if(isset($_POST['txtName']) && $_POST['txtName'] !== '') {
+
+    $vName = ucfirst(strtolower(trim($_POST['txtName'])));
+
+    if ($vName !== '') {
+
+      $vName = filter_var($vName, FILTER_SANITIZE_STRING);
+
+      if ( $vName === '') {
+
+        $vName = 'Anonymous';
+
+      }
+
+    } else {
 
       $vName = 'Anonymous';
 
@@ -25,100 +54,116 @@ if(isset($_POST['txtName']) && $_POST['txtName'] !== '') {
 
     $vName = 'Anonymous';
 
-  }
+  } // Name Validation
 
-} else {
+  // ------------------------- EMAIL VALIDATION ----------------------------
 
-  $vName = 'Anonymous';
+  if (isset($_POST['txtEmail'])) {
 
-} // Name Validation
+    $vEmail = strtolower(trim($_POST['txtEmail']));
 
-// ------------------------- EMAIL VALIDATION ----------------------------
+    // If sent username is not blank.
+    if ($vEmail !== '') {
 
-if (isset($_POST['txtEmail'])) {
+      //sanitize email address(Remove harmful characters)
+      $vEmail = filter_var($vEmail, FILTER_SANITIZE_EMAIL);
 
-  $vEmail = strtolower(trim($_POST['txtEmail']));
+      if ($vEmail !== ''){
 
-  // If sent username is not blank.
-  if ($vEmail !== '') {
+        // Validate email address(Check that email has correct structure)
+        if(!filter_var($vEmail, FILTER_VALIDATE_EMAIL)) {
 
-    //sanitize email address(Remove harmful characters)
-    $vEmail = filter_var($vEmail, FILTER_SANITIZE_EMAIL);
+          // If email does not validate
+          $validation++;
 
-    if ($vEmail !== ''){
+        }
 
-      // Validate email address(Check that email has correct structure)
-      if(!filter_var($vEmail, FILTER_VALIDATE_EMAIL)) {
+      } else {
 
-        // If email does not validate
+        // if $vEmail is empty after sanitisation
         $validation++;
 
       }
 
     } else {
 
-      // if $vEmail is empty after sanitisation
+      // if $vEmail is empty on arrival
+      $validation++;
+
+    }
+
+  } // END OF EMAIL VALIDATION
+
+
+  if(isset($_POST['txtMessage']) && $_POST['txtMessage'] !== '') {
+
+    $vMsg = trim($_POST['txtMessage']);
+
+    if ($vMsg !== '') {
+
+      $vMsg = filter_var($vMsg, FILTER_SANITIZE_STRING);
+
+      if ( $vMsg === '') {
+
+        $validation++;
+
+      }
+
+    } else {
+
       $validation++;
 
     }
 
   } else {
 
-    // if $vEmail is empty on arrival
     $validation++;
 
   }
 
-} // END OF EMAIL VALIDATION
+  if ($validation === 0) {
 
+    // Remove line for live deployment
+    echo 'Email Sent'; exit();
 
-if(isset($_POST['txtMessage']) && $_POST['txtMessage'] !== '') {
+    //------------------------- SEND AUTO EMAIL --------------------------
 
-  $vMsg = trim($_POST['txtMessage']);
+    $eto = 'nymanchristine@gmail.com';
 
-  if ($vMsg !== '') {
+    $esubject = 'Website Enquiry: ' . $vName;
 
-    $vMsg = filter_var($vMsg, FILTER_SANITIZE_STRING);
+    // To send HTML mail you can set the Content-type header
+    // Must be in double-quotes
+    $eheaders = "MIME-Version: 1.0\r\n";
+    $eheaders .= "Content-type: text/html; charset=iso-8859-1\r\n";
+    $eheaders .= "From: ". $vEmail . "\r\n";
 
-    if ( $vMsg === '') {
+    // ADDITIONAL HEADERS
+    // $vheaders = 'To: Mary<mary@gmail.com>, John<john@gmail.com>\r\n';
+    // $vheaders .= 'Cc: peter@gmail.com\r\n';
+    // $vheaders .= 'Bcc: sue@gmail.com\r\n';
 
-      $validation++;
+    // SEND THE MAIL
+    $eresults = mail($eto, $esubject, $vMsg, $eheaders);
 
+    if($eresults) {
+
+      echo 'Email Sent'; exit();
+
+      //header('location: contact.php' . $qs);
+      exit();
     }
 
   } else {
 
-    $validation++;
+    $qs = 'kval=failed';
+
+    session_destroy();
+    header('location: contact.php' . $qs);
+
+    exit();
 
   }
-
-} else {
-
-  $validation++;
-
 }
-
-if ($validation === 0) {
-
-  //------------------------- SEND AUTO EMAIL --------------------------
-
-  $eto = 'nymanchristine@gmail.com';
-
-  // To send HTML mail you can set the Content-type header
-  // Must be in double-quotes
-  $eheaders = "MIME-Version: 1.0\r\n";
-  $eheaders .= "Content-type: text/html; charset=iso-8859-1\r\n";
-  $eheaders .= "From: ". $vEmail . "\r\n";
-
-  // ADDITIONAL HEADERS
-  // $vheaders = 'To: Mary<mary@gmail.com>, John<john@gmail.com>\r\n';
-  // $vheaders .= 'Cc: peter@gmail.com\r\n';
-  // $vheaders .= 'Bcc: sue@gmail.com\r\n';
-
-  // SEND THE MAIL
-  $eresults = mail($eto, $esubject, $vmessage, $eheaders);
-
-}
-
 
 ?>
