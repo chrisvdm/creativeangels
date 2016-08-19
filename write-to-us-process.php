@@ -12,10 +12,12 @@ $captcha = $_POST['g-recaptcha-response'];
 $secret = '6LfaticTAAAAAD_fCrhzljFuMC8WJ3IAzRrj4IDL';
 
 // send data to reCAPTCHA verification file
-$resp = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $captcha);
+$resp = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=" . $secret . "&response=" . $captcha);
 
 $resp = json_decode($resp);
 
+echo $resp;
+exit;
 if (!$resp->{'success'}) {
 
   // What happens when the CAPTCHA was entered incorrectly

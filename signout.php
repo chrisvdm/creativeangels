@@ -3,6 +3,6 @@ session_start();
 
 session_destroy();
 
-header('Location: cms-signin.php');
+header('Location: ' . DOMAIN . 'cms-signin.php');
 exit();
 ?>

@@ -5,7 +5,7 @@
 <head>
 
 	<!-- HEAD CONTENT -->
-	<?php require('inc-public-head-content.php'); ?>
+	<?php require(PATH . '/inc-public-head-content.php'); ?>
 
 	<title>Creative Angels | Template</title>
 </head>
@@ -16,13 +16,13 @@
 	<section id="wrapper">
 
 		<!-- HEADER -->
-		<?php require('inc-public-header.php'); ?>
+		<?php require(PATH . '/inc-public-header.php'); ?>
 
 		<!-- NAVBAR WIDESCREEN -->
-		<?php require('inc-public-navbar-widescreen.php'); ?>
+		<?php require(PATH . '/inc-public-navbar-widescreen.php'); ?>
 
 		<!-- NAVBAR MOBILE-->
-		<?php require('inc-public-navbar-mobile.php'); ?>
+		<?php require(PATH . '/inc-public-navbar-mobile.php'); ?>
 
 		<!-- CONTENT CONTAINER MAIN-->
 		<section id="content_container">
@@ -49,13 +49,13 @@
 			</section>
 
 			<!-- RIGHT SIDEBAR -->
-				<?php require('inc-public-right-sidebar.php'); ?>
+				<?php require(PATH . '/inc-public-right-sidebar.php'); ?>
 
 
 		</section>
 
 		<!-- FOOTER -->
-		<?php require('inc-public-footer.php'); ?>
+		<?php require(PATH . '/inc-public-footer.php'); ?>
 
 		<div class="clear_float"></div>
 

@@ -9,7 +9,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 	<head>
 
 		<!-- HEAD CONTENT -->
-		<?php require('inc-public-head-content.php'); ?>
+		<?php require(PATH . '/inc-public-head-content.php'); ?>
 
 		<title>CAFB CMS Signin</title>
 
@@ -20,14 +20,14 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 		<section id="wrapper">
 
 			<!-- HEADER -->
-			<?php require('inc-public-header.php'); ?>
+			<?php require(PATH . '/inc-public-header.php'); ?>
 
 			<!-- Appear only on tablet layout and higher. Replaces mobile nav bar -->
 			<!-- NAVBAR TABLET AND  WIDESCREEN -->
-			<?php require('inc-public-navbar-widescreen.php'); ?>
+			<?php require(PATH . '/inc-public-navbar-widescreen.php'); ?>
 
 			<!-- NAVBAR MOBILE -->
-			<?php require('inc-public-navbar-mobile.php'); ?>
+			<?php require(PATH . '/inc-public-navbar-mobile.php'); ?>
 
 			<!-- CONTENT CONATINER MAIN -->
 			<section id="content_container">
@@ -56,7 +56,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
 						<?php } ?>
 
-						<form action="cms-signin-process.php" method="post">
+						<form action="<?php echo PATH; ?>/cms-signin-process.php" method="post">
 
 							<label>
 								Username<br><br>
@@ -76,7 +76,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
 							<button>Sign in</button>
 
-							<a style="font-size: 80%; margin: 5px;" href="cms-pw-lost.php">Forgot your password?</a>
+							<a style="font-size: 80%; margin: 5px;" href="<?php echo PATH; ?>/cms-pw-lost.php">Forgot your password?</a>
 
 						</form>
 
@@ -89,12 +89,12 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 				</section>
 
 				<!-- RIGHT SIDEBAR-->
-				<?php require('inc-public-right-sidebar.php'); ?>
+				<?php require(PATH . '/inc-public-right-sidebar.php'); ?>
 
 			</section>
 
 			<!-- FOOTER -->
-			<?php require('inc-public-footer.php'); ?>
+			<?php require(PATH . '/inc-public-footer.php'); ?>
 
 			<div class="clear_float"></div>
 

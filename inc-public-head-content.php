@@ -24,7 +24,6 @@ JavaScript on your RWD website
 -->
 
 <!--[if ! lte IE 6]><!-->
-<script type="text/javascript" src="imgsizer.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script type="text/javascript">
 addLoadEvent(function() {
@@ -46,4 +45,4 @@ The following script allows all browsers to support media queries in CSS.
 <![endif]-->
 
 
-<link href="stylesheets/public.css" rel="stylesheet" type="text/css">
+<link href="<?php echo DOMAIN; ?>/stylesheets/public.css" rel="stylesheet" type="text/css">

@@ -1,12 +1,12 @@
 <?php require('inc-public-pre-doctype.php'); ?>
-<?php require('inc-email-encryption-function.php'); ?>
+<?php require(PATH . '/inc-email-encryption-function.php'); ?>
 <?php
 
      // Create SQL statement to fetch all records from tblcontactdetails
      $sql_contact_details = "SELECT * FROM tblcontactdetails";
 
      //Connect to MYSQL Server
-     require('inc-conn.php');
+     require(PATH . '/inc-conn.php');
 
      //Execute SQL statement
      $rs_contact_details = mysqli_query($vconn_creativeangels, $sql_contact_details);
@@ -20,7 +20,7 @@
 <head>
   <script src='https://www.google.com/recaptcha/api.js'></script>
 	<!-- HEAD CONTENT -->
-	<?php require('inc-public-head-content.php'); ?>
+	<?php require(PATH . '/inc-public-head-content.php'); ?>
 
 <script src="js/hamburger-icon-animate.js" charset="utf-8"></script>
 	<link rel="stylesheet" href="css/hamburger-icon-animate.css">
@@ -34,13 +34,13 @@
 	<section id="wrapper">
 
 		<!-- HEADER -->
-		<?php require('inc-public-header.php'); ?>
+		<?php require(PATH . '/inc-public-header.php'); ?>
 
 		<!-- NAVBAR WIDESCREEN -->
-		<?php require('inc-public-navbar-widescreen.php'); ?>
+		<?php require(PATH . '/inc-public-navbar-widescreen.php'); ?>
 
 		<!-- NAVBAR MOBILE-->
-		<?php require('inc-public-navbar-mobile.php'); ?>
+		<?php require(PATH . '/inc-public-navbar-mobile.php'); ?>
 
 		<!-- CONTENT CONTAINER MAIN-->
 		<section id="content_container">
@@ -175,7 +175,7 @@
 			</section>
 
 			<!-- RIGHT SIDEBAR -->
-				<?php require('inc-public-right-sidebar.php'); ?>
+				<?php require(PATH . '/inc-public-right-sidebar.php'); ?>
 
 				<div class="clear_float"></div>
 
@@ -189,13 +189,13 @@
 		<div class="clear_float"></div>
 
 		<!-- FOOTER -->
-		<?php require('inc-public-footer.php'); ?>
+		<?php require(PATH . '/inc-public-footer.php'); ?>
 
 		<div class="clear_float"></div>
 
 	</section>
 
-	<script src="js/jquery.min.js" charset="utf-8"></script>
+	<script src="<?php echo DOMAIN; ?>/js/jquery.min.js" charset="utf-8"></script>
 	<script>
 		hamburgerIcon({
 			showMenu: function() {
