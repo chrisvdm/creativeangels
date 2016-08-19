@@ -35,6 +35,7 @@ $(document).ready(function() {
     }
 
     submenu.style.display = 'block';
+
     return submenu;
 
   }

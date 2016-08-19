@@ -149,11 +149,6 @@
             <br>
 
             <div class="g-recaptcha" data-sitekey="6LfaticTAAAAAPvR8kVhcToBvbZn8Rxw6-EsHW_p"></div>
-            <?php
-              // require_once('recaptchalib.php');
-              // $publickey = "6LfaticTAAAAAPvR8kVhcToBvbZn8Rxw6-EsHW_p"; // you got this from the signup page
-              // echo recaptcha_get_html($publickey);
-            ?>
 
             <input type="submit" value="Send Message" >
 

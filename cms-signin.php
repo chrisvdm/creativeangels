@@ -56,7 +56,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
 						<?php } ?>
 
-						<form action="<?php echo PATH; ?>/cms-signin-process.php" method="post">
+						<form action="<?php echo DOMAIN; ?>/cms-signin-process.php" method="post">
 
 							<label>
 								Username<br><br>
