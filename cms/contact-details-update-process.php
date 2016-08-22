@@ -289,7 +289,10 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
       escapestring($vconn_creativeangels, $vLandline, 'text'),
       escapestring($vconn_creativeangels, $vAdd1, 'text'),
       escapestring($vconn_creativeangels, $vAdd2, 'text'),
-      escapestring($vconn_creativeangels, $vAdd3, 'text'), escapestring($vconn_creativeangels, $vSuburb, 'text'), escapestring($vconn_creativeangels, $vCity, 'text'), escapestring($vconn_creativeangels, $vPostalCode, 'text')
+      escapestring($vconn_creativeangels, $vAdd3, 'text'),
+      escapestring($vconn_creativeangels, $vSuburb, 'text'),
+      escapestring($vconn_creativeangels, $vCity, 'text'),
+      escapestring($vconn_creativeangels, $vPostalCode, 'text')
       );
 
     // END OF SQL QUERY STRING CREATION
@@ -317,8 +320,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
 
     } else { // END OF SUCCESSFUL UPDATE
 
-      echo 'Database not updated';
-      //header('Location: signout.php');
+      header('Location: signout.php');
       exit();
 
     }
@@ -326,9 +328,7 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
   } // END OF SUCCESFUL VALIDATION
 
 } else { // END OF PROCESS FILE
-
-  echo 'Security Token';
-  //  header('Location:signout.php');
+   header('Location:signout.php');
   exit();
 }
 ?>

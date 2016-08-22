@@ -7,7 +7,7 @@
 
   <li class="opt-menu">Dashboard</li>
   <ul class="submenu">
-    <li class="opt-menu">Overview</li>
+    <li><a class="opt-menu" href="cms-homepage.php">Overview</a></li>
     <li class="opt-menu">Traffic</li>
     <li class="opt-menu">User Log</li>
   </ul>
@@ -26,6 +26,11 @@
   <ul class="submenu">
     <li><a class="opt-menu" href="contact-particulars-display.php?kid=<?php echo base64_encode(1); ?>">Durban</a></li>
     <li><a class="opt-menu" href="contact-particulars-display.php?kid=<?php echo base64_encode(2); ?>">Cape Town</a></li>
+  </ul>
+
+  <li class="opt-menu">About Details</li>
+  <ul class="submenu">
+    <li><a class="opt-menu" href="about-details-display.php">View</a></li>
   </ul>
 
   <li class="opt-menu">Log out</li>

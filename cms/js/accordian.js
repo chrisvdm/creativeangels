@@ -23,7 +23,7 @@ $(document).ready(function() {
 
   function currentPage() {
     var urlPath = window.location.href;
-    var submenu;
+    var submenu = "";
     var item = document.querySelectorAll('.submenu li a');
 
     for (  var i = 0; i < item.length; i++ ) {

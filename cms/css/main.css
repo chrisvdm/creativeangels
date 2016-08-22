@@ -210,7 +210,7 @@ button:hover, input[type="button"]:hover,  input[type="reset"]:hover, input[type
   background-color: #6b717e;
 }
 
-input {
+input, textarea {
   padding: 0.3125em;
   outline: none;
   border-style: none;
@@ -242,6 +242,18 @@ form.form {
   margin: 0 auto;
   /*margin-top: 1.25em;*/
   /*padding: 0.625em 1.25em;*/
+}
+
+.form-textarea {
+  margin-top: 0.625em;
+  margin-bottom: 1.25em;
+  width: 60%;
+  height: 20vh;
+  display: block;
+}
+
+.form-textarea.large {
+  height: 30vh;
 }
 
 .form .half-float input[type="text"] {
