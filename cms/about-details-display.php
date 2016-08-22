@@ -49,7 +49,7 @@ $rs_about_rows = mysqli_fetch_assoc($rs_about);
           <table cellspacing="0" class="tbldatadisplay">
 
               <!--On all of these tds I placed an if statement that echos a "not Available" clause to avoid the page displaying "na" when the content is not available. This was optional, however this must not be displayed on the contact page of the contact us page on the front end of the website.-->
-              <tr id="record<?php echo $rs_contact_details_rows['cid']; ?>">
+              <tr id="record<?php echo $rs_about_rows['cid']; ?>">
               <td  class="accent" width=100 valign="top"><strong>Mission Statement:</strong></td>
               <td><?php echo nl2br($rs_about_rows['amission']); ?></td>
               </tr>
@@ -64,6 +64,8 @@ $rs_about_rows = mysqli_fetch_assoc($rs_about);
 
          <div class="button-set">
 
+
+
            <form method="get" action="about-details-update-display.php">
              <button>Update</button>
              <input type="hidden" name="txtId" value="<?php echo $rs_about_rows['aid'];?>">
@@ -75,10 +77,6 @@ $rs_about_rows = mysqli_fetch_assoc($rs_about);
          <p>
               <small><i>Last Modified:  <?php echo $rs_about_rows['amodified']; ?></i></small>
          </p>
-
-
-
-
 
         </section>
 

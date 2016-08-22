@@ -18,5 +18,3 @@
         return $return;
     }
 ?>
-
-<?php //require_once('inc_email_encryption_function.php'); ?>

@@ -90,8 +90,7 @@ if( isset($_REQUEST['txtSecurity']) && $_REQUEST['txtSecurity'] === $_SESSION['s
             <label>Mission Statement</label>
 
             <?php echo errorMsg('kmission', 'mission statement'); ?>
-            <textarea class="form-textarea" name="txtmission">
-              <?php if(isset($_GET['kmission'])){ echo displayTxt('kmission'); } elseif (isset($rs_about_rows['amission']) && $rs_about_rows['amission'] !== 'na'){ echo $rs_about_rows['amission']; } ?>
+            <textarea class="form-textarea" name="txtmission"><?php if(isset($_GET['kmission'])){ echo displayTxt('kmission'); } elseif (isset($rs_about_rows['amission']) && $rs_about_rows['amission'] !== 'na'){ echo $rs_about_rows['amission']; } ?>
             </textarea>
 
             <!-- Description -->
@@ -99,8 +98,7 @@ if( isset($_REQUEST['txtSecurity']) && $_REQUEST['txtSecurity'] === $_SESSION['s
 
             <?php echo errorMsg('kdescription', 'description'); ?>
 
-            <textarea class="form-textarea large" name="txtdescription">
-              <?php if(isset($_GET['kdescription'])){ echo displayTxt('kdescription'); } elseif (isset($rs_about_rows['adescription']) && $rs_about_rows['adescription'] !== 'na'){ echo $rs_about_rows['adescription']; } ?>
+            <textarea class="form-textarea large" name="txtdescription"><?php if(isset($_GET['kdescription'])){ echo trim(displayTxt('kdescription')); } elseif (isset($rs_about_rows['adescription']) && $rs_about_rows['adescription'] !== 'na'){ echo $rs_about_rows['adescription']; } ?>
             </textarea>
 
             <!-- Hidden field for id -->

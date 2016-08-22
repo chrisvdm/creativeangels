@@ -38,6 +38,8 @@ if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecur
     $validation++;
   } // END OF MISSION STATEMENT VALIDATION
 
+  
+
   // ------------------------ DESCRIPTION VALIDATION --------------------------
 
   if (isset($_POST['txtdescription'])) {

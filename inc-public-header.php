@@ -1,11 +1,15 @@
-<header id="header_container">
-  <h1>Creative angels</h1>
+<header>
+  <div class="header-wrapper">
 
-  <div class="hia-hamburger hamburger">
-    <div data-bar="1" class="hia-bar"></div>
-    <div data-bar="2" class="hia-bar"></div>
-    <div data-bar="3" class="hia-bar"></div>
-  </div>
+    <div class="h1-wrapper">
 
-<div class="clear_float"></div>
+      <img class="mini-logo hide" src="assets/logos/logo-mobile-blck.png">
+      <img class="site-logo" src="assets/logos/logo-widescreen.png">
+
+      <h1>Creative<br>Angels</h1>
+
+    </div>
+
+    <!--==================== NAVIGATION =====================-->
+    <?php require( PATH . '/inc-public-nav.php'); ?>
 </header>

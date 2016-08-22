@@ -112,6 +112,10 @@ ul.submenu>li {
   background-color: #403F4C;
 }
 
+.menu {
+  overflow: scroll;
+}
+
 ul.menu {
   position: fixed;
   padding: 0;
@@ -247,7 +251,7 @@ form.form {
 .form-textarea {
   margin-top: 0.625em;
   margin-bottom: 1.25em;
-  width: 60%;
+  width: 80%;
   height: 20vh;
   display: block;
 }

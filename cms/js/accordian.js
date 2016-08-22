@@ -26,18 +26,23 @@ $(document).ready(function() {
     var submenu = "";
     var item = document.querySelectorAll('.submenu li a');
 
+    if(urlPath.indexOf('?') > 0 ) {
+      var kvs = urlPath.indexOf('?');
+      urlPath = urlPath.slice(0, kvs);
+      console.log(urlPath);
+    }
+
     for (  var i = 0; i < item.length; i++ ) {
       if (item[i] == urlPath) {
         item[i].style.backgroundColor = '#a7bbd6';
         var li = item[i].parentNode;
         submenu = li.parentNode;
+
+        submenu.style.display = 'block';
+
+        return submenu;
       }
     }
-
-    submenu.style.display = 'block';
-
-    return submenu;
-
   }
 
 });

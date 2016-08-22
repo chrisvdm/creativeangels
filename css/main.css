@@ -1,93 +1,363 @@
 @charset "UTF-8";
 
-@import url("html_css_reset.css");
+@import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Sacramento|Open+Sans';
+@import url("normalize.min.css");
 
-html, body {height: 100%;}
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+html {
+  overflow-y: scroll;
+}
+
 body {
-	margin: 0;
-	background-color: #fafafa;
+  font-family: 'Open Sans Condensed';
+  font-size: 100%;
+  width: 100%;
+  margin: 0;
   color: #190933;
-	}
-
-html {overflow-y: scroll;}
+  background-color: #fff;
+}
 
 img {
-max-width: 100%;
-border-style: none;
+  max-width: 100%;
+  border-style: none;
 }
 
 *img {
-width: 100%;
-border-style: none;
+  max-width: 100%;
+  border-style: none;
 }
 
-.clearfloat{
+figure img {
+  width: 100%;
+}
+
+.clearfix {
   clear: both;
-  display: table;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  visibility: hidden;
 }
 
-/* Moblie Phone Layout: 0 to 480px */
-
-/*------------------------------- FONT STYLING ------------------------------*/
+/****************************************************************************
+MOBILE DEVICES PORTRAIT up to 330
+****************************************************************************/
+.site-wrapper {
+  padding: 0.625em 1.25em;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+}
 
 h1 {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: 'Open Sans Condensed';
+  letter-spacing: 1px;
+}
+
+h2 {
   font-size: 1.75em;
+  font-family: 'Sacramento';
 }
 
-p {
-	margin: 0;
-	pading: 0;
-	}
-
-a {
-  color: #190933;
-  text-decoration: none;
+h3, h4 {
+  font-family: 'Open Sans Condensed';
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/*----------------------------- CONTAINER STYLING ---------------------------*/
+.sidebar h3 {
+  letter-spacing: 0;
+  font-weight: 600;
+  font-size: 1.5em;
+  font-family: 'Sacramento';
+  text-transform: capitalize;
+}
+
+h2, h3, h4 {
+  margin-bottom: 0.5em;
+}
 
 header {
   position: fixed;
-  width: 100%;
   top: 0;
   left: 0;
-  color: #fafafa;
-  background-color: #b084cc;
-}
-
-#site-wrapper {
-  padding-top: 5em;
-}
-
-.base-container {
+  width: 100%;
+  min-height: 4em;
   padding: 0.625em 1.25em;
+  background-color: #fff;
 }
 
-.logo {
-  padding-top: 0.75em;
-  width: 70%;
+.content-wrapper {
+  width:100%;
+  padding: 0.625em 1.25em;
+  padding-top: 6em;
+}
+
+.header-wrapper {
+  position: relative;
+}
+
+.site-logo {
+  width: 3.25em;
+  display: none;
+}
+
+.h1-wrapper {
+  width: 60%;
   float: left;
 }
 
-.hamburger-trigger {
-  width: 30%;
-  float: right;
+.mobile-menu {
+  display: block;
+  padding: 0.625em;
+  border: solid 1px #190933;
+  font-family: 'Open Sans Condensed';
+  position: absolute;
+  top: 1.25em;
+  right: -0.75em;
+  transform: rotate(-90deg);
 }
 
-/*---------------------------- Navigation styling ---------------------------*/
-
-nav.mobile-nav {
+.wide-nav {
   display: none;
-  width: 100%;
-  height: 87.5vh;
-  top: 4.5em;
+}
+
+.ham-rotate {
+  transform: rotate(-90deg);
+}
+
+.menu-words {
+  font-style: normal;
+}
+
+.copy {
+  color: Lavender;
+}
+
+.mini-logo {
+  width: 3em;
+}
+
+/*SKINS*/
+.white-skin {
+  background-color: #fff;
+}
+
+.lav-skin {
+  background-color: lavender;
+}
+
+/*MODIFIERS*/
+/*These are classes used with js/jquery*/
+.hide {
+  display: none;
+}
+
+.show {
+  display:block;
+}
+
+.slide-up {
+  margin-top: -100%;
+}
+
+.ham-move-up {
+  top: 0;
+  right: 0.5em;
+}
+
+.slide-left {
+  left: 0%;
+}
+
+.wide-nav a.current-page {
+  color: lavender;
+  text-decoration: line-through;
+}
+
+.footer-wrapper {
+  text-align: center;
+  padding: 1.25em;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav a {
+  font-family: 'Open Sans Condensed';
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1px;
+  color: #190933;
+}
+
+.mobile-nav {
+  background-color: #fff;
   position: absolute;
-  color: #fafafa;
-  background-color: #b084cc;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  z-index: 7000;
+  transition: left 0.5s ease;
 }
 
 .mobile-nav a {
-  color: #fafafa;
   display: block;
-  padding: 0.625em;
+  padding: 0.625em 1.25em;
+}
+
+
+.social-media i {
+  width: 2em;
+  font-size: 1.25em;
+}
+/****************************************************************************
+MOBILE DEVICES PORTRAIT 330
+****************************************************************************/
+
+@media screen and (min-width: 330px) {
+  h1 {
+    display: inline-block;
+    vertical-align: text-bottom;
+  }
+
+  .site-logo {
+    width: 4em;
+    display: inline-block;
+  }
+
+  .mini-logo{
+    width: 3.25em;
+  }
+}
+
+/****************************************************************************
+TABLET DEVICES PORTRAIT 640
+****************************************************************************/
+@media screen and (min-width: 640px) {
+
+  .content-wrapper, .header-wrapper, .footer-wrapper {
+    width: 92%;
+    margin: 0 auto;
+  }
+
+}
+
+/****************************************************************************
+LAPTOP DEVICES PORTRAIT 800
+****************************************************************************/
+@media screen and (min-width: 800px) {
+
+  .h1-wrapper {
+    width: 40%;
+  }
+
+  .content-wrapper {
+    padding-top: 7.25em;
+  }
+
+  .wide-nav {
+    display: block;
+    position:absolute;
+    bottom: 0;
+    right:0;
+  }
+
+  .wide-nav ul li {
+    display: inline-block;
+    margin-left: 0.625em;
+  }
+
+
+  .header-wrapper {
+    padding-top: 1.25em;
+  }
+
+  .wide-nav ul {
+    margin-top: 0;
+  }
+
+  .wide-nav a:hover {
+    text-decoration:line-through;
+  }
+
+  ul.inline li{
+    display: inline-block;
+    margin-left: 0.625em;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+}
+
+@media screen and (min-width: 980px) {
+
+  body {
+    font-size: 120%;
+  }
+
+  .h1-mini {
+    width: 20%;
+  }
+
+  .mini-logo {
+    margin-top: -0.75em;
+  }
+
+  .content-wrapper {
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+
+  .sidebar {
+    padding: 0 1.25em;
+  }
+
+  .col-1-3 {
+    float: left;
+    width: 33.333%;
+    background-color: #fafafa;
+  }
+
+  .col-2-3 {
+    float: left;
+    width: 66.666%;
+  }
+
+  .main-content-wrapper {
+    padding-right: 1.25em;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+  h2 {
+    font-size: 2.25em;
+  }
+
+  .sidebar h3 {
+    font-size: 1.75em;
+  }
+
+  .content-wrapper, .header-wrapper, .footer-wrapper {
+    width: 85%;
+    margin: 0 auto;
+  }
 }
