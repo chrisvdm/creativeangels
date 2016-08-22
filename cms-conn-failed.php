@@ -1,71 +1,53 @@
-<?php require('inc-public-pre-doctype.php') ?>
-<!doctype html>
-
+<?php require('inc-public-pre-doctype.php'); ?>
+<!DOCTYPE html>
 <html>
+  <head>
 
-<head>
+    <!--==================== HEAD CONTENTS ======================-->
+    <?php require( PATH . '/inc-public-head-content.php'); ?>
+    <title>Creative Angels Template</title>
 
-    <!-- HEAD CONTENT -->
-	<?php require(PATH . '/includes/inc-public-head-content.php'); ?>
+  </head>
+  <body>
 
-	<title>Creative Angels | template</title>
+    <!-- Website wrapper -->
+    <div class="site-wrapper">
 
-</head>
+      <!--========================== HEADER ======================-->
+      <?php require( PATH . '/inc-public-header.php'); ?>
 
-<body>
+      <!--===================== CONTENT WRAPPER ===================-->
+      <div class="content-wrapper lav-skin">
 
-	<!-- PAGE HEADER CONTENT INCLUDING LOGO, WS AND MOBILE NAVBARS -->
-	<?php require(PATH . '/includes/inc-public-header-container.php'); ?>
+        <!--===================== MAIN CONTENT ====================-->
+        <section class="main-content-wrapper col-2-3">
+         <h2>Connection failed</h2>
 
-	<div id="wrapper">
+         <!-- First article -->
+         <article>
 
+           <h3>I am an article with an h3 heading</h3>
 
-        <!-- HEADLINE CONTAINER -->
-		<header>
+           <p>Our database servers are currently down. Please try again in a few minutes.</p>
+   					<p>We appologise for the inconvenience.</p>
 
-			<h1>Connection failed</h1>
+         </article>
 
-		</header>
+       </section>
 
-		<!-- the main content on the page with the article and the side bar -->
-		<div class="row">
-			<!-- the story and images -->
-			<div class="col-8 leftside">
-				<article class="main">
-					<h3>
-                    Our database servers are currently down. Please try again in a few minutes.
-                    </h3>
-                    <br>
-					<h3>
-                    We appologise for the inconvenience.
-                    </h3>
-				</article> <!-- end of story -->
+       <!--========================= SIDEBAR ========================-->
+       <?php require( PATH . '/inc-public-sidebar.php'); ?>
 
-
-				<!-- POPULAR STORIES CONTAINER STARTS -->
-            	<?php require(PATH . '/includes/inc-public-popular-stories-container.php'); ?>
-                <!-- POPULAR STORIES CONTAINER ENDS -->
+       <div class="clearfix"></div>
+      </div>
 
 
-			</div> <!-- end of left column of page -->
+     <!--========================== FOOTER ========================-->
+     <?php require( PATH . '/inc-public-footer.php'); ?>
 
+    </div>
 
-            <!-- RIGHT COLUMN CONTAINER STARTS -->
-            <?php require(PATH . '/includes/inc-public-right-column-container.php'); ?>
-            <!-- RIGHT COLUMN CONTAINER ENDS -->
+    <script src="<?php echo PATH; ?>/js/custom.js" charset="utf-8"></script>
 
-
-
-		</div> <!-- end of row -->
-
-	</div> <!-- end of wrapper -->
-
-        <!-- PAGE FOOTER CONTAINER STARTS -->
-        <?php require(PATH . '/includes/inc-public-footer-container.php'); ?>
-        <!-- PAGE FOOTER CONTAINER ENDS -->
-
-</body>
-
-<script src="<?php echo DOMAIN; ?>/jscustom/mobile-hamburger-menu.js"></script>
-
+  </body>
 </html>

@@ -13,66 +13,62 @@ $rs_about = mysqli_query($vconn_creativeangels, $sql_about);
 $rs_about_rows = mysqli_fetch_assoc($rs_about);
 
 ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
 
-	<!-- HEAD CONTENT -->
-	<?php require(PATH . '/inc-public-head-content.php'); ?>
+    <!--==================== HEAD CONTENTS ======================-->
+    <?php require( PATH . '/inc-public-head-content.php'); ?>
+    <title>Creative Angels | About</title>
 
-	<title>Creative Angels | Template</title>
-</head>
+  </head>
+  <body>
 
-<body>
+    <!-- Website wrapper -->
+    <div class="site-wrapper">
 
-	<!-- WRAPPER -->
-	<section id="wrapper">
+      <!--========================== HEADER ======================-->
+      <?php require( PATH . '/inc-public-header.php'); ?>
 
-		<!-- HEADER -->
-		<?php require(PATH . '/inc-public-header.php'); ?>
+      <!--===================== CONTENT WRAPPER ===================-->
+      <div class="content-wrapper lav-skin">
 
-		<!-- NAVBAR WIDESCREEN -->
-		<?php require(PATH . '/inc-public-navbar-widescreen.php'); ?>
+        <!--===================== MAIN CONTENT ====================-->
+        <section class="main-content-wrapper col-2-3">
+         <h2>About</h2>
 
-		<!-- NAVBAR MOBILE-->
-		<?php require(PATH . '/inc-public-navbar-mobile.php'); ?>
+         <!-- First article -->
+         <article>
 
-		<!-- CONTENT CONTAINER MAIN-->
-		<section id="content_container">
+           <h3>Mission Statement</h3>
 
-			<!-- CONTENT CONTAINER LEFT -->
-			<section id="content_left">
+           <p><?php echo nl2br($rs_about_rows['amission']); ?></p>
 
-				<!-- CONTENT CONTAINER RIGHT ARTICLE 1 -->
-				<article id="content_left_article_1">
+         </article>
 
-					<h1>Mission</h1>
+         <!-- Second article -->
+         <article>
 
-					<p><?php echo nl2br($rs_about_rows['amission']); ?></p>
+           <h3>Description</h3>
 
-				</article>
+           <p><?php echo nl2br($rs_about_rows['adescription']); ?></p>
 
-				<article id="content_left_article_2">
-					<h1>Description</h1>
+         </article>
+       </section>
 
-					<p><?php echo nl2br($rs_about_rows['adescription']); ?></p>
+       <!--========================= SIDEBAR ========================-->
+       <?php require( PATH . '/inc-public-sidebar.php'); ?>
 
-				</article>
-
-			</section>
-
-			<!-- RIGHT SIDEBAR -->
-				<?php require(PATH . '/inc-public-right-sidebar.php'); ?>
+       <div class="clearfix"></div>
+      </div>
 
 
-		</section>
+     <!--========================== FOOTER ========================-->
+     <?php require( PATH . '/inc-public-footer.php'); ?>
 
-		<!-- FOOTER -->
-		<?php require(PATH . '//inc-public-footer.php'); ?>
+    </div>
 
-		<div class="clear_float"></div>
+    <script src="js/custom.js" charset="utf-8"></script>
 
-	</section>
-
-</body>
+  </body>
 </html>

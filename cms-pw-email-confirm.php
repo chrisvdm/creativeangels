@@ -1,61 +1,46 @@
 <?php require('inc-public-pre-doctype.php'); ?>
 <?php $_SESSION['svSecurity'] = sha1(date('YmdHis')); ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
 
-	<!-- HEAD CONTENT -->
-	<?php require(PATH . '/inc-public-head-content.php'); ?>
+    <!--==================== HEAD CONTENTS ======================-->
+    <?php require( PATH . '/inc-public-head-content.php'); ?>
+    <title>Creative Angels | Email confirmation</title>
 
-	<title>Creative Angels | Template</title>
-</head>
+  </head>
+  <body>
 
-<body>
+    <!-- Website wrapper -->
+    <div class="site-wrapper">
 
-	<!-- WRAPPER -->
-	<section id="wrapper">
+      <!--========================== HEADER ======================-->
+      <?php require( PATH . '/inc-public-header.php'); ?>
 
-		<!-- HEADER -->
-		<?php require(PATH . '/inc-public-header.php'); ?>
+      <!--===================== CONTENT WRAPPER ===================-->
+      <div class="content-wrapper lav-skin">
 
-		<!-- NAVBAR WIDESCREEN -->
-		<?php require(PATH . '/inc-public-navbar-widescreen.php'); ?>
+        <!--===================== MAIN CONTENT ====================-->
+        <section class="main-content-wrapper col-2-3">
+          <article>
+            <h2>Confirmation</h2>
+            <p>Email successfully sent. Please check your inbox for further instructions.</p>
+          </article>
+       </section>
 
-		<!-- NAVBAR MOBILE-->
-		<?php require(PATH . '/inc-public-navbar-mobile.php'); ?>
+       <!--========================= SIDEBAR ========================-->
+       <?php require( PATH . '/inc-public-sidebar.php'); ?>
 
-		<!-- CONTENT CONTAINER MAIN-->
-		<section id="content_container">
-
-			<!-- CONTENT CONTAINER LEFT -->
-			<section id="content_left">
-
-				<!-- CONTENT CONTAINER RIGHT ARTICLE 1 -->
-				<article id="content_left_article_1">
-
-					<h1>Confirmation</h1>
-
-                    <br>
-
-                    <p>Email successfully sent. Please check your inbox for further instructions.</p>
-
-				</article>
-				<article id="content_left_article_2">Content</article>
-
-			</section>
-
-			<!-- RIGHT SIDEBAR -->
-				<?php require(PATH . '/inc-public-right-sidebar.php'); ?>
+       <div class="clearfix"></div>
+      </div>
 
 
-		</section>
+     <!--========================== FOOTER ========================-->
+     <?php require( PATH . '/inc-public-footer.php'); ?>
 
-		<!-- FOOTER -->
-		<?php require(PATH . '/inc-public-footer.php'); ?>
+    </div>
 
-		<div class="clear_float"></div>
+    <script src="<?php echo PATH; ?>/js/custom.js" charset="utf-8"></script>
 
-	</section>
-
-</body>
+  </body>
 </html>

@@ -4,7 +4,7 @@
   <head>
 
     <!--==================== HEAD CONTENTS ======================-->
-    <?php require( PATH . '/inc-public-head-contents.php'); ?>
+    <?php require( PATH . '/inc-public-head-content.php'); ?>
     <title>Creative Angels Template</title>
 
   </head>
