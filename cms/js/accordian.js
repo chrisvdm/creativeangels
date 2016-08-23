@@ -58,4 +58,4 @@ $(document).ready(function() {
 
   } // End of currentpage fn
 
-});
+}); // End of jquery doc ready
