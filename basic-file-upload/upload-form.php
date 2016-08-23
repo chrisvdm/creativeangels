@@ -11,7 +11,7 @@
 
       <!-- Cannot have a value -->
       <input type="file" name="txtimg">
-
+      <br>
       <input type="submit" value="Upload image">
 
     </form>
