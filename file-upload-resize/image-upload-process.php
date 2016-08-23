@@ -114,14 +114,14 @@ imagecopyresampled($vtrue_colour_image_large, $vfile_source, 0, 0, 0, 0, $vfile_
 imagecopyresampled($vtrue_colour_image_thumb, $vfile_source, 0, 0, 0, 0, $vfile_new_thumb_width, $vfile_new_thumb_height, $vfile_original_width, $vfile_original_height);
 
 //UPLOAD LOCATION + FILE NAME (LARGE IMAGE)
-$vfilepath_uploaded_file_dir_large = 'uploaded-files/large';
-$vfilepath_uploaded_file_display_dir_large = 'uploaded-files/large';
+$vfilepath_uploaded_file_dir_large = 'uploaded-files/large/';
+$vfilepath_uploaded_file_display_dir_large = 'uploaded-files/large/';
 
-$vfile_new_unique_name = date('YmdHis') . '-' . $vfile_name;
+$vfile_new_unique_name_large = date('YmdHis') . '-' . 'thumbnail' . '-' . $vfile_name;
 
-$vfilepath_uploaded_file_dir_large = $vfilepath_uploaded_file_dir . $vfile_new_unique_name;
+$vfilepath_uploaded_file_dir_large = $vfilepath_uploaded_file_dir_large . $vfile_new_unique_name_large;
 
-$vfilepath_uploaded_file_display_dir_large = $vfilepath_uploaded_file_display_dir . $vfile_new_unique_name;
+$vfilepath_uploaded_file_display_dir_large = $vfilepath_uploaded_file_display_dir_large . $vfile_new_unique_name_large;
 
 //UPLOAD LOCATION + FILE NAME (thumb IMAGE)
 $vfilepath_uploaded_file_dir_thumb = 'uploaded-files/thumb/';
@@ -135,10 +135,10 @@ $vfilepath_uploaded_file_display_dir_thumb = $vfilepath_uploaded_file_display_di
 
 
 //UPLOAD THE IMAGES TO LOCATION ON SERVER LARGE
-$vfile_large_upload_result = imagejpeg($vtrue_colour_image_large, $vfilepath_uploaded_file_dir_file_large, 100);
+$vfile_large_upload_result = imagejpeg($vtrue_colour_image_large, $vfilepath_uploaded_file_dir_large, 100);
 
 //UPLOAD THE IMAGES TO LOCATION ON SERVER THUMB
-$vfile_thumb_upload_result = imagejpeg($vtrue_colour_image_thumb, $vfilepath_uploaded_file_dir_file_thumb, 100);
+$vfile_thumb_upload_result = imagejpeg($vtrue_colour_image_thumb, $vfilepath_uploaded_file_dir_thumb, 100);
 
 //DESTROYS THE IMAGES AND FREE UP ANY MEMORY ASSOCIATED WITH THE IMAGES
 imagedestroy($vfile_source);
