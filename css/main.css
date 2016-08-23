@@ -97,6 +97,7 @@ header {
   min-height: 4em;
   padding: 0.625em 1.25em;
   background-color: #fff;
+  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.4);
 }
 
 .content-wrapper {
