@@ -1,105 +1,87 @@
 <?php require('inc-public-pre-doctype.php'); ?>
-<?php
-$_SESSION['svSecurity'] = sha1(date('YmdHis'));
-?>
-<!DOCTYPE HTML>
-
+<!DOCTYPE html>
 <html>
+  <head>
 
-	<head>
+    <!--==================== HEAD CONTENTS ======================-->
+    <?php require( PATH . '/inc-public-head-content.php'); ?>
+    <title>Creative Angels | CMS Log in</title>
 
-		<!-- HEAD CONTENT -->
-		<?php require(PATH . '/inc-public-head-content.php'); ?>
+  </head>
+  <body>
 
-		<title>CAFB CMS Signin</title>
+    <!-- Website wrapper -->
+    <div class="site-wrapper">
 
-	</head>
+      <!--========================== HEADER ======================-->
+      <?php require( PATH . '/inc-public-header.php'); ?>
 
-	<body>
-		<!-- WRAPPER -->
-		<section id="wrapper">
+      <!--===================== CONTENT WRAPPER ===================-->
+      <div class="content-wrapper lav-skin">
 
-			<!-- HEADER -->
-			<?php require(PATH . '/inc-public-header.php'); ?>
+        <!--===================== MAIN CONTENT ====================-->
+        <section class="main-content-wrapper col-2-3">
+         <h2>CMS Log in</h2>
 
-			<!-- Appear only on tablet layout and higher. Replaces mobile nav bar -->
-			<!-- NAVBAR TABLET AND  WIDESCREEN -->
-			<?php require(PATH . '/inc-public-navbar-widescreen.php'); ?>
+         <!-- First article -->
+         <article>
+           <?php if(isset($_GET['kpwupdate']) && $_GET['kpwupdate'] === 'success') { ?>
+           <div >Your login details have been updated. Sign in with your new details<br><br></div>
+           <?php } ?>
 
-			<!-- NAVBAR MOBILE -->
-			<?php require(PATH . '/inc-public-navbar-mobile.php'); ?>
+           <?php if (isset($_GET['valfailed']) && $_GET['valfailed'] === 'invdet') { ?>
 
-			<!-- CONTENT CONATINER MAIN -->
-			<section id="content_container">
+             <div class="warning_msg">Please enter a valid username and password. <br><br></div>
 
-				<!-- CONTENT CONATAINER LEFT -->
-				<section id="content_left">
+           <?php } ?>
 
-					<!-- CONTENT CONTAINER LEFT ARTICLE 1 -->
-					<article id="content_left_article_1">
+           <?php if (isset($_GET['valfailed']) && $_GET['valfailed'] === 'incdet') { ?>
 
-						<h1>CMS Login</h1>
+             <div class="warning_msg">Your login details were incorrect. Please try again. <br><br></div>
 
-						<?php if(isset($_GET['kpwupdate']) && $_GET['kpwupdate'] === 'success') { ?>
-            <div >Your login details have been updated. Sign in with your new details<br><br></div>
-            <?php } ?>
+           <?php } ?>
 
-						<?php if (isset($_GET['valfailed']) && $_GET['valfailed'] === 'invdet') { ?>
+           <form action="<?php echo DOMAIN; ?>/cms-signin-process.php" method="post">
 
-							<div class="warning_msg">Please enter a valid username and password. <br><br></div>
+             <label>
+               Username<br><br>
+               <input type="email" name="txtEmail" autofocus>
+             </label>
 
-						<?php } ?>
+               <br><br>
 
-						<?php if (isset($_GET['valfailed']) && $_GET['valfailed'] === 'incdet') { ?>
+             <label>
+               Password<br><br>
+               <input type="password" name="txtPassword">
+             </label>
 
-							<div class="warning_msg">Your login details were incorrect. Please try again. <br><br></div>
+               <br><br>
 
-						<?php } ?>
+               <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
-						<form action="<?php echo DOMAIN; ?>/cms-signin-process.php" method="post">
+             <button>Sign in</button>
 
-							<label>
-								Username<br><br>
-								<input type="email" name="txtEmail" autofocus>
-							</label>
+             <a style="font-size: 80%; margin: 5px;" href="<?php echo PATH; ?>/cms-pw-lost.php">Forgot your password?</a>
 
-								<br><br>
-
-							<label>
-								Password<br><br>
-								<input type="password" name="txtPassword">
-							</label>
-
-								<br><br>
-
-								<input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
-
-							<button>Sign in</button>
-
-							<a style="font-size: 80%; margin: 5px;" href="<?php echo PATH; ?>/cms-pw-lost.php">Forgot your password?</a>
-
-						</form>
+           </form>
 
 
-					</article>
+         </article>
+       </section>
 
-					<!-- CONTENT CONTAINER LEFT ARTICLE 2 -->
-					<article id="content_left_article_2">Content</article>
+       <!--========================= SIDEBAR ========================-->
+       <?php require( PATH . '/inc-public-sidebar.php'); ?>
 
-				</section>
+       <div class="clearfix"></div>
+      </div>
 
-				<!-- RIGHT SIDEBAR-->
-				<?php require(PATH . '/inc-public-right-sidebar.php'); ?>
 
-			</section>
+     <!--========================== FOOTER ========================-->
+     <?php require( PATH . '/inc-public-footer.php'); ?>
 
-			<!-- FOOTER -->
-			<?php require(PATH . '/inc-public-footer.php'); ?>
+    </div>
 
-			<div class="clear_float"></div>
+    <script src="<?php echo PATH; ?>/js/custom.js" charset="utf-8"></script>
 
-		</section>
-
-	</body>
-
+  </body>
 </html>

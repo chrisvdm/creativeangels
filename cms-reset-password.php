@@ -1,134 +1,75 @@
 <?php require('inc-public-pre-doctype.php'); ?>
-<?php
-$_SESSION['svSecurity'] = sha1(date('YmdHis'));
-?>
-<?php
-// TEST TO CONFIRM THAT A GET ARRAY IS PRESENT ON THIS PAGE
-if ($_SERVER['REQUEST_METHOD'] == 'GET'){
-
-	//EXTRACT ONLY THE VALUES FROM THE GET ARRAY AND ASSIGN THEM TO A NEW BASIC ARRAY
-	$vqsvalues = array_values($_GET);
-
-	// EXTRACT THE VALUES FROM THE BASIC ARRAY BY REFERING TO THE INDEX POSITIONS AND ASSIGN THE VALUES TO GLOBAL VARIABLES
-	if (isset($vqsvalues[0]) && $vqsvalues[0] !== ''){
-		$vid = urldecode(base64_decode($vqsvalues[0]));
-	}
-
-	if (isset($vqsvalues[1]) && $vqsvalues[1] !== ''){
-		$vname = urldecode(base64_decode($vqsvalues[1]));
-	}
-
-	if (isset($vqsvalues[2]) && $vqsvalues[2] !== '') {
-		$vemail = urldecode(base64_decode($vqsvalues[2]));
-	}
-}
-?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
 
-	<!-- HEAD CONTENT -->
-	<?php require(PATH . '/inc-public-head-content.php'); ?>
+    <!--==================== HEAD CONTENTS ======================-->
+    <?php require( PATH . '/inc-public-head-content.php'); ?>
+    <title>Creative Angels | Reset password</title>
 
-	<title>Creative Angels | Template</title>
-</head>
+  </head>
+  <body>
 
-<body>
+    <!-- Website wrapper -->
+    <div class="site-wrapper">
 
-	<!-- WRAPPER -->
-	<section id="wrapper">
+      <!--========================== HEADER ======================-->
+      <?php require( PATH . '/inc-public-header.php'); ?>
 
-		<!-- HEADER -->
-		<?php require(PATH . '/inc-public-header.php'); ?>
+      <!--===================== CONTENT WRAPPER ===================-->
+      <div class="content-wrapper lav-skin">
 
-		<!-- NAVBAR WIDESCREEN -->
-		<?php require(PATH . '/inc-public-navbar-widescreen.php'); ?>
+        <!--===================== MAIN CONTENT ====================-->
+        <section class="main-content-wrapper col-2-3">
+         <h2>Reset Password</h2>
 
-		<!-- NAVBAR MOBILE-->
-		<?php require(PATH . '/inc-public-navbar-mobile.php'); ?>
+         <!--=================== ENTER NEW PASSWORD ================-->
+         <form method="post" action="<? echo PATH; ?>/cms-reset-password-process.php" onsubmit="return matchpws()">
 
-		<!-- CONTENT CONTAINER MAIN-->
-		<section id="content_container">
+           <p class="msgwarning" id="pwnomatch"></p>
 
-			<!-- CONTENT CONTAINER LEFT -->
-			<section id="content_left">
-				<article id="content_left_article_2">
-					<h1>Reset Your Password</h1>
-					<p>&nbsp;</p>
+           <!-- Warning messages -->
+           <?php if(isset($_GET['kvalidation']) && $_GET['kvalidation'] === 'failed') {?>
 
-					<!--=================== ENTER NEW PASSWORD ====================-->
-					<form method="post" action="<? echo PATH; ?>/cms-reset-password-process.php" onsubmit="return matchpws()">
+             <div class="msgwarning">Please complete both fields</div>
+             <br>
+           <?php } ?>
 
-						<p class="msgwarning" id="pwnomatch"></p>
+           <label>New Password:</label><br>
+           <input type="password" name="txtPw1" required autofocus placeholder="New password">
+           <p>&nbsp;</p>
 
-						<!-- Warning messages -->
-						<?php if(isset($_GET['kvalidation']) && $_GET['kvalidation'] === 'failed') {?>
+           <label>Re-type Password:</label><br>
+           <input type="password" name="txtPw2" placeholder="Retype password">
+           <p>&nbsp;</p>
 
-							<div class="msgwarning">Please complete both fields</div>
-							<br>
-						<?php } ?>
+           <!-- Hidden fields for reusable data -->
+           <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
-						<label>New Password:</label><br>
-						<input type="password" name="txtPw1" required autofocus placeholder="New password">
-						<p>&nbsp;</p>
+           <input type="hidden" name="txtId" value="<?php if(isset($vid) && $vid !== '') { echo $vid; } ?>">
 
-						<label>Re-type Password:</label><br>
-						<input type="password" name="txtPw2" placeholder="Retype password">
-						<p>&nbsp;</p>
+             <input type="hidden" name="txtEmail" value="<?php if(isset($vemail) && $vemail !== '') { echo $vemail; } ?>">
 
-						<!-- Hidden fields for reusable data -->
-						<input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+             <input type="hidden" name="txtName" value="<?php if(isset($vname) && $vname !== '') { echo $vname; } ?>">
 
-						<input type="hidden" name="txtId" value="<?php if(isset($vid) && $vid !== '') { echo $vid; } ?>">
+           <input type="submit" name="btnsubmit" value="Reset password">
+         </form>
 
-							<input type="hidden" name="txtEmail" value="<?php if(isset($vemail) && $vemail !== '') { echo $vemail; } ?>">
+       </section>
 
-							<input type="hidden" name="txtName" value="<?php if(isset($vname) && $vname !== '') { echo $vname; } ?>">
+       <!--========================= SIDEBAR ========================-->
+       <?php require( PATH . '/inc-public-sidebar.php'); ?>
 
-						<input type="submit" name="btnsubmit" value="Reset password">
-					</form>
-
-
-				</article>
-
-			</section>
-
-			<!-- RIGHT SIDEBAR -->
-				<?php require(PATH . '/inc-public-right-sidebar.php'); ?>
+       <div class="clearfix"></div>
+      </div>
 
 
-		</section>
+     <!--========================== FOOTER ========================-->
+     <?php require( PATH . '/inc-public-footer.php'); ?>
 
-		<!-- FOOTER -->
-		<?php require(PATH . '/inc-public-footer.php'); ?>
+    </div>
 
-		<div class="clear_float"></div>
+    <script src="<?php echo PATH; ?>/js/custom.js" charset="utf-8"></script>
 
-	</section>
-
-	<script>
-	// Client-side validation
-	function matchpws(){
-
-		var password1 = document.getElementsByName('txtPw1')[0].value;
-		var password2 = document.getElementsByName('txtPw2')[0].value;
-
-		if(password1 !== password2){
-
-			document.getElementById('pwnomatch').innerHTML = "Passwords do not match";
-			document.getElementsByName('txtPw2')[0].value = "";
-
-			return false;
-
-		} else {
-
-			document.getElementById('pwnomatch').innerHTML = "";
-
-			return true;
-		}
-
-	}
-	</script>
-
-</body>
+  </body>
 </html>

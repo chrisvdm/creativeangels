@@ -4,7 +4,7 @@
 
     $vvalidation = 0;
 
-  // -------------------- PASSWORDS VALIDATION --------------------------------
+  // -------------- PASSWORDS VALIDATION ------------------------------
 
   // PASSWORD 1 VALIDATION
     if (isset($_POST['txtPw1']) && $_POST['txtPw1'] !== '') {
