@@ -14,26 +14,36 @@ $(document).ready(function() {
         $('ul.menu>li').removeClass('selected');
     });
 
-    trig.next('ul.submenu').not(':visible').slideDown(function(){
+    trig.next('ul.submenu')
+    .not(':visible')
+    .slideDown(function() {
       trig.addClass('selected');
+
     });
-  })
+
+  }); // End of accordian fn
 
 
 
   function currentPage() {
+
     var urlPath = window.location.href;
     var submenu = "";
     var item = document.querySelectorAll('.submenu li a');
 
+    // removes global super array from href in header (kinda)
     if(urlPath.indexOf('?') > 0 ) {
+
       var kvs = urlPath.indexOf('?');
       urlPath = urlPath.slice(0, kvs);
-      console.log(urlPath);
-    }
 
-    for (  var i = 0; i < item.length; i++ ) {
+    } // End of if statement
+
+    for (var i = 0; i < item.length; i++ ) {
+
+      // Compare header href to anchor href
       if (item[i] == urlPath) {
+
         item[i].style.backgroundColor = '#a7bbd6';
         var li = item[i].parentNode;
         submenu = li.parentNode;
@@ -41,8 +51,11 @@ $(document).ready(function() {
         submenu.style.display = 'block';
 
         return submenu;
-      }
-    }
-  }
+
+      } // End of if statement
+
+    } // End of for loop
+
+  } // End of currentpage fn
 
 });
