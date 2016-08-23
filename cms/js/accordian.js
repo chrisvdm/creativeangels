@@ -45,6 +45,7 @@ $(document).ready(function() {
       if (item[i] == urlPath) {
 
         item[i].style.backgroundColor = '#a7bbd6';
+        
         var li = item[i].parentNode;
         submenu = li.parentNode;
 
