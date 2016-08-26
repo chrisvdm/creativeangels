@@ -1,4 +1,5 @@
 <?php require('inc-public-pre-doctype.php'); ?>
+<?php $_SESSION['svSecurity'] = sha1(date('YmdHis')); ?>
 <!DOCTYPE html>
 <html>
   <head>

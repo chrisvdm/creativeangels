@@ -21,6 +21,12 @@
 //CONVERT FILE NAME TO LOWERCASE AND REMOVE SPACES AND UNDERSCORES IN FILE NAME AND REPLACE THEM WITH HYPHENS
  if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+   // get the dimensions of the file and if the dimensions are larger than int
+   if(isset($_SERVER['CONTENT_LENGTH']) && (int) $_SERVER['CONTENT_LENGTH'] > (1024*1024*(int) ini_get('post_max_size'))){
+      header('Location: image-upload-form.php?kfilesize=toolarge');
+    	exit();
+   }
+
   ini_set('memory_limit', '128M');
 
  	$vfile_name = $_FILES['txtimage']['name'];
@@ -51,17 +57,17 @@
 
 			//GET THE FILE SIZE
 			$vfile_size = filesize($_FILES['txtimage']['tmp_name']) / 1000000;
-
-			//GET THE DEFAULT FILE SIZE UPLOAD LIMIT FROM THE PHP INI FILE
-			//$vmax_file_size = ini_get('upload_max_filesize');
-
-			//TEST THE FILE SIZE
-			if ($vfile_size === 0 || $vfile_size > '5M') {
-
-				header('Location: image-upload-form.php?kfilesize=toolarge');
-				exit();
-
-			}
+      //
+			// //GET THE DEFAULT FILE SIZE UPLOAD LIMIT FROM THE PHP INI FILE
+			// //$vmax_file_size = ini_get('upload_max_filesize');
+      //
+			// //TEST THE FILE SIZE
+			// if ($vfile_size === 0 || $vfile_size > '5M') {
+      //
+			// 	header('Location: image-upload-form.php?kfilesize=toolarge');
+			// 	exit();
+      //
+			// }
 
 //CREATE THE IMAGE BASED ON FILE EXTENSION
 if($vfile_extension == 'jpg' || $vfile_extension == 'jpeg' ) {

@@ -33,6 +33,12 @@
     <li><a class="opt-menu" href="about-details-display.php">View</a></li>
   </ul>
 
+  <li class="opt-menu" >Team</li>
+  <ul class="submenu">
+    <li><a class="opt-menu" href="team-details-display.php">View</a></li>
+    <li><a class="opt-menu" href="team-add-new.php">Add New Team Member</a></li>
+  </ul>
+
   <li class="opt-menu">Log out</li>
   <!-- FOOTER -->
 <?php // require('inc-cms-footer.php'); ?>
