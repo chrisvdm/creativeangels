@@ -79,7 +79,9 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
           <!-- Executes instructions in 'admin-add-process.php' on submit and sends form data using get -->
           <form id="form" class="form" action="team-add-process.php" method="post" onsubmit="return valForm()" enctype="multipart/form-data">
+            <div class="three4-float">
 
+              <h3 class="accent">Personal Details</h3>
             <!-- FIRST NAME -->
             <label>First name*</label>
 
@@ -118,10 +120,22 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             <?php echo errorMsg('kbio', 'bio'); ?>
             <textarea type="text" name="txtBio" autocomplete="off" placeholder="Type short descriptive paragraph about the team member."><?php echo displayTxt('kbio'); ?></textarea>
 
-            <label>Profile Picture</label>
-            <input type="file" name="txtImg">
 
-            <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+          </div>
+
+            <div class="quarter-float">
+
+
+              <h3 class="accent">Profile Picture</h3>
+
+              <label>Upload a new profile picture</label>
+
+              <input type="file" name="txtImg" >
+
+              <p><small>Image size may not exceed 5Mb and must have either a .jpg or .jpeg file extension</small></p>
+
+            </div>
+            <div class="clearfix"></div>
 
 
             <!-- Button set -->

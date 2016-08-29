@@ -20,10 +20,6 @@ body {
   text-decoration: none;
 }
 
-img {
-  min-width: 100%;
-}
-
 .clearfix{
   clear: both;
   margin: 0;
@@ -42,7 +38,7 @@ td figure {
 
 figure img {
   display: block;
-  width: 100%;
+  max-width: 100%;
 }
 
 /*Font styling*/
@@ -339,8 +335,17 @@ td.button-set input, td.button-set form {
   width: 75%;
 }
 
-.form .quarter-float input[type="text"], .form .quarter-float textarea, .form .quarter-float [type="file"], .quarter-float figure, .quarter-float p  {
+.form .quarter-float input[type="text"], .form .quarter-float textarea, .form .quarter-float [type="file"], .quarter-float p  {
   width: 75%;
+}
+
+.quarter-float figure {
+  width: 75%;
+  height: 30vh;
+}
+
+.quarter-float img {
+height: 100%;
 }
 
 /* Modifiers */

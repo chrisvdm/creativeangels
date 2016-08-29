@@ -140,6 +140,10 @@
             <?php echo errorMsg('kbio', 'bio'); ?>
             <textarea type="text" name="txtBio" autocomplete="off" placeholder="Type short descriptive paragraph about the team member."><?php if(isset($_GET['kbio'])){ echo displayTxt('kbio'); } elseif (isset($rs_team_rows['tbio']) && $rs_team_rows['tbio'] !== 'na'){ echo $rs_team_rows['tbio']; } ?></textarea>
 
+
+            <div id="subErr" class="warning_msg"></div>
+
+
           </div>
 
           <div class="quarter-float">
@@ -153,33 +157,29 @@
 
             <label>Upload a new profile picture</label>
 
-            <input type="file" name="txtImg">
-            <input type="hidden" name="txtOldImg" value="<?php echo $rs_team_rows['tphotograph']; ?>">
+            <input type="file" name="txtImg" >
 
             <p><small>Image size may not exceed 5Mb and must have either a .jpg or .jpeg file extension</small></p>
 
           </div>
           <div class="clearfix"></div>
 
-            <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+          <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
-            <input type="hidden" name="txtId" value="<?php echo $rs_team_rows['tid']; ?>">
+          <input type="hidden" name="txtId" value="<?php echo $rs_team_rows['tid']; ?>">
 
-            <!-- Button set -->
-            <div class="button-set">
+            <input type="hidden" name="txtOldImg" value="<?php echo $rs_team_rows['tphotograph']; ?>">
 
-              <!-- submit form -->
-              <button type="submit" name="btnAddNew">Update</button>
+          <!-- Button set -->
+          <div class="button-set">
 
-              <a class="button danger-btn" href="team-details-display.php" name="btnCancel">Cancel</a>
+            <!-- submit form -->
+            <button type="submit" name="btnAddNew">Update</button>
 
-            </div>
+            <a class="button danger-btn" href="team-details-display.php" name="btnCancel">Cancel</a>
 
-
-            <div id="subErr" class="warning_msg"></div>
-
-          </form>
-
+          </div>
+            </form>
         </section>
 
 
