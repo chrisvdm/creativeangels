@@ -97,7 +97,7 @@ header {
   min-height: 4em;
   padding: 0.625em 1.25em;
   background-color: #fff;
-  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.4);
+  /*box-shadow: 2px 0 2px rgba(0, 0, 0, 0.4);*/
 }
 
 .content-wrapper {
@@ -129,6 +129,19 @@ header {
   top: 1.25em;
   right: -0.75em;
   transform: rotate(-90deg);
+}
+
+.team-mask {
+  width: 100%;
+  height: 40vh;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.team-box {
+  height: 85vh;
 }
 
 .wide-nav {
@@ -303,6 +316,17 @@ LAPTOP DEVICES PORTRAIT 800
 
   .mobile-menu {
     display: none;
+  }
+
+  .half-float {
+    width: 45%;
+    float: left;
+    margin-right: 1.25em;
+  }
+
+
+  .team article:nth-of-type(even) {
+    margin-right: 0;
   }
 
 }

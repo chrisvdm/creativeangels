@@ -151,18 +151,23 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
         //ECHO IF FILE WAS UPLOADED AND RESIZED
         if ($vfile_large_upload_result && $vfile_thumb_upload_result) {
           //if file is uploaded
+
+          // Delete old file
+          unlink('../assets/uploads/team/large/' . $_POST['txtOldImg']);
+          unlink('../assets/uploads/team/thumb/' . $_POST['txtOldImg']);
+
           $vImg = $vfile_new_unique_name_thumb;
          //$vImg = basename($vImg);
 
       	} else {
 
-      		$vImg = 'na';
+      		$vImg = $_POST['txtOldImg'];
 
       	}
       }
 
   	} else {
-      $vImg = 'na';
+      $vImg = $_POST['txtOldImg'];
     }
 
   // ------------------------ FIRST NAME VALIDATION --------------------------
@@ -280,6 +285,8 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     $qs .= "&kcompname=".urlencode($vCompName);
     $qs .= "&kjobtitle=".urlencode($vJobTitle);
     $qs .= "&kbio=".urlencode($vBio);
+    $qs .= "&kid=". $vid;
+    $qs .= "&txtSecurity=" . $_SESSION['svSecurity'];
 
     header('Location: team-update-display.php' . $qs);
     exit();

@@ -154,6 +154,7 @@
             <label>Upload a new profile picture</label>
 
             <input type="file" name="txtImg">
+            <input type="hidden" name="txtOldImg" value="<?php echo $rs_team_rows['tphotograph']; ?>">
 
             <p><small>Image size may not exceed 5Mb and must have either a .jpg or .jpeg file extension</small></p>
 
@@ -163,7 +164,6 @@
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
             <input type="hidden" name="txtId" value="<?php echo $rs_team_rows['tid']; ?>">
-
 
             <!-- Button set -->
             <div class="button-set">
