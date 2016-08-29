@@ -39,6 +39,12 @@
     <li><a class="opt-menu" href="team-add-new.php">Add New Team Member</a></li>
   </ul>
 
+  <li class="opt-menu" >Partners</li>
+  <ul class="submenu">
+    <li><a class="opt-menu" href="partners-details-display.php">View</a></li>
+    <li><a class="opt-menu" href="partners-add-new.php">Add New Partner</a></li>
+  </ul>
+
   <li class="opt-menu">Log out</li>
   <!-- FOOTER -->
 <?php // require('inc-cms-footer.php'); ?>
