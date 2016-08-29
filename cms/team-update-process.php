@@ -152,9 +152,14 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
         if ($vfile_large_upload_result && $vfile_thumb_upload_result) {
           //if file is uploaded
 
-          // Delete old file
-          unlink('../assets/uploads/team/large/' . $_POST['txtOldImg']);
-          unlink('../assets/uploads/team/thumb/' . $_POST['txtOldImg']);
+          $oldImg = $_POST['txtOldImg'];
+
+          if($oldImg !== 'na' && $oldImg !== '') {
+            // Delete old file
+            unlink('../assets/uploads/team/large/' . $_POST['txtOldImg']);
+            unlink('../assets/uploads/team/thumb/' . $_POST['txtOldImg']);
+          }
+
 
           $vImg = $vfile_new_unique_name_thumb;
          //$vImg = basename($vImg);

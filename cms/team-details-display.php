@@ -56,10 +56,9 @@ $rs_team_rows_total = mysqli_num_rows($rs_team);
 
               <tr class="tbl-heading">
 
-                <td colspan="3">
+                <td colspan="5">
                   <strong><?php echo $rs_team_rows['tname'] . ' ' . $rs_team_rows['tsurname']; ?></strong>
                 </td>
-                <td colspan="2">&nbsp;</td>
                 <td class=button-set width="600">
                   <form method="get" action="team-update-display.php">
                     <button>Update</button>
