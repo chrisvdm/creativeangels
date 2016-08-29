@@ -85,7 +85,7 @@
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Edit Team Member</h2>
+            <h2>Update <?php echo $rs_team_rows['tname'] . " " . $rs_team_rows['tsurname']; ?>'s profile</h2>
           </div>
 
         </header>
@@ -98,7 +98,10 @@
 
           <!-- Executes instructions in 'admin-add-process.php' on submit and sends form data using get -->
           <form id="form" class="form" action="team-update-process.php" method="post" onsubmit="return valForm()" enctype="multipart/form-data">
-            <div class="half-float">
+
+            <div class="three4-float">
+
+            <h3 class="accent">Personal Details</h3>
             <!-- FIRST NAME -->
             <label>First name*</label>
 
@@ -129,15 +132,6 @@
             <!-- Job title validation error msg -->
             <?php echo errorMsg('kjobtitle', 'job title'); ?>
             <input type="text" name="txtJobTitle" autocomplete="off" value="<?php if(isset($_GET['kjobtitle'])){ echo displayTxt('kjobtitle'); } elseif (isset($rs_team_rows['tjobtitle']) && $rs_team_rows['tjobtitle'] !== 'na'){ echo $rs_team_rows['tjobtitle']; } ?>">
-          </div>
-
-          <div class="half-float">
-
-
-            <label>Profile Picture</label>
-
-            <figure>
-            <input type="file" name="txtImg">
 
             <!-- BIO -->
             <label>Bio</label>
@@ -145,6 +139,23 @@
             <!-- Bio validation error msg -->
             <?php echo errorMsg('kbio', 'bio'); ?>
             <textarea type="text" name="txtBio" autocomplete="off" placeholder="Type short descriptive paragraph about the team member."><?php if(isset($_GET['kbio'])){ echo displayTxt('kbio'); } elseif (isset($rs_team_rows['tbio']) && $rs_team_rows['tbio'] !== 'na'){ echo $rs_team_rows['tbio']; } ?></textarea>
+
+          </div>
+
+          <div class="quarter-float">
+
+
+            <h3 class="accent">Profile Picture</h3>
+
+            <figure>
+              <img src="../assets/uploads/team/large/<?php echo $rs_team_rows['tphotograph']; ?>">
+            </figure>
+
+            <label>Upload a new profile picture</label>
+
+            <input type="file" name="txtImg">
+
+            <p><small>Image size may not exceed 5Mb and must have either a .jpg or .jpeg file extension</small></p>
 
           </div>
           <div class="clearfix"></div>

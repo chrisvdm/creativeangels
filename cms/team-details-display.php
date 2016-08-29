@@ -74,7 +74,7 @@ $rs_team_rows_total = mysqli_num_rows($rs_team);
               <tr>
                 <td rowspan="4" width="250" style="text-align: center">
                   <?php if($rs_team_rows['tphotograph'] === 'na') { echo 'No Image uploaded'; } else {?>
-                    <figure><img src="assets/images/uploads/thumb/<?php echo $rs_team_rows['tphotograph']; ?>"></figure>
+                    <figure><img src="../assets/uploads/team/thumb/<?php echo $rs_team_rows['tphotograph']; ?>"></figure>
                   <?php } ?>
                 </td>
                 <td width="100" class="accent"><strong>Company Name</strong></td>

@@ -84,7 +84,7 @@ if( isset($_REQUEST['txtSecurity']) && $_REQUEST['txtSecurity'] === $_SESSION['s
         <section id="main-content" class="base">
 
           <!-- FORM ---------------------------------------------------------------->
-          <form class="form" action="about-details-update-process.php" method="post">
+          <form class="form single-col" action="about-details-update-process.php" method="post">
 
             <!-- Mission Statement -->
             <label>Mission Statement</label>

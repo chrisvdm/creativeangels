@@ -100,8 +100,8 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     imagecopyresampled($vtrue_colour_image_thumb, $vfile_source, 0, 0, 0, 0, $vfile_new_thumb_width, $vfile_new_thumb_height, $vfile_original_width, $vfile_original_height);
 
     //UPLOAD LOCATION + FILE NAME (LARGE IMAGE)
-    $vfilepath_uploaded_file_dir_large = 'assets/images/uploads/large/';
-    $vfilepath_uploaded_file_display_dir_large = 'assets/images/uploads/large/';
+    $vfilepath_uploaded_file_dir_large = '../assets/uploads/team/large/';
+    $vfilepath_uploaded_file_display_dir_large = '../assets/uploads/team/large/';
 
     $vfile_new_unique_name_large = date('YmdHis') . '-' . 'thumbnail' . '-' . $vfile_name;
 
@@ -110,8 +110,8 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     $vfilepath_uploaded_file_display_dir_large = $vfilepath_uploaded_file_display_dir_large . $vfile_new_unique_name_large;
 
     //UPLOAD LOCATION + FILE NAME (thumb IMAGE)
-    $vfilepath_uploaded_file_dir_thumb = 'assets/images/uploads/thumb/';
-    $vfilepath_uploaded_file_display_dir_thumb = 'assets/images/uploads/thumb/';
+    $vfilepath_uploaded_file_dir_thumb = '../assets/uploads/team/thumb/';
+    $vfilepath_uploaded_file_display_dir_thumb = '../assets/uploads/team/thumb/';
 
     $vfile_new_unique_name_thumb = date('YmdHis') . '-' . 'thumbnail' . '-' . $vfile_name ;
 

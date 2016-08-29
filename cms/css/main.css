@@ -307,11 +307,40 @@ td.button-set input, td.button-set form {
   margin-right: 0.625em;
 }
 
-.form .half-float input[type="text"], .form .half-float textarea, .form .half-float [type="file"]  {
+.form .half-float input[type="text"], .form .half-float textarea, .form .half-float [type="file"], .half-float figure, .half-float p  {
   width: 70%;
 }
 
+.quarter-float figure {
+  padding: 0;
+  margin: 0;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
 .form .half-float textarea {
+}
+
+.form.single-col input, .form.single-col textarea {
+  width: 70%;
+}
+
+.three4-float {
+  width: 60%;
+  float: left;
+}
+
+.quarter-float {
+  width: 40%;
+  float: left;
+}
+
+.form .three4-float input[type="text"], .form .three4-float textarea, .form .three4-float [type="file"], .three4-float figure, .three4-float p  {
+  width: 75%;
+}
+
+.form .quarter-float input[type="text"], .form .quarter-float textarea, .form .quarter-float [type="file"], .quarter-float figure, .quarter-float p  {
+  width: 75%;
 }
 
 /* Modifiers */
