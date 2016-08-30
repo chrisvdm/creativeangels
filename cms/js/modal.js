@@ -72,6 +72,9 @@ var mw = {
 
     // create overlay
     var overlay = mw.renderOverlay(modal.parent);
+    var y = window.scrollY;
+    overlay.style.top = y + 'px';
+    overlay.style.bottom ='0px';
     modal.overlay = overlay;
 
     var shell = newEl('div', overlay);

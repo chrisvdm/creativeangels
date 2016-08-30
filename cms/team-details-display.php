@@ -143,7 +143,7 @@ $rs_team_rows_total = mysqli_num_rows($rs_team);
           },
           success: function(result) {
 
-            $(btn).parent().parent().remove();
+            $(btn).parent().parent().parent().remove();
             mw.deleteToast('Record has been deleted', '#main-content');
 
           }
