@@ -52,12 +52,20 @@ a {
   color: inherit;
 }
 
+label {
+  font-weight: 600;
+}
+
 .main-header h1 {
   font-size: 1.43em;
 }
 
 .page-header h2 {
   font-size: 1.25em;
+}
+
+.h2 {
+  font-size: 2em;
 }
 
 .tbl-heading td{
@@ -303,6 +311,12 @@ td.button-set input, td.button-set form {
   margin-right: 0.625em;
 }
 
+input[type="radio"] {
+  display: inline;
+  width: auto;
+  margin: 0.5em;
+}
+
 .form .half-float input[type="text"], .form .half-float textarea, .form .half-float [type="file"], .half-float figure, .half-float p  {
   width: 70%;
 }
@@ -333,6 +347,10 @@ td.button-set input, td.button-set form {
 
 .form .three4-float input[type="text"], .form .three4-float textarea, .form .three4-float [type="file"], .three4-float figure, .three4-float p  {
   width: 75%;
+}
+
+.news .three4-float input[type="text"], .news .three4-float textarea, .news .three4-float [type="file"], .three4-float figure, .three4-float p  {
+  width: 90%;
 }
 
 .form .quarter-float input[type="text"], .form .quarter-float textarea, .form .quarter-float [type="file"], .quarter-float p  {

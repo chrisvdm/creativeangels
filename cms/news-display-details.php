@@ -24,7 +24,7 @@
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Template</h2>
+            <h2>News Overview</h2>
           </div>
 
         </header>

@@ -21,6 +21,10 @@
   </ul>
 
   <li class="opt-menu">News</li>
+  <ul class="submenu">
+    <li><a class="opt-menu" href="news-display.php">Overview</a></li>
+    <li><a class="opt-menu" href="news-insert.php">Add New</a></li>
+  </ul>
   <li class="opt-menu">Manage events</li>
   <li class="opt-menu">Contact Details</li>
   <ul class="submenu">
@@ -36,13 +40,13 @@
   <li class="opt-menu" >Team</li>
   <ul class="submenu">
     <li><a class="opt-menu" href="team-details-display.php">View</a></li>
-    <li><a class="opt-menu" href="team-add-new.php">Add New Team Member</a></li>
+    <li><a class="opt-menu" href="team-add-new.php">Add New</a></li>
   </ul>
 
   <li class="opt-menu" >Partners</li>
   <ul class="submenu">
     <li><a class="opt-menu" href="partners-details-display.php">View</a></li>
-    <li><a class="opt-menu" href="partners-add-new.php">Add New Partner</a></li>
+    <li><a class="opt-menu" href="partners-add-new.php">Add New</a></li>
   </ul>
 
   <li class="opt-menu">Log out</li>
