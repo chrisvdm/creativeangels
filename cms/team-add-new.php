@@ -121,6 +121,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
             <textarea type="text" name="txtBio" autocomplete="off" placeholder="Type short descriptive paragraph about the team member."><?php echo displayTxt('kbio'); ?></textarea>
 
 
+            <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
           </div>
 
             <div class="quarter-float">

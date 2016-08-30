@@ -2,9 +2,9 @@
 <?php
 
   // Security check
-  if(isset($_GET['txtSecurity']) && $_GET['txtSecurity'] === $_SESSION['svSecurity']) {
+  if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']) {
 
-    $vId = $_GET['txtId'];
+    $vId = $_POST['txtId'];
     //Connect to MYSQL Server
     require('inc-conn.php');
 

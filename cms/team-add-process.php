@@ -1,9 +1,8 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
-if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && isset($_POST['txtId']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']) {
 
   $vImg = 'na';
-  $vId = $_POST['txtId'];
   $vcreated = date('Y-m-d');
   $validation = 0;
 
