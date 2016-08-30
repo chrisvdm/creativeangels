@@ -24,6 +24,9 @@
     // Returns a key/value pair in the GET global Super Array according to the success of the query
     if($delete_result) {
 
+      unlink('../assets/uploads/team/large/' . $_POST['txtImg']);
+      unlink('../assets/uploads/team/thumb/' . $_POST['txtImg']);
+
       echo 'Record deleted';
       exit();
 

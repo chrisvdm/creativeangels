@@ -66,7 +66,7 @@ $rs_team_rows_total = mysqli_num_rows($rs_team);
                     <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
                   </form>
 
-                    <input type="button" class="danger-btn" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-entry-id="<?php echo $rs_team_rows['tid']; ?>">
+                    <input type="button" class="danger-btn" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-img="<?php echo $rs_team_rows['tphotograph']; ?>" data-entry-id="<?php echo $rs_team_rows['tid']; ?>">
                   </td>
 
               </tr>
@@ -134,11 +134,12 @@ $rs_team_rows_total = mysqli_num_rows($rs_team);
       function deleteRecord(btn, info) {
 
         $.ajax({
-          type: 'GET',
+          type: 'POST',
           url: 'team-delete-ajax-process.php',
           data: {
             'txtSecurity': info.sec,
-            'txtId': info.entryId
+            'txtId': info.entryId,
+            'txtImg': info.img
           },
           success: function(result) {
 
