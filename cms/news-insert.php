@@ -59,7 +59,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <section id="main-content" class="base col-2-3">
 
           <form class="form news" method="post" action="news-insert-process.php">
-
+            <h3 class="accent">Article content</h3>
               <!-- HEADLINE -->
               <input class="h2" name="txtHeading" type="text" placeholder="Title">
 
