@@ -1,81 +1,90 @@
 <?php
 // returns object based on whether or not a keyvalue pair from array validate according to type(string, int or email)
-function $sanitize($name, $type, $method) {
-
-  // Checks whether the name exists and has a value
-  function $exists($name, $method) {
-
-    if(strtolower($method) === 'post'){
-
-      if(isset($_POST[$name]) && $_POST[$name] !== ''){
-        return $_POST[$name];
-      } else {
-        echo 'Key value pair not found';
-        exit();
-      }
-
-    } elseif (strtolower($method) === 'get') {
-
-      if(isset($_GET[$name]) && $_GET[$name] !== ''){
-        return $_GET[$name];
-      } else {
-        echo 'Key value pair not found';
-        exit();
-      }
+function sanitize($name, $type = 'string', $method = 'post') {
+    if(exists($name, $method)){
+      $input = pluck($name, $method);
+      return ugh($input, $type);
     }
-  } // end of exits fn
+}
 
-  function $reduce($input, $type){
+// validates and sanitizes
+function ugh($input, $type){
 
-    switch $type {
+  switch ($type) {
 
-      case 'string':
-        $input = trim($input);
-        $input = filter_var($input, FILTER_SANITIZE_STRING);
+    case 'string':
+      $input = filter_var($input, FILTER_SANITIZE_STRING);
 
-        if ($input === ''){
+      if ($input === ''){
+        return false;
+      } else {
+        return $input;
+      }
+    break;
+
+    case 'int':
+      $input = filter_var($input, FILTER_SANITIZE_NUMBER_INT);
+
+      if ($input === ''){
+        return false;
+      } else {
+        return $input;
+      }
+    break;
+
+    case 'email':
+      $input = filter_var($input, FILTER_SANITIZE_EMAIL);
+
+      if ($input !== ''){
+        if(!filter_var($input, FILTER_VALIDATE_EMAIL)) {
           return false;
         } else {
           return $input;
         }
-      break;
+      }
+    break;
 
-      case 'int':
-        $input = trim($input);
-        $input = filter_var($input, FILTER_SANITIZE_NUMBER_INT);
+    default:
+      return false;
+    break;
 
-        if ($input === ''){
-          return false;
-        } else {
-          return $input;
-        }
-      break;
+  }
+} // end of reduce fn
 
-      case 'email':
-        $input = trim($input);
-        $input = filter_var($input, FILTER_SANITIZE_EMAIL);
 
-        if ($input !== ''){
-          // Validate email address (Check that email has correct structure)
-          if(!filter_var($input, FILTER_VALIDATE_EMAIL)) {
-            // If email does not validate
-            return false;
-          } else {
-            return $input;
-          }
-        }
-      break;
+// Checks whether the key value pair exists and has a value
+function exists($name, $method) {
 
-      default:
-        return 'Variable type does not exist';
-      break;
+  if(strtolower($method) === 'post'){
+
+    if(isset($_POST[$name]) && $_POST[$name] !== ''){
+      return true;
+    } else {
+      return false;
     }
-  } // end of reduce fn
 
-  function $act($name, $type, $method){
-    reduce(exists($name, $method), $type);
+  } elseif (strtolower($method) === 'get') {
+
+    if(isset($_GET[$name]) && $_GET[$name] !== ''){
+      return true;
+    } else {
+      return false;
+    }
+  }
+} // end of exists fn
+
+// retrieves the value from array
+function pluck($name, $method){
+
+  if(strtolower($method) === 'post'){
+
+    return trim($_POST[$name]);
+
+  } elseif (strtolower($method) === 'get') {
+
+    return trim($_POST[$name]);
+
   }
 
-  act($name, $type, $method);
-}
+} // end of pluck fn
 ?>

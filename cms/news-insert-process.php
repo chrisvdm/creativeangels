@@ -2,80 +2,32 @@
 <?php
 if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']){
 
-$validation = 0;
+include_once('inc-fn-sanitize.php');
 
-//============================= HEADING VALIDATION ============================
-if(isset($_POST['txtHeading'])) {
+//====================== SANITIZATION and VALIDATION =======================
+$vHeading = sanitize('txtHeading','string');
+$vSummary= sanitize('txtSummary','string');
+$vStatus = sanitize('txtStatus', 'string');
+$vDate = sanitize('txtDate','string');
 
-  $vHeading = trim($_POST['txtHeading']);
-
-  $vHeading = filter_var($vHeading, FILTER_SANITIZE_STRING);
-
-  if($vHeading === ''){
-
-    $validation++;
-
-  }
-
+if(exists('txtBody', 'POST')) {
+  $vBody = $_POST['txtBody'];
 } else {
-  $validation++;
-}
-
-//============================= SUMMARY VALIDATION ============================
-if(isset($_POST['txtSummary'])) {
-  $vSummary = trim($_POST['txtSummary']);
-
-  $vSummary = filter_var($vSummary, FILTER_SANITIZE_STRING);
-}
-
-//============================= BODY VALIDATION ============================
-if(isset($_POST['txtBody'])) {
-
-  $vBody = trim($_POST['txtBody']);
-
-  //$vBody = filter_var($vBody, FILTER_SANITIZE_STRING);
-
-  if($vBody === '') {
-
-    $validation++;
-
-  }
-
-} else {
-  $validation++;
-}
-
-//============================= DATE VALIDATION ============================
-if(isset($_POST['txtDate'])) {
-
-  $vDate = trim($_POST['txtDate']);
-
-} else {
-  $vDate = '0000-00-00';
-}
-
-//============================= STATUS VALIDATION ============================
-if(isset($_POST['txtStatus'])) {
-
-  $vStatus = trim($_POST['txtStatus']);
-
-  $vStatus = filter_var($vStatus, FILTER_SANITIZE_STRING);
-
-} else {
-  $vStatus = 'i';
+  $vBody = false;
 }
 
 // ======================= VALIDATION FAILED ===============================
-if($validation > 0) {
+if(!$vHeading || !$vSummary || !$vBody) {
 
   $qs = '?kval=failed';
   $qs .= '&kheading=' . urlencode($vHeading);
   $qs .= '&ksummary=' . urlencode($vSummary);
   $qs .= '&kbody=' . urlencode($vBody);
-  $qs .= '&kdate=' . urlencode($vBody);
+  $qs .= '&kdate=' . urlencode($vDate);
 
   header('location: news-insert.php' . $qs);
   exit();
+
 } else {
   // ====================== VALIDATION PASSED ===============================
 
@@ -108,7 +60,7 @@ if($validation > 0) {
 }
 
 } else {
-  
+
   header('location: signout.php');
   exit();
 }
