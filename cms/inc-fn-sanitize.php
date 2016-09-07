@@ -51,7 +51,6 @@ function ugh($input, $type){
   }
 } // end of reduce fn
 
-
 // Checks whether the key value pair exists and has a value
 function exists($name, $method) {
 

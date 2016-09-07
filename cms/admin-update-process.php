@@ -4,130 +4,27 @@
 if( isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && isset($_POST['txtId']) && $_POST['txtId'] !== ''){
 
   $vid = $_POST['txtId'];
-
   $validation = 0;
 
-  // ------------------------ FIRST NAME VALIDATION --------------------------
+  // ---------------------- INPUT VALIDATION AND SANITISATION ----------------
+  include_once('inc-fn-sanitize.php');
 
-  if (isset($_POST['txtName'])) {
+  $vName = ucfirst(strtolower(sanitize('txtName')));
+  $vSurname = ucfirst(strtolower(sanitize('txtSurname')));
+  $vEmail = strtolower(sanitize('txtEmail'));
+  $vMobile = sanitize('txtMobile', 'int');
 
-    $vName = ucfirst(strtolower(trim($_POST['txtName'])));
-
-    if ($vName !== '') {
-
-      // Remove harmful characters from name
-      $vName = filter_var($vName, FILTER_SANITIZE_STRING);
-
-      if ($vName === '') {
-
-        $validation++;
-
-      } else {
-
-        // Changes the session var name so that the correct name displays in branding container
-        if( $vid === $_SESSION['svcid']) {
-          $_SESSION['svcname'] = $vName;
-        }
-
-      }
-
-    } else {
-
-      // If name is empty on arrival
-      $validation++;
-    }
-
-  } else {
-
-    // If txtName is not set
-    $validation++;
+  if($vName && $vid === $_SESSION['svcid']){
+    $_SESSION['svcname'] = $vName;
   }
-
-// END OF FIRST NAME VALIDATION
-
-  //------------------------- SURNAME VALIDATION ----------------------------
-  if (isset($_POST['txtSurname'])) {
-
-    $vSurname = ucfirst(strtolower(trim($_POST['txtSurname'])));
-
-    if ($vSurname !== '') {
-
-      // Remove harmful characters from password
-      $vSurname = filter_var($vSurname, FILTER_SANITIZE_STRING);
-
-      if ($vSurname === ''){
-        $validation++;
-      }
-
-    } else {
-
-      // If surname is empty on arrival
-      $validation++;
-    }
-
-  } else {
-
-    // If surname is not set
-    $validation++;
-
-  } // END OF SURNAME VALIDATION
 
   $vPassword1 = '';
 
   // -------------------- PASSWORD VALIDATION ----------------------------------
-if($_SESSION['svcid'] === $vid){
+  if($_SESSION['svcid'] === $vid){
 
-
-    if (isset($_POST['txtPw1'])) {
-
-      $vPassword1 = trim($_POST['txtPw1']);
-
-      if ($vPassword1 !== '') {
-
-        // Remove harmful characters from password
-        $vPassword1 = filter_var($vPassword1, FILTER_SANITIZE_STRING);
-
-        if($vPassword1 === ''){
-
-          // If Password 1 is empty after sanitisation
-          $validation++;
-          //$vpswmatch = 'failed';
-        }
-
-      }
-
-    } else {
-
-      // If pw1 wasn't set
-      $validation++;
-
-    } // END OF PASSWORD VALIDATION
-
-
-    if(isset($_POST['txtPw2'])){
-
-      $vPassword2 = trim($_POST['txtPw2']);
-
-      if ($vPassword2 !== '') {
-
-        // Remove harmful characters from password
-        $vPassword2 = filter_var($vPassword2, FILTER_SANITIZE_STRING);
-
-        if ($vPassword2 === '') {
-
-          // If Password 2 is empty after sanitisation
-          $validation++;
-        }
-
-      }
-
-    } else {
-
-      // If pw2 wasn't set
-      $validation++;
-
-    } // END OF PASSWORD VALIDATION
-
+    $vPassword1= sanitize('txtPw1');
+    $vPassword2= sanitize('txtPw2');
 
     // Check if passwords entered match
     if ($vPassword1 !== $vPassword2) {
@@ -138,78 +35,9 @@ if($_SESSION['svcid'] === $vid){
     }
   } // End PW validation
 
-// ------------------------- EMAIL VALIDATION ----------------------------
-
-  if (isset($_POST['txtEmail'])) {
-
-    $vEmail = strtolower(trim($_POST['txtEmail']));
-
-    // If sent username is not blank.
-    if ($vEmail !== '') {
-
-      //sanitize email address(Remove harmful characters)
-      $vEmail = filter_var($vEmail, FILTER_SANITIZE_EMAIL);
-
-      if ($vEmail !== ''){
-
-        // Validate email address(Check that email has correct structure)
-        if(!filter_var($vEmail, FILTER_VALIDATE_EMAIL)) {
-
-          // If email does not validate
-          $validation++;
-
-        }
-
-      } else {
-
-        // if $vEmail is empty after sanitisation
-        $validation++;
-
-      }
-
-    } else {
-
-      // if $vEmail is empty on arrival
-      $validation++;
-
-    }
-
-  } // END OF EMAIL VALIDATION
-
-
-
-  //------------------------- MOBILE VALIDATION ----------------------------
-  if (isset($_POST['txtMobile'])){
-
-    $vMobile = trim($_POST['txtMobile']);
-
-    if ($vMobile !== '') {
-
-      // Remove harmful characters from password
-      $vMobile = filter_var($vMobile, FILTER_SANITIZE_NUMBER_INT);
-
-      if($vMobile === ''){
-
-        // If mobile is empty after sanitisation
-        $validation++;
-      }
-
-    } else {
-
-      // If mobile is empty on arrival
-      $validation++;
-    }
-
-  } else {
-
-    // If mobile is not set
-    $validation++;
-
-  } // END OF MOBILE VALIDATION
-
 
   // ----------------------- VALIDATION FUNCTIONS --------------------------
-  if($validation !== 0) {
+  if(!$vName || !$vSurname || !$vEmail || !$vMobile || !$vPassword1 || $validation !== 0) {
 
     $qs = '?kval=failed';
     $qs .= '&txtSecurity=' . $_SESSION['svSecurity'];

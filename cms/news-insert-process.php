@@ -5,10 +5,10 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
 include_once('inc-fn-sanitize.php');
 
 //====================== SANITIZATION and VALIDATION =======================
-$vHeading = sanitize('txtHeading','string');
-$vSummary= sanitize('txtSummary','string');
-$vStatus = sanitize('txtStatus', 'string');
-$vDate = sanitize('txtDate','string');
+$vHeading = sanitize('txtHeading');
+$vSummary= sanitize('txtSummary');
+$vStatus = sanitize('txtStatus');
+$vDate = sanitize('txtDate');
 
 if(exists('txtBody', 'POST')) {
   $vBody = $_POST['txtBody'];
