@@ -61,14 +61,17 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           <form class="form news" method="post" action="news-insert-process.php">
             <h3 class="accent">Article content</h3>
               <!-- HEADLINE -->
-              <input class="h2" name="txtHeading" type="text" placeholder="Title">
+              <?php echo errorMsg('kheading', 'title'); ?>
+              <input class="h2" name="txtHeading" type="text" placeholder="Title" value=<?php echo displayTxt('kheading'); ?>>
 
               <!-- SUMMARY -->
-              <textarea name="txtSummary" type="text" placeholder="Type a short description of the news article."></textarea>
+              <textarea name="txtSummary" type="text" placeholder="Type a short description of the news article."><?php echo displayTxt('ksummary'); ?></textarea>
 
               <!-- BODY -->
               <label>Body</label>
-              <textarea  id="txtBody" name="txtBody"></textarea>
+
+              <?php echo errorMsg('kbody', 'body'); ?>
+              <textarea id="txtBody" name="txtBody"><?php echo displayTxt('kbody'); ?></textarea>
               <script>
               CKEDITOR.replace('txtBody');
               </script>

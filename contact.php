@@ -12,6 +12,35 @@
 
   //Create associative Array
   $rs_contact_details_rows = mysqli_fetch_assoc($rs_contact_details);
+
+  // Function for printing out error messages
+  function errorMsg($keyName, $label) {
+
+    if(isset($_GET[$keyName]) && $_GET[$keyName] === '') {
+
+      return "<div class='warning_msg'>Please enter " . $label . ".</div>";
+
+    } elseif (isset($_GET['recaptcha']) && $_GET['recaptcha'] === 'fail') {
+
+      return "<div class='warning_msg'>Please complete the recaptcha to conform tha you are not a robot</div>";
+
+    } elseif (isset($_GET['kemail']) && $_GET['kemail'] === '') {
+
+      return "<div class='warning_msg'>Please provide an email address. This is so that we can reply to your message.</div>";
+
+    }
+  } // End of function errorMsg
+
+  // Displays values already entered in for input field
+  function displayTxt($keyValue){
+
+    if(isset($_GET[$keyValue]) && $_GET[$keyValue] !== '') {
+
+      return $_GET[$keyValue];
+
+    } //End if statement
+
+  } // End of function displayTxt
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +65,7 @@
         <!--===================== MAIN CONTENT ====================-->
         <section class="main-content-wrapper col-2-3">
 
-         <!-- First article -->
+         <!-- CONTACT DETAILS ======================================-->
          <article>
 
            <h2>Contact Us</h2>
@@ -94,39 +123,27 @@
 
          </article>
 
-         <!-- Second article -->
+         <!-- WRITE TO US ================================================-->
          <article>
 
            <h2>Write to us</h2>
 
            <form method="post" action="write-to-us-process.php">
-             <label for="txtName">Name</label>
-             <input type="text" name="txtName">
 
-             <?php
-               if (isset($_GET['kemail']) && $_GET['kemail'] === '') {
-                 echo '<p>
-                 Please provide an email address. This is so that we can reply to your message.
-                 </p>';
-               }
-             ?>
+             <label for="txtName">Name</label>
+             <input type="text" name="txtName" value="<?php echo displayTxt('kname'); ?>">
 
              <label for="txtEmail">*Email</label>
-             <input type="email" name="txtEmail">
+             <?php echo errorMsg('kemail', 'email'); ?>
+             <input type="email" name="txtEmail" value="<?php echo displayTxt('kemail'); ?>">
              <br>
-
-             <?php
-               if (isset($_GET['kmsg']) && $_GET['kmsg'] === '') {
-                 echo '<p>
-                 Please enter your message.
-                 </p>';
-               }
-             ?>
 
              <label for="txtMessage">Message</label>
-             <textarea name="txtMessage" placeholder="Message goes here"></textarea>
+             <?php echo errorMsg('kmsg', 'message'); ?>
+             <textarea name="txtMessage" placeholder="Message goes here"><?php echo displayTxt('kmsg'); ?></textarea>
              <br>
 
+             <?php echo errorMsg('recaptcha', 'recaptcha'); ?>
              <div class="g-recaptcha" data-sitekey="6LfaticTAAAAAPvR8kVhcToBvbZn8Rxw6-EsHW_p"></div>
 
              <input type="submit" value="Send Message" >
@@ -135,7 +152,7 @@
 
          </article>
 
-         <!-- article 3 -->
+         <!-- GOOGLE MAP =================================================-->
          <article>
            <h2>Find Us</h2>
 

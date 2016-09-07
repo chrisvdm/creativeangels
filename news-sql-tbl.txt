@@ -1,0 +1,59 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.10
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost:8889
+-- Generation Time: Sep 06, 2016 at 09:40 PM
+-- Server version: 5.5.42
+-- PHP Version: 5.6.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `dbcreativeangels`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblnews`
+--
+
+CREATE TABLE `tblnews` (
+  `nid` int(10) unsigned zerofill NOT NULL,
+  `nmodified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ncreated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `nstatus` enum('a','i') NOT NULL DEFAULT 'i',
+  `nheading` varchar(1000) NOT NULL DEFAULT 'na',
+  `ndatepublished` date NOT NULL DEFAULT '0000-00-00',
+  `nsummary` varchar(3000) NOT NULL DEFAULT 'na',
+  `nbody` varchar(60000) NOT NULL DEFAULT 'na'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblnews`
+--
+
+INSERT INTO `tblnews` (`nid`, `nmodified`, `ncreated`, `nstatus`, `nheading`, `ndatepublished`, `nsummary`, `nbody`) VALUES
+(0000000001, '2016-09-02 08:51:48', '0000-00-00 00:00:00', 'i', 'hello', '0000-00-00', 'dffdh', '<p>dfndfndn</p>');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tblnews`
+--
+ALTER TABLE `tblnews`
+  ADD PRIMARY KEY (`nid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tblnews`
+--
+ALTER TABLE `tblnews`
+  MODIFY `nid` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;

@@ -1,6 +1,6 @@
 <?php
 if(!function_exists('escapestring')) {
-	// Checks whether the function has been call before
+	// Checks whether the function has been called before
 
 	// This function removes the harmful characters in strings
 	function escapestring($vconn_creativeangels, $value, $datatype) {

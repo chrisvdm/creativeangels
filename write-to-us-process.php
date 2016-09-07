@@ -20,10 +20,8 @@ echo $resp;
 exit;
 if (!$resp->{'success'}) {
 
-  // What happens when the CAPTCHA was entered incorrectly
-  die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." .
-
-       "(reCAPTCHA said: " . $resp->{'success'} . ")");
+  $qs = '?recaptcha=fail';
+  header('location: contact.php' . $qs);
 
 } else {
   // RECAPCHA VERIFICATION PASSED
@@ -156,6 +154,7 @@ if (!$resp->{'success'}) {
   } else {
 
     $qs = '?kval=failed';
+    $qs .= '&kname=' . $vName;
     $qs .= '&kemail=' . $vEmail;
     $qs .= '&kmsg' . $vMsg;
 
