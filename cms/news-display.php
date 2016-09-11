@@ -71,7 +71,11 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               <td><?php echo $rs_news_rows['nsummary']; ?></td>
               <td><?php echo $rs_news_rows['nstatus']; ?></td>
               <td class="button-set">
-                <button>Edit</button>
+                <form method="get" action="news-update-display.php">
+                  <input type="hidden" name="txtId" value="<?php echo $rs_news_rows['nid']; ?>">
+                  <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+                  <input class="button" type="submit" value="Edit">
+                </form>
                 <button>Publish</button>
                 <button>Archive</button>
               </td>

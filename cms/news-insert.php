@@ -31,6 +31,10 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     <!-- Head contents -->
     <?php require('inc-cms-head-content.php'); ?>
     <scriptsrc="ckeditor/ckeditor.js"></script>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'#txtBody',
+  file_browser_callback_types: 'file image media',
+  plugins: "image imagetools" });</script>
   </head>
   <body>
     <!-- PAGE WRAPPER -->
@@ -72,19 +76,18 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
               <?php echo errorMsg('kbody', 'body'); ?>
               <textarea id="txtBody" name="txtBody"><?php echo displayTxt('kbody'); ?></textarea>
-              <script>
+              <!-- <script>
               CKEDITOR.replace('txtBody');
-              </script>
+              </script> -->
               <br>
               <br>
 
               <h3 class="accent">Article settings</h3>
               <!-- DATE -->
               <label>Article Date<label>
+                <p><i>YYYY-MM-DD</i></p>
 
-                <input type="text" name="txtDate">
-
-                <!-- TODO Datepicker -->
+                <input type="text" name="txtDate" placeholder="DD/MM/YYYY">
 
               <label>Status</label><br>
               <input type="radio" name="txtStatus" value="i" checked> Save as Draft<br>
@@ -93,9 +96,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>"
 
             <div class="button-set">
-
-              <!-- submit form -->
-              <!-- <a class="button" name="btnDraft">Save as draft</a> -->
 
               <button type="submit" name="btnSave">Save</button>
 

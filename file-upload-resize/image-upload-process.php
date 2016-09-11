@@ -93,7 +93,7 @@ if($vfile_extension == 'jpg' || $vfile_extension == 'jpeg' ) {
 
 	}
 
-//GET IMAGE DIMENTION (ORIGINAL IMAGE)
+//GET IMAGE DIMENSION (ORIGINAL IMAGE)
 list($vfile_original_width, $vfile_original_height) = getimagesize($vfile_temp_name);
 
 //SPECIFY NEW DIMENTIONS (WIDTH OF LARGE IMAGE)

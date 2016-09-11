@@ -147,115 +147,17 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
       $vImg = 'na';
     }
 
+    // ------------------ INPUT VALIDATION AND SANITISATION ----------------
+    include_once('inc-fn-sanitize.php');
 
-  // ------------------------ FIRST NAME VALIDATION --------------------------
-
-  if (isset($_POST['txtName'])) {
-
-    $vName = ucfirst(strtolower(trim($_POST['txtName'])));
-
-    if ($vName !== '') {
-
-      // Remove harmful characters from name
-      $vName = filter_var($vName, FILTER_SANITIZE_STRING);
-
-      if ($vName === '') {
-        $validation++;
-      }
-
-    } else {
-
-      // If name is empty on arrival
-      $validation++;
-    }
-
-  } else {
-
-    // If name is not set
-    $validation++;
-
-  } // END OF FIRST NAME VALIDATION
-
-  //------------------------- SURNAME VALIDATION ----------------------------
-  if (isset($_POST['txtSurname'])) {
-
-    $vSurname = ucfirst(strtolower(trim($_POST['txtSurname'])));
-
-    if ($vSurname !== '') {
-
-      // Remove harmful characters from password
-      $vSurname = filter_var($vSurname, FILTER_SANITIZE_STRING);
-
-      if ($vSurname === ''){
-        $validation++;
-      }
-
-    } else {
-
-      // If surname is empty on arrival
-      $validation++;
-    }
-
-  } else {
-
-    // If surname is not set
-    $validation++;
-
-  } // END OF SURNAME VALIDATION
-
-  //----------------------- COMPANY NAME VALIDATION ------------------------
-  if (isset($_POST['txtCompName'])) {
-
-    $vCompName = trim($_POST['txtCompName']);
-
-    if ($vCompName !== '') {
-
-      // Remove harmful characters from password
-      $vCompName = filter_var($vCompName, FILTER_SANITIZE_STRING);
-    }
-  } // END OF SURNAME VALIDATION
-
-  //--------------------- JOB TITLE VALIDATION ----------------------------
-  if (isset($_POST['txtJobTitle'])) {
-
-    $vJobTitle = ucfirst(strtolower(trim($_POST['txtJobTitle'])));
-
-    if ($vJobTitle !== '') {
-
-      // Remove harmful characters from password
-      $vJobTitle = filter_var($vJobTitle, FILTER_SANITIZE_STRING);
-
-      if ($vJobTitle === ''){
-        $validation++;
-      }
-
-    } else {
-
-      // If surname is empty on arrival
-      $validation++;
-    }
-
-  } else {
-
-    // If surname is not set
-    $validation++;
-
-  } // END OF JOB TITLE VALIDATION
-
-  //----------------------- BIO VALIDATION ------------------------
-  if (isset($_POST['txtBio'])) {
-
-    $vBio = trim($_POST['txtBio']);
-
-    if ($vBio !== '') {
-
-      // Remove harmful characters from password
-      $vBio = filter_var($vBio, FILTER_SANITIZE_STRING);
-    }
-  } // END OF Bio VALIDATION
+    $vName = ucfirst(strtolower(sanitize('txtName')));
+    $vSurname = ucfirst(strtolower(sanitize('txtSurname')));
+    $vJobTitle = ucfirst(strtolower(sanitize('txtJobTitle')));
+    $vCompany = ucfirst(sanitize('txtCompany'));
+    $vBio = ucfirst(sanitize('txtBio'));
 
   // ----------------------- VALIDATION FUNCTIONS --------------------------
-  if($validation !== 0) {
+  if(!$vName || !$vSurname || !$vJobTitle || !$vCompany || !$vBio) {
 
     $qs = '?kval=failed';
     $qs .= "&kname=".urlencode($vName);
