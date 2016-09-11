@@ -55,8 +55,7 @@ if(!$vHeading || !$vSummary || !$vBody) {
 
   } else {
 
-    echo 'db not updated';
-    //header('Location: signout.php');
+    header('Location: signout.php');
     exit();
 
   }

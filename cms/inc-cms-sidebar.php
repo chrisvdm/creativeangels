@@ -5,16 +5,11 @@
 
   </div>
 
-  <li class="opt-menu">Dashboard</li>
-  <ul class="submenu">
-    <li><a class="opt-menu" href="cms-homepage.php">Overview</a></li>
-    <li class="opt-menu">Traffic</li>
-    <li class="opt-menu">User Log</li>
-  </ul>
 
+  <li><a class="opt-menu" href="cms-homepage.php">Dashboard</a></li>
   <li class="opt-menu">User Accounts</li>
   <ul class="submenu">
-    <li><a  class="opt-menu"href="admin-display.php">Overview</a></li>
+    <li><a  class="opt-menu"href="admin-display.php">View</a></li>
     <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
       <li><a  class="opt-menu"href="admin-add-new.php">Add Users</a></li>
     <?php } ?>
@@ -22,7 +17,7 @@
 
   <li class="opt-menu">News</li>
   <ul class="submenu">
-    <li><a class="opt-menu" href="news-display.php">Overview</a></li>
+    <li><a class="opt-menu" href="news-display.php">View</a></li>
     <li><a class="opt-menu" href="news-insert.php">Add New</a></li>
   </ul>
   <li class="opt-menu">Manage events</li>

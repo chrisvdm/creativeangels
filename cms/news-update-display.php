@@ -83,7 +83,7 @@ function displayTxt($keyValue){
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Edit News article</h2>
+            <h2>Edit News article > <?php echo $rs_news_rows['nheading']; ?></h2>
           </div>
 
         </header>
@@ -129,7 +129,7 @@ function displayTxt($keyValue){
 
                 <button type="submit" name="btnSave">Save</button>
 
-                <a class="button danger-btn" href="news-details-display.php" name="btnCancel">Cancel</a>
+                <a class="button danger-btn" href="news-display.php" name="btnCancel">Cancel</a>
 
               </div>
 

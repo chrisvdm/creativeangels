@@ -59,10 +59,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
           <!-- DISPLAY TABLE ------------------------------------------------->
 
           <table cellspacing="0" class="tbldatadisplay">
-            <!-- Row 1 -->
-            <!-- <tr>
-
-            </tr> -->
 
             <!-- HEADING ROW ------------------------------------------------->
 
@@ -94,7 +90,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
                   <input id="btn<?php echo $rs_cms_rows['cid']; ?>" type="button" name="btnView" data-cid="<?php echo $rs_cms_rows['cid']; ?>" value="View Details">
 
-                  </td>
+                </td>
 
                 <!-- Edit record -->
                 <td align="center"><?php if ($_SESSION['svcaccesslevel']=== 'a'){?>

@@ -99,7 +99,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
               <button type="submit" name="btnSave">Save</button>
 
-              <a class="button danger-btn" href="news-details-display.php" name="btnCancel">Cancel</a>
+              <a class="button danger-btn" href="news-display.php" name="btnCancel">Cancel</a>
 
             </div>
 

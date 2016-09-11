@@ -51,33 +51,41 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
 
-          <table class="tbldatadisplay">
+          <table cellspacing="0" class="tbldatadisplay">
             <tr class="tbl-heading">
-              <td class="accent">Title</td>
-                <td class="accent">
-                  Summary
-                </td>
-                <td class="accent">
-                  Status
-                </td>
-                <td class="accent">
-                  &nbsp;
-                </td>
+              <td class="accent" colspan="2">Title</td>
+                <td class="accent" colspan="2">Summary</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
               </tr>
 
               <?php do{ ?>
             <tr>
-              <td><?php echo $rs_news_rows['nheading']; ?></td>
-              <td><?php echo $rs_news_rows['nsummary']; ?></td>
-              <td><?php echo $rs_news_rows['nstatus']; ?></td>
-              <td class="button-set">
+              <td colspan="2"><?php echo $rs_news_rows['nheading']; ?></td>
+              <td colspan="5"><?php echo $rs_news_rows['nsummary']; ?></td>
+              <td>
+                <!-- View -->
+                <form method="post" action="news-display-details.php">
+                  <input type="hidden" name="txtId" value="<?php echo $rs_news_rows['nid']; ?>">
+                  <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+                  <input class="button" type="submit" value="View">
+                </form>
+              </td>
+              <td>
+                <!-- Edit -->
                 <form method="get" action="news-update-display.php">
                   <input type="hidden" name="txtId" value="<?php echo $rs_news_rows['nid']; ?>">
                   <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
                   <input class="button" type="submit" value="Edit">
                 </form>
-                <button>Publish</button>
-                <button>Archive</button>
+              </td>
+              <td>
+                <!-- Publish -->
+                <input type="button" name="pubBtn" data-status="<?php echo $rs_news_rows['nstatus']; ?>" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-id="<?php echo $rs_news_rows['nid']; ?>" value="<?php if($rs_news_rows['nstatus'] === 'i'){echo 'Publish';} else {echo 'Archive';} ?>">
               </td>
             </tr>
 
@@ -93,5 +101,46 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     </div>
 
     <script src="js/accordian.js"></script>
+    <script>
+
+    $(document).ready(function() {
+
+      $(':button[name="pubBtn"]').on('click', function() {
+
+        var btn = $(this);
+        var info = btn.data();
+
+        if(info.status === 'i') {
+          info.status = 'a';
+        } else if(info.status === 'a') {
+          info.status = 'i';
+        }
+
+        $.ajax({
+          type: 'POST',
+          url: 'news-ajax-publish-process.php',
+          data: {
+            'txtSecurity': info.sec,
+            'txtId': info.id,
+            'txtStatus': info.status
+          },
+          success: function(result) {
+
+            if (result === 'success') {
+
+              if(info.status === 'i') {
+                btn.val('Publish');
+              } else if(info.status === 'a') {
+                btn.val('Archive');
+              }
+            }
+
+          }
+        });
+      });
+
+    });
+    
+    </script>
   </body>
 </html>
