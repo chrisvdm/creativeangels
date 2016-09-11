@@ -1,6 +1,8 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
-if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity']){
+if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && isset($_POST['txtId'])){
+
+  $vId = $_POST['txtId'];
 
 include_once('inc-fn-sanitize.php');
 
@@ -35,7 +37,7 @@ if(!$vHeading || !$vSummary || !$vBody) {
   require('inc-function-escapestring.php');
 
   // insert query
-  $sql_insert = sprintf("INSERT INTO tblnews (nheading, nsummary, nbody, ndatepublished, nstatus) VALUES (%s, %s, %s, %d, %s)",
+  $sql_insert = sprintf("UPDATE tblnews SET nheading = %s, nsummary = %s, nbody = %s, ndatepublished = %d, nstatus = %s WHERE nid = $vId",
     escapestring($vconn_creativeangels, $vHeading, 'text'),
     escapestring($vconn_creativeangels, $vSummary, 'text'),
     escapestring($vconn_creativeangels, $vBody, 'text'),
@@ -52,7 +54,9 @@ if(!$vHeading || !$vSummary || !$vBody) {
     exit();
 
   } else {
-    header('Location: signout.php');
+
+    echo 'db not updated';
+    //header('Location: signout.php');
     exit();
 
   }
@@ -60,7 +64,6 @@ if(!$vHeading || !$vSummary || !$vBody) {
 }
 
 } else {
-
   header('location: signout.php');
   exit();
 }

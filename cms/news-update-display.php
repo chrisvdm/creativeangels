@@ -118,24 +118,20 @@ function displayTxt($keyValue){
 
                 <input type="text" name="txtDate" placeholder="DD/MM/YYYY" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kdate'); } elseif (isset($rs_news_rows['ndatepublished']) && $rs_news_rows['ndatepublished'] !== 'na'){ echo $rs_news_rows['ndatepublished']; } ?>">
 
-                <!-- TODO Datepicker -->
-
               <label>Status</label><br>
               <input type="radio" name="txtStatus" value="i" checked> Save as Draft<br>
               <input type="radio" name="txtStatus" value="a"> Publish on Save<br>
 
-              <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>"
+              <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+              <input type="hidden" name="txtId" value="<?php echo $vId; ?>">
 
-            <div class="button-set">
+              <div class="button-set">
 
-              <!-- submit form -->
-              <!-- <a class="button" name="btnDraft">Save as draft</a> -->
+                <button type="submit" name="btnSave">Save</button>
 
-              <button type="submit" name="btnSave">Save</button>
+                <a class="button danger-btn" href="news-details-display.php" name="btnCancel">Cancel</a>
 
-              <a class="button danger-btn" href="news-details-display.php" name="btnCancel">Cancel</a>
-
-            </div>
+              </div>
 
           </form>
 
