@@ -58,11 +58,7 @@ function displayTxt($keyValue){
     <!-- Head contents -->
     <?php require('inc-cms-head-content.php'); ?>
 
-    <scriptsrc="ckeditor/ckeditor.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-  <script>tinymce.init({ selector:'#txtBody',
-  file_browser_callback_types: 'file image media',
-  plugins: "image imagetools" });</script>
+    <script src="ckeditor/ckeditor.js"></script>
 
   </head>
   <body>
@@ -105,9 +101,9 @@ function displayTxt($keyValue){
 
               <?php echo errorMsg('kbody', 'body'); ?>
               <textarea id="txtBody" name="txtBody"><?php if(isset($_GET['kname'])){ echo displayTxt('kbody'); } elseif (isset($rs_news_rows['nbody']) && $rs_news_rows['nbody'] !== 'na'){ echo $rs_news_rows['nbody']; } ?></textarea>
-              <!-- <script>
+              <script>
               CKEDITOR.replace('txtBody');
-              </script> -->
+              </script>
               <br>
               <br>
 

@@ -28,9 +28,11 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 <!DOCTYPE html>
 <html>
   <head>
+    
     <!-- Head contents -->
     <?php require('inc-cms-head-content.php'); ?>
     <script src="ckeditor/ckeditor.js"></script>
+
   </head>
   <body>
     <!-- PAGE WRAPPER -->
@@ -105,6 +107,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         </section>
 
       </section>
+
       <div class="clearfix"></div>
 
     </div>

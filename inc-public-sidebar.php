@@ -2,7 +2,7 @@
 
   <?php
   // Create SQL statement to fetch all records from tblcontactdetails
-  $sql_news = "SELECT * FROM tblnews ORDER BY nid DESC limit 3";
+  $sql_news = "SELECT * FROM tblnews WHERE nstatus = 'a' ORDER BY nid DESC limit 3";
 
   //Connect to MYSQL Server
   require(PATH . '/inc-conn.php');
