@@ -1,7 +1,9 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
 // check if the form was submitted
-if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && $_SERVER['REQUEST_METHOD'] == 'POST') {
+if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && isset($_POST['txtId']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+
+  $vId = $_POST['txtId'];
 
   $validation = 0;
   ini_set('memory_limit', '128M');
@@ -12,6 +14,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
   $vDescription = sanitize('txtDescription');
 
     //------------------------- IMAGE UPLOAD ----------------------------------
+    if(isset( $_FILES['txtLogo']['name'])){
 
   	$vfile_name = strtolower(trim(basename($_FILES['txtLogo']['name'])));
 
@@ -127,6 +130,10 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     	} else {
         $validation++;
       }
+    } else {
+      $validation++;
+    }
+
 
 
   if($validation === 0 && $vCompany && $vDescription) {
@@ -135,7 +142,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     require('inc-function-escapestring.php');
 
     // insert query
-    $sql_insert = sprintf("INSERT INTO tblpartners (pcompany, pdescription, plogo) VALUES (%s, %s, %s)",
+    $sql_insert = sprintf("UPDATE tblpartners SET pcompany = %s, pdescription = %s, plogo = %s WHERE pid = $vId",
       escapestring($vconn_creativeangels, $vCompany, 'text'),
       escapestring($vconn_creativeangels, $vDescription, 'text'),
       escapestring($vconn_creativeangels, $vImg, 'text')
