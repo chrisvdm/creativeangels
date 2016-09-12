@@ -65,33 +65,60 @@
         <!--===================== MAIN CONTENT ====================-->
         <section class="main-content-wrapper col-2-3">
 
+
+         <!-- WRITE TO US ================================================-->
+         <article>
+
+           <h2>Write to us</h2>
+
+           <form method="post" action="write-to-us-process.php">
+
+             <label for="txtName">Name</label>
+             <input type="text" name="txtName" value="<?php echo displayTxt('kname'); ?>">
+
+             <label for="txtEmail">*Email</label>
+             <?php echo errorMsg('kemail', 'email'); ?>
+             <input type="email" name="txtEmail" value="<?php echo displayTxt('kemail'); ?>">
+
+             <label for="txtMessage">Message</label>
+             <?php echo errorMsg('kmsg', 'message'); ?>
+             <textarea class="large-textarea" name="txtMessage" placeholder="Message goes here"><?php echo displayTxt('kmsg'); ?></textarea><br>
+
+             <?php echo errorMsg('recaptcha', 'recaptcha'); ?>
+             <div class="g-recaptcha" data-sitekey="6LfaticTAAAAAPvR8kVhcToBvbZn8Rxw6-EsHW_p"></div>
+
+             <input class="cta" type="submit" value="Send Message" >
+
+           </form>
+
+         </article>
+
          <!-- CONTACT DETAILS ======================================-->
          <article>
 
            <h2>Contact Us</h2>
-
    					<p>
    						<?php
    						if ($rs_contact_details_rows['cemail'] !== 'na'){
 
    							$email = $rs_contact_details_rows['cemail'];
-   							echo '<a href="mailto:' . escapeHex_email($email) . '">' . escapeHexEntity_email($email) . '</a>';
+   							echo '<a href="mailto:' . escapeHex_email($email) . '"><i class="fa fa-envelope-o"></i> ' . escapeHexEntity_email($email) . '</a>';
 
    						}
    						?>
    					</p>
 
    					<?php do { ?>
-   						<div class="location">
+   						<div class="location wide-half">
 
    							<!-- city -->
-   							<h4><?php echo $rs_contact_details_rows['ccity']; ?></h4>
+   							<h4><i class="fa fa-map-marker"></i> <?php echo $rs_contact_details_rows['ccity']; ?></h4>
 
    							<!-- Contact person -->
    							<p><?php echo $rs_contact_details_rows['ccontactpersonname'] . ' ' . $rs_contact_details_rows['ccontactpersonsurname'] . '<br>'; ?></p>
 
    							<!-- Landline -->
-   							<p><?php if ($rs_contact_details_rows['clandline'] !== "na") { echo $rs_contact_details_rows['clandline'] . '<br><br>'; } else { echo ""; } ?></p>
+   							<p><?php if ($rs_contact_details_rows['clandline'] !== "na") { echo $rs_contact_details_rows['clandline']; } else { echo ""; } ?></p>
 
    							<!-- Address -->
    							<p><?php if ($rs_contact_details_rows['caddress1'] === 'na' || $rs_contact_details_rows['caddress2'] === 'na' || $rs_contact_details_rows['caddress3'] === 'na' || $rs_contact_details_rows['csuburb'] === 'na') {
@@ -120,45 +147,18 @@
    					}
    					?></p>
 
+         <div class="clearfix"></div>
+       </article>
 
-         </article>
 
-         <!-- WRITE TO US ================================================-->
          <article>
 
-           <h2>Write to us</h2>
-
-           <form method="post" action="write-to-us-process.php">
-
-             <label for="txtName">Name</label>
-             <input type="text" name="txtName" value="<?php echo displayTxt('kname'); ?>">
-
-             <label for="txtEmail">*Email</label>
-             <?php echo errorMsg('kemail', 'email'); ?>
-             <input type="email" name="txtEmail" value="<?php echo displayTxt('kemail'); ?>">
-             <br>
-
-             <label for="txtMessage">Message</label>
-             <?php echo errorMsg('kmsg', 'message'); ?>
-             <textarea name="txtMessage" placeholder="Message goes here"><?php echo displayTxt('kmsg'); ?></textarea>
-             <br>
-
-             <?php echo errorMsg('recaptcha', 'recaptcha'); ?>
-             <div class="g-recaptcha" data-sitekey="6LfaticTAAAAAPvR8kVhcToBvbZn8Rxw6-EsHW_p"></div>
-
-             <input type="submit" value="Send Message" >
-
-           </form>
-
-         </article>
-
-         <!-- GOOGLE MAP =================================================-->
-         <article>
            <h2>Find Us</h2>
 
-          <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4651.1734042333555!2d31.060058322215795!3d-29.722072062586683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa5f8fb4184204bcb!2siL+PALAZZO!5e0!3m2!1sen!2sza!4v1471332410192" frameborder="0" style="border:0" allowfullscreen></iframe>
+           <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4651.1734042333555!2d31.060058322215795!3d-29.722072062586683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa5f8fb4184204bcb!2siL+PALAZZO!5e0!3m2!1sen!2sza!4v1471332410192" frameborder="0" style="border:0" allowfullscreen></iframe>
 
          </article>
+
        </section>
 
        <!--========================= SIDEBAR ========================-->

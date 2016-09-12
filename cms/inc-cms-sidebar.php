@@ -15,21 +15,15 @@
     <?php } ?>
   </ul>
 
-  <li class="opt-menu">News</li>
+  <li class="opt-menu">About Details</li>
   <ul class="submenu">
-    <li><a class="opt-menu" href="news-display.php">View</a></li>
-    <li><a class="opt-menu" href="news-insert.php">Add New</a></li>
+    <li><a class="opt-menu" href="about-details-display.php">View</a></li>
   </ul>
-  <li class="opt-menu">Manage events</li>
+
   <li class="opt-menu">Contact Details</li>
   <ul class="submenu">
     <li><a class="opt-menu" href="contact-particulars-display.php?kid=<?php echo base64_encode(1); ?>">Durban</a></li>
     <li><a class="opt-menu" href="contact-particulars-display.php?kid=<?php echo base64_encode(2); ?>">Cape Town</a></li>
-  </ul>
-
-  <li class="opt-menu">About Details</li>
-  <ul class="submenu">
-    <li><a class="opt-menu" href="about-details-display.php">View</a></li>
   </ul>
 
   <li class="opt-menu" >Team</li>
@@ -43,6 +37,20 @@
     <li><a class="opt-menu" href="partners-display.php">View</a></li>
     <li><a class="opt-menu" href="partners-add-new.php">Add New</a></li>
   </ul>
+
+  <li class="opt-menu">News</li>
+  <ul class="submenu">
+    <li><a class="opt-menu" href="news-display.php">View</a></li>
+    <li><a class="opt-menu" href="news-insert.php">Add New</a></li>
+  </ul>
+
+  <li class="opt-menu">Testimonials</li>
+  <ul class="submenu">
+    <li><a class="opt-menu" href="testimonials-display.php">View</a></li>
+    <li><a class="opt-menu" href="testimonials-add-new.php">Add New</a></li>
+  </ul>
+
+
 
   <li class="opt-menu">Log out</li>
   <!-- FOOTER -->

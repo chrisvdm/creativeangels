@@ -32,18 +32,6 @@
 
       return "<div class='warning_msg'>Please enter " . $label . ".</div>";
 
-    } elseif (isset($_GET[$keyName]) && $_GET[$keyName] === '0'){
-
-      return "<div class='warning_msg'>Passwords do not match</div>";
-
-    } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'failed'){
-
-      return '<div class="warning_msg">Please enter passwords!</div>';
-
-    } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'emaildup'){
-
-      return '<div class="warning_msg">Email already in use</div>';
-
     }//end if statement
 
   } // End of function errorMsg

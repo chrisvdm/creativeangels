@@ -30,11 +30,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
   <head>
     <!-- Head contents -->
     <?php require('inc-cms-head-content.php'); ?>
-    <scriptsrc="ckeditor/ckeditor.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-  <script>tinymce.init({ selector:'#txtBody',
-  file_browser_callback_types: 'file image media',
-  plugins: "image imagetools" });</script>
+    <script src="ckeditor/ckeditor.js"></script>
   </head>
   <body>
     <!-- PAGE WRAPPER -->
@@ -76,15 +72,16 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
               <?php echo errorMsg('kbody', 'body'); ?>
               <textarea id="txtBody" name="txtBody"><?php echo displayTxt('kbody'); ?></textarea>
-              <!-- <script>
+              <script>
               CKEDITOR.replace('txtBody');
-              </script> -->
+              </script>
               <br>
               <br>
 
               <h3 class="accent">Article settings</h3>
               <!-- DATE -->
               <label>Article Date<label>
+                <!-- TODO Datepicker -->
                 <p><i>YYYY-MM-DD</i></p>
 
                 <input type="text" name="txtDate" placeholder="DD/MM/YYYY">

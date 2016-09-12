@@ -57,7 +57,7 @@
 
     </div>
 
-    <script src="<?php echo PATH; ?>/js/custom.js" charset="utf-8"></script>
+    <script src="js/custom.js" charset="utf-8"></script>
 
   </body>
 </html>

@@ -27,7 +27,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
   // get the dimensions of the file and if the dimensions are larger than int
   if(isset($_SERVER['CONTENT_LENGTH']) && (int) $_SERVER['CONTENT_LENGTH'] > (1024*1024*(int) ini_get('post_max_size'))){
 
-    header('Location: team-update-display.php?kfilesize=toolarge');
+    header('Location: team-add-new.php?kfilesize=toolarge');
   	exit();
 
   }
@@ -162,7 +162,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     $qs = '?kval=failed';
     $qs .= "&kname=".urlencode($vName);
     $qs .= "&ksurname=".urlencode($vSurname);
-    $qs .= "&kcompname=".urlencode($vCompName);
+    $qs .= "&kcompname=".urlencode($vCompany);
     $qs .= "&kjobtitle=".urlencode($vJobTitle);
     $qs .= "&kbio=".urlencode($vBio);
 
@@ -186,7 +186,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
       $sql_insert = sprintf("INSERT INTO tblteam (tname, tsurname, tcompname, tjobtitle, tbio, tphotograph) VALUES (%s, %s, %s, %s, %s, %s)",
         escapestring($vconn_creativeangels, $vName, 'text'),
         escapestring($vconn_creativeangels, $vSurname, 'text'),
-        escapestring($vconn_creativeangels, $vCompName, 'text'),
+        escapestring($vconn_creativeangels, $vCompany, 'text'),
         escapestring($vconn_creativeangels, $vJobTitle, 'text'),
         escapestring($vconn_creativeangels, $vBio, 'text'),
         escapestring($vconn_creativeangels, $vImg, 'text')
@@ -205,8 +205,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
   } // END OF VALIDATION METHOD
 } else {
 
-   echo 'security token';
-  //header('Location:signout.php');
+  header('Location:signout.php');
   exit();
 }
 ?>

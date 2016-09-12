@@ -1,9 +1,5 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
-$_SESSION['svSecurity'] = sha1(date('YmdHis'));
-?>
-<?php //require("inc-cms-pre-doctype.php"); ?>
-<?php
   // Function for printing out error messages
   function errorMsg($keyName, $label) {
 
@@ -12,18 +8,6 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     if(isset($_GET[$keyName]) && $_GET[$keyName] === '') {
 
       return "<div class='warning_msg'>Please enter " . $label . ".</div>";
-
-    } elseif (isset($_GET[$keyName]) && $_GET[$keyName] === '0'){
-
-      return "<div class='warning_msg'>Passwords do not match</div>";
-
-    } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'failed'){
-
-      return '<div class="warning_msg">Please enter passwords!</div>';
-
-    } elseif(isset($_GET[$keyName]) && $_GET[$keyName] === 'emaildup'){
-
-      return '<div class="warning_msg">Email already in use</div>';
 
     }//end if statement
 

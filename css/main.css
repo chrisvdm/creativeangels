@@ -47,6 +47,11 @@ figure img {
   visibility: hidden;
 }
 
+a {
+  color:inherit;
+  text-decoration: none;
+}
+
 /****************************************************************************
 MOBILE DEVICES PORTRAIT up to 330
 ****************************************************************************/
@@ -196,6 +201,19 @@ header {
   left: 0%;
 }
 
+.cta {
+  font-weight: 600;
+
+}
+
+.partners-img {
+  margin-left: 0;
+  width: 35%;
+  padding: 0.625em;
+  background-color: #fff;
+  float:left;
+}
+
 .wide-nav a.current-page {
   color: lavender;
   text-decoration: line-through;
@@ -234,11 +252,39 @@ nav a {
   padding: 0.625em 1.25em;
 }
 
-
 .social-media i {
   width: 2em;
   font-size: 1.25em;
 }
+
+.large-textarea {
+  width: 80%;
+  height: 250px;
+  display: block;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.625em;
+}
+
+input[type="text"], input[type="email"] {
+  display: block;
+  width: 80%;
+  margin-bottom: 0.625em;
+}
+
+textarea, input, button {
+  outline: none;
+  border: solid 2px #eee;
+  padding: 0.625em 1.25em;
+}
+
+#google-map {
+  width: 100%;
+  height: 250px;
+}
+
 /****************************************************************************
 MOBILE DEVICES PORTRAIT 330
 ****************************************************************************/
@@ -278,6 +324,10 @@ LAPTOP DEVICES PORTRAIT 800
 
   .h1-wrapper {
     width: 40%;
+  }
+
+  h2 {
+    margin-bottom: 0;
   }
 
   .content-wrapper {
@@ -363,6 +413,11 @@ LAPTOP DEVICES PORTRAIT 800
   .col-2-3 {
     float: left;
     width: 66.666%;
+  }
+
+  .wide-half {
+    width: 50%;
+    float: left;
   }
 
   .main-content-wrapper {
