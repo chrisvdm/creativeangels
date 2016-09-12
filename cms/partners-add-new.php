@@ -105,12 +105,13 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
             <p><small>Logo size may not exceed 2Mb  and must have either a .jpg or .jpeg file extension</small></p>
 
-
+            <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+            
             <!-- Button set -->
             <div class="button-set">
 
               <!-- submit form -->
-              <button type="submit" name="btnAddNew">Add New</button>
+              <button name="btnAddNew">Add New</button>
 
               <a class="button danger-btn" href="partners-details-display.php" name="btnCancel">Cancel</a>
 

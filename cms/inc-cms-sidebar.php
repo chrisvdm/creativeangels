@@ -40,7 +40,7 @@
 
   <li class="opt-menu" >Partners</li>
   <ul class="submenu">
-    <li><a class="opt-menu" href="partners-details-display.php">View</a></li>
+    <li><a class="opt-menu" href="partners-display.php">View</a></li>
     <li><a class="opt-menu" href="partners-add-new.php">Add New</a></li>
   </ul>
 

@@ -1,47 +1,19 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
 // check if the form was submitted
-if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && isset($_POST['txtId']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
-  $vid = $_POST['txtId'];
+  $validation = 0;
+  ini_set('memory_limit', '128M');
 
   include_once('inc-fn-sanitize.php');
 
   $vCompany = sanitize('txtCompany');
   $vDescription = sanitize('txtDescription');
 
-  //-------------------------- LOGO VALIDATION -----------------------------
-  if(isset($_POST['txtLogo'])){
-
     //------------------------- IMAGE UPLOAD ----------------------------------
 
-    //GET THE FILE EXTENTION
-    function getExtension($str) {
-
-    	//FIND THE POSITION OF THE LAST OCCURRENCE OF A SUBSTRING IN A STRING
-      $i = strrpos($str, '.');
-
-      if (!$i) {
-    		return '';
-    	}
-
-      //RETURN PART OF A STRING
-      $ext = substr($str, $i+1);
-      return $ext;
-
-    } // end of file extension
-
-    // get the dimensions of the file and if the dimensions are larger than int
-    if(isset($_SERVER['CONTENT_LENGTH']) && (int) $_SERVER['CONTENT_LENGTH'] > (1024*1024*(int) ini_get('post_max_size'))){
-
-      header('Location: partners-add-new.php?kfilesize=toolarge');
-    	exit();
-
-    }
-
-    ini_set('memory_limit', '128M');
-
-  	$vfile_name = strtolower(trim(basename($_FILES['txtImg']['name'])));
+  	$vfile_name = strtolower(trim(basename($_FILES['txtLogo']['name'])));
 
   	//REPLACE ALL OCCURRENCES OF THE SEARCH STRING WITH THE REPLACEMENT STRING
   	//REPLACE ALL SPACES WITH HYPHENS
@@ -50,32 +22,35 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
   	//Replace underscores with hyphens
   	$vfile_name = str_replace('_', '-', $vfile_name);
 
+    $img_temp = $_FILES['txtLogo']['tmp_name'];
+
+    $vfile_extension = mime_content_type($img_temp);
 
    	if ($vfile_name) {
 
-    	$vfile_extension = getExtension($vfile_name);
-
-   		$vfile_extension = strtolower($vfile_extension);
-
   		//CHECK FILE EXTENTION
-  		if (($vfile_extension != 'jpg') && ($vfile_extension != 'jpeg')) {
+  		if ($vfile_extension !== 'image/jpeg') {
 
-  			$vImg = 'na';
+  			$validation++;
+        echo 'wrong file extension';
 
    		} else {
 
+        // get the dimensions of the file and if the dimensions are larger than int
+        if(isset($_SERVER['CONTENT_LENGTH']) && (int) $_SERVER['CONTENT_LENGTH'] > (1024*1024*(int) ini_get('post_max_size'))){
+
+          header('Location: partners-add-new.php?kfilesize=toolarge');
+          exit();
+
+        }
+
   			//GET THE FILE SIZE
   			$vfile_size = filesize($_FILES['txtLogo']['tmp_name']) / 1000000;
-
-      //CREATE THE IMAGE BASED ON FILE EXTENSION
-      if($vfile_extension == 'jpg' || $vfile_extension == 'jpeg' ) {
 
       	$vfile_temp_name = $_FILES['txtLogo']['tmp_name'];
 
       	//CREATE A NEW IMAGE FROM FILE
       	$vfile_source = imagecreatefromjpeg($vfile_temp_name);
-
-      }
 
       //GET IMAGE DIMENTION (ORIGINAL IMAGE)
       list($vfile_original_width, $vfile_original_height) = getimagesize($vfile_temp_name);
@@ -144,32 +119,53 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
            //$vImg = basename($vImg);
 
         	} else {
-
+            echo 'file not uploaded';
         		$validation++;
 
         	}
         }
 
     	} else {
+        echo 'wierd filename';
         $validation++;
       }
 
 
-  } else {
-    $validation++;
-  }
-
   if($validation === 0 && $vCompany && $vDescription) {
     // Validation passed
+    require('inc-conn.php');
+    require('inc-function-escapestring.php');
+
+    // insert query
+    $sql_insert = sprintf("INSERT INTO tblpartners (pcompany, pdescription, plogo) VALUES (%s, %s, %s)",
+      escapestring($vconn_creativeangels, $vCompany, 'text'),
+      escapestring($vconn_creativeangels, $vDescription, 'text'),
+      escapestring($vconn_creativeangels, $vImg, 'text')
+    );
+
+    // Execute insert statement
+    $vinsert_results = mysqli_query($vconn_creativeangels, $sql_insert);
+
+    if($vinsert_results) {
+
+      header('Location: partners-display.php');
+      exit();
+
+    } else {
+      echo 'db fail';
+      //header('Location: signout.php');
+      exit();
+
+    } // DB end
 
   } else {
-    echo 'validation failed';
+    header('location: signout.php');
     exit();
-  }
+  } // Validation end
 
 
 } else {
-  echo 'No security token';
+  header('location: signout.php');
   exit();
 }
 
