@@ -80,13 +80,16 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               <br>
               <br>
 
+              <label>Images</label>
+              <input type="file" name="files[]" multiple="">
+
               <h3 class="accent">Article settings</h3>
               <!-- DATE -->
               <label>Article Date<label>
                 <!-- TODO Datepicker -->
                 <p><i>YYYY-MM-DD</i></p>
 
-                <input type="text" name="txtDate" placeholder="DD/MM/YYYY">
+                <input type="text" name="txtDate" placeholder="YYYY-MM-DD">
 
               <label>Status</label><br>
               <input type="radio" name="txtStatus" value="i" checked> Save as Draft<br>

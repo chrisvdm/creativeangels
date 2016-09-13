@@ -16,6 +16,42 @@ if(exists('txtBody', 'POST')) {
   $vBody = false;
 }
 
+echo $_FILES['files']['name'][0];
+exit();
+
+if(isset($_FILES['images'])) {
+  $errors = array();
+  $path_large = '../assets/uploads/news/large/';
+  $path_thumb = '../assets/uploads/news/thumb/';
+
+  foreach($_FILES['images']['tmp_name'] as $key => $tmp_name ) {
+
+    // Create new image name
+    $key.$_FILES['images']['name'][$key] = 'img' . date('YmdHis') . '.jpg';
+
+    $image_name = $key.$_FILES['images']['name'][$key];
+    $image_size = $_FILES['images']['size'][$key];
+    $image_tmp = $_FILES['images']['tmp_name'][$key];
+    echo $image_name;
+    exit();
+    // checks the file extension
+    $ext = mime_content_type($image_tmp);
+
+    if($ext !== 'image/jpeg') {
+    	$errors[]="extension not allowed";
+    }
+
+    // checks the image size
+    if($file_size > 2097152){
+      $errors[]='File size must be less than 2 MB';
+    }
+
+
+
+
+  }
+}
+
 // ======================= VALIDATION FAILED ===============================
 if(!$vHeading || !$vSummary || !$vBody) {
 
