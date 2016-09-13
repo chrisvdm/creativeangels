@@ -23,6 +23,7 @@ $(document).ready(function() {
 
   }); // End of accordian fn
 
+  // Find current page and
   function currentPage() {
 
     var urlPath = window.location.href;
@@ -56,5 +57,10 @@ $(document).ready(function() {
     } // End of for loop
 
   } // End of currentpage fn
+
+  // TODO: + / - for open and closing fn
+  function plusMinus() {
+    
+  }
 
 }); // End of jquery doc ready
