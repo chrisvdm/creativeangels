@@ -28,7 +28,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 <!DOCTYPE html>
 <html>
   <head>
-    
+
     <!-- Head contents -->
     <?php require('inc-cms-head-content.php'); ?>
     <script src="ckeditor/ckeditor.js"></script>
@@ -75,7 +75,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               <?php echo errorMsg('kbody', 'body'); ?>
               <textarea id="txtBody" name="txtBody"><?php echo displayTxt('kbody'); ?></textarea>
               <script>
-              CKEDITOR.replace('txtBody');
+                CKEDITOR.replace('txtBody');
               </script>
               <br>
               <br>
