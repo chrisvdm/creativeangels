@@ -16,41 +16,85 @@ if(exists('txtBody', 'POST')) {
   $vBody = false;
 }
 
-echo $_FILES['files']['name'][0];
-exit();
+$img_arr = array();
 
 if(isset($_FILES['images'])) {
-  $errors = array();
-  $path_large = '../assets/uploads/news/large/';
-  $path_thumb = '../assets/uploads/news/thumb/';
 
-  foreach($_FILES['images']['tmp_name'] as $key => $tmp_name ) {
+      $vmemory = ini_set('memory_limit', '128M');
 
-    // Create new image name
-    $key.$_FILES['images']['name'][$key] = 'img' . date('YmdHis') . '.jpg';
+      $errors= array();
 
-    $image_name = $key.$_FILES['images']['name'][$key];
-    $image_size = $_FILES['images']['size'][$key];
-    $image_tmp = $_FILES['images']['tmp_name'][$key];
-    echo $image_name;
-    exit();
-    // checks the file extension
-    $ext = mime_content_type($image_tmp);
+      foreach($_FILES['images']['tmp_name'] as $key => $tmp_name ){
 
-    if($ext !== 'image/jpeg') {
-    	$errors[]="extension not allowed";
-    }
+      $images = $_FILES['images'];
+      $img_name = $key.$images['name'][$key];
+      $img_size = $images['size'][$key];
+      $img_tmp  = $images['tmp_name'][$key];
 
-    // checks the image size
-    if($file_size > 2097152){
-      $errors[]='File size must be less than 2 MB';
-    }
+      // Check file is a a jpeg
+      // return mime type ala mimetype extension
+      $finfo = finfo_open(FILEINFO_MIME_TYPE);
+      $ext = finfo_file($finfo, $img_tmp);
+      finfo_close($finfo);
 
+      if($ext !== 'image/jpeg'){
 
+        $errors[]='Extension not allowed';
 
+      } else {
 
-  }
-}
+        // Check file size
+        if($img_size > 2097152){
+
+          $errors[]='File size must be less than 2 MB';
+
+        } else {
+
+          // Create new image from file to manipulate
+          $img_src = imagecreatefromjpeg($img_tmp);
+
+          // Get original image dimensions
+          list($img_width, $img_height) = getimagesize($img_tmp);
+
+          // Specify new image dimensions
+          //300px wide
+          $img_new_width = 300;
+          $img_new_height = ($img_height/$img_width) * $img_new_width;
+
+           // Create blank image with the new dimensions
+          $img_new = imagecreatetruecolor($img_new_width, $img_new_height);
+
+          // Copy and resize via resampling
+          imagecopyresampled($img_new, $img_src, 0, 0, 0, 0, $img_new_width, $img_new_height, $img_width, $img_height);
+
+          // File upload directory
+          $path_dir = '../assets/uploads/news/large/';
+
+          $img_new_name = 'img' . date('YmdHis') . $key . '.jpg';
+
+          $img_upload_path = $path_dir . $img_new_name;
+
+          // Upload image to server
+          $img_uploaded = imagejpeg($img_new, $img_upload_path, 100);
+
+          // Push img to array
+          if($img_uploaded) {
+              // push the images to the array.
+              array_push($img_arr, $img_new_name);
+
+          }
+
+        } // End of size
+
+      } // End of ext
+
+    } // End of foreach loop
+
+    // implode the array
+    $images_str = implode(', ', $img_arr);
+    die($images_str);
+
+  } // End isset
 
 // ======================= VALIDATION FAILED ===============================
 if(!$vHeading || !$vSummary || !$vBody) {

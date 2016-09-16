@@ -60,7 +60,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base col-2-3">
 
-          <form class="form news" method="post" action="news-insert-process.php">
+          <form class="form news" method="post" action="news-insert-process.php" enctype="multipart/form-data">
             <h3 class="accent">Article content</h3>
               <!-- HEADLINE -->
               <?php echo errorMsg('kheading', 'title'); ?>
@@ -81,7 +81,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               <br>
 
               <label>Images</label>
-              <input type="file" name="files[]" multiple="">
+              <input type="file" name="images[]" multiple="">
 
               <h3 class="accent">Article settings</h3>
               <!-- DATE -->
