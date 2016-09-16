@@ -25,7 +25,7 @@
     list($img_width, $img_height) = getimagesize($img_tmp);
 
     // Specify new image dimensions
-    $img_new_height = ($img_height/$img_width) * $img_new_widt;
+    $img_new_height = ($img_height/$img_width) * $img_new_width;
 
      // Create blank image with the new dimensions
     $img_new = imagecreatetruecolor($img_new_width, $img_new_height);
@@ -95,9 +95,8 @@
             $img_uploaded = upload($resized_img, $dir, $img_name);
 
             if($img_uploaded) {
-
               // push file name to array
-              array_push(', ', $img_name;)
+              array_push($img_arr, $img_name);
             }
 
           } // end img_check
@@ -126,13 +125,13 @@
 
           $resized_img = img_resize($img_tmp, $size);
 
-          $img_name = 'img' . date('YmdHis') . $key . '.jpg';
+          $img_name = 'img' . date('YmdHis') . '.jpg';
 
           $img_uploaded = upload($resized_img, $dir, $img_name);
 
           if($img_uploaded) {
 
-            return $img_name;)
+            return $img_name;
           }
 
         } // end img_check
