@@ -1,113 +1,143 @@
 <?php
-  $imgDbName = imgUpload('txtimg', 'uploads', 'image-test.php');
-  echo $imgDbName;
-  exit();
+  // Check file is a a jpeg returns a boolean of true if the img is a jpg
+  function is_jpg($img_tmp) {
 
-  function imgUpload($img, $uploadPath, $failUrl){
+    // return mime type ala mimetype extension
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $ext = finfo_file($finfo, $img_tmp);
+    finfo_close($finfo);
 
-    $img_temp = $_FILES[$img] ['tmp_name'];
-    $error = '?';
-
-    ini_set('memory_limit', '128M');
-
-    if(checkSize()) {
-
-      // Checks whether image is an image and returns temp location
-      $file_src = createTempImg($img);
-
-      // Creates a resized version of the image
-      $preparedImg = resizeImg($file_src, 300);
-      $preparedThumb = resizeImg($file_src, 180);
-
-      // Upload large image to specified filepath
-      $file_name = uploadJpg($preparedImg, $preparedThumb, $uploadPath);
-
-      // destroys files to free memory
-      imagedestroy($file_src);
-      imagedestroy($preparedImg);
-      imagedestroy($preparedThumb);
-
-      return $file_name;
-
+    if($ext !== 'image/jpeg'){
+      return false;
     } else {
-
-      $error .= 'file=toolarge';
-      echo $error;
-      // header('location:' . $failUrl . $error );
-      exit();
-
+      return true;
     }
 
-  } // end of upload fn
+  } // End of is_jpg fn
 
-  function resizeImg($img, $img_new_width) {
+  // Resizes image to specified size based on width
+  function img_resize($img_tmp, $img_new_width) {
 
-    $img_src = $_FILES[$img] ['tmp_name'];
+    // Create new image from file to manipulate
+    $img_src = imagecreatefromjpeg($img_tmp);
 
-    //GET IMAGE DIMENSION (ORIGINAL IMAGE)
-    list($img_width, $img_height) = getimagesize($img_src);
+    // Get original image dimensions
+    list($img_width, $img_height) = getimagesize($img_tmp);
 
-    $img_new_height = ($img_height/$img_width) * $img_new_width;
+    // Specify new image dimensions
+    $img_new_height = ($img_height/$img_width) * $img_new_widt;
 
-    // Create blank (black) image with new image dimensions
+     // Create blank image with the new dimensions
     $img_new = imagecreatetruecolor($img_new_width, $img_new_height);
 
-    // Copy and resize part of the large image with resampling
-    imagecopyresampled($img_new, $img_temp, 0, 0, 0, 0, $img_new_width, $img_new_height, $img_width, $img_height);
+    // Copy and resize via resampling
+    imagecopyresampled($img_new, $img_src, 0, 0, 0, 0, $img_new_width, $img_new_height, $img_width, $img_height);
 
     return $img_new;
-  }
 
-  function createTempImg($img) {
+  } // End of img_resize fn
 
-    	$img_temp_create = $_FILES['txtimg']['tmp_name'];
+  function upload($img, $dir, $img_name) {
 
-    $filetype = mime_content_type($img_temp_create);
+    $img_upload_path = $dir . $img_name;
 
-    if($filetype === 'image/jpeg') {
+    // Upload image to server
+    return imagejpeg($img, $img_upload_path, 100);
 
-      return imagecreatefromjpeg($img_temp_create);
+  } // End of upload fn
+
+  function img_check($img_tmp, $img_size) {
+
+    // check that img file is a jpg
+    if (is_jpg($img_tmp)) {
+
+      // check that the image is the right size
+      if($img_size < 2097152) {
+
+        // Resize image
+        return true;
+
+      } else {
+
+        return false;
+
+      } // end size check statement
 
     } else {
-
-      echo 'wrong file extension';
-      // $error .= 'file=wrongextension';
-      // header('location:' . $failUrl . $error );
-      exit();
-    }
-  }
-
-  function checkSize() {
-    // get the dimensions of the file and if the dimensions are larger than int
-    if(isset($_SERVER['CONTENT_LENGTH']) && (int) $_SERVER['CONTENT_LENGTH'] > (1024*1024*(int) ini_get('post_max_size'))){
 
       return false;
 
-    } else {
-
-      return true;
-
-    }
+    } // end is_jpg statement
 
   }
 
-  function uploadJpg($img, $thumbnail, $path){
+    // loads an array of images to server and returns an array as a string
+  function multi_img_upload($name, $dir, $size = 300) {
 
-    $img_name ='img' . date('YmdHis') . '.jpg';
+      $img_arr = array();
 
-    // Prepare filepath
-    $path = $path . '/large/n' . $img_name;
-    $pathThumb = $path . '/thumb/n' . $img_name;
+      if(isset($_FILES[$name])) {
 
-    // Upload
-    $upload_results = imagepng($img, $path, 100);
-    $upload_thumb_results = imagepng($img, $path, 100);
+        $vmemory = ini_set('memory_limit', '128M');
 
-    if($upload_results && $upload_thumb_results) {
+        foreach($_FILES[$name]['tmp_name'] as $key => $tmp_name ){
 
-      return $img_name;
+          $images = $_FILES[$name];
+          $img_size = $images['size'][$key];
+          $img_tmp  = $images['tmp_name'][$key];
 
-    }
+          if(img_check($img_tmp, $img_size)) {
 
-  }
+            $resized_img = img_resize($img_tmp, $size);
+
+            $img_name = 'img' . date('YmdHis') . $key . '.jpg';
+
+            $img_uploaded = upload($resized_img, $dir, $img_name);
+
+            if($img_uploaded) {
+
+              // push file name to array
+              array_push(', ', $img_name;)
+            }
+
+          } // end img_check
+
+        } // foreach loop
+
+        // converts array to string
+        return implode(', ', $img_arr);
+
+      } // End isset
+
+  } // End of multi_img_upload fn
+
+  // loads a single image to server and returns new file name to be uploaded to db
+  function img_upload($name, $dir, $size = 300) {
+
+      if(isset($_FILES[$name])) {
+
+        $vmemory = ini_set('memory_limit', '128M');
+
+        $images = $_FILES[$name];
+        $img_size = $images['size'];
+        $img_tmp  = $images['tmp_name'];
+
+        if(img_check($img_tmp, $img_size)) {
+
+          $resized_img = img_resize($img_tmp, $size);
+
+          $img_name = 'img' . date('YmdHis') . $key . '.jpg';
+
+          $img_uploaded = upload($resized_img, $dir, $img_name);
+
+          if($img_uploaded) {
+
+            return $img_name;)
+          }
+
+        } // end img_check
+
+      } // End isset
+
+  } // End of multi_img_upload fn
 ?>
