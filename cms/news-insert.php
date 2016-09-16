@@ -80,7 +80,9 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               <br>
               <br>
 
-              <label>Images</label>
+              <h3 class="accent">Images</h3>
+              <div id="img-Err" class='warning_msg'></div>
+              <p>Upload up to 5 jpeg images</p>
               <input type="file" name="images[]" multiple="">
 
               <h3 class="accent">Article settings</h3>
@@ -116,5 +118,14 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
     </div>
 
     <script src="js/accordian.js"></script>
+    <script>
+
+      _('input[name="images[]"]').onchange = function() {
+        if(_('input[name="images[]"]').files.length > 5) {
+          _('#img-Err').innerHtml = '<p>You can only select up to 5 images</p>'
+        }
+      }
+
+    </script>
   </body>
 </html>
