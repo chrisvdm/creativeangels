@@ -59,3 +59,7 @@ function fade(el) {
         op -= op * 0.1;
     }, 50);
 }
+
+function _(el){
+  return document.querySelector(el);
+}
