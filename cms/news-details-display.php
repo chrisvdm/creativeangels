@@ -53,17 +53,33 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
 
-          <h3><?php echo $rs_news_rows['nheading']; ?></h3>
           <article><?php echo $rs_news_rows['nbody']; ?></article>
 
           <div class="gallery">
             <?php
-            $img_str = $rs_news_rows['nimages'];
-            $img_arr = explode(', ', $img_str);
-            var_dump($img_arr);
+              $img_str = $rs_news_rows['nimages'];
+              $img_arr = explode(', ', $img_str);
+
+              foreach($img_arr as $key => $value) {
+                echo '<img src="../assets/uploads/news/large/' . $value .'">';
+              }
             ?>
           </div>
 
+
+          <div class="button-set">
+            <!-- Edit -->
+            <form method="get" action="news-update-display.php">
+              <input type="hidden" name="txtId" value="<?php echo $rs_news_rows['nid']; ?>">
+              <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+              <input class="button" type="submit" value="Edit">
+            </form>
+
+            <!-- Publish -->
+            <input type="button" name="pubBtn" data-status="<?php echo $rs_news_rows['nstatus']; ?>" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-id="<?php echo $rs_news_rows['nid']; ?>" value="<?php if($rs_news_rows['nstatus'] === 'i'){echo 'Publish';} else {echo 'Archive';} ?>">
+
+            <a class="button" href="news-display.php">Cancel</a>
+          </div>
         </section>
 
       </section>

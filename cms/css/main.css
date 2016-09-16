@@ -414,7 +414,9 @@ height: 100%;
 
 /* IMAGES */
 
-
+.gallery img{
+  vertical-align: top;
+}
 
 
 
