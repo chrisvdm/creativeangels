@@ -92,7 +92,6 @@ if(isset($_FILES['images'])) {
 
     // implode the array
     $images_str = implode(', ', $img_arr);
-    die($images_str);
 
   } // End isset
 
@@ -115,12 +114,13 @@ if(!$vHeading || !$vSummary || !$vBody) {
   require('inc-function-escapestring.php');
 
   // insert query
-  $sql_insert = sprintf("INSERT INTO tblnews (nheading, nsummary, nbody, ndatepublished, nstatus) VALUES (%s, %s, %s, %d, %s)",
+  $sql_insert = sprintf("INSERT INTO tblnews (nheading, nsummary, nbody, ndatepublished, nstatus, nimages) VALUES (%s, %s, %s, %d, %s, %s)",
     escapestring($vconn_creativeangels, $vHeading, 'text'),
     escapestring($vconn_creativeangels, $vSummary, 'text'),
     escapestring($vconn_creativeangels, $vBody, 'text'),
     escapestring($vconn_creativeangels, $vDate, 'date'),
-    escapestring($vconn_creativeangels, $vStatus, 'text')
+    escapestring($vconn_creativeangels, $vStatus, 'text'),
+    escapestring($vconn_creativeangels, $images_str, 'text')
   );
 
   // Execute insert statement
