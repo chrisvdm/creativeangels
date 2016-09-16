@@ -3,8 +3,10 @@
 $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 ?>
 <?php
+
+  $vId = $_POST['txtId'];
   // Create SQL statement
-  $sql_news = "SELECT * FROM tblnews ORDER BY ncreated ASC";
+  $sql_news = "SELECT * FROM tblnews WHERE nid = $vId";
 
   //Connect to MYSQL Server
   require('inc-conn.php');
@@ -43,7 +45,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>News Articles</h2>
+            <h2>News Article > <?php echo $rs_news_rows['nheading']; ?></h2>
           </div>
 
         </header>
@@ -51,47 +53,16 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
 
-          <table cellspacing="0" class="tbldatadisplay">
-            <tr class="tbl-heading">
-              <td class="accent" colspan="2">Title</td>
-                <td class="accent" colspan="2">Summary</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-              </tr>
+          <h3><?php echo $rs_news_rows['nheading']; ?></h3>
+          <article><?php echo $rs_news_rows['nbody']; ?></article>
 
-              <?php do{ ?>
-            <tr>
-              <td colspan="2"><?php echo $rs_news_rows['nheading']; ?></td>
-              <td colspan="5"><?php echo $rs_news_rows['nsummary']; ?></td>
-              <td>
-                <!-- View -->
-                <form method="post" action="news-details-display.php">
-                  <input type="hidden" name="txtId" value="<?php echo $rs_news_rows['nid']; ?>">
-                  <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
-                  <input class="button" type="submit" value="View">
-                </form>
-              </td>
-              <td>
-                <!-- Edit -->
-                <form method="get" action="news-update-display.php">
-                  <input type="hidden" name="txtId" value="<?php echo $rs_news_rows['nid']; ?>">
-                  <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
-                  <input class="button" type="submit" value="Edit">
-                </form>
-              </td>
-              <td>
-                <!-- Publish -->
-                <input type="button" name="pubBtn" data-status="<?php echo $rs_news_rows['nstatus']; ?>" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-id="<?php echo $rs_news_rows['nid']; ?>" value="<?php if($rs_news_rows['nstatus'] === 'i'){echo 'Publish';} else {echo 'Archive';} ?>">
-              </td>
-            </tr>
-
-            <?php } while ($rs_news_rows = mysqli_fetch_assoc($rs_news)) ?>
-          </table>
-
+          <div class="gallery">
+            <?php
+            $img_str = $rs_news_rows['nimages'];
+            $img_arr = explode(', ', $img_str);
+            var_dump($img_arr);
+            ?>
+          </div>
 
         </section>
 
