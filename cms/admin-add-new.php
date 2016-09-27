@@ -2,7 +2,6 @@
 <?php
 $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 ?>
-<?php //require("inc-cms-pre-doctype.php"); ?>
 <?php
   // Function for printing out error messages
   function errorMsg($keyName, $label) {

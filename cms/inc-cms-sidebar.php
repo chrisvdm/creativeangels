@@ -44,6 +44,12 @@
     <li><a class="opt-menu" href="news-insert.php">Add New</a></li>
   </ul>
 
+  <li class="opt-menu" >Events</li>
+  <ul class="submenu">
+    <li><a class="opt-menu" href="events-display.php">View</a></li>
+    <li><a class="opt-menu" href="events-add-new.php">Add New</a></li>
+  </ul>
+
   <li class="opt-menu">Testimonials</li>
   <ul class="submenu">
     <li><a class="opt-menu" href="testimonials-display.php">View</a></li>

@@ -77,11 +77,9 @@
 
     // loads an array of images to server and returns an array as a string
   function multi_img_upload($name, $dir, $size = 300) {
-
       $img_arr = array();
 
       if(isset($_FILES[$name])) {
-
         $vmemory = ini_set('memory_limit', '128M');
 
         foreach($_FILES[$name]['tmp_name'] as $key => $tmp_name ){

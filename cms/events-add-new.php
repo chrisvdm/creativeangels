@@ -1,10 +1,12 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
+$_SESSION['svSecurity'] = sha1(date('YmdHis'));
+?>
+<?php
 // Function for printing out error messages
 function errorMsg($keyName, $label) {
 
   // PHP checks whether certain keys have been returned with values in the GET Global Super Array, if it has then echo the value into the input field
-
   if(isset($_GET[$keyName]) && $_GET[$keyName] === '') {
 
     return "<div class='warning_msg'>Please enter " . $label . ".</div>";
@@ -50,7 +52,7 @@ function displayTxt($keyValue){
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Add new Event</h2>
+            <h2>Add New Event</h2>
           </div>
 
         </header>
@@ -60,7 +62,7 @@ function displayTxt($keyValue){
 
           <!--#################### ADD NEW FORM #########################-->
 
-          <form id="form" class="form" action="events-add-process.php" method="post" onsubmit="return valForm()">
+          <form id="form" class="form" action="events-add-process.php" method="post" enctype="multipart/form-data">
 
             <!-- EVENT TITLE -->
             <label>Event Title</label>
@@ -91,8 +93,11 @@ function displayTxt($keyValue){
 
             <!-- IMAGES FOR EVENT -->
             <label>Upload Images to Events page</label>
-            <p>Images need to be jpegs and no larger than 2MB</p>
-            <input type="file" name="txtImg[]">
+
+            <?php echo errorMsg('kimg', 'image'); ?>
+            <input type="file" name="img[]" multiple="">
+
+            <p><small>Logo size may not exceed 2Mb  and must have either a .jpg or .jpeg file extension</small></p>
 
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
 
@@ -107,10 +112,7 @@ function displayTxt($keyValue){
 
             </div>
 
-
-            <div id="subErr" class="warning_msg"></div>
-
-
+          </form>
 
         </section>
 
