@@ -1,4 +1,8 @@
 <?php
+
+  function errorHandling() {
+    //ls of possible errors / Strings
+  }
   // Check file is a a jpeg returns a boolean of true if the img is a jpg
   function is_jpg($img_tmp) {
 
@@ -110,7 +114,9 @@
 
   } // End of multi_img_upload fn
 
-  // loads a single image to server and returns new file name to be uploaded to db
+
+
+  // uploads a single image to server and returns new file name to be uploaded to db
   function img_upload($name, $dir, $size = 300) {
 
       if(isset($_FILES[$name])) {

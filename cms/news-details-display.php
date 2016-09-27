@@ -68,6 +68,7 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
 
           <div class="button-set">
+            
             <!-- Edit -->
             <form method="get" action="news-update-display.php">
               <input type="hidden" name="txtId" value="<?php echo $rs_news_rows['nid']; ?>">

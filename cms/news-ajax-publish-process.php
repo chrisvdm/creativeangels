@@ -5,6 +5,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
   $vId = $_POST['txtId'];
 
   include_once('inc-fn-sanitize.php');
+  // TODO : If more than 6 months ago delete post
 
   //====================== SANITIZATION and VALIDATION =======================
 

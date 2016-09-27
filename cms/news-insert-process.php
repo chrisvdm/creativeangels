@@ -17,8 +17,15 @@ if(exists('txtBody', 'POST')) {
   $vBody = false;
 }
 
+// ------------------------ UPLOAD IMG -------------------------------------
+include('inc-fn-img-upload.php');
+
 // implode the array
 $images_str = multi_img_upload('images', '../assets/uploads/news/large/');
+
+if(!$images_str) {
+  $images_str = 'na';
+}
 
 // ======================= VALIDATION FAILED ===============================
 if(!$vHeading || !$vSummary || !$vBody) {
