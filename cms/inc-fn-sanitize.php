@@ -1,7 +1,7 @@
 <?php
 // returns object based on whether or not a keyvalue pair from array validate according to type(string, int or email)
 function sanitize($name, $type = 'string', $method = 'post') {
-  
+
     if(exists($name, $method)){
       $input = pluck($name, $method);
       return ugh($input, $type);
@@ -43,6 +43,18 @@ function ugh($input, $type){
           return $input;
         }
       }
+    break;
+
+    case 'url':
+    $input = filter_var($input, FILTER_SANITIZE_URL);
+
+    if ($input !== ''){
+      if(!filter_var($input, FILTER_VALIDATE_URL)) {
+        return false;
+      } else {
+        return $input;
+      }
+    }
     break;
 
     default:
