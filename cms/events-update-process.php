@@ -1,6 +1,8 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
 if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && $_SERVER['REQUEST_METHOD'] == 'POST') {
+
+  die("Arrived at update process file");
   // --------------- USER INPUT VALIDATION -------------------------
   include('inc-fn-sanitize.php');
 
@@ -52,14 +54,15 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     $vinsert_results = mysqli_query($vconn_creativeangels, $sql_insert);
 
     if($vinsert_results) {
-
-      header('Location: events-display.php');
-      exit();
+      die('DB insert success');
+      // header('Location: events-display.php');
+      // exit();
 
     } else {
 
-      header('Location: signout.php');
-      exit();
+      die('DB Failure');
+      // header('Location: signout.php');
+      // exit();
 
     }
 
@@ -80,7 +83,6 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
 } else {
 
   // Initial security check failed
-  header("Location: signout.php");
-  exit();
+  die('Security token');
 }
 ?>

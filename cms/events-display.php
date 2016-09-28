@@ -1,7 +1,7 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
 // Create SQL statement to fetch all records from tblcontactdetails
-$sql_partners = "SELECT * FROM tblpartners";
+$sql_events = "SELECT * FROM tblevents";
 
 //Connect to MYSQL Server
 require('inc-conn.php');
@@ -50,7 +50,7 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
         <section id="main-content" class="base">
 
           <?php do { ?>
-            <div class="team-card" id="partners<?php echo $rs_events_rows['eid']; ?>">
+            <div class="team-card" id="events<?php echo $rs_events_rows['eid']; ?>">
 
               <table cellspacing="0" class="tbldatadisplay">
 
@@ -59,32 +59,46 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
                   <td colspan="5">
                     <strong><?php echo $rs_events_rows['etitle']; ?></strong>
                   </td>
-                  <td class=button-set width="600">
-                    <form method="get" action="events-update-display.php">
+                  <td class=button-set >
+                    <form method="post" action="events-update-display.php">
                       <button>Update</button>
                       <input type="hidden" name="txtId" value="<?php echo $rs_events_rows['eid'];?>">
                       <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
                     </form>
 
-                      <input type="button" class="danger-btn" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-id="<?php echo $rs_events_rows['eid']; ?>">
-                    </td>
+                    <input type="button" class="danger-btn" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-id="<?php echo $rs_events_rows['eid']; ?>">
+                  </td>
 
                 </tr>
                 <tr>
                   <td rowspan="4" width="250" style="text-align: center">
-                    <?php if($rs_events_rows['eimg'] === 'na') { echo 'No Image uploaded'; } else {?>
-                      <figure>
-                        <?php
-                          $img_str = $rs_events_rows['eimg'];
-                          $img_arr = explode(', ', $img_str);
+                    <?php
+                      $img_str = $rs_events_rows['eimg'];
+                      $img_arr = explode(', ', $img_str);
 
-                          echo '<img src="../assets/uploads/events/large/' . reset($img_arr) .'">';
-                        ?></figure>
-                    <?php } ?>
+                      if($img_arr) {
+                        echo '<img src="../assets/uploads/events/large/' . reset($img_arr) .'">';
+                      } else {
+                        echo '<img src="../assets/uploads/events/large/' . $img_str .'">';
+                      }
+                    ?>
                   </td>
                   <td width="100" class="accent"><strong>Description</strong></td>
                   <td colspan="4">
                     <?php echo $rs_events_rows['edescription']; ?>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="accent"><strong>Date</strong></td>
+                  <td colspan="4">
+                  <?php echo $rs_events_rows['edate']; ?>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="accent"><strong>Event Url</strong></td>
+                  <td colspan="4">
+                    <a href="<?php echo $rs_events_rows['elink']; ?>"><?php echo $rs_events_rows['elink']; ?></a>
+
                   </td>
                 </tr>
                 <tr>
@@ -98,7 +112,7 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
 
             </div>
 
-          <?php } while($rs_events_rows = mysqli_fetch_assoc($rs_partners)) ?>
+          <?php } while($rs_events_rows = mysqli_fetch_assoc($rs_events)) ?>
           <div class="clearfix"></div>
 
         </section>

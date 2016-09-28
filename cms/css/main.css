@@ -418,6 +418,16 @@ height: 100%;
   vertical-align: top;
 }
 
+.thumbGallery figure {
+  padding: 0.625em;
+  margin: 0.625em;
+  float: left;
+}
+
+.thumbGallery figure[name="canDel"]:hover {
+  background-color: #e67684;
+}
+
 
 
 /* ============================================================================ MODAL STYLING
