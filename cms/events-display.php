@@ -152,7 +152,6 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
             'txtImgStr' : info.img
           },
           success: function(result) {
-
             // Remove event record
             btn.parents('.team-card').remove();
             // Toast

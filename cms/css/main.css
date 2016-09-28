@@ -426,7 +426,7 @@ height: 100%;
 .thumbGallery figure {
   margin: 0.625em;
   width: 20%;
-  height: 200px;
+  max-height: 200px;
   overflow: hidden;
   border: solid 0.625em #eee;
   position: relative;

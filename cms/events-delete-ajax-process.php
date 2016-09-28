@@ -19,18 +19,16 @@
 
     if($delete_result) {
 
-      $img_arr = $_POST['txtImgStr'];
+      $img_str = $_POST['txtImgStr'];
 
       $img_arr = explode(', ', $img_str);
 
-      foreach ($img_arr as $key => $img) {
+      foreach ($img_arr as $key => $value) {
         $dir = "../assets/uploads/events/";
-
-        unlink($dir . "large/" . $img);
-        unlink($dir . "thumb/" . $img);
+        
+        unlink($dir . "large/" . $value);
+        unlink($dir . "thumb/" . $value);
       }
-
-      echo 'Record deleted';
       exit();
 
     } else {
