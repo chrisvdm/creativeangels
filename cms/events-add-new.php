@@ -80,19 +80,19 @@ function displayTxt($keyValue){
             <textarea name="txtDescription" required=""><?php echo displayTxt('kdescription'); ?></textarea>
 
             <!-- DATE -->
-            <label>Date</label>
+              <label>Date <span class="fa fa-calendar"></span></label>
 
             <?php echo errorMsg('kdate', 'date'); ?>
             <input type="date" name="txtDate" value="<?php echo displayTxt('kdate'); ?>" required="">
 
             <!-- LINK TO FACEBOOK EVENT PAGE -->
-            <label>Link to Facebook event page</label>
+              <label>Event Url <span class="fa fa-link"></span></label>
 
             <?php echo errorMsg('klink', 'link'); ?>
             <input type="url" name="txtLink" value="<?php echo displayTxt('klink'); ?>">
 
             <!-- IMAGES FOR EVENT -->
-            <label>Upload Images to Events page</label>
+            <label>Upload Images <span class="fa fa-picture-o"></span></label>
 
             <?php echo errorMsg('kimg', 'image'); ?>
             <input type="file" name="img[]" multiple="">
@@ -106,9 +106,9 @@ function displayTxt($keyValue){
             <div class="button-set">
 
               <!-- submit form -->
-              <button type="submit" name="btnAddNew">Add New</button>
+              <button type="submit" name="btnAddNew">Save <span class="fa fa-check"></span></button>
 
-              <a class="button danger-btn" href="cms-homepage.php" name="btnCancel">Cancel</a>
+              <a class="button danger-btn" href="events-display.php" name="btnCancel">Cancel <span class="fa fa-times"></span></a>
 
             </div>
 

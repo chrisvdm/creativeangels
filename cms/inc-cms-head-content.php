@@ -21,4 +21,5 @@
 <link rel="stylesheet" href="css/main.css">
 <title>Creative Angels | Content Management System</title>
 
+<script src="https://use.fontawesome.com/1cf038b87c.js"></script>
 <script src="ckeditor/ckeditor.js"></script>

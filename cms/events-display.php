@@ -21,6 +21,7 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
   <head>
     <!-- Head contents -->
     <?php require('inc-cms-head-content.php'); ?>
+    <script src="js/modal.js"></script>
 
   </head>
   <body>
@@ -61,12 +62,12 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
                   </td>
                   <td class=button-set >
                     <form method="post" action="events-update-display.php">
-                      <button>Update</button>
+                      <button>Edit <span class="fa fa-pencil"></span></button>
                       <input type="hidden" name="txtId" value="<?php echo $rs_events_rows['eid'];?>">
                       <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
                     </form>
 
-                    <input type="button" class="danger-btn" name="btnDel" value="Delete" data-sec="<?php echo $_SESSION['svSecurity']; ?>" data-id="<?php echo $rs_events_rows['eid']; ?>">
+                    <button type="button" class="danger-btn" name="btnDel" data-security="<?php echo $_SESSION['svSecurity']; ?>" data-id="<?php echo $rs_events_rows['eid']; ?>" data-img="<?php echo $rs_events_rows['eimg']; ?>">Delete <span class="fa fa-trash-o"></span></button>
                   </td>
 
                 </tr>
@@ -123,5 +124,46 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
     </div>
 
     <script src="js/accordian.js"></script>
+    <script>
+
+    $(document).ready(function() {
+
+      $(':button[name="btnDel"]').click(function() {
+
+        var btn = $(this);
+        var info = btn.data();
+
+        mw.delete('Deleting a record is a permanent action.\nDo you wish to proceed?', '#main-content', function(result) {
+
+          if (result) {
+            deleteRecord(info, btn);
+          }
+
+        });
+      });
+
+      function deleteRecord(info, btn) {
+        $.ajax({
+          type: 'POST',
+          url: 'events-delete-ajax-process.php',
+          data: {
+            'txtId': info.id,
+            'txtSecurity': info.security,
+            'txtImgStr' : info.img
+          },
+          success: function(result) {
+
+            // Remove event record
+            btn.parents('.team-card').remove();
+            // Toast
+            mw.deleteToast('Event was deleted', '#main-content');
+
+          }
+        });
+      }
+
+    });
+
+    </script>
   </body>
 </html>

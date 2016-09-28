@@ -85,7 +85,7 @@ function inputVal($key, $col, $rs){
 
           <!-- Page title -->
           <div class="page-header">
-            <h2>Update Event > <?php echo $rs_events_rows['etitle']; ?></h2>
+            <h2>Edit Event > <?php echo $rs_events_rows['etitle']; ?></h2>
           </div>
 
         </header>
@@ -113,19 +113,19 @@ function inputVal($key, $col, $rs){
             <textarea name="txtDescription" required=""><?php echo inputVal('kdescription', 'edescription', $rs_events_rows); ?></textarea>
 
             <!-- DATE -->
-            <label>Date</label>
+            <label>Date <span class="fa fa-calendar"></span></label>
 
             <?php echo errorMsg('kdate', 'date'); ?>
             <input type="date" name="txtDate" value="<?php echo inputVal('kdate', 'edate', $rs_events_rows); ?>" required="">
 
             <!-- LINK TO FACEBOOK EVENT PAGE -->
-            <label>Link to Facebook event page</label>
+            <label>Event Url <span class="fa fa-link"></span></label>
 
-            <?php echo errorMsg('klink', 'link'); ?>
+            <?php echo errorMsg('klink', 'url'); ?>
             <input type="url" name="txtLink" value="<?php echo inputVal('klink', 'elink', $rs_events_rows);?>">
 
             <!-- IMAGES FOR EVENT -->
-            <label>Images</label>
+            <label>Images <span class="fa fa-picture-o"></span></label>
 
             <div class="thumbGallery">
               <?php
@@ -135,13 +135,14 @@ function inputVal($key, $col, $rs){
                 if(count($img_arr) > 1) {
 
                   foreach ($img_arr as $key => $value) { ?>
-                    <figure id="img<?php echo $value ?>" name="canDel" data-id="<?php echo $rs_events_rows['eid']; ?>" data-tbl="tblevents" data-dir="../assets/uploads/events/" data-img="<?php echo $value; ?>" data-security="<?php echo $_SESSION['svSecurity']; ?>" data-arr-str="<?php echo $img_str; ?>">
-                      <img src="../assets/uploads/events/thumb/<?php echo $value; ?>">
+                    <figure id="<?php echo $value ?>" name="canDel" data-id="<?php echo $rs_events_rows['eid']; ?>" data-tbl="tblevents" data-dir="../assets/uploads/events/" data-img="<?php echo $value; ?>" data-security="<?php echo $_SESSION['svSecurity']; ?>" data-arr-str="<?php echo $img_str; ?>">
+                      <img src="../assets/uploads/events/large/<?php echo $value; ?>">
+                      <span class="symbolGallery fa fa-trash-o"></span>
                     </figure>
 
                   <?php }
                 } elseif (count($img_arr) === 1 && $img_arr[0] !== 'na') {?>
-                  <figure><img src="../assets/uploads/events/thumb/<?php echo $img_str; ?>"></figure>
+                  <figure><img src="../assets/uploads/events/large/<?php echo $img_str; ?>"></figure>
                 <?php } elseif ($img_str === 'na') {
                   echo "<div class='warning_msg'>No images. Please upload images</div>";
                 }?>
@@ -161,9 +162,9 @@ function inputVal($key, $col, $rs){
             <div class="button-set">
 
               <!-- submit form -->
-              <button type="submit" name="btnAddNew">Update</button>
+              <button type="submit" name="btnAddNew">Save <span class="fa fa-check"></span></button>
 
-              <a class="button danger-btn" href="events-display.php" name="btnCancel">Cancel</a>
+              <a class="button danger-btn" href="events-display.php" name="btnCancel">Cancel <span class="fa fa-times"></span></a>
 
             </div>
 
@@ -188,13 +189,13 @@ function inputVal($key, $col, $rs){
         mw.delete('Deleting an image is a permanent action.\nDo you wish to proceed?', '#main-content', function(result) {
 
           if (result) {
-            deleteImage(info);
+            deleteImage(info, img);
           }
 
         });
       }); // End of fn
 
-      function deleteImage(info){
+      function deleteImage(info, img){
         $.ajax({
           type: 'POST',
           url: 'inc-ajax-removeImg-process.php',
@@ -207,8 +208,9 @@ function inputVal($key, $col, $rs){
             'txtArr': info.arrStr
           },
           success: function(result) {
+
             // Remove image
-            $('#img' + info.img).remove();
+            img.remove();
 
             // Toast
             mw.deleteToast('Image was deleted', '#main-content');
