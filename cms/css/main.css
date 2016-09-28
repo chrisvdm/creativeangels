@@ -52,6 +52,15 @@ a {
   color: inherit;
 }
 
+p a, a.link {
+  font-weight: bold;
+  color:#bf8fb6;
+}
+
+p a:hover, a.link:hover {
+  text-decoration: underline;
+}
+
 label {
   font-weight: 600;
 }

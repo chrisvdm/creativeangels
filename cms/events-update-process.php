@@ -11,6 +11,8 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
   $vDescription = ucfirst(sanitize('txtDescription'));
   $vLink = strtolower(sanitize('txtLink', 'url'));
   $vDate = sanitize('txtDate');
+  $vLocation = ucfirst(strtolower(sanitize('txtLocation')));
+  $vTickets = ucfirst(sanitize('txtTickets'));
 
   if(!$vLink) {
     $vLink = 'na';
@@ -37,12 +39,14 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
 
     require('inc-conn.php');
 
-    $sql_update = sprintf("UPDATE tblevents SET etitle = %s, edescription = %s, edate = %s, elink = %s, eimg = %s WHERE eid = $vId",
-      escapestring($vconn_creativeangels, $vTitle, 'text'),
-      escapestring($vconn_creativeangels, $vDescription, 'text'),
-      escapestring($vconn_creativeangels, $vDate, 'text'),
-      escapestring($vconn_creativeangels, $vLink, 'text'),
-      escapestring($vconn_creativeangels, $vImg_str, 'text')
+    $sql_update = sprintf("UPDATE tblevents SET etitle = %s, edescription = %s, edate = %s, elocation = %s, etickets= %s, elink = %s, eimg = %s WHERE eid = $vId",
+    escapestring($vconn_creativeangels, $vTitle, 'text'),
+    escapestring($vconn_creativeangels, $vDescription, 'text'),
+    escapestring($vconn_creativeangels, $vDate, 'text'),
+    escapestring($vconn_creativeangels, $vLocation, 'text'),
+    escapestring($vconn_creativeangels, $vTickets, 'text'),
+    escapestring($vconn_creativeangels, $vLink, 'text'),
+    escapestring($vconn_creativeangels, $vImg_str, 'text')
     );
 
     // Execute insert statement

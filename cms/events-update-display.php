@@ -118,6 +118,20 @@ function inputVal($key, $col, $rs){
             <?php echo errorMsg('kdate', 'date'); ?>
             <input type="date" name="txtDate" value="<?php echo inputVal('kdate', 'edate', $rs_events_rows); ?>" required="">
 
+            <!-- LOCATION -->
+            <label>Location <span class="fa fa-map-marker"></span></label>
+
+            <?php echo errorMsg('klocation', 'location'); ?>
+            <input type="text" name="txtLocation" value="<?php echo inputVal('klocation', 'elocation', $rs_events_rows); ?>" required="">
+
+            <!-- TICKETS -->
+            <label>Tickets <span class="fa fa-ticket"></span></label>
+
+            <p>Where can people get tickets and how much would they cost.</p>
+
+            <?php echo errorMsg('ktickets', 'ticket information'); ?>
+            <input type="text" name="txtTickets" value="<?php echo inputVal('ktickets', 'etickets', $rs_events_rows); ?>" required="">
+
             <!-- LINK TO FACEBOOK EVENT PAGE -->
             <label>Event Url <span class="fa fa-link"></span></label>
 

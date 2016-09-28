@@ -8,6 +8,8 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
   $vDescription = ucfirst(sanitize('txtDescription'));
   $vLink = strtolower(sanitize('txtLink', 'url'));
   $vDate = sanitize('txtDate');
+  $vLocation = ucfirst(strtolower(sanitize('txtLocation')));
+  $vTickets = ucfirst(sanitize('txtTickets'));
 
   if(!$vLink) {
     $vLink = 'na';
@@ -40,10 +42,12 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
 
     // The proper way to insert sql statement (SQL Injection)
     // The first specifier (%s) corresponds to the first escapestring function as so on and so forth
-    $sql_insert = sprintf("INSERT INTO tblevents (etitle, edescription, edate, elink, eimg) VALUES (%s, %s, %s, %s, %s)",
+    $sql_insert = sprintf("INSERT INTO tblevents (etitle, edescription, edate, elocation, etickets, elink, eimg) VALUES (%s, %s, %s, %s, %s, %s, %s)",
       escapestring($vconn_creativeangels, $vTitle, 'text'),
       escapestring($vconn_creativeangels, $vDescription, 'text'),
       escapestring($vconn_creativeangels, $vDate, 'text'),
+      escapestring($vconn_creativeangels, $vLocation, 'text'),
+      escapestring($vconn_creativeangels, $vTickets, 'text'),
       escapestring($vconn_creativeangels, $vLink, 'text'),
       escapestring($vconn_creativeangels, $vImg_str, 'text')
     );

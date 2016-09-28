@@ -80,19 +80,17 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
               <br>
               <br>
 
-              <h3 class="accent">Images</h3>
+              <label><h3 class="accent">Upload Images <span class="fa fa-picture-o"></span></h3></label>
               <p>Upload up to 5 jpeg images</p>
 
               <div id="img-Err" class='warning_msg'></div>
               <input type="file" name="images[]" multiple="">
 
-              <h3 class="accent">Article settings</h3>
+              <h3 class="accent">Article settings <span class="fa fa-cog"></span></h3>
               <!-- DATE -->
               <label>Article Date<label>
-                <!-- TODO Datepicker -->
-                <p><i>YYYY-MM-DD</i></p>
 
-                <input type="text" name="txtDate" placeholder="YYYY-MM-DD">
+              <input type="date" name="txtDate">
 
               <label>Status</label><br>
               <input type="radio" name="txtStatus" value="i" checked> Save as Draft<br>
@@ -100,13 +98,15 @@ $_SESSION['svSecurity'] = sha1(date('YmdHis'));
 
               <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>"
 
-            <div class="button-set">
+              <!-- Button set -->
+              <div class="button-set">
 
-              <button type="submit" name="btnSave">Save</button>
+                <!-- submit form -->
+                <button type="submit" name="btnAddNew">Save <span class="fa fa-check"></span></button>
 
-              <a class="button danger-btn" href="news-display.php" name="btnCancel">Cancel</a>
+                <a class="button danger-btn" href="news-display.php" name="btnCancel">Cancel <span class="fa fa-times"></span></a>
 
-            </div>
+              </div>
 
           </form>
 

@@ -50,6 +50,8 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
         <!-- MAIN CONTENT SECTION -->
         <section id="main-content" class="base">
 
+          <?php if($rs_events_rows_total > 0) { ?>
+
           <?php do { ?>
             <div class="team-card" id="events<?php echo $rs_events_rows['eid']; ?>">
 
@@ -72,7 +74,7 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
 
                 </tr>
                 <tr>
-                  <td rowspan="4" width="250" style="text-align: center">
+                  <td rowspan="7" width="250" style="text-align: center">
                     <?php
                       $img_str = $rs_events_rows['eimg'];
                       $img_arr = explode(', ', $img_str);
@@ -96,9 +98,21 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
                   </td>
                 </tr>
                 <tr>
+                  <td class="accent"><strong>Location</strong></td>
+                  <td colspan="4">
+                  <?php echo $rs_events_rows['elocation']; ?>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="accent"><strong>Tickets</strong></td>
+                  <td colspan="4">
+                  <?php echo $rs_events_rows['etickets']; ?>
+                  </td>
+                </tr>
+                <tr>
                   <td class="accent"><strong>Event Url</strong></td>
                   <td colspan="4">
-                    <a href="<?php echo $rs_events_rows['elink']; ?>"><?php echo $rs_events_rows['elink']; ?></a>
+                    <a class="link" href="<?php echo $rs_events_rows['elink']; ?>" title="Link to event webpage"><?php echo $rs_events_rows['elink']; ?></a>
 
                   </td>
                 </tr>
@@ -114,7 +128,15 @@ $rs_events_rows_total = mysqli_num_rows($rs_events);
             </div>
 
           <?php } while($rs_events_rows = mysqli_fetch_assoc($rs_events)) ?>
+
           <div class="clearfix"></div>
+
+          <?php } else {?>
+
+            <h2 class="accent">There are no events to display</h2>
+            <p>Create a new event by navigating to <a href="events-add-new.php" title="Create a new event"><i>Events > Add New</i></a>.
+
+          <?php }?>
 
         </section>
 

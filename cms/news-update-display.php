@@ -110,9 +110,8 @@ function displayTxt($keyValue){
               <h3 class="accent">Article settings</h3>
               <!-- DATE -->
               <label>Article Date<label>
-                <p><i>YYYY-MM-DD</i></p>
 
-                <input type="text" name="txtDate" placeholder="DD/MM/YYYY" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kdate'); } elseif (isset($rs_news_rows['ndatepublished']) && $rs_news_rows['ndatepublished'] !== 'na'){ echo $rs_news_rows['ndatepublished']; } ?>">
+                <input type="date" name="txtDate" placeholder="DD/MM/YYYY" value="<?php if(isset($_GET['kname'])){ echo displayTxt('kdate'); } elseif (isset($rs_news_rows['ndatepublished']) && $rs_news_rows['ndatepublished'] !== 'na'){ echo $rs_news_rows['ndatepublished']; } ?>">
 
               <label>Status</label><br>
               <input type="radio" name="txtStatus" value="i" checked> Save as Draft<br>
