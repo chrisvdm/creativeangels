@@ -157,8 +157,6 @@ function inputVal($key, $col, $rs){
             <input type="hidden" name="txtId" value="<?php echo $vid; ?>">
             <input type="hidden" name="txtOldImg" value="<?php echo $rs_events_rows['eimg']; ?>">
 
-
-
             <!-- Button set -->
             <div class="button-set">
 

@@ -1,6 +1,6 @@
 <?php require('inc-cms-pre-doctype.php'); ?>
 <?php
-if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && $_SERVER['REQUEST_METHOD'] == 'POST') {
+if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['txtId'])) {
 
   $vId = $_POST['txtId'];
 
@@ -22,16 +22,13 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
   $vImg_str = multi_img_upload('img', '../assets/uploads/events/large/');
   $vImg_strThumb = multi_img_upload('img', '../assets/uploads/events/thumb/', 180);
 
-  if($vImg_str === '') {
-
-    $vImg_str = img_upload('img', '../assets/uploads/events/large/');
-    $vImg_strThumb = img_upload('img', '../assets/uploads/events/thumb/');
-
-  }
-
   $vOldImg = $_POST['txtOldImg'];
 
-  $vImg_str =. $vOldImg;
+  if(!$vImg_str || $vImg_str === '') {
+    $vImg_str = $vOldImg;
+  } else {
+    $vImg_str .= ", " . $vOldImg;
+  }
 
   // --------------------- CHECK VALIDATION -----------------------
   if($vImg_str && $vTitle && $vDescription && $vDate) {
@@ -72,7 +69,7 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     $qs .= "&kdate=".urlencode($vDate);
     $qs .= "&kimg=".urlencode($vImg_str);
 
-    header('location: events-add-new.php' . $qs);
+    header('location: events-update-display.php' . $qs);
     exit();
   }
 
