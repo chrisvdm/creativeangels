@@ -154,6 +154,9 @@ function inputVal($key, $col, $rs){
             <p><small>Logo size may not exceed 2Mb  and must have either a .jpg or .jpeg file extension</small></p>
 
             <input type="hidden" name="txtSecurity" value="<?php echo $_SESSION['svSecurity']; ?>">
+            <input type="hidden" name="txtId" value="<?php echo $vid; ?>">
+            <input type="hidden" name="txtOldImg" value="<?php echo $rs_events_rows['eimg']; ?>">
+
 
 
             <!-- Button set -->
@@ -162,7 +165,7 @@ function inputVal($key, $col, $rs){
               <!-- submit form -->
               <button type="submit" name="btnAddNew">Update</button>
 
-              <a class="button danger-btn" href="cms-homepage.php" name="btnCancel">Cancel</a>
+              <a class="button danger-btn" href="events-display.php" name="btnCancel">Cancel</a>
 
             </div>
 

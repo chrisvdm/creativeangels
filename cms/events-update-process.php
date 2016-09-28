@@ -2,7 +2,8 @@
 <?php
 if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecurity'] && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
-  die("Arrived at update process file");
+  $vId = $_POST['txtId'];
+
   // --------------- USER INPUT VALIDATION -------------------------
   include('inc-fn-sanitize.php');
 
@@ -28,21 +29,18 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
 
   }
 
+  $vOldImg = $_POST['txtOldImg'];
+
+  $vImg_str =. $vOldImg;
+
   // --------------------- CHECK VALIDATION -----------------------
   if($vImg_str && $vTitle && $vDescription && $vDate) {
 
-    // Connect to mysql server
-    require('inc-conn.php');
-
-    // Calls the file where the user defined function escapestring receives its instructions
     require('inc-function-escapestring.php');
 
-    // Connect to mysql server
     require('inc-conn.php');
 
-    // The proper way to insert sql statement (SQL Injection)
-    // The first specifier (%s) corresponds to the first escapestring function as so on and so forth
-    $sql_insert = sprintf("INSERT INTO tblevents (etitle, edescription, edate, elink, eimg) VALUES (%s, %s, %s, %s, %s)",
+    $sql_update = sprintf("UPDATE tblevents SET etitle = %s, edescription = %s, edate = %s, elink = %s, eimg = %s WHERE eid = $vId",
       escapestring($vconn_creativeangels, $vTitle, 'text'),
       escapestring($vconn_creativeangels, $vDescription, 'text'),
       escapestring($vconn_creativeangels, $vDate, 'text'),
@@ -51,18 +49,17 @@ if(isset($_POST['txtSecurity']) && $_POST['txtSecurity'] === $_SESSION['svSecuri
     );
 
     // Execute insert statement
-    $vinsert_results = mysqli_query($vconn_creativeangels, $sql_insert);
+    $vupdate_results = mysqli_query($vconn_creativeangels, $sql_update);
 
-    if($vinsert_results) {
-      die('DB insert success');
-      // header('Location: events-display.php');
-      // exit();
+    if($vupdate_results) {
+
+      header('Location: events-display.php?kupdate=success');
+      exit();
 
     } else {
 
-      die('DB Failure');
-      // header('Location: signout.php');
-      // exit();
+      header('Location: signout.php');
+      exit();
 
     }
 
