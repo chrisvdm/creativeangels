@@ -6,7 +6,7 @@
 
     <!--==================== HEAD CONTENTS ======================-->
     <?php require( PATH . '/inc-public-head-content.php'); ?>
-    <title>Creative Angels | CMS Log in</title>
+    <title>WPI | CMS Log in</title>
 
   </head>
   <body>

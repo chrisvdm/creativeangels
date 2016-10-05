@@ -5,14 +5,17 @@
 
   </div>
 
-
   <li><a class="opt-menu" href="cms-homepage.php">Dashboard</a></li>
-  <li class="opt-menu">User Accounts</li>
+  <li class="opt-menu">News</li>
   <ul class="submenu">
-    <li><a  class="opt-menu"href="admin-display.php">View</a></li>
-    <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
-      <li><a  class="opt-menu"href="admin-add-new.php">Add Users</a></li>
-    <?php } ?>
+    <li><a class="opt-menu" href="news-display.php">View</a></li>
+    <li><a class="opt-menu" href="news-insert.php">Add New</a></li>
+  </ul>
+
+  <li class="opt-menu" >Events</li>
+  <ul class="submenu">
+    <li><a class="opt-menu" href="events-display.php">View</a></li>
+    <li><a class="opt-menu" href="events-add-new.php">Add New</a></li>
   </ul>
 
   <li class="opt-menu">About Details</li>
@@ -38,17 +41,13 @@
     <li><a class="opt-menu" href="partners-add-new.php">Add New</a></li>
   </ul>
 
-  <li class="opt-menu">News</li>
+  <li class="opt-menu" >Beneficaries</li>
   <ul class="submenu">
-    <li><a class="opt-menu" href="news-display.php">View</a></li>
-    <li><a class="opt-menu" href="news-insert.php">Add New</a></li>
+    <li><a class="opt-menu" href="beneficaries-display.php">View</a></li>
+    <li><a class="opt-menu" href="beneficaries-add-new.php">Add New</a></li>
   </ul>
 
-  <li class="opt-menu" >Events</li>
-  <ul class="submenu">
-    <li><a class="opt-menu" href="events-display.php">View</a></li>
-    <li><a class="opt-menu" href="events-add-new.php">Add New</a></li>
-  </ul>
+
 
   <li class="opt-menu">Testimonials</li>
   <ul class="submenu">
@@ -56,7 +55,13 @@
     <li><a class="opt-menu" href="testimonials-add-new.php">Add New</a></li>
   </ul>
 
-
+  <li class="opt-menu">User Accounts</li>
+  <ul class="submenu">
+    <li><a  class="opt-menu"href="admin-display.php">View</a></li>
+    <?php if($_SESSION['svcaccesslevel'] === 'a') { ?>
+      <li><a  class="opt-menu"href="admin-add-new.php">Add Users</a></li>
+    <?php } ?>
+  </ul>
 
   <li class="opt-menu">Log out</li>
   <!-- FOOTER -->

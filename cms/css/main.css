@@ -253,7 +253,7 @@ input, textarea {
   padding: 0.3125em;
   outline: none;
   border-style: none;
-  border: solid 2px #aaa;
+  border: solid 2px #a7bbd6;
   color: #777;
   outline-color: #777;
 }
@@ -263,6 +263,14 @@ input, textarea {
   margin-bottom: 1.25em;
   width: 50%;
   display: block;
+}
+
+.form input:focus:invalid, .form textarea:focus:invalid {
+  border: solid 2px #ed9999;
+}
+
+.form input:invalid, .form textarea:invalid {
+  background: #fcebeb;
 }
 
 .form textarea {
